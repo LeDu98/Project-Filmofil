@@ -17,6 +17,7 @@ namespace Domen
         public string Trailer { get; set; }
         public int StudioId { get; set; }
         public Studio Studio { get; set; }
-
+        public int StreamingServiceId { get; set; }
+        public StreamingService StreamingService { get; set; }
     }
 }
