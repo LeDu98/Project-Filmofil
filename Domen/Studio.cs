@@ -8,9 +8,9 @@ namespace Domen
 {
     public class Studio{
         public int StudioId { get; set; }
-        public string Naziv { get; set; }
-        public string Sediste { get; set; }
-        public DateTime DatumOsnivanja { get; set; }
+        public string Name { get; set; }
+        public string Headquarter { get; set; }
+        public DateTime Founded { get; set; }
 
     }
 }

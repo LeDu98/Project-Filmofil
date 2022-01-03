@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Domen
 {
-    public enum Pol
+    public class Country
     {
-        Muski,Zenski
+        public int CountryId { get; set; }
+        public string Name { get; set; }
     }
 }

@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Domen
 {
-    public class Film
+    public class Movie
     {
-        public int FilmId { get; set; }
-        public string Naziv { get; set; }
-        public string Zanr { get; set; }
-        public int Trajanje { get; set; }
-        public double Ocena { get; set; }
+        public int MovieId { get; set; }
+        public string Name { get; set; }
+        public string Genres { get; set; }
+        public int Duration { get; set; }
+        public double Rating { get; set; }
         public string Thumbnail { get; set; }
         public string Trailer { get; set; }
         public int StudioId { get; set; }

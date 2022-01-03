@@ -10,15 +10,15 @@ namespace Domen
 
         public int StreamingServiceId { get; set; }
 
-        public string Naziv { get; set; }
+        public string Name { get; set; }
 
-        public string Sajt { get; set; }
+        public string Website { get; set; }
 
-        public string Sediste { get; set; }
+        public string Headquarter { get; set; }
 
-        public DateTime DatumOsnivanja { get; set; }
+        public DateTime Founded { get; set; }
 
-        public double CenaPretplate { get; set; }
+        public double Price { get; set; }
 
     }
 }
