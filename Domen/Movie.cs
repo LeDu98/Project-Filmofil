@@ -19,5 +19,8 @@ namespace Domen
         public Studio Studio { get; set; }
         public int StreamingServiceId { get; set; }
         public StreamingService StreamingService { get; set; }
+        public List<Actor> Actors { get; set; }
+        public List<Personnel> Personnels { get; set; }
+        public List<User> Users { get; set; }
     }
 }

@@ -13,6 +13,6 @@ namespace Domen
         public string LastName { get; set; }
         public int CountryId { get; set; }
         public Country Country { get; set; }
-        
+        public List<Movie> Movies { get; set; }
     }
 }
