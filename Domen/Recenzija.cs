@@ -17,12 +17,9 @@ namespace Domen
 
         public Film Film { get; set; }
 
-
         public int Ocena { get; set; }
 
-
         public string Komentar { get; set; }
-
 
         public DateTime Vreme { get; set; }
 
