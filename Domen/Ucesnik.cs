@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace Domen
 {
-    public class Glumac
+    public class Ucesnik
     {
-        public int GlumacId { get; set; }
+        public int UcesnikId { get; set; }
         public string Ime { get; set; }
         public string Prezime { get; set; }
-        public DateTime DatumRodjenja { get; set; }
         public Pol Pol { get; set; }
         public int DrzavaId { get; set; }
         public Drzava Drzava { get; set; }
