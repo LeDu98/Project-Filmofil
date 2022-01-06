@@ -5,13 +5,13 @@ namespace Domen
 {
     public class MovieContext:DbContext
     {
-        public DbSet<Movie> Movie { get; set; }
-        public DbSet<Actor> Actor { get; set; }
+        public DbSet<Movie> Movies { get; set; }
+        public DbSet<Actor> Actors { get; set; }
         public DbSet<Acting> Acting { get; set; }
         public DbSet<Personnel> Personnel { get; set; }
-        public DbSet<Position> Position { get; set; }
-        public DbSet<Review> Review { get; set; }
-        public DbSet<User> User { get; set; }
+        public DbSet<Position> Positions { get; set; }
+        public DbSet<Review> Reviews { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

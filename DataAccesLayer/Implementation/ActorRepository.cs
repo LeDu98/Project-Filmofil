@@ -1,4 +1,5 @@
 ﻿using Domen;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,19 +10,32 @@ namespace DataAccesLayer.Implementation
 {
     public class ActorRepository : IActorRepository
     {
+        private readonly MovieContext context;
+
+        public ActorRepository(MovieContext movieContext)
+        {
+            this.context = movieContext;
+        }
+
         public void Add(Actor entity)
         {
-            throw new NotImplementedException();
+            context.Add(entity);
+            context.SaveChanges();
         }
 
         public void Delete(Actor entity)
         {
-            throw new NotImplementedException();
+            context.Remove(entity);
         }
 
         public List<Actor> GetAll()
         {
-            throw new NotImplementedException();
+            return context.Actors.ToList();
+        }
+
+        public void Update(Actor entity)
+        {
+            context.Entry(entity).State = EntityState.Modified;
         }
     }
 }

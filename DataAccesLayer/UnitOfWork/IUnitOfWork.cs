@@ -9,14 +9,23 @@ namespace DataAccesLayer.UnitOfWork
     public interface IUnitOfWork
     {
         public IActingRepository ActingRepository { get; set; }
+        
         public IActorRepository ActorRepository { get; set; }
+        
         public ICountryRepository CountryRepository { get; set; }
+       
         public IMovieRepository MovieRepository { get; set; }
+        
         public IPersonnelRepository PersonnelRepository { get; set; }
+       
         public IPositionRepository PositionRepository { get; set; }
+        
         public IReviewRepository ReviewRepository { get; set; }
+        
         public IStreamingServiceRepository StreamingServiceRepository { get; set; }
+        
         public IStudioRepository StudioRepository { get; set; }
+       
         public IUserRepository UserRepository { get; set; }
 
         public void Save();
