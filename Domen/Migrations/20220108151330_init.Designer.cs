@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Domen.Migrations
 {
     [DbContext(typeof(MovieContext))]
-    [Migration("20220103163657_AddedAllTables")]
-    partial class AddedAllTables
+    [Migration("20220108151330_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -65,7 +65,7 @@ namespace Domen.Migrations
 
                     b.HasIndex("CountryId");
 
-                    b.ToTable("Actor");
+                    b.ToTable("Actors");
                 });
 
             modelBuilder.Entity("Domen.Country", b =>
@@ -120,7 +120,7 @@ namespace Domen.Migrations
 
                     b.HasIndex("StudioId");
 
-                    b.ToTable("Movie");
+                    b.ToTable("Movies");
                 });
 
             modelBuilder.Entity("Domen.Personnel", b =>
@@ -161,7 +161,7 @@ namespace Domen.Migrations
 
                     b.HasIndex("MovieId");
 
-                    b.ToTable("Position");
+                    b.ToTable("Positions");
                 });
 
             modelBuilder.Entity("Domen.Review", b =>
@@ -185,7 +185,7 @@ namespace Domen.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Review");
+                    b.ToTable("Reviews");
                 });
 
             modelBuilder.Entity("Domen.StreamingService", b =>
@@ -249,6 +249,9 @@ namespace Domen.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsAdministrator")
+                        .HasColumnType("bit");
+
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
@@ -260,7 +263,7 @@ namespace Domen.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("User");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Domen.Acting", b =>

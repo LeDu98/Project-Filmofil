@@ -27,8 +27,11 @@ namespace Filmofil.Controllers
         [HttpPost]
         public IActionResult Index(LoginViewModel login)
         {
-            unitOfWork.UserRepository.SearchByUsernamePassword(login.Username, login.Password);
-
+            var user = unitOfWork.UserRepository.SearchByUsernamePassword(login.Username, login.Password);
+            if (user != null)
+            {
+                return RedirectToAction("Index", "Movies");
+            }
             return View();
         }
     }

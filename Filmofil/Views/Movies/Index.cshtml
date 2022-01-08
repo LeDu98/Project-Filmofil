@@ -1,0 +1,27 @@
+﻿@using Domen
+@model List<Movie>
+
+<table>
+
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (Movie item in Model)
+        {
+
+            <tr>
+                <td>@item.Name</td>
+            </tr>
+
+        }
+
+    </tbody>
+
+
+</table>

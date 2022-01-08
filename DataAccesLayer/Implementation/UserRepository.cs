@@ -7,8 +7,17 @@ using System.Threading.Tasks;
 
 namespace DataAccesLayer.Implementation
 {
+
     public class UserRepository : IUserRepository
     {
+
+        private readonly MovieContext context;
+
+        public UserRepository(MovieContext context)
+        {
+            this.context = context;
+        }
+
         public void Add(User entity)
         {
             throw new NotImplementedException();
@@ -26,7 +35,7 @@ namespace DataAccesLayer.Implementation
 
         public User SearchByUsernamePassword(string username, string password)
         {
-            throw new NotImplementedException();
+            return context.Users.SingleOrDefault(u => u.Username == username && u.Password == password);
         }
 
         public void Update(User entity)

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Domen.Migrations
 {
-    public partial class AddedAllTables : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -53,7 +53,7 @@ namespace Domen.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "User",
+                name: "Users",
                 columns: table => new
                 {
                     UserId = table.Column<int>(type: "int", nullable: false)
@@ -62,15 +62,16 @@ namespace Domen.Migrations
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsAdministrator = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_User", x => x.UserId);
+                    table.PrimaryKey("PK_Users", x => x.UserId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Actor",
+                name: "Actors",
                 columns: table => new
                 {
                     ActorId = table.Column<int>(type: "int", nullable: false)
@@ -82,9 +83,9 @@ namespace Domen.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Actor", x => x.ActorId);
+                    table.PrimaryKey("PK_Actors", x => x.ActorId);
                     table.ForeignKey(
-                        name: "FK_Actor_Country_CountryId",
+                        name: "FK_Actors_Country_CountryId",
                         column: x => x.CountryId,
                         principalTable: "Country",
                         principalColumn: "CountryId",
@@ -113,7 +114,7 @@ namespace Domen.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Movie",
+                name: "Movies",
                 columns: table => new
                 {
                     MovieId = table.Column<int>(type: "int", nullable: false)
@@ -129,15 +130,15 @@ namespace Domen.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Movie", x => x.MovieId);
+                    table.PrimaryKey("PK_Movies", x => x.MovieId);
                     table.ForeignKey(
-                        name: "FK_Movie_StreamingService_StreamingServiceId",
+                        name: "FK_Movies_StreamingService_StreamingServiceId",
                         column: x => x.StreamingServiceId,
                         principalTable: "StreamingService",
                         principalColumn: "StreamingServiceId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Movie_Studio_StudioId",
+                        name: "FK_Movies_Studio_StudioId",
                         column: x => x.StudioId,
                         principalTable: "Studio",
                         principalColumn: "StudioId",
@@ -157,21 +158,21 @@ namespace Domen.Migrations
                 {
                     table.PrimaryKey("PK_Acting", x => new { x.ActorId, x.MovieId });
                     table.ForeignKey(
-                        name: "FK_Acting_Actor_ActorId",
+                        name: "FK_Acting_Actors_ActorId",
                         column: x => x.ActorId,
-                        principalTable: "Actor",
+                        principalTable: "Actors",
                         principalColumn: "ActorId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Acting_Movie_MovieId",
+                        name: "FK_Acting_Movies_MovieId",
                         column: x => x.MovieId,
-                        principalTable: "Movie",
+                        principalTable: "Movies",
                         principalColumn: "MovieId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Position",
+                name: "Positions",
                 columns: table => new
                 {
                     MovieId = table.Column<int>(type: "int", nullable: false),
@@ -180,15 +181,15 @@ namespace Domen.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Position", x => new { x.PersonnelId, x.MovieId });
+                    table.PrimaryKey("PK_Positions", x => new { x.PersonnelId, x.MovieId });
                     table.ForeignKey(
-                        name: "FK_Position_Movie_MovieId",
+                        name: "FK_Positions_Movies_MovieId",
                         column: x => x.MovieId,
-                        principalTable: "Movie",
+                        principalTable: "Movies",
                         principalColumn: "MovieId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Position_Personnel_PersonnelId",
+                        name: "FK_Positions_Personnel_PersonnelId",
                         column: x => x.PersonnelId,
                         principalTable: "Personnel",
                         principalColumn: "PersonnelId",
@@ -196,7 +197,7 @@ namespace Domen.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Review",
+                name: "Reviews",
                 columns: table => new
                 {
                     MovieId = table.Column<int>(type: "int", nullable: false),
@@ -207,17 +208,17 @@ namespace Domen.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Review", x => new { x.MovieId, x.UserId });
+                    table.PrimaryKey("PK_Reviews", x => new { x.MovieId, x.UserId });
                     table.ForeignKey(
-                        name: "FK_Review_Movie_MovieId",
+                        name: "FK_Reviews_Movies_MovieId",
                         column: x => x.MovieId,
-                        principalTable: "Movie",
+                        principalTable: "Movies",
                         principalColumn: "MovieId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Review_User_UserId",
+                        name: "FK_Reviews_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -228,18 +229,18 @@ namespace Domen.Migrations
                 column: "MovieId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Actor_CountryId",
-                table: "Actor",
+                name: "IX_Actors_CountryId",
+                table: "Actors",
                 column: "CountryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Movie_StreamingServiceId",
-                table: "Movie",
+                name: "IX_Movies_StreamingServiceId",
+                table: "Movies",
                 column: "StreamingServiceId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Movie_StudioId",
-                table: "Movie",
+                name: "IX_Movies_StudioId",
+                table: "Movies",
                 column: "StudioId");
 
             migrationBuilder.CreateIndex(
@@ -248,13 +249,13 @@ namespace Domen.Migrations
                 column: "CountryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Position_MovieId",
-                table: "Position",
+                name: "IX_Positions_MovieId",
+                table: "Positions",
                 column: "MovieId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Review_UserId",
-                table: "Review",
+                name: "IX_Reviews_UserId",
+                table: "Reviews",
                 column: "UserId");
         }
 
@@ -264,22 +265,22 @@ namespace Domen.Migrations
                 name: "Acting");
 
             migrationBuilder.DropTable(
-                name: "Position");
+                name: "Positions");
 
             migrationBuilder.DropTable(
-                name: "Review");
+                name: "Reviews");
 
             migrationBuilder.DropTable(
-                name: "Actor");
+                name: "Actors");
 
             migrationBuilder.DropTable(
                 name: "Personnel");
 
             migrationBuilder.DropTable(
-                name: "Movie");
+                name: "Movies");
 
             migrationBuilder.DropTable(
-                name: "User");
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Country");
