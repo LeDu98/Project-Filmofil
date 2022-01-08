@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace DataAccesLayer
 {
-    public interface IUserRepository:IRepository<User>
+    public interface IUserRepository : IRepository<User>
     {
+        User SearchByUsernamePassword(string username, string password);
     }
 }
