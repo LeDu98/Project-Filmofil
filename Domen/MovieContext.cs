@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Domen.Helper;
+using Microsoft.EntityFrameworkCore;
 using System;
 
 namespace Domen
@@ -23,7 +24,9 @@ namespace Domen
             modelBuilder.Entity<Acting>().HasKey(s =>new { s.ActorId, s.MovieId });
             modelBuilder.Entity<Review>().HasKey(s =>new { s.MovieId, s.UserId });
             modelBuilder.Entity<Position>().HasKey(s => new { s.PersonnelId, s.MovieId });
-            
+
+            modelBuilder.Seed();
+
         }
     }
 }
