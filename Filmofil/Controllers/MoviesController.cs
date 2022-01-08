@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataAccesLayer.UnitOfWork;
+using Domen;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +10,17 @@ namespace Filmofil.Controllers
 {
     public class MoviesController : Controller
     {
+        private readonly IUnitOfWork unitOfWork;
+
+        public MoviesController(IUnitOfWork unitOfWork)
+        {
+            this.unitOfWork = unitOfWork;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            List<Movie> model = unitOfWork.MovieRepository.GetAll().OfType<Movie>().ToList();
+            return View(model);
         }
     }
 }

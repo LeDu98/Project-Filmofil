@@ -17,6 +17,7 @@ namespace DataAccesLayer.UnitOfWork
             this.context = context;
             ActorRepository = new ActorRepository(context);
             UserRepository = new UserRepository(context);
+            MovieRepository = new MovieRepository(context);
         }
         
         public IActingRepository ActingRepository { get; set; }
