@@ -19,7 +19,8 @@ namespace DataAccesLayer.Implementation
 
         public void Add(Studio entity)
         {
-            throw new NotImplementedException();
+            context.Add(entity);
+            context.SaveChanges();
         }
 
         public void Delete(Studio entity)
