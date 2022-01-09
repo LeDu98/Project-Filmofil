@@ -1,6 +1,6 @@
 ﻿using DataAccesLayer.UnitOfWork;
 using Domen;
-using Microsoft.AspNetCore.Http;
+using Filmofil.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,88 +11,35 @@ namespace Filmofil.Controllers
 {
     public class StudioController : Controller
     {
-
         private readonly IUnitOfWork unitOfWork;
-
         public StudioController(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
-        }
 
-        // GET: StudioController
-        public ActionResult Index()
+        }
+        public IActionResult Index()
         {
             List<Studio> model = unitOfWork.StudioRepository.GetAll().OfType<Studio>().ToList();
             return View(model);
         }
-
-        // GET: StudioController/Details/5
-        public ActionResult Details(int id)
+        public IActionResult Create()
         {
-            return View();
-        }
+            CreateStudioViewModel model = new CreateStudioViewModel();
 
-        // GET: StudioController/Create
-        public ActionResult Create()
-        {
-            return View();
+            return View(model);
         }
-
-        // POST: StudioController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public IActionResult Create(CreateStudioViewModel studio)
         {
-            try
+            if (!ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                return Create();
             }
-            catch
-            {
-                return View();
-            }
-        }
+            unitOfWork.StudioRepository.Add(new Studio
+            { Name = studio.Name, Headquarter = studio.Headquarter, Founded = studio.Founded });
+            unitOfWork.Save();
 
-        // GET: StudioController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: StudioController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: StudioController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: StudioController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index");
         }
     }
 }
