@@ -24,10 +24,7 @@ namespace Filmofil.Controllers
         public ActionResult Index()
         {
             List<StreamingService> model = unitOfWork.StreamingServiceRepository.GetAll().OfType<StreamingService>().ToList();
-            foreach(StreamingService m in model)
-            {
-                m.LogoImg = "img/streamingServiceLogo/netflix.png";
-            }
+
             return View(model);
         }
 

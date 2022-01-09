@@ -1,47 +1,46 @@
 ﻿@model Domen.StreamingService
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Streaming service - " + Model.Name;
 }
 
-<h1>Details</h1>
+<div class="container" style="margin-top: 5%;">
+    <div class="row">
+        <div class="col-md-6" style="text-align: center;">
+            <img src="~/@Model.LogoImg" style="width: 350px;" />
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>@Model.Name</h1>
+                </div>
+            </div>
 
-<div>
-    <h4>Streaming service</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Website)
-        </dt>
-        <dd class = "col-sm-10">
-            <a href="@Html.DisplayFor(model => model.Website)" target="_blank">@Html.DisplayFor(model => model.Website)</a>
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Headquarter)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Headquarter)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Founded)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Founded)
-        </dd>
-        <dt class = "col-sm-2">
-            $@Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            $@Html.DisplayFor(model => model.Price)
-        </dd>
-    </dl>
+            <div class="row">
+                <div class="col-md-12 text-primary">
+                    <span class="label label-primary">Headquarter: </span>
+                    <span class="monospaced">@Model.Headquarter</span>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="@Model.Website" class="btn btn-outline-primary" target="_blank">
+                        Visit website
+                    </a>
+                </div>
+            </div>
+
+            <hr />
+
+            <ul class="list-group">
+                <li class="list-group-item"><span class="font-weight-bold">Monthly price : </span> $@Model.Price</li>
+                <li class="list-group-item"><span class="font-weight-bold">Founded : </span> @Model.Founded</li>
+            </ul>
+        </div>
+    </div>
 </div>
+<hr />
 <div>
     @Html.ActionLink("Edit", "Edit", new {  id = Model.StreamingServiceId  }) |
     @Html.ActionLink("Delete", "Delete", new {  id=Model.StreamingServiceId  }) |

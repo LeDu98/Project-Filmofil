@@ -65,7 +65,8 @@ namespace Domen.Helper
                     Headquarter = "Los Gatos, California, United States",
                     Founded = new DateTime(1997, 8, 29),
                     Price = 17.99,
-                    Website = "https://netflix.com/"
+                    Website = "https://netflix.com/",
+                    LogoImg = "img/streamingServiceLogo/netflix.png"
                 },
                 new StreamingService
                 {
@@ -74,7 +75,8 @@ namespace Domen.Helper
                     Headquarter = "Seattle, Washington, United States",
                     Founded = new DateTime(2006, 9, 7),
                     Price = 12.99,
-                    Website = "https://www.primevideo.com/"
+                    Website = "https://www.primevideo.com/",
+                    LogoImg = "img/streamingServiceLogo/amazon-prime-video.png"
                 },
                 new StreamingService
                 {
@@ -83,7 +85,8 @@ namespace Domen.Helper
                     Headquarter = "Burbank, California, United States",
                     Founded = new DateTime(2019, 11, 12),
                     Price = 7.99,
-                    Website = "https://www.disneyplus.com/"
+                    Website = "https://www.disneyplus.com/",
+                    LogoImg = "img/streamingServiceLogo/disney-plus.png"
                 },
                 new StreamingService
                 {
@@ -92,7 +95,8 @@ namespace Domen.Helper
                     Headquarter = "New York, New York, United States",
                     Founded = new DateTime(1972, 11, 8),
                     Price = 9.99,
-                    Website = "https://www.hbo.com/"
+                    Website = "https://www.hbo.com/",
+                    LogoImg = "img/streamingServiceLogo/hbo.png"
                 },
                 new StreamingService
                 {
@@ -101,7 +105,8 @@ namespace Domen.Helper
                     Headquarter = "New York, New York, United States",
                     Founded = new DateTime(2019, 11, 1),
                     Price = 4.99,
-                    Website = "https://www.apple.com/apple-tv-plus/"
+                    Website = "https://www.apple.com/apple-tv-plus/",
+                    LogoImg = "img/streamingServiceLogo/apple tv.png"
                 }
                 );
 
