@@ -13,10 +13,7 @@ namespace Filmofil.Controllers
     {
         public IActionResult Index()
         {
-            var user = JsonSerializer.Deserialize<User>(HttpContext.Session.Get("user"));
-            if (user is null) {
-                return RedirectToAction("Index", "Login");
-            }
+            
             return View();
         }
     }
