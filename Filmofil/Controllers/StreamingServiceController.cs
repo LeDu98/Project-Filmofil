@@ -23,8 +23,11 @@ namespace Filmofil.Controllers
         // GET: StreamingServiceController
         public ActionResult Index()
         {
-            Console.WriteLine("proba");
             List<StreamingService> model = unitOfWork.StreamingServiceRepository.GetAll().OfType<StreamingService>().ToList();
+            foreach(StreamingService m in model)
+            {
+                m.LogoImg = "img/streamingServiceLogo/netflix.png";
+            }
             return View(model);
         }
 
