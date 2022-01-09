@@ -34,7 +34,7 @@ namespace DataAccesLayer.Implementation
 
         public StreamingService GetSingle(StreamingService entity)
         {
-            throw new NotImplementedException();
+            return context.StreamingService.Find(entity.StreamingServiceId);
         }
 
         public void Update(StreamingService entity)
