@@ -13,5 +13,7 @@ namespace DataAccesLayer
 
         public void Update(TEntity entity);
 
+        public TEntity GetSingle(TEntity entity);
+
     }
 }

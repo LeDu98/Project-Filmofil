@@ -33,6 +33,11 @@ namespace DataAccesLayer.Implementation
             throw new NotImplementedException();
         }
 
+        public User GetSingle(User entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public User SearchByUsernamePassword(string username, string password)
         {
             return context.Users.SingleOrDefault(u => u.Username == username && u.Password == password);

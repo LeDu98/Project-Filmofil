@@ -33,6 +33,11 @@ namespace DataAccesLayer.Implementation
             return context.Actors.ToList();
         }
 
+        public Actor GetSingle(Actor entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Actor entity)
         {
             context.Entry(entity).State = EntityState.Modified;

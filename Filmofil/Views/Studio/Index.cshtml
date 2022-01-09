@@ -1,0 +1,27 @@
+﻿@using Domen
+@model List<Studio>
+
+<table>
+
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (Studio item in Model)
+        {
+
+        <tr>
+            <td><a href="Student/Edit/@item.StudioId">@item.Name</a></td>
+        </tr>
+
+        }
+
+    </tbody>
+
+
+</table>

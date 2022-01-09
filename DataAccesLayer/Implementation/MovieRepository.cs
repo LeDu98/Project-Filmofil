@@ -48,6 +48,11 @@ namespace DataAccesLayer.Implementation
 
         }
 
+        public Movie GetSingle(Movie entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Movie entity)
         {
             throw new NotImplementedException();
