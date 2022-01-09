@@ -9,6 +9,8 @@ namespace Filmofil.Models
 
         public string Website { get; set; }
 
+        public string LogoImg { get; set; }
+
         public string Headquarter { get; set; }
 
         [DataType(DataType.Date)]

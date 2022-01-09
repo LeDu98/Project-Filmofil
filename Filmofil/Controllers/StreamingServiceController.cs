@@ -38,7 +38,9 @@ namespace Filmofil.Controllers
         // GET: StreamingServiceController/Create
         public ActionResult Create()
         {
-            return View();
+            StreamingServiceViewModel model = new StreamingServiceViewModel();
+
+            return View(model);
         }
 
         // POST: StreamingServiceController/Create
@@ -46,32 +48,35 @@ namespace Filmofil.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
         {
-            try
+            if (!ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                return Create();
             }
-            catch
+            /*
+            var pass = $"{student.FirstName[0]}{student.LastName[0]}{student.EnrollmentYear}{student.EnrollmentNumber}";
+
+            unitOfWork.StudentRepository.Add(new Student
             {
-                return View();
-            }
+                FirstName = student.FirstName,
+                LastName = student.LastName,
+                EnrollmentYear = student.EnrollmentYear,
+                Username = student.UserName,
+                EnrollmentNumber = student.EnrollmentNumber,
+                SpId = student.StudyProgramId,
+                Password = pass
+            });
+            unitOfWork.Save();*/
+            return RedirectToAction("Index");
         }
 
         // GET: StreamingServiceController/Edit/5
         public ActionResult Edit(int id)
         {
-
-            StreamingServiceViewModel model = new StreamingServiceViewModel();
-
             StreamingService streamingService = (StreamingService) unitOfWork.StreamingServiceRepository.GetSingle(new StreamingService { StreamingServiceId = id });
 
-            model.Name = streamingService.Name;
-            model.Website = streamingService.Website;
-            model.Headquarter = streamingService.Headquarter;
-            model.Price = streamingService.Price;
-            model.Founded = streamingService.Founded;
+            StreamingServiceViewModel model = CreateModel(streamingService);
 
             return View(model);
-
         }
 
         // POST: StreamingServiceController/Edit/5
@@ -109,5 +114,22 @@ namespace Filmofil.Controllers
                 return View();
             }
         }
+
+
+        private StreamingServiceViewModel CreateModel(StreamingService streamingService)
+        {
+            StreamingServiceViewModel model = new StreamingServiceViewModel();
+
+            model.Name = streamingService.Name;
+            model.Website = streamingService.Website;
+            model.Headquarter = streamingService.Headquarter;
+            model.Price = streamingService.Price;
+            model.Founded = streamingService.Founded;
+
+            return model;
+
+        }
+
+
     }
 }
