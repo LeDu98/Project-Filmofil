@@ -19,6 +19,7 @@ namespace DataAccesLayer.UnitOfWork
             UserRepository = new UserRepository(context);
             MovieRepository = new MovieRepository(context);
             StudioRepository = new StudioRepository(context);
+            StreamingServiceRepository = new StreamingServiceRepository(context);
         }
         
         public IActingRepository ActingRepository { get; set; }

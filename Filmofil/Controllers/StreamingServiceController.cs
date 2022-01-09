@@ -22,7 +22,7 @@ namespace Filmofil.Controllers
         // GET: StreamingServiceController
         public ActionResult Index()
         {
-            List<StreamingService> model = unitOfWork.StudioRepository.GetAll().OfType<StreamingService>().ToList();
+            List<StreamingService> model = unitOfWork.StreamingServiceRepository.GetAll().OfType<StreamingService>().ToList();
             return View(model);
         }
 

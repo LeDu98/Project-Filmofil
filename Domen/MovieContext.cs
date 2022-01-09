@@ -14,6 +14,8 @@ namespace Domen
         public DbSet<Review> Reviews { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Studio> Studio { get; set; }
+        public DbSet<StreamingService> StreamingService { get; set; }
+        
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
