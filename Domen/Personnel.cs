@@ -6,18 +6,10 @@ using System.Threading.Tasks;
 
 namespace Domen
 {
-   public class Personnel
+   public class Personnel:Person
     {
-        public int PersonnelId { get; set; }
+        public string Trademark { get; set; }
 
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
-
-        public int CountryId { get; set; }
-
-        public Country Country { get; set; }
-
-        public List<Movie> Movies { get; set; }
+       // public List<Movie> Movies { get; set; }
     }
 }
