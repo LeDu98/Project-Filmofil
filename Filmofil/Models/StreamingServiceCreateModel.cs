@@ -10,7 +10,7 @@ namespace Filmofil.Models
 
         public string Website { get; set; }
 
-        public IFormFile LogoImg { get; set; }
+        public IFormFile Img { get; set; }
 
         public string Headquarter { get; set; }
 

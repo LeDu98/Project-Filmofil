@@ -4,14 +4,16 @@ using Domen;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Domen.Migrations
 {
     [DbContext(typeof(MovieContext))]
-    partial class MovieContextModelSnapshot : ModelSnapshot
+    [Migration("20220113203312_logoImg_data_for_streaingService")]
+    partial class logoImg_data_for_streaingService
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -218,7 +220,7 @@ namespace Domen.Migrations
                             StreamingServiceId = 1,
                             Founded = new DateTime(1997, 8, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Headquarter = "Los Gatos, California, United States",
-                            LogoImg = "netflix.png",
+                            LogoImg = "img/streamingServiceLogo/netflix.png",
                             Name = "Netflix",
                             Price = 17.989999999999998,
                             Website = "https://netflix.com/"
@@ -228,7 +230,7 @@ namespace Domen.Migrations
                             StreamingServiceId = 2,
                             Founded = new DateTime(2006, 9, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Headquarter = "Seattle, Washington, United States",
-                            LogoImg = "amazon-prime-video.png",
+                            LogoImg = "img/streamingServiceLogo/amazon-prime-video.png",
                             Name = "Amazon Prime Video",
                             Price = 12.99,
                             Website = "https://www.primevideo.com/"
@@ -238,7 +240,7 @@ namespace Domen.Migrations
                             StreamingServiceId = 3,
                             Founded = new DateTime(2019, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Headquarter = "Burbank, California, United States",
-                            LogoImg = "disney-plus.png",
+                            LogoImg = "img/streamingServiceLogo/disney-plus.png",
                             Name = "Disney+",
                             Price = 7.9900000000000002,
                             Website = "https://www.disneyplus.com/"
@@ -248,7 +250,7 @@ namespace Domen.Migrations
                             StreamingServiceId = 4,
                             Founded = new DateTime(1972, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Headquarter = "New York, New York, United States",
-                            LogoImg = "hbo.png",
+                            LogoImg = "img/streamingServiceLogo/hbo.png",
                             Name = "HBO",
                             Price = 9.9900000000000002,
                             Website = "https://www.hbo.com/"
@@ -258,7 +260,7 @@ namespace Domen.Migrations
                             StreamingServiceId = 5,
                             Founded = new DateTime(2019, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Headquarter = "New York, New York, United States",
-                            LogoImg = "apple tv.png",
+                            LogoImg = "img/streamingServiceLogo/apple tv.png",
                             Name = "Apple TV+",
                             Price = 4.9900000000000002,
                             Website = "https://www.apple.com/apple-tv-plus/"
@@ -426,7 +428,7 @@ namespace Domen.Migrations
                             Born = new DateTime(1974, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CountryId = 1,
                             FirstName = "Leonardo",
-                            Image = "diCaprio.jpg",
+                            Image = "img/ActorsImages/diCaprio.jpg",
                             LastName = "DiCaprio",
                             Networth = 260000000.0
                         },
@@ -436,7 +438,7 @@ namespace Domen.Migrations
                             Born = new DateTime(1990, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CountryId = 1,
                             FirstName = "Jennifer",
-                            Image = "jennifer-lawrence_gettyimages-626382596jpg.jpg",
+                            Image = "img/ActorsImages/jennifer-lawrence_gettyimages-626382596jpg.jpg",
                             LastName = "Lawrence",
                             Networth = 160000000.0
                         },
@@ -446,7 +448,7 @@ namespace Domen.Migrations
                             Born = new DateTime(1949, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CountryId = 1,
                             FirstName = "Meryl",
-                            Image = "merylStreep.jpg",
+                            Image = "img/ActorsImages/merylStreep.jpg",
                             LastName = "Streep",
                             Networth = 160000000.0
                         },
@@ -456,7 +458,7 @@ namespace Domen.Migrations
                             Born = new DateTime(1983, 12, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CountryId = 1,
                             FirstName = "Jonah",
-                            Image = "jonahHill.jpg",
+                            Image = "img/ActorsImages/jonahHill.jpg",
                             LastName = "Hill",
                             Networth = 50000000.0
                         },
@@ -466,7 +468,7 @@ namespace Domen.Migrations
                             Born = new DateTime(2001, 9, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CountryId = 2,
                             FirstName = "Freya",
-                            Image = "freyaAllan.jpg",
+                            Image = "img/ActorsImages/freyaAllan.jpg",
                             LastName = "Allan",
                             Networth = 500000.0
                         },
@@ -476,7 +478,7 @@ namespace Domen.Migrations
                             Born = new DateTime(1990, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CountryId = 3,
                             FirstName = "Emma",
-                            Image = "emmaWatson.jpg",
+                            Image = "img/ActorsImages/emmaWatson.jpg",
                             LastName = "Watson",
                             Networth = 85000000.0
                         },
@@ -486,7 +488,7 @@ namespace Domen.Migrations
                             Born = new DateTime(1989, 7, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CountryId = 2,
                             FirstName = "Daniel",
-                            Image = "danielRadcliffe.jfif",
+                            Image = "img/ActorsImages/danielRadcliffe.jfif",
                             LastName = "Radcliffe",
                             Networth = 110000000.0
                         });

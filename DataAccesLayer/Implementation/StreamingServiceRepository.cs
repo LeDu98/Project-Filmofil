@@ -19,7 +19,7 @@ namespace DataAccesLayer.Implementation
 
         public void Add(StreamingService entity)
         {
-            throw new NotImplementedException();
+            context.Add(entity);
         }
 
         public void Delete(StreamingService entity)

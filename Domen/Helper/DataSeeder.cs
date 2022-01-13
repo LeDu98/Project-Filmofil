@@ -19,7 +19,7 @@ namespace Domen.Helper
                     Name = "Universal Pictures",
                     Founded = new DateTime(1912, 3, 30),
                     Headquarter = "Universal City, California, United States",
-                    LogoImg = "img/studioLogo/universal.png",
+                    LogoImg = "universal.png",
                     Website = "https://www.universalpictures.com/"
                 },
                 new Studio
@@ -28,7 +28,7 @@ namespace Domen.Helper
                     Name = "Warner Bros. Pictures",
                     Founded = new DateTime(1923, 4, 4),
                     Headquarter = "Burbank, California, United States",
-                    LogoImg = "img/studioLogo/Warner_Bros._(2019)_logo.svg.png",
+                    LogoImg = "Warner_Bros._(2019)_logo.svg.png",
                     Website = "https://www.warnerbros.com/"
                 },
                 new Studio
@@ -37,7 +37,7 @@ namespace Domen.Helper
                     Name = "Sony Pictures",
                     Founded = new DateTime(1987, 12, 21),
                     Headquarter = "Culver City, California, United States",
-                    LogoImg = "img/studioLogo/1200px-Sony_Pictures_Television_logo.svg.png",
+                    LogoImg = "1200px-Sony_Pictures_Television_logo.svg.png",
                     Website = "https://www.sonypictures.com/"
                 },
                 new Studio
@@ -46,7 +46,7 @@ namespace Domen.Helper
                     Name = "20th Century Studios",
                     Founded = new DateTime(1935, 5, 31),
                     Headquarter = "Los Angeles, California, United States",
-                    LogoImg = "img/studioLogo/20th_Century_Studios_2020_logo.jpg",
+                    LogoImg = "20th_Century_Studios_2020_logo.jpg",
                     Website = "https://www.20thcenturystudios.com/"
                 },
                 new Studio
@@ -55,7 +55,7 @@ namespace Domen.Helper
                     Name = "Walt Disney Pictures",
                     Founded = new DateTime(1923, 1, 12),
                     Headquarter = "Burbank, California, United States",
-                    LogoImg = "img/studioLogo/Walt_Disney_Pictures_2011_logo.png",
+                    LogoImg = "Walt_Disney_Pictures_2011_logo.png",
                     Website = "https://www.waltdisneystudios.com/"
                 },
                 new Studio
@@ -64,7 +64,7 @@ namespace Domen.Helper
                     Name = "Metro-Goldwyn-Mayer",
                     Founded = new DateTime(1924, 4, 17),
                     Headquarter = "Los Angeles, California, United States",
-                    LogoImg = "img/studioLogo/Metro-Goldwyn-Mayer_logo.png",
+                    LogoImg = "Metro-Goldwyn-Mayer_logo.png",
                     Website = "https://www.mgm.com/"
                 }
                 );
@@ -78,7 +78,7 @@ namespace Domen.Helper
                     Founded = new DateTime(1997, 8, 29),
                     Price = 17.99,
                     Website = "https://netflix.com/",
-                    LogoImg = "img/streamingServiceLogo/netflix.png"
+                    LogoImg = "netflix.png"
                 },
                 new StreamingService
                 {
@@ -88,7 +88,7 @@ namespace Domen.Helper
                     Founded = new DateTime(2006, 9, 7),
                     Price = 12.99,
                     Website = "https://www.primevideo.com/",
-                    LogoImg = "img/streamingServiceLogo/amazon-prime-video.png"
+                    LogoImg = "amazon-prime-video.png"
                 },
                 new StreamingService
                 {
@@ -98,7 +98,7 @@ namespace Domen.Helper
                     Founded = new DateTime(2019, 11, 12),
                     Price = 7.99,
                     Website = "https://www.disneyplus.com/",
-                    LogoImg = "img/streamingServiceLogo/disney-plus.png"
+                    LogoImg = "disney-plus.png"
                 },
                 new StreamingService
                 {
@@ -108,7 +108,7 @@ namespace Domen.Helper
                     Founded = new DateTime(1972, 11, 8),
                     Price = 9.99,
                     Website = "https://www.hbo.com/",
-                    LogoImg = "img/streamingServiceLogo/hbo.png"
+                    LogoImg = "hbo.png"
                 },
                 new StreamingService
                 {
@@ -118,7 +118,7 @@ namespace Domen.Helper
                     Founded = new DateTime(2019, 11, 1),
                     Price = 4.99,
                     Website = "https://www.apple.com/apple-tv-plus/",
-                    LogoImg = "img/streamingServiceLogo/apple tv.png"
+                    LogoImg = "apple tv.png"
                 }
                 );
 
@@ -133,7 +133,7 @@ namespace Domen.Helper
                     Born = new DateTime(1974, 10, 11),
                     CountryId = 1,
                     Networth = 260000000,
-                    Image= "img/ActorsImages/diCaprio.jpg"
+                    Image= "diCaprio.jpg"
                 },
                 new Actor
                 {
@@ -143,7 +143,7 @@ namespace Domen.Helper
                     Born = new DateTime(1990, 8, 15),
                     CountryId = 1,
                     Networth = 160000000,
-                    Image = "img/ActorsImages/jennifer-lawrence_gettyimages-626382596jpg.jpg"
+                    Image = "jennifer-lawrence_gettyimages-626382596jpg.jpg"
 
                 },
                 new Actor
@@ -154,7 +154,7 @@ namespace Domen.Helper
                     Born = new DateTime(1949, 6, 22),
                     CountryId = 1,
                     Networth = 160000000,
-                    Image = "img/ActorsImages/merylStreep.jpg"
+                    Image = "merylStreep.jpg"
 
                 },
                 new Actor
@@ -165,7 +165,7 @@ namespace Domen.Helper
                     Born = new DateTime(1983, 12, 20),
                     CountryId = 1,
                     Networth = 50000000,
-                    Image = "img/ActorsImages/jonahHill.jpg"
+                    Image = "jonahHill.jpg"
 
                 }, 
                 new Actor
@@ -176,7 +176,7 @@ namespace Domen.Helper
                     Born = new DateTime(2001, 09, 06),
                     CountryId = 2,
                     Networth = 500000,
-                    Image = "img/ActorsImages/freyaAllan.jpg"
+                    Image = "freyaAllan.jpg"
 
                 },
                 new Actor
@@ -187,7 +187,7 @@ namespace Domen.Helper
                     Born = new DateTime(1990, 04, 15),
                     CountryId = 3,
                     Networth = 85000000,
-                    Image = "img/ActorsImages/emmaWatson.jpg"
+                    Image = "emmaWatson.jpg"
 
                 },
                 new Actor
@@ -198,7 +198,7 @@ namespace Domen.Helper
                     Born = new DateTime(1989, 07, 23),
                     CountryId = 2,
                     Networth = 110000000,
-                    Image = "img/ActorsImages/danielRadcliffe.jfif"
+                    Image = "danielRadcliffe.jfif"
 
                 }
                 );

@@ -1,10 +1,12 @@
 ﻿using DataAccesLayer.UnitOfWork;
 using Domen;
 using Filmofil.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,14 +16,16 @@ namespace Filmofil.Controllers
     {
 
         private readonly IUnitOfWork unitOfWork;
+        private readonly IHostingEnvironment hostingEnvironment;
 
-        public StreamingServiceController(IUnitOfWork unitOfWork)
+        public StreamingServiceController(IUnitOfWork unitOfWork, IHostingEnvironment hostingEnvironment)
         {
             this.unitOfWork = unitOfWork;
+            this.hostingEnvironment = hostingEnvironment;
         }
 
         // GET: StreamingServiceController
-        public ActionResult Index()
+        public IActionResult Index()
         {
             List<StreamingService> model = unitOfWork.StreamingServiceRepository.GetAll().OfType<StreamingService>().ToList();
 
@@ -29,48 +33,64 @@ namespace Filmofil.Controllers
         }
 
         // GET: StreamingServiceController/Details/5
-        public ActionResult Details(int id)
+        public IActionResult Details(int id)
         {
             StreamingService model = unitOfWork.StreamingServiceRepository.GetSingle(new StreamingService { StreamingServiceId = id });
             return View(model);
         }
 
         // GET: StreamingServiceController/Create
-        public ActionResult Create()
+        public IActionResult Create()
         {
-            StreamingServiceViewModel model = new StreamingServiceViewModel();
+            StreamingServiceCreateModel model = new StreamingServiceCreateModel();
+            
 
             return View(model);
         }
 
         // POST: StreamingServiceController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public IActionResult Create(StreamingServiceCreateModel model)
         {
             if (!ModelState.IsValid)
             {
                 return Create();
             }
-            /*
-            var pass = $"{student.FirstName[0]}{student.LastName[0]}{student.EnrollmentYear}{student.EnrollmentNumber}";
 
-            unitOfWork.StudentRepository.Add(new Student
+            string uniqueFileName = null;
+
+            if (model.Img != null)
             {
-                FirstName = student.FirstName,
-                LastName = student.LastName,
-                EnrollmentYear = student.EnrollmentYear,
-                Username = student.UserName,
-                EnrollmentNumber = student.EnrollmentNumber,
-                SpId = student.StudyProgramId,
-                Password = pass
+                // The image must be uploaded to the images folder in wwwroot
+                // To get the path of the wwwroot folder we are using the inject
+                // HostingEnvironment service provided by ASP.NET Core
+                string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "img/streamingServiceLogo");
+                // To make sure the file name is unique we are appending a new
+                // GUID value and and an underscore to the file name
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Img.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                // Use CopyTo() method provided by IFormFile interface to
+                // copy the file to wwwroot/images folder
+                model.Img.CopyTo(new FileStream(filePath, FileMode.Create));
+            }
+
+
+           
+            unitOfWork.StreamingServiceRepository.Add(new StreamingService
+            {
+                Name = model.Name,
+                Founded = model.Founded,
+                Headquarter = model.Headquarter,
+                Price = model.Price,
+                Website = model.Website,
+                LogoImg = uniqueFileName
             });
-            unitOfWork.Save();*/
+            unitOfWork.Save();
             return RedirectToAction("Index");
         }
 
         // GET: StreamingServiceController/Edit/5
-        public ActionResult Edit(int id)
+        public IActionResult Edit(int id)
         {
             StreamingService streamingService = (StreamingService) unitOfWork.StreamingServiceRepository.GetSingle(new StreamingService { StreamingServiceId = id });
 
@@ -81,8 +101,7 @@ namespace Filmofil.Controllers
 
         // POST: StreamingServiceController/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public IActionResult Edit(int id, IFormCollection collection)
         {
             try
             {
@@ -95,15 +114,14 @@ namespace Filmofil.Controllers
         }
 
         // GET: StreamingServiceController/Delete/5
-        public ActionResult Delete(int id)
+        public IActionResult Delete(int id)
         {
             return View();
         }
 
         // POST: StreamingServiceController/Delete/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public IActionResult Delete(int id, IFormCollection collection)
         {
             try
             {
