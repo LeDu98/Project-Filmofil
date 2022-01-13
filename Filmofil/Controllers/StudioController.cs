@@ -1,6 +1,7 @@
 ﻿using DataAccesLayer.UnitOfWork;
 using Domen;
 using Filmofil.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -46,6 +47,42 @@ namespace Filmofil.Controllers
         {
             Studio model = unitOfWork.StudioRepository.GetSingle(new Studio { StudioId = id });
             return View(model);
+        }
+
+        public IActionResult Edit(int id)
+        {
+            Studio studio = (Studio)unitOfWork.StudioRepository.GetSingle(new Studio { StudioId = id });
+
+            StudioViewModel model = CreateModel(studio);
+
+            return View(model);
+        }
+
+        private StudioViewModel CreateModel(Studio studio)
+        {
+            StudioViewModel model = new StudioViewModel();
+
+            model.Name = studio.Name;
+            model.Website = studio.Website;
+            model.Headquarter = studio.Headquarter;       
+            model.Founded = studio.Founded;
+
+            return model;
+        }
+
+        // POST: StreamingServiceController/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, IFormCollection collection)
+        {
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
         }
     }
 }
