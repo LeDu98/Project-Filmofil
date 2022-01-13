@@ -35,7 +35,7 @@ namespace DataAccesLayer.Implementation
 
         public Studio GetSingle(Studio entity)
         {
-            throw new NotImplementedException();
+            return context.Studio.Find(entity.StudioId);
         }
 
         public void Update(Studio entity)

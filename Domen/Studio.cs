@@ -12,5 +12,9 @@ namespace Domen
         public string Headquarter { get; set; }
         public DateTime Founded { get; set; }
 
+        public string LogoImg { get; set; }
+
+        public string Website { get; set; }
+
     }
 }

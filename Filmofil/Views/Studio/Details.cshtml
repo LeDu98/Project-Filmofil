@@ -1,0 +1,48 @@
+﻿@model Domen.Studio
+
+@{
+    ViewData["Title"] = "Studios - " + Model.Name;
+}
+
+<div class="container" style="margin-top: 5%;">
+    <div class="row">
+        <div class="col-md-6" style="text-align: center;">
+            <img src="~/@Model.LogoImg" style="width: 350px;" />
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>@Model.Name</h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 text-primary">
+                    <span class="label label-primary">Headquarter: </span>
+                    <span class="monospaced">@Model.Headquarter</span>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="@Model.Website" class="btn btn-outline-primary" target="_blank">
+                        Visit website
+                    </a>
+                </div>
+            </div>
+
+            <hr />
+
+            <ul class="list-group">
+                
+                <li class="list-group-item"><span class="font-weight-bold">Founded : </span> @Model.Founded</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<hr />
+<div>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.StudioId }) |
+    @Html.ActionLink("Delete", "Delete", new { id = Model.StudioId }) |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -41,5 +41,11 @@ namespace Filmofil.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public IActionResult Details(int id)
+        {
+            Studio model = unitOfWork.StudioRepository.GetSingle(new Studio { StudioId = id });
+            return View(model);
+        }
     }
 }
