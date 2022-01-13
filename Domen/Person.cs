@@ -16,6 +16,8 @@ namespace Domen
 
         public DateTime Born { get; set; }
 
+        public string Image { get; set; }
+
         public int CountryId { get; set; }
 
         public Country Country { get; set; }

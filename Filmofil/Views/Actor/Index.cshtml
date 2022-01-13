@@ -2,55 +2,49 @@
 @model List<Actor>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Actors";
 }
 
-<h1>Index</h1>
+<style>
+    .card:hover {
+        box-shadow: -1px 9px 40px -12px #808080;
+    }
+</style>
+
+<h1>Actors</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                FirstName
-            </th>
-            <th>
-                LastName
-            </th>
-            <th>
-                Born
-            </th>
-            <th>
-                Country
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                
-                <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Born)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Country.Name)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                </td>
-            </tr>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="card" style="width:10em;margin:10px;">
+            <img src="@item.Image" class="card-img-top" />
+            <div class="card-body">
+                <div class="card-title">
+                    <h4>@item.FirstName @item.LastName</h4>
+                </div>
+                <a href="Actor/Details/@item.PersonId" class="btn btn-primary">Read More...</a>
+            </div>
+        </div>
+    }
+</div>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script type="text/javascript">
+    $('.card').hover(
+        function () {
+            $(this).animate({
+                marginTop: "-=1%",
+                marginBottom : "+=1%"
+            },200)
+        },
+        function () {
+            $(this).animate({
+                marginTop: "+=1%",
+                marginBottom : "-=1%"
+            })
         }
-    </tbody>
-</table>
+    )
+</script>

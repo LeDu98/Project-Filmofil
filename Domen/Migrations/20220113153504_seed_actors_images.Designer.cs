@@ -4,14 +4,16 @@ using Domen;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Domen.Migrations
 {
     [DbContext(typeof(MovieContext))]
-    partial class MovieContextModelSnapshot : ModelSnapshot
+    [Migration("20220113153504_seed_actors_images")]
+    partial class seed_actors_images
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -59,16 +61,6 @@ namespace Domen.Migrations
                         {
                             CountryId = 1,
                             Name = "United States"
-                        },
-                        new
-                        {
-                            CountryId = 2,
-                            Name = "United Kingdom"
-                        },
-                        new
-                        {
-                            CountryId = 3,
-                            Name = "France"
                         });
                 });
 
@@ -459,36 +451,6 @@ namespace Domen.Migrations
                             Image = "img/ActorsImages/jonahHill.jpg",
                             LastName = "Hill",
                             Networth = 50000000.0
-                        },
-                        new
-                        {
-                            PersonId = 6,
-                            Born = new DateTime(2001, 9, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CountryId = 2,
-                            FirstName = "Freya",
-                            Image = "img/ActorsImages/freyaAllan.jpg",
-                            LastName = "Allan",
-                            Networth = 500000.0
-                        },
-                        new
-                        {
-                            PersonId = 7,
-                            Born = new DateTime(1990, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CountryId = 3,
-                            FirstName = "Emma",
-                            Image = "img/ActorsImages/emmaWatson.jpg",
-                            LastName = "Watson",
-                            Networth = 85000000.0
-                        },
-                        new
-                        {
-                            PersonId = 8,
-                            Born = new DateTime(1989, 7, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CountryId = 2,
-                            FirstName = "Daniel",
-                            Image = "img/ActorsImages/danielRadcliffe.jfif",
-                            LastName = "Radcliffe",
-                            Networth = 110000000.0
                         });
                 });
 

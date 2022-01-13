@@ -7,7 +7,7 @@ namespace Filmofil.Models
 {
     public class ActorViewModel
     {
-        public int ActorId{ get; set; }
+        public int PersonId{ get; set; }
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -15,6 +15,9 @@ namespace Filmofil.Models
         public DateTime Born { get; set; }
 
         public int CountryId { get; set; }
+
         public CountryViewModel Country { get; set; }
+
+        public double Networth { get; set; }
     }
 }

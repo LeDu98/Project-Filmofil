@@ -132,7 +132,8 @@ namespace Domen.Helper
                     LastName = "DiCaprio",
                     Born = new DateTime(1974, 10, 11),
                     CountryId = 1,
-                    Networth = 260000000
+                    Networth = 260000000,
+                    Image= "img/ActorsImages/diCaprio.jpg"
                 },
                 new Actor
                 {
@@ -141,7 +142,8 @@ namespace Domen.Helper
                     LastName = "Lawrence",
                     Born = new DateTime(1990, 8, 15),
                     CountryId = 1,
-                    Networth = 160000000
+                    Networth = 160000000,
+                    Image = "img/ActorsImages/jennifer-lawrence_gettyimages-626382596jpg.jpg"
 
                 },
                 new Actor
@@ -151,7 +153,8 @@ namespace Domen.Helper
                     LastName = "Streep",
                     Born = new DateTime(1949, 6, 22),
                     CountryId = 1,
-                    Networth = 160000000
+                    Networth = 160000000,
+                    Image = "img/ActorsImages/merylStreep.jpg"
 
                 },
                 new Actor
@@ -161,7 +164,41 @@ namespace Domen.Helper
                     LastName = "Hill",
                     Born = new DateTime(1983, 12, 20),
                     CountryId = 1,
-                    Networth = 50000000
+                    Networth = 50000000,
+                    Image = "img/ActorsImages/jonahHill.jpg"
+
+                }, 
+                new Actor
+                {
+                    PersonId = 6,
+                    FirstName = "Freya",
+                    LastName = "Allan",
+                    Born = new DateTime(2001, 09, 06),
+                    CountryId = 2,
+                    Networth = 500000,
+                    Image = "img/ActorsImages/freyaAllan.jpg"
+
+                },
+                new Actor
+                {
+                    PersonId = 7,
+                    FirstName = "Emma",
+                    LastName = "Watson",
+                    Born = new DateTime(1990, 04, 15),
+                    CountryId = 3,
+                    Networth = 85000000,
+                    Image = "img/ActorsImages/emmaWatson.jpg"
+
+                },
+                new Actor
+                {
+                    PersonId = 8,
+                    FirstName = "Daniel",
+                    LastName = "Radcliffe",
+                    Born = new DateTime(1989, 07, 23),
+                    CountryId = 2,
+                    Networth = 110000000,
+                    Image = "img/ActorsImages/danielRadcliffe.jfif"
 
                 }
                 );
@@ -171,6 +208,16 @@ namespace Domen.Helper
                 {
                     CountryId = 1,
                     Name = "United States"
+                },
+                new Country
+                {
+                    CountryId = 2,
+                    Name = "United Kingdom"
+                },
+                new Country
+                {
+                    CountryId = 3,
+                    Name = "France"
                 }
                 );
 

@@ -35,7 +35,7 @@ namespace DataAccesLayer.Implementation
 
         public Actor GetSingle(Actor entity)
         {
-            throw new NotImplementedException();
+            return context.Actors.Find(entity.PersonId);
         }
 
         public void Update(Actor entity)
