@@ -19,7 +19,7 @@ namespace Domen.Helper
                     Name = "Universal Pictures",
                     Founded = new DateTime(1912, 3, 30),
                     Headquarter = "Universal City, California, United States",
-                    LogoImg = "img/studioLogo/Universal_Pictures_logo_2.png",
+                    LogoImg = "img/studioLogo/universal.png",
                     Website = "https://www.universalpictures.com/"
                 },
                 new Studio
