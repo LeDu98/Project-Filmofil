@@ -27,12 +27,12 @@ namespace DataAccesLayer.Implementation
 
         public List<Country> GetAll()
         {
-            throw new NotImplementedException();
+            return context.Country.ToList().OfType<Country>().ToList();
         }
 
         public Country GetSingle(Country entity)
         {
-            throw new NotImplementedException();
+            return context.Country.Find(entity.CountryId);
         }
 
         public void Update(Country entity)

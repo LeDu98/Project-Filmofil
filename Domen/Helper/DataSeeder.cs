@@ -132,7 +132,7 @@ namespace Domen.Helper
                     LastName = "DiCaprio",
                     Born = new DateTime(1974, 10, 11),
                     CountryId = 1,
-                    Networth = 260000000,
+                    Networth = 260,
                     Image= "diCaprio.jpg"
                 },
                 new Actor
@@ -142,7 +142,7 @@ namespace Domen.Helper
                     LastName = "Lawrence",
                     Born = new DateTime(1990, 8, 15),
                     CountryId = 1,
-                    Networth = 160000000,
+                    Networth = 160,
                     Image = "jennifer-lawrence_gettyimages-626382596jpg.jpg"
 
                 },
@@ -153,7 +153,7 @@ namespace Domen.Helper
                     LastName = "Streep",
                     Born = new DateTime(1949, 6, 22),
                     CountryId = 1,
-                    Networth = 160000000,
+                    Networth = 160,
                     Image = "merylStreep.jpg"
 
                 },
@@ -164,7 +164,7 @@ namespace Domen.Helper
                     LastName = "Hill",
                     Born = new DateTime(1983, 12, 20),
                     CountryId = 1,
-                    Networth = 50000000,
+                    Networth = 50,
                     Image = "jonahHill.jpg"
 
                 }, 
@@ -175,7 +175,7 @@ namespace Domen.Helper
                     LastName = "Allan",
                     Born = new DateTime(2001, 09, 06),
                     CountryId = 2,
-                    Networth = 500000,
+                    Networth = 0.5,
                     Image = "freyaAllan.jpg"
 
                 },
@@ -186,7 +186,7 @@ namespace Domen.Helper
                     LastName = "Watson",
                     Born = new DateTime(1990, 04, 15),
                     CountryId = 3,
-                    Networth = 85000000,
+                    Networth = 85,
                     Image = "emmaWatson.jpg"
 
                 },
@@ -197,7 +197,7 @@ namespace Domen.Helper
                     LastName = "Radcliffe",
                     Born = new DateTime(1989, 07, 23),
                     CountryId = 2,
-                    Networth = 110000000,
+                    Networth = 110,
                     Image = "danielRadcliffe.jfif"
 
                 }

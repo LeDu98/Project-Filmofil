@@ -19,5 +19,7 @@ namespace Filmofil.Models
         public CountryViewModel Country { get; set; }
 
         public double Networth { get; set; }
+
+        public string Image { get; set; }
     }
 }
