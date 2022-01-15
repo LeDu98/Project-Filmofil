@@ -11,6 +11,8 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
+using Filmofil.Views.Shared.SearchBar;
+
 namespace Filmofil.Controllers
 {
     public class ActorController : Controller
@@ -25,11 +27,24 @@ namespace Filmofil.Controllers
         }
 
 
-        public IActionResult Index()
+        public IActionResult Index(string SearchText="")
         {
+            List<Actor> model;
 
-            List<Actor> model = unitOfWork.ActorRepository.GetAll().OfType<Actor>().ToList();
+            if(SearchText != "" && SearchText != null)
+            {
+                model = unitOfWork.ActorRepository.GetAll().Where(a => String.Concat(a.FirstName," ",a.LastName).ToLower().Contains(SearchText.ToLower()) || String.Concat(a.LastName," ",a.FirstName).ToLower().Contains(SearchText.ToLower())).ToList();
+            }
+            else
+            {
+              model = unitOfWork.ActorRepository.GetAll().OfType<Actor>().ToList();
+
+            }
+
+            SPager SearchPager = new SPager() { Action = "Index", Controller = "Actor", SearchText = SearchText };
+            ViewBag.SearchPager = SearchPager;
             return View(model);
+
         }
 
         public IActionResult Delete(int id)

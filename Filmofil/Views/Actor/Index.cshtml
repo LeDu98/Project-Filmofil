@@ -17,7 +17,11 @@
     <a asp-action="Create">Create New</a>
 </p>
 
+<vc:search-bar search-pager="@ViewBag.SearchPager">
+</vc:search-bar>
 <div class="row">
+    
+
     @foreach (var item in Model)
     {
         <div class="card" style="width:10em;margin:10px;">
