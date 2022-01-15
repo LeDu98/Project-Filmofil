@@ -4,11 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Filmofil.Models
+namespace Filmofil.Models.Personnel
 {
-    public class ActorViewModel
+    public class PersonnelViewModel
     {
-        public int PersonId{ get; set; }
+        public int PersonId { get; set; }
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -19,7 +19,7 @@ namespace Filmofil.Models
 
         public CountryViewModel Country { get; set; }
 
-        public double Networth { get; set; }
+        public string Trademark { get; set; }
 
         public string Image { get; set; }
     }
