@@ -1,10 +1,12 @@
 ﻿using DataAccesLayer.UnitOfWork;
 using Domen;
 using Filmofil.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,9 +15,11 @@ namespace Filmofil.Controllers
     public class StudioController : Controller
     {
         private readonly IUnitOfWork unitOfWork;
-        public StudioController(IUnitOfWork unitOfWork)
+        private readonly IHostingEnvironment hostingEnvironment;
+        public StudioController(IUnitOfWork unitOfWork, IHostingEnvironment hostingEnvironment)
         {
             this.unitOfWork = unitOfWork;
+            this.hostingEnvironment = hostingEnvironment;
 
         }
         public IActionResult Index()
@@ -30,14 +34,21 @@ namespace Filmofil.Controllers
             return View(model);
         }
         [HttpPost]
-        public IActionResult Create(CreateStudioViewModel studio)
+        public IActionResult Create(CreateStudioViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return Create();
             }
+            string uniqueFileName = null;
+
+            if (model.LogoImg != null)
+            {
+                uniqueFileName = GetFileNameAndSaveFile(model);
+            }
+
             unitOfWork.StudioRepository.Add(new Studio
-            { Name = studio.Name, Headquarter = studio.Headquarter, Founded = studio.Founded });
+            { Name = model.Name, Headquarter = model.Headquarter, Founded = model.Founded,LogoImg=uniqueFileName,Website=model.Website });
             unitOfWork.Save();
 
             return RedirectToAction("Index");
@@ -53,7 +64,7 @@ namespace Filmofil.Controllers
         {
             Studio studio = (Studio)unitOfWork.StudioRepository.GetSingle(new Studio { StudioId = id });
 
-            StudioViewModel model = CreateModel(studio);
+            CreateStudioViewModel model = new CreateStudioViewModel() {Founded=studio.Founded,Website=studio.Website,Headquarter=studio.Headquarter,Name=studio.Name };
 
             return View(model);
         }
@@ -73,16 +84,72 @@ namespace Filmofil.Controllers
         // POST: StreamingServiceController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, IFormCollection collection)
+        public IActionResult Edit(int id, CreateStudioViewModel model)
         {
-            try
+            Studio studio = (Studio)unitOfWork.StudioRepository.GetSingle(new Studio { StudioId = id });
+            if (!ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                return Edit(id);
             }
-            catch
+
+
+
+            string uniqueFileName = null;
+
+            if (model.LogoImg != null)
             {
-                return View();
+                uniqueFileName = GetFileNameAndSaveFile(model);
             }
+
+
+            studio.Name = model.Name;
+            studio.Headquarter = model.Headquarter;
+            studio.Founded = model.Founded;
+            studio.Website = model.Website;
+            studio.LogoImg = uniqueFileName;
+           
+
+            unitOfWork.StudioRepository.Update(studio);
+            unitOfWork.Save();
+
+            return RedirectToAction("Index");
+        }
+
+        private string GetFileNameAndSaveFile(CreateStudioViewModel model)
+        {
+            // The image must be uploaded to the images folder in wwwroot
+            // To get the path of the wwwroot folder we are using the inject
+            // HostingEnvironment service provided by ASP.NET Core
+            string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "img/studioLogo");
+            // To make sure the file name is unique we are appending a new
+            // GUID value and and an underscore to the file name
+            string uniqueFileName = Guid.NewGuid().ToString() + "_" + model.LogoImg.FileName;
+            string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+            // Use CopyTo() method provided by IFormFile interface to
+            // copy the file to wwwroot/images folder
+            model.LogoImg.CopyTo(new FileStream(filePath, FileMode.Create));
+
+            return uniqueFileName;
+        }
+
+        public IActionResult Delete(int id)
+        {
+            Studio studio = (Studio)unitOfWork.StudioRepository.GetSingle(new Studio { StudioId = id });
+
+            StudioViewModel model = new StudioViewModel() { StudioId=studio.StudioId,Founded=studio.Founded,Headquarter=studio.Headquarter,LogoImg=studio.LogoImg,Name=studio.Name,Website=studio.Website };
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(int id, StudioViewModel model)
+        {
+            Studio studio = (Studio)unitOfWork.StudioRepository.GetSingle(new Studio { StudioId = id });
+            unitOfWork.StudioRepository.Delete(studio);
+            unitOfWork.Save();
+
+            return RedirectToAction("Index");
+
         }
     }
 }

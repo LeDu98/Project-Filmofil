@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -15,5 +16,9 @@ namespace Filmofil.Models
         [Required(ErrorMessage = "Obavezno polje!")]
         [DataType(DataType.Date)]
         public DateTime Founded { get; set; }
+
+        public string Website { get; set; }
+
+        public IFormFile LogoImg { get; set; }
     }
 }

@@ -20,12 +20,12 @@ namespace DataAccesLayer.Implementation
         public void Add(Studio entity)
         {
             context.Add(entity);
-            context.SaveChanges();
+            
         }
 
         public void Delete(Studio entity)
         {
-            throw new NotImplementedException();
+            context.Remove(entity);
         }
 
         public List<Studio> GetAll()
@@ -40,7 +40,7 @@ namespace DataAccesLayer.Implementation
 
         public void Update(Studio entity)
         {
-            throw new NotImplementedException();
+            context.Update(entity);
         }
     }
 }
