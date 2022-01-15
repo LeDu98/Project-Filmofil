@@ -25,6 +25,11 @@
 <vc:search-bar search-pager="@ViewBag.SearchPager">
 </vc:search-bar>
 
+@if (@Model.Count == 0)
+{
+    <h3>Studio is not found!</h3>
+}
+
 <div class="row">
     @foreach (var item in Model)
     {
@@ -45,13 +50,13 @@
         function () {
             $(this).animate({
                 marginTop: "-=1%",
-                marginBottom : "+=1%"
-            },200)
+                marginBottom: "+=1%"
+            }, 200)
         },
         function () {
             $(this).animate({
                 marginTop: "+=1%",
-                marginBottom : "-=1%"
+                marginBottom: "-=1%"
             })
         }
     )
