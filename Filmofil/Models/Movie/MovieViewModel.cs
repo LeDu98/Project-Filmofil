@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Domen;
+using System;
 
-namespace Domen
+namespace Filmofil.Models.Movie
 {
-    public class Movie
+    public class MovieViewModel
     {
         public int MovieId { get; set; }
 
@@ -26,20 +23,8 @@ namespace Domen
 
         public string Trailer { get; set; }
 
-        public int StudioId { get; set; }
-
         public Studio Studio { get; set; }
 
-        public int StreamingServiceId { get; set; }
-
         public StreamingService StreamingService { get; set; }
-        
-        public List<Actor> Actors { get; set; }
-
-        public List<Personnel> Personnels { get; set; }
-
-        public List<User> Users { get; set; }
-
-        
     }
 }

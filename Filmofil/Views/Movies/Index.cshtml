@@ -1,27 +1,52 @@
 ﻿@using Domen
 @model List<Movie>
 
-<table>
+@{
+    ViewData["Title"] = "Movies";
+}
 
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th></th>
-        </tr>
-    </thead>
+<link rel="stylesheet" runat="server" media="screen" href="~/css/movies.css" />
 
-    <tbody>
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
 
-        @foreach (Movie item in Model)
-        {
-
-            <tr>
-                <td>@item.Name</td>
-            </tr>
-
-        }
-
-    </tbody>
+<div>
+	<p>
+    <a asp-action="Create">Create New</a>
+	</p>
+</div>
 
 
-</table>
+<section class="light">
+	<div class="container py-2">
+		<div class="h1 text-center text-dark" id="pageHeaderTitle">Movies</div>
+
+		@foreach(var item in Model)
+		{
+
+					<article class="postcard light green">
+			<a class="postcard__img_link" href="#">
+				<img class="postcard__img" src="~/img/MoviesImages/@item.Thumbnail" alt="Image Title" />
+			</a>
+			<div class="postcard__text t-dark">
+				<h1 class="postcard__title green"><a href="#">@item.Name</a></h1>
+				<div class="postcard__subtitle small">
+					<time datetime="2020-05-25 12:00:00">
+						<i class="fas fa-calendar-alt mr-2"></i>@item.Year
+					</time>
+				</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">@item.Synopsis</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item"><i class="fas fa-tag mr-2"></i>@item.Genres</li>
+					<li class="tag__item"><i class="fas fa-clock mr-2"></i>@item.Duration mins.</li>
+					<li class="tag__item play green">
+						<a href="#"><i class="fas fa-star mr-2"></i>@item.Rating</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+
+			
+		}
+	</div>
+</section>
