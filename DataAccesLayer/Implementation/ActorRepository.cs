@@ -26,7 +26,6 @@ namespace DataAccesLayer.Implementation
         public void Delete(Actor entity)
         {
             context.Remove(entity);
-            
         }
 
         public List<Actor> GetAll()
@@ -42,7 +41,6 @@ namespace DataAccesLayer.Implementation
         public void Update(Actor entity)
         {
             context.Update(entity);
-            
         }
     }
 }

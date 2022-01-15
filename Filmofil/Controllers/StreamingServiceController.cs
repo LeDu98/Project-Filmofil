@@ -17,12 +17,14 @@ namespace Filmofil.Controllers
 
         private readonly IUnitOfWork unitOfWork;
         private readonly IHostingEnvironment hostingEnvironment;
+        private string folderPath = "img/streamingServiceLogo";
 
         public StreamingServiceController(IUnitOfWork unitOfWork, IHostingEnvironment hostingEnvironment)
         {
             this.unitOfWork = unitOfWork;
             this.hostingEnvironment = hostingEnvironment;
         }
+
 
         // GET: StreamingServiceController
         public IActionResult Index()
@@ -32,12 +34,14 @@ namespace Filmofil.Controllers
             return View(model);
         }
 
+
         // GET: StreamingServiceController/Details/5
         public IActionResult Details(int id)
         {
             StreamingService model = unitOfWork.StreamingServiceRepository.GetSingle(new StreamingService { StreamingServiceId = id });
             return View(model);
         }
+
 
         // GET: StreamingServiceController/Create
         public IActionResult Create()
@@ -47,6 +51,7 @@ namespace Filmofil.Controllers
 
             return View(model);
         }
+
 
         // POST: StreamingServiceController/Create
         [HttpPost]
@@ -61,21 +66,9 @@ namespace Filmofil.Controllers
 
             if (model.Img != null)
             {
-                // The image must be uploaded to the images folder in wwwroot
-                // To get the path of the wwwroot folder we are using the inject
-                // HostingEnvironment service provided by ASP.NET Core
-                string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "img/streamingServiceLogo");
-                // To make sure the file name is unique we are appending a new
-                // GUID value and and an underscore to the file name
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Img.FileName;
-                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                // Use CopyTo() method provided by IFormFile interface to
-                // copy the file to wwwroot/images folder
-                model.Img.CopyTo(new FileStream(filePath, FileMode.Create));
+                uniqueFileName = GetFileNameAndSaveFile(model);
             }
-
-
-           
+         
             unitOfWork.StreamingServiceRepository.Add(new StreamingService
             {
                 Name = model.Name,
@@ -85,9 +78,11 @@ namespace Filmofil.Controllers
                 Website = model.Website,
                 LogoImg = uniqueFileName
             });
+
             unitOfWork.Save();
             return RedirectToAction("Index");
         }
+
 
         // GET: StreamingServiceController/Edit/5
         public IActionResult Edit(int id)
@@ -99,38 +94,69 @@ namespace Filmofil.Controllers
             return View(model);
         }
 
+
         // POST: StreamingServiceController/Edit/5
         [HttpPost]
-        public IActionResult Edit(int id, IFormCollection collection)
+        public IActionResult Edit(int id, StreamingServiceCreateModel model)
         {
-            try
+            StreamingService streamingService = (StreamingService)unitOfWork.StreamingServiceRepository.GetSingle(new StreamingService { StreamingServiceId = id });
+
+            if (!ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                return Edit(id);
             }
-            catch
+
+            string uniqueFileName = null;
+
+            if (model.Img != null)
             {
-                return View();
+                uniqueFileName = GetFileNameAndSaveFile(model);
             }
+
+            streamingService.Name = model.Name;
+            streamingService.Founded = model.Founded;
+            streamingService.Price = model.Price;
+            streamingService.Website = model.Website;
+            streamingService.Headquarter = model.Headquarter;
+            streamingService.LogoImg = uniqueFileName;
+
+            unitOfWork.StreamingServiceRepository.Update(streamingService);
+            unitOfWork.Save();
+
+            return RedirectToAction("Index");
         }
+
 
         // GET: StreamingServiceController/Delete/5
         public IActionResult Delete(int id)
         {
-            return View();
+            StreamingService streamingService = (StreamingService)unitOfWork.StreamingServiceRepository.GetSingle(new StreamingService { StreamingServiceId = id });
+
+            StreamingServiceViewModel model = CreateModel(streamingService);
+
+            return View(model);
         }
+
 
         // POST: StreamingServiceController/Delete/5
         [HttpPost]
-        public IActionResult Delete(int id, IFormCollection collection)
+        public IActionResult Delete(int id, StreamingServiceViewModel model)
         {
-            try
+            StreamingService streamingService = (StreamingService)unitOfWork.StreamingServiceRepository.GetSingle(new StreamingService { StreamingServiceId = id });
+
+            if (DeleteFile(streamingService.LogoImg))
             {
-                return RedirectToAction(nameof(Index));
+                Console.WriteLine("File Deleted");
             }
-            catch
+            else
             {
-                return View();
+                Console.WriteLine("Error trying to delte file");
             }
+
+            unitOfWork.StreamingServiceRepository.Delete(streamingService);
+            unitOfWork.Save();
+
+            return RedirectToAction("Index");
         }
 
 
@@ -148,6 +174,43 @@ namespace Filmofil.Controllers
 
         }
 
+
+        private string GetFileNameAndSaveFile(StreamingServiceCreateModel model)
+        {
+            string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, folderPath);
+
+            string uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Img.FileName;
+            string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+            model.Img.CopyTo(new FileStream(filePath, FileMode.Create));
+
+            return uniqueFileName;
+        }
+
+        private bool DeleteFile(string fileName)
+        {
+            try
+            {
+                string path = Path.Combine(hostingEnvironment.WebRootPath, folderPath);
+                path = Path.Combine(path, fileName);
+
+                FileInfo file = new FileInfo(path);
+                if (file.Exists)
+                {
+                    file.Delete();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
 
     }
 }

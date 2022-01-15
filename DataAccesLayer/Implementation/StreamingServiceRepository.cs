@@ -24,7 +24,7 @@ namespace DataAccesLayer.Implementation
 
         public void Delete(StreamingService entity)
         {
-            throw new NotImplementedException();
+            context.Remove(entity);
         }
 
         public List<StreamingService> GetAll()
@@ -39,7 +39,7 @@ namespace DataAccesLayer.Implementation
 
         public void Update(StreamingService entity)
         {
-            throw new NotImplementedException();
+            context.Update(entity);
         }
     }
 }
