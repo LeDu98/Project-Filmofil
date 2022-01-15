@@ -32,7 +32,7 @@ namespace Filmofil.Controllers
             return View(model);
         }
 
-        public ActionResult Delete(int id)
+        public IActionResult Delete(int id)
         {
             Actor actor = (Actor)unitOfWork.ActorRepository.GetSingle(new Actor { PersonId = id });
 
@@ -42,7 +42,7 @@ namespace Filmofil.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, ActorViewModel model)
+        public IActionResult Delete(int id, ActorViewModel model)
         {
             Actor actor = (Actor)unitOfWork.ActorRepository.GetSingle(new Actor { PersonId = id });
             unitOfWork.ActorRepository.Delete(actor);
