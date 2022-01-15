@@ -46,6 +46,7 @@ namespace Filmofil.Controllers
         {
             Actor actor = (Actor)unitOfWork.ActorRepository.GetSingle(new Actor { PersonId = id });
             unitOfWork.ActorRepository.Delete(actor);
+            unitOfWork.Save();
 
             return RedirectToAction("Index");
 
@@ -112,6 +113,7 @@ namespace Filmofil.Controllers
             actor.Image = uniqueFileName;
 
             unitOfWork.ActorRepository.Update(actor);
+            unitOfWork.Save();
 
             return RedirectToAction("Index");
         }

@@ -20,13 +20,13 @@ namespace DataAccesLayer.Implementation
         public void Add(Actor entity)
         {
             context.Add(entity);
-            context.SaveChanges();
+            
         }
 
         public void Delete(Actor entity)
         {
             context.Remove(entity);
-            context.SaveChanges();
+            
         }
 
         public List<Actor> GetAll()
@@ -42,7 +42,7 @@ namespace DataAccesLayer.Implementation
         public void Update(Actor entity)
         {
             context.Update(entity);
-            context.SaveChanges();
+            
         }
     }
 }
