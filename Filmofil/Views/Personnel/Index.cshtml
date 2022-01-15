@@ -11,11 +11,20 @@
     }
 </style>
 
+<script>
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+</script>
+
 <h1>Actors</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<vc:search-bar search-pager="@ViewBag.SearchPager">
+</vc:search-bar>
 
 <div class="row">
     @foreach (var item in Model)

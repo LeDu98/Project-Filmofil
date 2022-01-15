@@ -31,6 +31,7 @@ namespace Filmofil.Controllers
         {
             List<Actor> model;
 
+
             if(SearchText != "" && SearchText != null)
             {
                 model = unitOfWork.ActorRepository.GetAll().Where(a => String.Concat(a.FirstName," ",a.LastName).ToLower().Contains(SearchText.ToLower()) || String.Concat(a.LastName," ",a.FirstName).ToLower().Contains(SearchText.ToLower())).ToList();

@@ -1,6 +1,7 @@
 ﻿using DataAccesLayer.UnitOfWork;
 using Domen;
 using Filmofil.Models.Personnel;
+using Filmofil.Views.Shared.SearchBar;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -23,10 +24,26 @@ namespace Filmofil.Controllers
         }
 
 
-        public IActionResult Index()
+        public IActionResult Index(string SearchText)
         {
 
-            List<Personnel> model = unitOfWork.PersonnelRepository.GetAll().OfType<Personnel>().ToList();
+            
+
+            List<Personnel> model;
+
+
+            if (SearchText != "" && SearchText != null)
+            {
+                model = unitOfWork.PersonnelRepository.GetAll().Where(p => String.Concat(p.FirstName, " ", p.LastName).ToLower().Contains(SearchText.ToLower()) || String.Concat(p.LastName, " ", p.FirstName).ToLower().Contains(SearchText.ToLower())).ToList();
+            }
+            else
+            {
+                model = unitOfWork.PersonnelRepository.GetAll().OfType<Personnel>().ToList();
+
+            }
+
+            SPager SearchPager = new SPager() { Action = "Index", Controller = "Personnel", SearchText = SearchText };
+            ViewBag.SearchPager = SearchPager;
             return View(model);
         }
 

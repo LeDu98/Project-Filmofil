@@ -1,6 +1,7 @@
 ﻿using DataAccesLayer.UnitOfWork;
 using Domen;
 using Filmofil.Models;
+using Filmofil.Views.Shared.SearchBar;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -22,9 +23,24 @@ namespace Filmofil.Controllers
             this.hostingEnvironment = hostingEnvironment;
 
         }
-        public IActionResult Index()
+        public IActionResult Index(string SearchText)
         {
-            List<Studio> model = unitOfWork.StudioRepository.GetAll().OfType<Studio>().ToList();
+
+            List<Studio> model;
+
+
+            if (SearchText != "" && SearchText != null)
+            {
+                model = unitOfWork.StudioRepository.GetAll().Where(s => String.Concat(s.Name).ToLower().Contains(SearchText.ToLower())).ToList();
+            }
+            else
+            {
+                model = unitOfWork.StudioRepository.GetAll().OfType<Studio>().ToList();
+
+            }
+
+            SPager SearchPager = new SPager() { Action = "Index", Controller = "Studio", SearchText = SearchText };
+            ViewBag.SearchPager = SearchPager;
             return View(model);
         }
         public IActionResult Create()
