@@ -1,5 +1,6 @@
 ﻿using DataAccesLayer.UnitOfWork;
 using Domen;
+using Filmofil.Models.Movie;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -32,7 +33,8 @@ namespace Filmofil.Controllers
         // GET: MovieController/Details/5
         public IActionResult Details(int id)
         {
-            return View();
+            MovieViewModel model = CreateModel(unitOfWork.MovieRepository.GetSingle(new Movie { MovieId = id }));
+            return View(model);
         }
 
         // GET: MovieController/Create
@@ -94,5 +96,26 @@ namespace Filmofil.Controllers
                 return View();
             }
         }
+
+        private MovieViewModel CreateModel(Movie movie)
+        {
+            MovieViewModel model = new MovieViewModel();
+
+            model.MovieId = movie.MovieId;
+            model.Name = movie.Name;
+            model.Duration = movie.Duration;
+            model.Year = movie.Year;
+            model.Synopsis = movie.Synopsis;
+            model.Thumbnail = movie.Thumbnail;
+            model.Genres = movie.Genres;
+            model.Rating = movie.Rating;
+            model.Trailer = movie.Trailer;
+            model.StreamingService = movie.StreamingService;
+            model.Studio = movie.Studio;
+
+            return model;
+
+        }
+
     }
 }

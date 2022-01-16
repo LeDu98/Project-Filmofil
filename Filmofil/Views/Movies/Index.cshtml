@@ -15,8 +15,6 @@
 
 <div class="content">
     <h1 class="heading">Movies-</h1>
-    <p class="description">Hover over a Movie to flip it.</p>
-
 
     @foreach (var item in Model)
     {
@@ -27,7 +25,7 @@
         <a class="card" href="Movies/Details/@item.MovieId">
 
             <div class="frontWeb" style="background-image: url(@item.Thumbnail);">
-                <p>Lorem ipsum dolor sit amet consectetur adipisi.</p>
+                <p>@item.Name</p>
             </div>
 
             <div class="back">
