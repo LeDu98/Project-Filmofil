@@ -43,6 +43,7 @@ namespace Domen
             modelBuilder.Entity<Actor>().HasBaseType<Person>().ToTable("Actors");
 
             modelBuilder.Entity<Personnel>().HasBaseType<Person>().ToTable("Personnel");
+
             modelBuilder.Seed();
 
         }

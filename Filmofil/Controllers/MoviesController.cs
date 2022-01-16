@@ -112,6 +112,20 @@ namespace Filmofil.Controllers
             model.Trailer = movie.Trailer;
             model.StreamingService = movie.StreamingService;
             model.Studio = movie.Studio;
+            model.Actings = movie.Actings;
+            model.Positions = movie.Positions;
+
+            model.Actors = new List<Actor>();
+            foreach (Acting a in movie.Actings)
+            {
+                model.Actors.Add((Actor) unitOfWork.ActorRepository.GetSingle(new Actor { PersonId = a.ActorId }));
+            }
+
+            model.Personnels = new List<Personnel>();
+            foreach (Position p in movie.Positions)
+            {
+                model.Personnels.Add((Personnel)unitOfWork.PersonnelRepository.GetSingle(new Personnel { PersonId = p.PersonnelId }));
+            }
 
             return model;
 

@@ -57,7 +57,7 @@ namespace Filmofil
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Studio}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

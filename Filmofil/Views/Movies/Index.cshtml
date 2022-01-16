@@ -7,32 +7,32 @@
 <link rel="stylesheet" runat="server" media="screen" href="~/css/movies.css" />
 <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
 
+
 <div>
+    <h1 class="heading" style="margin-left: 0px;">Movies</h1>
     <p>
         <a asp-action="Create">Create New</a>
     </p>
 </div>
 
+
 <div class="content">
-    <h1 class="heading">Movies-</h1>
 
     @foreach (var item in Model)
     {
         {
-            item.Thumbnail = "https://image.tmdb.org/t/p/original/wAAt2gvbkbeefzjd06GPfkdfUho.jpg";
-            //item.Thumbnail = "/img/MoviesImages/" + @item.Thumbnail;
+            item.Thumbnail = "https://localhost:5001/img/MoviesImages/" + @item.Thumbnail;
         }
         <a class="card" href="Movies/Details/@item.MovieId">
 
             <div class="frontWeb" style="background-image: url(@item.Thumbnail);">
-                <p>@item.Name</p>
             </div>
 
             <div class="back">
                 <div>
-                    <div class="release_date">@item.Name<span>(@item.Year.Year)</span></div>
+                    <div class="release_date">@item.Name<span> (@item.Year.Year)</span></div>
                     <div class="movie_gens">@item.Genres</div>
-                    <div>⭐@item.Rating</div>
+                    <div><i class="fas fa-star mr-2"></i>@item.Rating</div>
 
                     <p class="overview">@item.Synopsis</p>
 
@@ -41,5 +41,6 @@
 
         </a>
     }
+
 </div>
 
