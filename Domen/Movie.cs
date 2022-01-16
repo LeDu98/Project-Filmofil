@@ -10,15 +10,15 @@ namespace Domen
     {
         public int MovieId { get; set; }
 
-        public string Name { get; set; }
-
-        public string Genres { get; set; }
+        public string Name { get; set; }    
 
         public int Duration { get; set; }
 
         public DateTime Year { get; set; }
 
         public string Synopsis { get; set; }
+
+        public string Genres { get; set; }
 
         public double Rating { get; set; }
 
@@ -33,13 +33,14 @@ namespace Domen
         public int StreamingServiceId { get; set; }
 
         public StreamingService StreamingService { get; set; }
-        
-     /*   public List<Actor> Actors { get; set; }
 
-        public List<Personnel> Personnels { get; set; }
 
-        public List<User> Users { get; set; }*/
+        /*   public List<Actor> Actors { get; set; }
 
-        
+           public List<Personnel> Personnels { get; set; }
+
+           public List<User> Users { get; set; }*/
+
+
     }
 }
