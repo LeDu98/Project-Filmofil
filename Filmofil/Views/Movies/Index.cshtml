@@ -4,49 +4,44 @@
 @{
     ViewData["Title"] = "Movies";
 }
-
 <link rel="stylesheet" runat="server" media="screen" href="~/css/movies.css" />
-
 <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
 
 <div>
-	<p>
-    <a asp-action="Create">Create New</a>
-	</p>
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
 </div>
 
+<div class="content">
+    <h1 class="heading">Movies-</h1>
+    <p class="description">Hover over a Movie to flip it.</p>
 
-<section class="light">
-	<div class="container py-2">
-		<div class="h1 text-center text-dark" id="pageHeaderTitle">Movies</div>
 
-		@foreach(var item in Model)
-		{
+    @foreach (var item in Model)
+    {
+        {
+            item.Thumbnail = "https://image.tmdb.org/t/p/original/wAAt2gvbkbeefzjd06GPfkdfUho.jpg";
+            //item.Thumbnail = "/img/MoviesImages/" + @item.Thumbnail;
+        }
+        <a class="card" href="Movies/Details/@item.MovieId">
 
-					<article class="postcard light green">
-			<a class="postcard__img_link" href="#">
-				<img class="postcard__img" src="~/img/MoviesImages/@item.Thumbnail" alt="Image Title" />
-			</a>
-			<div class="postcard__text t-dark">
-				<h1 class="postcard__title green"><a href="#">@item.Name</a></h1>
-				<div class="postcard__subtitle small">
-					<time datetime="2020-05-25 12:00:00">
-						<i class="fas fa-calendar-alt mr-2"></i>@item.Year
-					</time>
-				</div>
-				<div class="postcard__bar"></div>
-				<div class="postcard__preview-txt">@item.Synopsis</div>
-				<ul class="postcard__tagbox">
-					<li class="tag__item"><i class="fas fa-tag mr-2"></i>@item.Genres</li>
-					<li class="tag__item"><i class="fas fa-clock mr-2"></i>@item.Duration mins.</li>
-					<li class="tag__item play green">
-						<a href="#"><i class="fas fa-star mr-2"></i>@item.Rating</a>
-					</li>
-				</ul>
-			</div>
-		</article>
+            <div class="frontWeb" style="background-image: url(@item.Thumbnail);">
+                <p>Lorem ipsum dolor sit amet consectetur adipisi.</p>
+            </div>
 
-			
-		}
-	</div>
-</section>
+            <div class="back">
+                <div>
+                    <div class="release_date">@item.Name<span>(@item.Year.Year)</span></div>
+                    <div class="movie_gens">@item.Genres</div>
+                    <div>⭐@item.Rating</div>
+
+                    <p class="overview">@item.Synopsis</p>
+
+                </div>
+            </div>
+
+        </a>
+    }
+</div>
+

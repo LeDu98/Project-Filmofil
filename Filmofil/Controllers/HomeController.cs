@@ -1,4 +1,6 @@
-﻿using Domen;
+﻿using DataAccesLayer.UnitOfWork;
+using Domen;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,10 +13,19 @@ namespace Filmofil.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IUnitOfWork unitOfWork;
+
+        public HomeController(IUnitOfWork unitOfWork)
+        {
+            this.unitOfWork = unitOfWork;
+        }
+
+        // GET: MovieController
         public IActionResult Index()
         {
-            
-            return View();
+            List<Movie> model = unitOfWork.MovieRepository.GetAll().OfType<Movie>().ToList();
+
+            return View(model);
         }
     }
 }
