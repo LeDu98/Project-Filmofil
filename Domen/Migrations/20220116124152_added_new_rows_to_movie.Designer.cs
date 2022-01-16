@@ -4,14 +4,16 @@ using Domen;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Domen.Migrations
 {
     [DbContext(typeof(MovieContext))]
-    partial class MovieContextModelSnapshot : ModelSnapshot
+    [Migration("20220116124152_added_new_rows_to_movie")]
+    partial class added_new_rows_to_movie
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,92 +40,6 @@ namespace Domen.Migrations
                     b.HasIndex("MovieId");
 
                     b.ToTable("Acting");
-
-                    b.HasData(
-                        new
-                        {
-                            ActorId = 1,
-                            MovieId = 1,
-                            Income = 7.5,
-                            Role = "Police officer"
-                        },
-                        new
-                        {
-                            ActorId = 2,
-                            MovieId = 1,
-                            Income = 2.5,
-                            Role = "Laywer"
-                        },
-                        new
-                        {
-                            ActorId = 3,
-                            MovieId = 1,
-                            Income = 4.0,
-                            Role = "Judge"
-                        },
-                        new
-                        {
-                            ActorId = 4,
-                            MovieId = 2,
-                            Income = 10.5,
-                            Role = "Don"
-                        },
-                        new
-                        {
-                            ActorId = 2,
-                            MovieId = 2,
-                            Income = 1.5,
-                            Role = "Laywer"
-                        },
-                        new
-                        {
-                            ActorId = 7,
-                            MovieId = 2,
-                            Income = 0.75,
-                            Role = "Dautgher"
-                        },
-                        new
-                        {
-                            ActorId = 8,
-                            MovieId = 3,
-                            Income = 12.5,
-                            Role = "Batman"
-                        },
-                        new
-                        {
-                            ActorId = 6,
-                            MovieId = 3,
-                            Income = 2.5,
-                            Role = "Jane Hawkins"
-                        },
-                        new
-                        {
-                            ActorId = 7,
-                            MovieId = 3,
-                            Income = 4.0,
-                            Role = "Adam"
-                        },
-                        new
-                        {
-                            ActorId = 1,
-                            MovieId = 4,
-                            Income = 7.2000000000000002,
-                            Role = "Legolas"
-                        },
-                        new
-                        {
-                            ActorId = 3,
-                            MovieId = 4,
-                            Income = 5.5,
-                            Role = "Witch"
-                        },
-                        new
-                        {
-                            ActorId = 4,
-                            MovieId = 4,
-                            Income = 5.0,
-                            Role = "Gremlin"
-                        });
                 });
 
             modelBuilder.Entity("Domen.Country", b =>
@@ -202,64 +118,6 @@ namespace Domen.Migrations
                     b.HasIndex("StudioId");
 
                     b.ToTable("Movies");
-
-                    b.HasData(
-                        new
-                        {
-                            MovieId = 1,
-                            Duration = 142,
-                            Genres = "Drama",
-                            Name = "The Shawshank Redemption",
-                            Rating = 9.3000000000000007,
-                            StreamingServiceId = 1,
-                            StudioId = 1,
-                            Synopsis = "Chronicles the experiences of a formerly successful banker as a prisoner in the gloomy jailhouse of Shawshank after being found guilty of a crime he did not commit. The film portrays the man's unique way of dealing with his new, torturous life; along the way he befriends a number of fellow prisoners, most notably a wise long-term inmate named Red",
-                            Thumbnail = "shawshank.png",
-                            Trailer = "https://www.youtube.com/watch?v=6hB3S9bIaco",
-                            Year = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(1994)
-                        },
-                        new
-                        {
-                            MovieId = 2,
-                            Duration = 175,
-                            Genres = "Crime, Drama",
-                            Name = "The Godfather",
-                            Rating = 9.0999999999999996,
-                            StreamingServiceId = 2,
-                            StudioId = 2,
-                            Synopsis = "The Godfather Don Vito Corleone is the head of the Corleone mafia family in New York. He is at the event of his daughter's wedding. Michael, Vito's youngest son and a decorated WW II Marine is also present at the wedding. Michael seems to be uninterested in being a part of the family business. Vito is a powerful man, and is kind to all those who give him respect but is ruthless against those who do not. But when a powerful and treacherous rival wants to sell drugs and needs the Don's influence for the same, Vito refuses to do it. What follows is a clash between Vito's fading old values and the new ways which may cause Michael to do the thing he was most reluctant in doing and wage a mob war against all the other mafia families which could tear the Corleone family apart.",
-                            Thumbnail = "godfather.jpg",
-                            Trailer = "https://www.youtube.com/watch?v=sY1S34973zA",
-                            Year = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(1972)
-                        },
-                        new
-                        {
-                            MovieId = 3,
-                            Duration = 152,
-                            Genres = "Action, Crime, Drama, Thriller",
-                            Name = "The Dark Knight",
-                            Rating = 9.0,
-                            StreamingServiceId = 3,
-                            StudioId = 3,
-                            Synopsis = "Set within a year after the events of Batman Begins (2005), Batman, Lieutenant James Gordon, and new District Attorney Harvey Dent successfully begin to round up the criminals that plague Gotham City, until a mysterious and sadistic criminal mastermind known only as The Joker appears in Gotham, creating a new wave of chaos. Batman's struggle against The Joker becomes deeply personal, forcing him to confront everything he believes and improve his technology to stop him. A love triangle develops between Bruce Wayne, Dent, and Rachel Dawes.",
-                            Thumbnail = "darkKnight.png",
-                            Trailer = "https://www.youtube.com/watch?v=EXeTwQWrcwY",
-                            Year = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2008)
-                        },
-                        new
-                        {
-                            MovieId = 4,
-                            Duration = 201,
-                            Genres = "Action, Adventure, Drama, Fantasy",
-                            Name = "The Lord of the Rings: The Return of the King",
-                            Rating = 8.9000000000000004,
-                            StreamingServiceId = 4,
-                            StudioId = 4,
-                            Synopsis = "The final confrontation between the forces of good and evil fighting for control of the future of Middle-earth. Frodo and Sam reach Mordor in their quest to destroy the One Ring, while Aragorn leads the forces of good against Sauron's evil army at the stone city of Minas Tirith.",
-                            Thumbnail = "LOTR-3-The-Return-of-the-King-icon.png",
-                            Trailer = "https://www.youtube.com/watch?v=r5X-hFf6Bwo",
-                            Year = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2003)
-                        });
                 });
 
             modelBuilder.Entity("Domen.Person", b =>
