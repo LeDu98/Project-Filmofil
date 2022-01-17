@@ -31,27 +31,28 @@ namespace Filmofil.Controllers
 
         public IActionResult Index(string SearchText="")
         {
-            List<Actor> model;
+            ActorListViewModel model = new ActorListViewModel();
+            List<Actor> lista;
 
             var user = HttpContext.User;
 
-
+            model.IsAdmin = user.IsInRole("Admin");
             if(SearchText != "" && SearchText != null)
             {
-                model = unitOfWork.ActorRepository.GetAll().Where(a => String.Concat(a.FirstName," ",a.LastName).ToLower().Contains(SearchText.ToLower()) || String.Concat(a.LastName," ",a.FirstName).ToLower().Contains(SearchText.ToLower())).ToList();
+                lista = unitOfWork.ActorRepository.GetAll().Where(a => String.Concat(a.FirstName," ",a.LastName).ToLower().Contains(SearchText.ToLower()) || String.Concat(a.LastName," ",a.FirstName).ToLower().Contains(SearchText.ToLower())).ToList();
             }
             else
             {
-              model = unitOfWork.ActorRepository.GetAll().OfType<Actor>().ToList();
+              lista = unitOfWork.ActorRepository.GetAll().OfType<Actor>().ToList();
 
             }
-
+            model.Actors = lista;
             SPager SearchPager = new SPager() { Action = "Index", Controller = "Actor", SearchText = SearchText };
             ViewBag.SearchPager = SearchPager;
             return View(model);
 
         }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id)
         {
             Actor actor = (Actor)unitOfWork.ActorRepository.GetSingle(new Actor { PersonId = id });
@@ -62,6 +63,7 @@ namespace Filmofil.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id, ActorViewModel model)
         {
             Actor actor = (Actor)unitOfWork.ActorRepository.GetSingle(new Actor { PersonId = id });
@@ -74,9 +76,25 @@ namespace Filmofil.Controllers
         
         public IActionResult Details(int id)
         {
+            Actor a = unitOfWork.ActorRepository.GetSingle(new Actor { PersonId = id });
+
+            
+            
             var user = HttpContext.User;
-            Actor model = unitOfWork.ActorRepository.GetSingle(new Actor { PersonId = id });
-            model.Country = unitOfWork.CountryRepository.GetSingle(new Country { CountryId = model.CountryId });
+ 
+                ActorViewModel model = new ActorViewModel
+                {
+                    Born = a.Born,
+                    CountryId = a.CountryId,
+                    FirstName = a.FirstName,
+                    Image = a.Image,
+                    LastName = a.LastName,
+                    Country=a.Country,
+                    Networth = a.Networth,
+                    PersonId = a.PersonId,
+                    IsAdmin= user.IsInRole("Admin")
+                };
+            
             return View(model);
         }
 
@@ -95,7 +113,7 @@ namespace Filmofil.Controllers
             return model;
         }
 
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(int id)
         {
             Actor actor = (Actor)unitOfWork.ActorRepository.GetSingle(new Actor { PersonId = id });
@@ -108,6 +126,7 @@ namespace Filmofil.Controllers
         // POST: Actor/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(int id, CreateActorViewModel model)
         {
             Actor actor = (Actor)unitOfWork.ActorRepository.GetSingle(new Actor { PersonId = id });
@@ -138,7 +157,7 @@ namespace Filmofil.Controllers
 
             return RedirectToAction("Index");
         }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             CreateActorViewModel model = new CreateActorViewModel();
@@ -149,7 +168,8 @@ namespace Filmofil.Controllers
 
         //POST: ActorController/Create
           [HttpPost]
-          public IActionResult Create(CreateActorViewModel model)
+        [Authorize(Roles = "Admin")]
+        public IActionResult Create(CreateActorViewModel model)
           {
               if (!ModelState.IsValid)
               {

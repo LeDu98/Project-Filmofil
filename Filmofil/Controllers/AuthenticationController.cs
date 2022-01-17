@@ -13,6 +13,7 @@ namespace Filmofil.Controllers
     {
         private readonly UserManager<SiteUser> manager;
         private readonly SignInManager<SiteUser> signInManager;
+        
        
         public AuthenticationController(UserManager<SiteUser> manager, SignInManager<SiteUser> signInManager)
         {
@@ -36,11 +37,13 @@ namespace Filmofil.Controllers
                 UserName = register.Username,
                 FirstName = register.FirstName,
                 LastName = register.LastName,
+                IsAdministrator = false
             };
            var result = await manager.CreateAsync(user, register.Password);
 
             if (result.Succeeded)
             {
+                
                 return RedirectToAction("Login");
             }
             else
@@ -70,6 +73,10 @@ namespace Filmofil.Controllers
         [HttpPost]
         public async Task<IActionResult> Login([FromForm] LoginViewModel login)
         {
+            if(login.Username=="" || login.Username == null)
+            {
+                return View();
+            }
             var result = await signInManager.PasswordSignInAsync(login.Username, login.Password, false, false);
 
             if (result.Succeeded)

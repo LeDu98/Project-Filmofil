@@ -1,4 +1,5 @@
 ﻿using Domen;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,11 @@ namespace DataAccesLayer.Implementation
 
         public Personnel GetSingle(Personnel entity)
         {
-            return context.Personnel.Find(entity.PersonId);
+            var list = context.Personnel.
+                Include(p => p.Country).
+                ToList();
+            return list.Find(p => p.PersonId == entity.PersonId);
+           
         }
 
         public void Update(Personnel entity)
