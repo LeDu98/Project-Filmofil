@@ -11,10 +11,13 @@ namespace Domen
         public string Name { get; set; }
         public string Headquarter { get; set; }
         public DateTime Founded { get; set; }
-
         public string LogoImg { get; set; }
-
         public string Website { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
 
     }
 }

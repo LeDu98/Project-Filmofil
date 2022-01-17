@@ -47,8 +47,7 @@ namespace Filmofil.Controllers
         public IActionResult Create()
         {
             StreamingServiceCreateModel model = new StreamingServiceCreateModel();
-            
-
+           
             return View(model);
         }
 
