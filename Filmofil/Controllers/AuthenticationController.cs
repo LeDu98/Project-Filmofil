@@ -13,12 +13,12 @@ namespace Filmofil.Controllers
     {
         private readonly UserManager<SiteUser> manager;
         private readonly SignInManager<SiteUser> signInManager;
-        private readonly RoleManager<SiteUser> roleManager;
-        public AuthenticationController(UserManager<SiteUser> manager, SignInManager<SiteUser> signInManager, RoleManager<SiteUser> roleManager)
+       
+        public AuthenticationController(UserManager<SiteUser> manager, SignInManager<SiteUser> signInManager)
         {
             this.manager = manager;
             this.signInManager = signInManager;
-            this.roleManager = roleManager;
+          
         }
 
         #region registration

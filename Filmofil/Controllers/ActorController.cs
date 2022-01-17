@@ -16,7 +16,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Filmofil.Controllers
 {   //[AllowAnonymus]
-    [Authorize(Roles = "Admin")]
+    
     public class ActorController : Controller
     {
         private readonly IUnitOfWork unitOfWork;
