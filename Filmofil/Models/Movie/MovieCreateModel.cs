@@ -4,10 +4,8 @@ using System.Collections.Generic;
 
 namespace Filmofil.Models.Movie
 {
-    public class MovieViewModel
+    public class MovieCreateModel
     {
-        public int MovieId { get; set; }
-
         public string Name { get; set; }
 
         public string Genres { get; set; }
@@ -24,19 +22,17 @@ namespace Filmofil.Models.Movie
 
         public string Trailer { get; set; }
 
-        public Studio Studio { get; set; }
+        public int StudioId { get; set; }
 
-        public StreamingService StreamingService { get; set; }
+        public List<Studio> Studios { get; set; }
+
+        public int StreamingServiceId { get; set; }
+
+        public List<StreamingService> StreamingServices { get; set; }
 
         public List<Domen.Actor> Actors { get; set; }
 
         public List<Domen.Personnel> Personnels { get; set; }
-
-        public List<Acting> Actings { get; set; }
-
-        public List<Position> Positions { get; set; }
-
-        public List<Review> Reviews { get; set; }
 
     }
 }

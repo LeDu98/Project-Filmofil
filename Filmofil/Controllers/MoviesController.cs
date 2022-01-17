@@ -33,14 +33,16 @@ namespace Filmofil.Controllers
         // GET: MovieController/Details/5
         public IActionResult Details(int id)
         {
-            MovieViewModel model = CreateModel(unitOfWork.MovieRepository.GetSingle(new Movie { MovieId = id }));
+            MovieViewModel model = CreateMovieViewModel(unitOfWork.MovieRepository.GetSingle(new Movie { MovieId = id }));
             return View(model);
         }
 
         // GET: MovieController/Create
         public IActionResult Create()
         {
-            return View();
+            MovieCreateModel model = CreateModel();
+
+            return View(model);
         }
 
         // POST: MovieController/Create
@@ -97,7 +99,7 @@ namespace Filmofil.Controllers
             }
         }
 
-        private MovieViewModel CreateModel(Movie movie)
+        private MovieViewModel CreateMovieViewModel(Movie movie)
         {
             MovieViewModel model = new MovieViewModel();
 
@@ -129,6 +131,18 @@ namespace Filmofil.Controllers
 
             return model;
 
+        }
+
+        private MovieCreateModel CreateModel()
+        {
+            MovieCreateModel model = new MovieCreateModel();
+
+            model.StreamingServices = unitOfWork.StreamingServiceRepository.GetAll();
+            model.Studios = unitOfWork.StudioRepository.GetAll();
+            model.Actors = unitOfWork.ActorRepository.GetAll();
+            model.Personnels = unitOfWork.PersonnelRepository.GetAll();
+
+            return model;
         }
 
     }
