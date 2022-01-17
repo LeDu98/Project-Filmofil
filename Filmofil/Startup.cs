@@ -1,8 +1,10 @@
 using DataAccesLayer.UnitOfWork;
 using Domen;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,9 +29,24 @@ namespace Filmofil
         {
             services.AddControllersWithViews();
 
+            services.AddDbContext<MovieContext>();
+
+            services.AddIdentity<SiteUser, IdentityRole<int>>
+                ().AddEntityFrameworkStores<MovieContext>();
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Authentication/Login";
+                options.AccessDeniedPath = "/Authentication/Login";
+
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+                options.SlidingExpiration = true;
+            });
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-            services.AddDbContext<MovieContext>();
 
         }
 
@@ -51,13 +68,15 @@ namespace Filmofil
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Studio}/{action=Index}/{id?}");
+                    pattern: "{controller=Authentication}/{action=Login}/{id?}");
             });
         }
     }

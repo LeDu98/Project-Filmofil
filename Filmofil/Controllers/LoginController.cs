@@ -1,5 +1,6 @@
 ﻿using DataAccesLayer.UnitOfWork;
 using Filmofil.Models;
+using Filmofil.Models.Users;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace Filmofil.Controllers
         public IActionResult Index(LoginViewModel login)
         {
 
-            if (!ModelState.IsValid)
+            /*if (!ModelState.IsValid)
             {
                return View();
             }
@@ -39,7 +40,7 @@ namespace Filmofil.Controllers
                 return RedirectToAction("Index", "Movies");
             }
 
-            ModelState.AddModelError(string.Empty, "Wrong credentials!");
+            ModelState.AddModelError(string.Empty, "Wrong credentials!");*/
 
             return View();
         }

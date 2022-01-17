@@ -12,9 +12,11 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using Filmofil.Views.Shared.SearchBar;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Filmofil.Controllers
-{
+{   //[AllowAnonymus]
+    [Authorize(Roles = "Admin")]
     public class ActorController : Controller
     {
         private readonly IUnitOfWork unitOfWork;
@@ -30,6 +32,8 @@ namespace Filmofil.Controllers
         public IActionResult Index(string SearchText="")
         {
             List<Actor> model;
+
+            var user = HttpContext.User;
 
 
             if(SearchText != "" && SearchText != null)
@@ -67,9 +71,10 @@ namespace Filmofil.Controllers
             return RedirectToAction("Index");
 
         }
-
+        
         public IActionResult Details(int id)
         {
+            var user = HttpContext.User;
             Actor model = unitOfWork.ActorRepository.GetSingle(new Actor { PersonId = id });
             model.Country = unitOfWork.CountryRepository.GetSingle(new Country { CountryId = model.CountryId });
             return View(model);

@@ -1,10 +1,12 @@
 ﻿using Domen.Helper;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 
 namespace Domen
 {
-    public class MovieContext:DbContext
+    public class MovieContext:IdentityDbContext<SiteUser, IdentityRole<int>, int>
     {
         public DbSet<Movie> Movies { get; set; }
 
@@ -18,7 +20,7 @@ namespace Domen
 
         public DbSet<Review> Reviews { get; set; }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<SiteUser> SiteUsers { get; set; }
 
         public DbSet<Studio> Studio { get; set; }
 
@@ -36,6 +38,7 @@ namespace Domen
         } 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Acting>().HasKey(s =>new { s.ActorId, s.MovieId });
             modelBuilder.Entity<Review>().HasKey(s =>new { s.MovieId, s.UserId });
             modelBuilder.Entity<Position>().HasKey(s => new { s.PersonnelId, s.MovieId });

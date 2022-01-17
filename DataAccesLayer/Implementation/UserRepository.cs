@@ -18,32 +18,32 @@ namespace DataAccesLayer.Implementation
             this.context = context;
         }
 
-        public void Add(User entity)
+        public void Add(SiteUser entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(User entity)
+        public void Delete(SiteUser entity)
         {
             throw new NotImplementedException();
         }
 
-        public List<User> GetAll()
+        public List<SiteUser> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public User GetSingle(User entity)
+        public SiteUser GetSingle(SiteUser entity)
         {
             throw new NotImplementedException();
         }
 
-        public User SearchByUsernamePassword(string username, string password)
+        public SiteUser SearchByUsernamePassword(string username, string password)
         {
-            return context.Users.SingleOrDefault(u => u.Username == username && u.Password == password);
+            throw new NotImplementedException();
         }
 
-        public void Update(User entity)
+        public void Update(SiteUser entity)
         {
             throw new NotImplementedException();
         }

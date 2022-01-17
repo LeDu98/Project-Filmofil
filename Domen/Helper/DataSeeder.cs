@@ -234,38 +234,7 @@ namespace Domen.Helper
                 }
                 );
 
-            modelBuilder.Entity<User>().HasData(
-                new User
-                {
-                    UserId = 1,
-                    FirstName = "Admin",
-                    LastName = "Admin",
-                    Email = "admin@gmail.com",
-                    Username = "admin",
-                    Password = "admin",
-                    IsAdministrator = true
-                },
-                new User
-                {
-                    UserId = 2,
-                    FirstName = "Milos",
-                    LastName = "Vujic",
-                    Email = "milosv@gmail.com",
-                    Username = "milosv",
-                    Password = "12345",
-                    IsAdministrator = true
-                },
-                new User
-                {
-                    UserId = 3,
-                    FirstName = "Dusan",
-                    LastName = "Gajic",
-                    Email = "dusang@gmail.com",
-                    Username = "dusang",
-                    Password = "12345",
-                    IsAdministrator = true
-                }
-                );
+            
               modelBuilder.Entity<Movie>().HasData(
                 new Movie
                 {
