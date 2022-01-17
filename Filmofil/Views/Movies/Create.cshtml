@@ -4,75 +4,131 @@
     ViewData["Title"] = "Create";
 }
 
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
+
 <h1>Create</h1>
 
 <h4>MovieCreateModel</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-12">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Genres" class="control-label"></label>
-                <input asp-for="Genres" class="form-control" />
-                <span asp-validation-for="Genres" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Duration" class="control-label"></label>
-                <input asp-for="Duration" class="form-control" />
-                <span asp-validation-for="Duration" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Year" class="control-label"></label>
-                <input asp-for="Year" class="form-control" />
-                <span asp-validation-for="Year" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Synopsis" class="control-label"></label>
-                <input asp-for="Synopsis" class="form-control" />
-                <span asp-validation-for="Synopsis" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Rating" class="control-label"></label>
-                <input asp-for="Rating" class="form-control" />
-                <span asp-validation-for="Rating" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Thumbnail" class="control-label"></label>
-                <input asp-for="Thumbnail" class="form-control" />
-                <span asp-validation-for="Thumbnail" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Trailer" class="control-label"></label>
-                <input asp-for="Trailer" class="form-control" />
-                <span asp-validation-for="Trailer" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="StudioId" class="control-label">Studio</label>
-                <select asp-for="StudioId" class="form-control" id="CountryId">
-                    @foreach (var item in Model.Studios)
-                    {
-                        <option value="@item.StudioId" id="@item.StudioId">@item.Name</option>
+            <div class="row">
+                <div class="col">
 
-                    }
-                </select>
-                <span asp-validation-for="StudioId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="StreamingServiceId" class="control-label">Streaming service</label>
-                <select asp-for="StreamingServiceId" class="form-control" id="CountryId">
-                    @foreach (var item in Model.StreamingServices)
-                    {
-                        <option value="@item.StreamingServiceId" id="@item.StreamingServiceId">@item.Name</option>
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
 
-                    }
-                </select>
-                <span asp-validation-for="StreamingServiceId" class="text-danger"></span>
+                    <div class="form-group">
+                        <label asp-for="Genres" class="control-label"></label>
+                        <input asp-for="Genres" class="form-control" />
+                        <span asp-validation-for="Genres" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Duration" class="control-label"></label>
+                        <input asp-for="Duration" class="form-control" />
+                        <span asp-validation-for="Duration" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Year" class="control-label"></label>
+                        <input asp-for="Year" class="form-control" />
+                        <span asp-validation-for="Year" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="StudioId" class="control-label">Studio</label>
+                        <select asp-for="StudioId" class="form-control" id="CountryId">
+                            @foreach (var item in Model.Studios)
+                            {
+                                <option value="@item.StudioId" id="@item.StudioId">@item.Name</option>
+
+                            }
+                        </select>
+                        <span asp-validation-for="StudioId" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <div id="button">Row count</div>
+                        <table id="example" class="display" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Select</th>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Actors)
+                                {
+                                    <tr>
+                                        <td><input type="checkbox" style="border-radius: 0.25em;"></td>
+                                        <td><img src="~/img/ActorsImages/@item.Image" class="img-fluid img-thumbnail" alt="actor" style="height: 100px;border-radius: 50%;"></td>
+                                        <td>@item.FirstName @item.LastName</td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Position</th>
+                                    <th>Office</th>
+
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+
+                </div>
+
+                <div class="col">
+
+                    <div class="form-group">
+                        <label asp-for="Synopsis" class="control-label"></label>
+                        <input asp-for="Synopsis" class="form-control" />
+                        <span asp-validation-for="Synopsis" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Rating" class="control-label"></label>
+                        <input asp-for="Rating" class="form-control" />
+                        <span asp-validation-for="Rating" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Thumbnail" class="control-label"></label>
+                        <input asp-for="Thumbnail" class="form-control" />
+                        <span asp-validation-for="Thumbnail" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Trailer" class="control-label"></label>
+                        <input asp-for="Trailer" class="form-control" />
+                        <span asp-validation-for="Trailer" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="StreamingServiceId" class="control-label">Streaming service</label>
+                        <select asp-for="StreamingServiceId" class="form-control" id="CountryId">
+                            @foreach (var item in Model.StreamingServices)
+                            {
+                                <option value="@item.StreamingServiceId" id="@item.StreamingServiceId">@item.Name</option>
+
+                            }
+                        </select>
+                        <span asp-validation-for="StreamingServiceId" class="text-danger"></span>
+                    </div>
+
+                </div>
             </div>
 
             <div class="form-group">
@@ -83,10 +139,23 @@
     </div>
 </div>
 
+<div id="selected-actors">
+    <h2>Selected actors:</h2>
+
+</div>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
 
+<script src="~/js/create-movie.js"></script>
 @section Scripts {
     @{
     await Html.RenderPartialAsync("_ValidationScriptsPartial");
