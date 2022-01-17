@@ -8,38 +8,37 @@ using System.Threading.Tasks;
 
 namespace DataAccesLayer.Implementation
 {
-    internal class ActingRepository : IActingRepository
+    public class PositionRepository : IPositionRepository
     {
-
         private readonly MovieContext context;
 
-        public ActingRepository(MovieContext movieContext)
+        public PositionRepository(MovieContext movieContext)
         {
             this.context = movieContext;
         }
 
-        public void Add(Acting entity)
+        public void Add(Position entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(Acting entity)
+        public void Delete(Position entity)
         {
             throw new NotImplementedException();
         }
 
-        public List<Acting> GetAll()
+        public List<Position> GetAll()
         {
-            return context.Acting.Include(a=>a.Movie).
+            return context.Positions.Include(p => p.Movie).
                 ToList();
         }
 
-        public Acting GetSingle(Acting entity)
+        public Position GetSingle(Position entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(Acting entity)
+        public void Update(Position entity)
         {
             throw new NotImplementedException();
         }

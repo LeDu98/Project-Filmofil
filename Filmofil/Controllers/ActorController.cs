@@ -77,9 +77,11 @@ namespace Filmofil.Controllers
         public IActionResult Details(int id)
         {
             Actor a = unitOfWork.ActorRepository.GetSingle(new Actor { PersonId = id });
+            List<Acting> lista = new List<Acting>();
+            lista = unitOfWork.ActingRepository.GetAll().Where(acting => acting.ActorId == a.PersonId).ToList();
 
-            
-            
+
+
             var user = HttpContext.User;
  
                 ActorViewModel model = new ActorViewModel
@@ -92,6 +94,7 @@ namespace Filmofil.Controllers
                     Country=a.Country,
                     Networth = a.Networth,
                     PersonId = a.PersonId,
+                    Actings=lista,
                     IsAdmin= user.IsInRole("Admin")
                 };
             

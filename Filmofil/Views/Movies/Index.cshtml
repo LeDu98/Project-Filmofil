@@ -20,9 +20,7 @@
 
     @foreach (var item in Model)
     {
-        {
             item.Thumbnail = "https://localhost:5001/img/MoviesImages/" + @item.Thumbnail;
-        }
         <a class="card" href="/Movies/Details/@item.MovieId">
 
             <div class="frontWeb" style="background-image: url(@item.Thumbnail);">

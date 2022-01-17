@@ -25,5 +25,8 @@ namespace Filmofil.Models
         public string Image { get; set; }
 
         public bool IsAdmin { get; set; }
+
+        public List<Acting> Actings { get; set; }
+
     }
 }

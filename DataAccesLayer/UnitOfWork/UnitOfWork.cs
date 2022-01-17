@@ -22,6 +22,8 @@ namespace DataAccesLayer.UnitOfWork
             StreamingServiceRepository = new StreamingServiceRepository(context);
             CountryRepository = new CountryRepository(context);
             PersonnelRepository = new PersonnelRepository(context);
+            ActingRepository = new ActingRepository(context);
+            PositionRepository = new PositionRepository(context);
         }
         
         public IActingRepository ActingRepository { get; set; }

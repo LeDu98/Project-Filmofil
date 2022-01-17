@@ -69,8 +69,15 @@ namespace Filmofil.Controllers
 
         public IActionResult Details(int id)
         {
-            var user = HttpContext.User;
+            
             Personnel personnel = (Personnel)unitOfWork.PersonnelRepository.GetSingle(new Personnel { PersonId = id });
+
+            List<Position> lista = new List<Position>();
+
+            lista = unitOfWork.PositionRepository.GetAll().Where(pos => pos.PersonnelId == personnel.PersonId).ToList();
+
+            var user = HttpContext.User;
+
             PersonnelViewModel model = new PersonnelViewModel
             {
                 FirstName = personnel.FirstName,
@@ -81,6 +88,7 @@ namespace Filmofil.Controllers
                 Country = personnel.Country,
                 Image = personnel.Image,
                 PersonId = personnel.PersonId,
+                Positions=lista,
                 IsAdmin = user.IsInRole("Admin")
             };
             return View(model);

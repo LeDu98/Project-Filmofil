@@ -24,6 +24,8 @@ namespace Filmofil.Models.Personnel
 
         public string Image { get; set; }
 
+        public List<Position> Positions { get; set; }
+
         public bool IsAdmin { get; set; }
     }
 }

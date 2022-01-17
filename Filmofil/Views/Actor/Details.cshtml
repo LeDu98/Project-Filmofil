@@ -25,6 +25,24 @@
             </ul>
         </div>
     </div>
+    <br /><h2>Filmography</h2><br />
+    <div class="row">
+
+        @foreach (var item in Model.Actings)
+        {
+            <div class="card" style="width:15em;margin:10px;">
+                <img src="~/img/MoviesImages/@item.Movie.Thumbnail" class="card-img-top" />
+                <div class="card-body">
+                    <div class="card-title">
+                        <h5>@item.Movie.Name</h5>
+                      <h6>Role: @item.Role</h6>
+                      <h6>Income: $@item.Income Millions</h6>
+                    </div>
+                    <a href="/Movies/Details/@item.MovieId" class="btn btn-primary">Read More...</a>
+                </div>
+            </div>
+        }
+    </div>
 </div>
 <hr />
 @if (Model.IsAdmin == true)
