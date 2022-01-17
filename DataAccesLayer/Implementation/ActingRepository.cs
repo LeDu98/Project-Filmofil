@@ -1,5 +1,4 @@
 ﻿using Domen;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace DataAccesLayer.Implementation
 {
-    public class ActorRepository : IActorRepository
+    internal class ActingRepository : IActorRepository
     {
+
         private readonly MovieContext context;
 
-        public ActorRepository(MovieContext movieContext)
+        public ActingRepository(MovieContext movieContext)
         {
             this.context = movieContext;
         }

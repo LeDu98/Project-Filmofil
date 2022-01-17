@@ -10,7 +10,7 @@ namespace Domen
     {
         public int MovieId { get; set; }
 
-        public string Name { get; set; }    
+        public string Name { get; set; }
 
         public int Duration { get; set; }
 
@@ -34,13 +34,12 @@ namespace Domen
 
         public StreamingService StreamingService { get; set; }
 
+        public List<Acting> Actings { get; set; }
 
-        /*   public List<Actor> Actors { get; set; }
+        public List<Position> Positions { get; set; }
 
-           public List<Personnel> Personnels { get; set; }
-
-           public List<User> Users { get; set; }*/
-
+        public List<Review> Reviews { get; set; }
+        
 
     }
 }
