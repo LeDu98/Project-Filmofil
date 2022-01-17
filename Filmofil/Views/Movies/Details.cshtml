@@ -92,6 +92,55 @@
 
     </dl>
 
+    <dl class="row">
+        <form asp-action="AddReview">
+            @{Model.Review.MovieId = Model.MovieId;}
+            @Html.HiddenFor(m => m.Review.MovieId)
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Review.Rating" class="control-label"></label>
+                <input asp-for="Review.Rating" class="form-control" />
+                <span asp-validation-for="Review.Rating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Review.Comment" class="control-label"></label>
+                <input asp-for="Review.Comment" class="form-control" />
+                <span asp-validation-for="Review.Comment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="AddReview" class="btn btn-primary" />
+            </div>
+        </form>
+    </dl>
+
+    <section class="light">
+        <div class="container py-2">
+            <div class="h1 text-center text-dark" id="pageHeaderTitle">Movies</div>
+
+            @foreach (var item in Model.Reviews)
+            {
+                <article class="postcard light green">
+
+                    <div class="postcard__text t-dark">
+                        <h1 class="postcard__title green">@item.UserId</h1>
+                        <div class="postcard__subtitle small">
+                            <time datetime="2020-05-25 12:00:00">
+                                <i class="fas fa-calendar-alt mr-2"></i>@item.Time
+                            </time>
+                        </div>
+                        <div class="postcard__bar"></div>
+                        <div class="postcard__preview-txt">@item.Comment</div>
+                        <ul class="postcard__tagbox">
+                            <li class="tag__item play green">
+                                <i class="fas fa-star mr-2"></i>@item.Rating
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+            }
+        </div>
+    </section>
+
 </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new { id = Model.MovieId  }) |

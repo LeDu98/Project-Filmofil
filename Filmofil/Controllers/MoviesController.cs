@@ -34,6 +34,11 @@ namespace Filmofil.Controllers
         public IActionResult Details(int id)
         {
             MovieViewModel model = CreateMovieViewModel(unitOfWork.MovieRepository.GetSingle(new Movie { MovieId = id }));
+            List<Review> lista = new List<Review>();
+            lista = unitOfWork.ReviewRepository.GetAll().Where(r => r.MovieId == model.MovieId).ToList();
+            model.Review = new Review();
+            model.Review.MovieId = id;
+            model.Reviews = lista;
             return View(model);
         }
 
@@ -57,6 +62,22 @@ namespace Filmofil.Controllers
             {
                 return View();
             }
+        }
+        [HttpPost]
+        public IActionResult AddReview(MovieViewModel model)
+        {
+            Review rev = model.Review;
+            rev.Time = System.DateTime.Now;
+            var user = HttpContext.User;
+            SiteUser siteUser = unitOfWork.SiteUserRepository.SearchByUsername(user.Identity.Name);
+
+            rev.User = siteUser;
+            rev.UserId = siteUser.Id;
+
+            unitOfWork.ReviewRepository.Add(rev);
+            unitOfWork.Save();
+            return RedirectToAction(nameof(Details), new { id = rev.MovieId.ToString() });
+            
         }
 
         // GET: MovieController/Edit/5

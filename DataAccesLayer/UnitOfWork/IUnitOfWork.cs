@@ -26,7 +26,7 @@ namespace DataAccesLayer.UnitOfWork
         
         public IStudioRepository StudioRepository { get; set; }
        
-        public IUserRepository UserRepository { get; set; }
+        public ISiteUserRepository SiteUserRepository { get; set; }
 
         public void Save();
     }

@@ -16,7 +16,7 @@ namespace DataAccesLayer.UnitOfWork
         {
             this.context = context;
             ActorRepository = new ActorRepository(context);
-            UserRepository = new UserRepository(context);
+            SiteUserRepository = new SiteUserRepository(context);
             MovieRepository = new MovieRepository(context);
             StudioRepository = new StudioRepository(context);
             StreamingServiceRepository = new StreamingServiceRepository(context);
@@ -24,6 +24,8 @@ namespace DataAccesLayer.UnitOfWork
             PersonnelRepository = new PersonnelRepository(context);
             ActingRepository = new ActingRepository(context);
             PositionRepository = new PositionRepository(context);
+            ReviewRepository = new ReviewRepository(context);
+            
         }
         
         public IActingRepository ActingRepository { get; set; }
@@ -44,7 +46,7 @@ namespace DataAccesLayer.UnitOfWork
         
         public IStudioRepository StudioRepository { get; set; }
         
-        public IUserRepository UserRepository { get; set; }
+        public ISiteUserRepository SiteUserRepository { get; set; }
 
         public void Save()
         {

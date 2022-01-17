@@ -40,6 +40,7 @@ namespace DataAccesLayer.Implementation
                 Include(m => m.StreamingService).
                 Include(m => m.Actings).
                 Include(m => m.Positions).
+                Include(m=>m.Reviews).
                 ToList();
             return list.Find( m => m.MovieId == entity.MovieId );
         }

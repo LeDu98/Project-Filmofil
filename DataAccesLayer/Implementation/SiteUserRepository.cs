@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 namespace DataAccesLayer.Implementation
 {
 
-    public class UserRepository : IUserRepository
+    public class SiteUserRepository : ISiteUserRepository
     {
 
         private readonly MovieContext context;
 
-        public UserRepository(MovieContext context)
+        public SiteUserRepository(MovieContext context)
         {
             this.context = context;
         }
@@ -35,12 +35,12 @@ namespace DataAccesLayer.Implementation
 
         public SiteUser GetSingle(SiteUser entity)
         {
-            throw new NotImplementedException();
+            return context.SiteUsers.Find(entity.UserName);
         }
 
-        public SiteUser SearchByUsernamePassword(string username, string password)
+        public SiteUser SearchByUsername(string username)
         {
-            throw new NotImplementedException();
+            return context.SiteUsers.SingleOrDefault(su => su.UserName == username);
         }
 
         public void Update(SiteUser entity)

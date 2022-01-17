@@ -38,5 +38,8 @@ namespace Filmofil.Models.Movie
 
         public List<Review> Reviews { get; set; }
 
+        public Review Review { get; set; }
+
+
     }
 }
