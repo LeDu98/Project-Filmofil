@@ -115,14 +115,14 @@
 
     <section class="light">
         <div class="container py-2">
-            <div class="h1 text-center text-dark" id="pageHeaderTitle">Movies</div>
+            <div class="h1 text-center text-dark" id="pageHeaderTitle">Reviews</div>
 
             @foreach (var item in Model.Reviews)
             {
                 <article class="postcard light green">
 
                     <div class="postcard__text t-dark">
-                        <h1 class="postcard__title green">@item.UserId</h1>
+                        <h1 class="postcard__title green">@item.User.UserName</h1>
                         <div class="postcard__subtitle small">
                             <time datetime="2020-05-25 12:00:00">
                                 <i class="fas fa-calendar-alt mr-2"></i>@item.Time
@@ -130,11 +130,11 @@
                         </div>
                         <div class="postcard__bar"></div>
                         <div class="postcard__preview-txt">@item.Comment</div>
-                        <ul class="postcard__tagbox">
-                            <li class="tag__item play green">
-                                <i class="fas fa-star mr-2"></i>@item.Rating
-                            </li>
-                        </ul>
+                        @while (item.Rating > 0)
+                        {
+                    <img src="~/img/Review/25533.jpg"/>
+                   item.Rating--;
+                }
                     </div>
                 </article>
             }

@@ -1,4 +1,5 @@
 ﻿using Domen;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,8 @@ namespace DataAccesLayer.Implementation
 
         public List<Review> GetAll()
         {
-            return context.Reviews.ToList().OfType<Review>().ToList();
+            return context.Reviews.Include(r=>r.User).
+                ToList().OfType<Review>().ToList();
         }
 
         public Review GetSingle(Review entity)
