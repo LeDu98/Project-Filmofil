@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domen;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -17,10 +18,12 @@ namespace Filmofil.Models.Personnel
 
         public int CountryId { get; set; }
 
-        public CountryViewModel Country { get; set; }
+        public Country Country { get; set; }
 
         public string Trademark { get; set; }
 
         public string Image { get; set; }
+
+        public bool IsAdmin { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using Domen;
 using Filmofil.Models.Personnel;
 using Filmofil.Views.Shared.SearchBar;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -46,7 +47,7 @@ namespace Filmofil.Controllers
             ViewBag.SearchPager = SearchPager;
             return View(model);
         }
-
+        [Authorize(Roles ="Admin")]
         public ActionResult Delete(int id)
         {
             Personnel personnel = (Personnel)unitOfWork.PersonnelRepository.GetSingle(new Personnel { PersonId = id });
@@ -54,7 +55,7 @@ namespace Filmofil.Controllers
             PersonnelViewModel model = new PersonnelViewModel() { PersonId = personnel.PersonId, FirstName = personnel.FirstName, LastName = personnel.LastName, Born = personnel.Born, CountryId = personnel.CountryId, Image = personnel.Image, Trademark = personnel.Trademark };
             return View(model);
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, PersonnelViewModel model)
@@ -68,8 +69,20 @@ namespace Filmofil.Controllers
 
         public IActionResult Details(int id)
         {
-            Personnel model = (Personnel)unitOfWork.PersonnelRepository.GetSingle(new Personnel { PersonId = id });
-            model.Country = unitOfWork.CountryRepository.GetSingle(new Country { CountryId = model.CountryId });
+            var user = HttpContext.User;
+            Personnel personnel = (Personnel)unitOfWork.PersonnelRepository.GetSingle(new Personnel { PersonId = id });
+            PersonnelViewModel model = new PersonnelViewModel
+            {
+                FirstName = personnel.FirstName,
+                LastName = personnel.LastName,
+                Born = personnel.Born,
+                CountryId = personnel.CountryId,
+                Trademark = personnel.Trademark,
+                Country = personnel.Country,
+                Image = personnel.Image,
+                PersonId = personnel.PersonId,
+                IsAdmin = user.IsInRole("Admin")
+            };
             return View(model);
         }
 
@@ -88,7 +101,7 @@ namespace Filmofil.Controllers
             return model;
         }
 
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(int id)
         {
             Personnel personnel = (Personnel)unitOfWork.PersonnelRepository.GetSingle(new Personnel { PersonId = id });
@@ -101,6 +114,7 @@ namespace Filmofil.Controllers
         // POST: Actor/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(int id, CreatePersonnelViewModel model)
         {
             Personnel personnel = (Personnel)unitOfWork.PersonnelRepository.GetSingle(new Personnel { PersonId = id });
@@ -128,7 +142,7 @@ namespace Filmofil.Controllers
             unitOfWork.Save();
             return RedirectToAction("Index");
         }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             CreatePersonnelViewModel model = new CreatePersonnelViewModel();
@@ -138,6 +152,7 @@ namespace Filmofil.Controllers
         }
 
         //POST: ActorController/Create
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Create(CreatePersonnelViewModel model)
         {

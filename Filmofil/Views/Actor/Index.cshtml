@@ -1,5 +1,4 @@
-﻿@using Domen
-@model List<Actor>
+﻿@model Filmofil.Models.Actor.ActorListViewModel
 
 @{
     ViewData["Title"] = "Actors";
@@ -18,21 +17,23 @@
 </script>
 
 <h1>Actors</h1>
-
+@if (Model.IsAdmin) { 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+}
+
 
 <vc:search-bar search-pager="@ViewBag.SearchPager">
 </vc:search-bar>
 
 <div class="row">
 
-    @if (@Model.Count == 0)
+    @if (@Model.Actors.Count == 0)
     {
         <h3>Actor is not found!</h3>
     }
-    @foreach (var item in Model)
+    @foreach (var item in Model.Actors)
     {
         <div class="card" style="width:10em;margin:10px;">
             <img src="~/img/ActorsImages/@item.Image" class="card-img-top" />
@@ -40,7 +41,7 @@
                 <div class="card-title">
                     <h4>@item.FirstName @item.LastName</h4>
                 </div>
-                <a href="Actor/Details/@item.PersonId" class="btn btn-primary">Read More...</a>
+                <a href="/Actor/Details/@item.PersonId" class="btn btn-primary">Read More...</a>
             </div>
         </div>
     }

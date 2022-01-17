@@ -33,8 +33,11 @@ namespace DataAccesLayer.Implementation
         }
 
         public Actor GetSingle(Actor entity)
-        {
-            return context.Actors.Find(entity.PersonId);
+        { 
+            var list = context.Actors.
+                Include(a => a.Country).   
+                ToList();
+            return list.Find(a => a.PersonId == entity.PersonId);
         }
 
         public void Update(Actor entity)
