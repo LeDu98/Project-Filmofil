@@ -25,8 +25,12 @@
             </ul>
         </div>
     </div>
-    <br /><h2>Filmography</h2><br />
-    <div class="row">
+   
+</div>
+
+ <br /><h2>Filmography</h2><br />
+    <button type="submit" onclick="showFilmography()">fimography</button>
+    <div class="row" id="actorFilmography">
 
         @foreach (var item in Model.Actings)
         {
@@ -43,7 +47,6 @@
             </div>
         }
     </div>
-</div>
 <hr />
 @if (Model.IsAdmin == true)
 {
@@ -53,4 +56,15 @@
         <a asp-action="Index">Back to List</a>
     </div>
 }
+
+<script>
+    function showFilmography(){
+        var x = document.getElementById("actorFilmography");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>
 

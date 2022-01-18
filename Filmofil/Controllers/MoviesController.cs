@@ -75,6 +75,15 @@ namespace Filmofil.Controllers
             rev.UserId = siteUser.Id;
 
             unitOfWork.ReviewRepository.Add(rev);
+
+           int numberOfReviews= unitOfWork.ReviewRepository.GetAll().Where(r => r.MovieId == rev.MovieId).ToList().Count() + 1;
+            int sumOfReviews = unitOfWork.ReviewRepository.GetSumOfReviews(rev) + rev.Rating;
+
+            double rating = (double)sumOfReviews / numberOfReviews;
+
+            Movie movie = unitOfWork.MovieRepository.GetSingle(new Movie { MovieId = rev.MovieId });
+            movie.Rating = rating;
+            unitOfWork.MovieRepository.Update(movie);
             unitOfWork.Save();
             return RedirectToAction(nameof(Details), new { id = rev.MovieId.ToString() });
             

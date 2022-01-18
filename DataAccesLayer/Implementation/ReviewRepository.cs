@@ -37,6 +37,17 @@ namespace DataAccesLayer.Implementation
             throw new NotImplementedException();
         }
 
+        public int GetSumOfReviews(Review entity)
+        {
+            List<Review> lista=context.Reviews.Where(r=>r.MovieId==entity.MovieId).ToList();
+            int sumOfReviews = 0;
+            foreach(Review r in lista)
+            {
+                sumOfReviews += r.Rating;
+            }
+            return sumOfReviews;
+        }
+
         public void Update(Review entity)
         {
             throw new NotImplementedException();

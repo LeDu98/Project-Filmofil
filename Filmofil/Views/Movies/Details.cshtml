@@ -4,6 +4,7 @@
     ViewData["Title"] = "Details";
 }
 
+
 <h1>Details</h1>
 
 <div>
@@ -92,7 +93,7 @@
 
     </dl>
 
-    <dl class="row">
+    
         <form asp-action="AddReview">
             @{Model.Review.MovieId = Model.MovieId;}
             @Html.HiddenFor(m => m.Review.MovieId)
@@ -104,14 +105,14 @@
             </div>
             <div class="form-group">
                 <label asp-for="Review.Comment" class="control-label"></label>
-                <input asp-for="Review.Comment" class="form-control" />
+                <textarea asp-for="Review.Comment" class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
                 <span asp-validation-for="Review.Comment" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="AddReview" class="btn btn-primary" />
             </div>
         </form>
-    </dl>
+    
 
     <section class="light">
         <div class="container py-2">
@@ -122,7 +123,7 @@
                 <article class="postcard light green">
 
                     <div class="postcard__text t-dark">
-                        <h1 class="postcard__title green">@item.User.UserName</h1>
+                        <h2 class="postcard__title green">@item.User.UserName</h2>
                         <div class="postcard__subtitle small">
                             <time datetime="2020-05-25 12:00:00">
                                 <i class="fas fa-calendar-alt mr-2"></i>@item.Time
@@ -130,7 +131,7 @@
                         </div>
                         <div class="postcard__bar"></div>
                         <div class="postcard__preview-txt">@item.Comment</div>
-                        @while (item.Rating > 0)
+                      (@item.Rating) @while (item.Rating > 0)
                         {
                     <img src="~/img/Review/25533.jpg"/>
                    item.Rating--;
