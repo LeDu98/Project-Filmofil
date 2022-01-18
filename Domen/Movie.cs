@@ -18,8 +18,6 @@ namespace Domen
 
         public string Synopsis { get; set; }
 
-        public string Genres { get; set; }
-
         public double Rating { get; set; }
 
         public string Thumbnail { get; set; }
@@ -39,7 +37,9 @@ namespace Domen
         public List<Position> Positions { get; set; }
 
         public List<Review> Reviews { get; set; }
-        
+
+        public List<MovieGenre> Genres { get; set; }
+
 
     }
 }

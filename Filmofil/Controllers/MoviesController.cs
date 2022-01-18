@@ -139,7 +139,6 @@ namespace Filmofil.Controllers
             model.Year = movie.Year;
             model.Synopsis = movie.Synopsis;
             model.Thumbnail = movie.Thumbnail;
-            model.Genres = movie.Genres;
             model.Rating = movie.Rating;
             model.Trailer = movie.Trailer;
             model.StreamingService = movie.StreamingService;

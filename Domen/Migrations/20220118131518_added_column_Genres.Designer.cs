@@ -4,14 +4,16 @@ using Domen;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Domen.Migrations
 {
     [DbContext(typeof(MovieContext))]
-    partial class MovieContextModelSnapshot : ModelSnapshot
+    [Migration("20220118131518_added_column_Genres")]
+    partial class added_column_Genres
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -171,63 +173,6 @@ namespace Domen.Migrations
                     b.HasKey("GenreId");
 
                     b.ToTable("Genres");
-
-                    b.HasData(
-                        new
-                        {
-                            GenreId = 1,
-                            Name = "Action"
-                        },
-                        new
-                        {
-                            GenreId = 2,
-                            Name = "Comedy"
-                        },
-                        new
-                        {
-                            GenreId = 3,
-                            Name = "Drama"
-                        },
-                        new
-                        {
-                            GenreId = 4,
-                            Name = "Fantasy"
-                        },
-                        new
-                        {
-                            GenreId = 5,
-                            Name = "Horror"
-                        },
-                        new
-                        {
-                            GenreId = 6,
-                            Name = "Mystery"
-                        },
-                        new
-                        {
-                            GenreId = 7,
-                            Name = "Romance"
-                        },
-                        new
-                        {
-                            GenreId = 8,
-                            Name = "Thriller"
-                        },
-                        new
-                        {
-                            GenreId = 9,
-                            Name = "Western"
-                        },
-                        new
-                        {
-                            GenreId = 10,
-                            Name = "Crime"
-                        },
-                        new
-                        {
-                            GenreId = 11,
-                            Name = "Adventure"
-                        });
                 });
 
             modelBuilder.Entity("Domen.Movie", b =>
@@ -340,63 +285,6 @@ namespace Domen.Migrations
                     b.HasIndex("MovieId");
 
                     b.ToTable("MovieGenre");
-
-                    b.HasData(
-                        new
-                        {
-                            GenreId = 3,
-                            MovieId = 1
-                        },
-                        new
-                        {
-                            GenreId = 3,
-                            MovieId = 2
-                        },
-                        new
-                        {
-                            GenreId = 10,
-                            MovieId = 2
-                        },
-                        new
-                        {
-                            GenreId = 3,
-                            MovieId = 3
-                        },
-                        new
-                        {
-                            GenreId = 1,
-                            MovieId = 3
-                        },
-                        new
-                        {
-                            GenreId = 10,
-                            MovieId = 3
-                        },
-                        new
-                        {
-                            GenreId = 8,
-                            MovieId = 3
-                        },
-                        new
-                        {
-                            GenreId = 1,
-                            MovieId = 4
-                        },
-                        new
-                        {
-                            GenreId = 3,
-                            MovieId = 4
-                        },
-                        new
-                        {
-                            GenreId = 4,
-                            MovieId = 3
-                        },
-                        new
-                        {
-                            GenreId = 11,
-                            MovieId = 3
-                        });
                 });
 
             modelBuilder.Entity("Domen.Person", b =>

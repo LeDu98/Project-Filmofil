@@ -244,7 +244,6 @@ namespace Domen.Helper
                     Rating=9.3,
                     StreamingServiceId=1,
                     StudioId=1,
-                    Genres="Drama",
                     Synopsis= "Chronicles the experiences of a formerly successful banker as a prisoner in the gloomy jailhouse of Shawshank after being found guilty of a crime he did not commit. The film portrays the man's unique way of dealing with his new, torturous life; along the way he befriends a number of fellow prisoners, most notably a wise long-term inmate named Red",
                     Thumbnail= "shawshank.png",
                     Trailer= "https://www.youtube.com/watch?v=6hB3S9bIaco",
@@ -258,7 +257,6 @@ namespace Domen.Helper
                     Rating = 9.1,
                     StreamingServiceId = 2,
                     StudioId = 2,
-                    Genres = "Crime, Drama",
                     Synopsis = "The Godfather Don Vito Corleone is the head of the Corleone mafia family in New York. He is at the event of his daughter's wedding. Michael, Vito's youngest son and a decorated WW II Marine is also present at the wedding. Michael seems to be uninterested in being a part of the family business. Vito is a powerful man, and is kind to all those who give him respect but is ruthless against those who do not. But when a powerful and treacherous rival wants to sell drugs and needs the Don's influence for the same, Vito refuses to do it. What follows is a clash between Vito's fading old values and the new ways which may cause Michael to do the thing he was most reluctant in doing and wage a mob war against all the other mafia families which could tear the Corleone family apart.",
                     Thumbnail = "godfather.jpg",
                     Trailer = "https://www.youtube.com/watch?v=sY1S34973zA",
@@ -272,7 +270,6 @@ namespace Domen.Helper
                     Rating = 9.0,
                     StreamingServiceId = 3,
                     StudioId = 3,
-                    Genres = "Action, Crime, Drama, Thriller",
                     Synopsis = "Set within a year after the events of Batman Begins (2005), Batman, Lieutenant James Gordon, and new District Attorney Harvey Dent successfully begin to round up the criminals that plague Gotham City, until a mysterious and sadistic criminal mastermind known only as The Joker appears in Gotham, creating a new wave of chaos. Batman's struggle against The Joker becomes deeply personal, forcing him to confront everything he believes and improve his technology to stop him. A love triangle develops between Bruce Wayne, Dent, and Rachel Dawes.",
                     Thumbnail = "darkKnight.png",
                     Trailer = "https://www.youtube.com/watch?v=EXeTwQWrcwY",
@@ -286,11 +283,125 @@ namespace Domen.Helper
                     Rating = 8.9,
                     StreamingServiceId = 4,
                     StudioId = 4,
-                    Genres = "Action, Adventure, Drama, Fantasy",
                     Synopsis= "The final confrontation between the forces of good and evil fighting for control of the future of Middle-earth. Frodo and Sam reach Mordor in their quest to destroy the One Ring, while Aragorn leads the forces of good against Sauron's evil army at the stone city of Minas Tirith.",
                     Thumbnail = "LOTR-3-The-Return-of-the-King-icon.png",
                     Trailer = "https://www.youtube.com/watch?v=r5X-hFf6Bwo",
                     Year = new DateTime(2003)
+                }
+                );
+            modelBuilder.Entity<MovieGenre>().HasData(
+                new MovieGenre
+                {
+                    MovieId = 1,
+                    GenreId = 3
+                },
+                new MovieGenre
+                {
+                    MovieId = 2,
+                    GenreId = 3
+                },
+                new MovieGenre
+                {
+                    MovieId = 2,
+                    GenreId = 10
+                },
+                new MovieGenre
+                {
+                    MovieId = 3,
+                    GenreId = 3
+                },
+                new MovieGenre
+                {
+                    MovieId = 3,
+                    GenreId = 1
+                },
+                new MovieGenre
+                {
+                    MovieId = 3,
+                    GenreId = 10
+                },
+                new MovieGenre
+                {
+                    MovieId = 3,
+                    GenreId = 8
+                },
+                new MovieGenre
+                {
+                    MovieId = 4,
+                    GenreId = 1
+                },
+                new MovieGenre
+                {
+                    MovieId = 4,
+                    GenreId = 3
+                },
+                new MovieGenre
+                {
+                    MovieId = 3,
+                    GenreId = 4
+                },
+                new MovieGenre
+                {
+                    MovieId = 3,
+                    GenreId = 11
+                }
+
+                );
+            modelBuilder.Entity<Genre>().HasData(
+                new Genre
+                {
+                    GenreId = 1,
+                    Name = "Action"
+                },
+                new Genre
+                {
+                    GenreId = 2,
+                    Name = "Comedy"
+                },
+                new Genre
+                {
+                    GenreId = 3,
+                    Name = "Drama"
+                },
+                new Genre
+                {
+                    GenreId = 4,
+                    Name = "Fantasy"
+                },
+                new Genre
+                {
+                    GenreId = 5,
+                    Name = "Horror"
+                },
+                new Genre
+                {
+                    GenreId = 6,
+                    Name = "Mystery"
+                },
+                new Genre
+                {
+                    GenreId = 7,
+                    Name = "Romance"
+                },
+                new Genre
+                {
+                    GenreId = 8,
+                    Name = "Thriller"
+                },
+                new Genre
+                {
+                    GenreId = 9,
+                    Name = "Western"
+                },
+                new Genre
+                {
+                    GenreId = 10,
+                    Name = "Crime"
+                },
+                new Genre
+                {
+                    GenreId = 11,
+                    Name = "Adventure"
                 }
                 );
             modelBuilder.Entity<Acting>().HasData(

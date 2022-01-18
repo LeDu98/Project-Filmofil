@@ -30,6 +30,8 @@ namespace Domen
 
         public DbSet<Country> Country { get; set; }
 
+        public DbSet<Genre> Genres { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -42,6 +44,8 @@ namespace Domen
             modelBuilder.Entity<Acting>().HasKey(s =>new { s.ActorId, s.MovieId });
             modelBuilder.Entity<Review>().HasKey(s =>new { s.MovieId, s.UserId });
             modelBuilder.Entity<Position>().HasKey(s => new { s.PersonnelId, s.MovieId });
+
+            modelBuilder.Entity<MovieGenre>().HasKey(s => new { s.GenreId, s.MovieId });
 
             modelBuilder.Entity<Actor>().HasBaseType<Person>().ToTable("Actors");
 
