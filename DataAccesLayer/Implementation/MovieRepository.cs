@@ -21,6 +21,7 @@ namespace DataAccesLayer.Implementation
         public void Add(Movie entity)
         {
             context.Add(entity);
+            
         }
 
         public void Delete(Movie entity)
@@ -31,6 +32,12 @@ namespace DataAccesLayer.Implementation
         public List<Movie> GetAll()
         {
             return context.Movies.Include(m => m.Studio).Include(m => m.StreamingService).ToList();
+
+        }
+
+        public int GetMaxId()
+        {
+           return context.Movies.Max(u => u.MovieId);
         }
 
         public Movie GetSingle(Movie entity)

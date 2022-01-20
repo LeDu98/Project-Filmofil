@@ -1,4 +1,5 @@
 ﻿using DataAccesLayer.Implementation;
+using DataAccesLayer.Interfaces;
 using Domen;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,10 @@ namespace DataAccesLayer.UnitOfWork
             ActingRepository = new ActingRepository(context);
             PositionRepository = new PositionRepository(context);
             ReviewRepository = new ReviewRepository(context);
-            
+            GenreRepository = new GenreRepository(context);
+            MovieGenreRepository = new MovieGenreRepository(context);
+
+
         }
         
         public IActingRepository ActingRepository { get; set; }
@@ -47,6 +51,9 @@ namespace DataAccesLayer.UnitOfWork
         public IStudioRepository StudioRepository { get; set; }
         
         public ISiteUserRepository SiteUserRepository { get; set; }
+
+        public IGenreRepository GenreRepository { get; set; }
+        public IMovieGenreRepository MovieGenreRepository { get; set; }
 
         public void Save()
         {

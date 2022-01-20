@@ -4,7 +4,10 @@ using Filmofil.Models.Movie;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace Filmofil.Controllers
@@ -52,17 +55,63 @@ namespace Filmofil.Controllers
 
         // POST: MovieController/Create
         [HttpPost]
-        public IActionResult Create(IFormCollection collection)
+        public IActionResult Create(MovieCreateModel model)
         {
-            try
+            if (!ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                return Create();
             }
-            catch
+            string uniqueFileName = null;
+
+            if (model.Thumbnail != null)
             {
-                return View();
+                uniqueFileName = GetFileNameAndSaveFile(model);
             }
+
+            unitOfWork.MovieRepository.Add(new Movie
+            {
+                Duration = model.Duration,
+                Name = model.Name,
+                StreamingServiceId = model.StreamingServiceId,
+                StudioId = model.StudioId,
+                Synopsis = model.Synopsis,
+                Thumbnail = uniqueFileName,
+                Trailer = model.Trailer,
+                Year = model.Year
+            });
+            unitOfWork.Save();
+
+            int movieId = unitOfWork.MovieRepository.GetMaxId();
+            MovieGenre mg = new MovieGenre();
+            mg.MovieId = movieId;
+         
+            foreach(int i in model.GenreIds)
+            { 
+                mg.GenreId = i;
+                unitOfWork.MovieGenreRepository.Add(mg);
+                unitOfWork.Save();
+            }
+            
+            return RedirectToAction("Index");
         }
+
+        private string GetFileNameAndSaveFile(MovieCreateModel model)
+        {
+            // The image must be uploaded to the images folder in wwwroot
+            // To get the path of the wwwroot folder we are using the inject
+            // HostingEnvironment service provided by ASP.NET Core
+            string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "img/MoviesImages");
+            // To make sure the file name is unique we are appending a new
+            // GUID value and and an underscore to the file name
+            string uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Thumbnail.FileName;
+            string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+            // Use CopyTo() method provided by IFormFile interface to
+            // copy the file to wwwroot/images folder
+            model.Thumbnail.CopyTo(new FileStream(filePath, FileMode.Create));
+
+            return uniqueFileName;
+        }
+
         [HttpPost]
         public IActionResult AddReview(MovieViewModel model)
         {
@@ -170,9 +219,9 @@ namespace Filmofil.Controllers
             model.Studios = unitOfWork.StudioRepository.GetAll();
             model.Actors = unitOfWork.ActorRepository.GetAll();
             model.Personnels = unitOfWork.PersonnelRepository.GetAll();
-
+            model.Genres = unitOfWork.GenreRepository.GetAll();
             return model;
-        }
+        } 
 
     }
 }

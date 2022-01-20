@@ -5,10 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccesLayer
+namespace DataAccesLayer.Interfaces
 {
-    public interface IMovieRepository : IRepository<Movie>
+   public interface IGenreRepository:IRepository<Genre>
     {
-        int GetMaxId();
     }
 }

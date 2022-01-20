@@ -1,11 +1,14 @@
 ﻿using Domen;
 using Filmofil.Models.Users;
+using IdentityServer4;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 
 namespace Filmofil.Controllers
 {
@@ -64,7 +67,7 @@ namespace Filmofil.Controllers
         }
         #endregion
 
-        #region registration
+        #region Login
         [HttpGet]
         public IActionResult Login()
         {
@@ -87,5 +90,12 @@ namespace Filmofil.Controllers
             return View();
         }
         #endregion
+
+        [HttpGet]
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction("Login");
+        }
     }
 }
