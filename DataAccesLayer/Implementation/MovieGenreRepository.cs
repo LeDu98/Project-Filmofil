@@ -1,5 +1,6 @@
 ﻿using DataAccesLayer.Interfaces;
 using Domen;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,12 +27,12 @@ namespace DataAccesLayer.Implementation
 
         public void Delete(MovieGenre entity)
         {
-            throw new NotImplementedException();
+            context.Remove(entity);
         }
 
         public List<MovieGenre> GetAll()
         {
-            throw new NotImplementedException();
+            return context.MovieGenre.Include(m=>m.Genre).ToList();
         }
 
         public MovieGenre GetSingle(MovieGenre entity)

@@ -37,11 +37,13 @@ namespace Filmofil.Controllers
         public IActionResult Details(int id)
         {
             MovieViewModel model = CreateMovieViewModel(unitOfWork.MovieRepository.GetSingle(new Movie { MovieId = id }));
-            List<Review> lista = new List<Review>();
-            lista = unitOfWork.ReviewRepository.GetAll().Where(r => r.MovieId == model.MovieId).ToList();
+            List<Review> listOfReviews = new List<Review>();
+            listOfReviews = unitOfWork.ReviewRepository.GetAll().Where(r => r.MovieId == model.MovieId).ToList();
             model.Review = new Review();
             model.Review.MovieId = id;
-            model.Reviews = lista;
+            model.Reviews = listOfReviews;
+
+            model.Genres = unitOfWork.MovieGenreRepository.GetAll().Where(m => m.MovieId == id).ToList();
             return View(model);
         }
 
@@ -203,41 +205,84 @@ namespace Filmofil.Controllers
         // GET: MovieController/Edit/5
         public IActionResult Edit(int id)
         {
-            return View();
+            
+            Movie m = unitOfWork.MovieRepository.GetSingle(new Movie { MovieId = id });
+            MovieCreateModel model = CreateModel();
+            model.Duration = m.Duration;
+            model.Name = m.Name;
+            model.Synopsis = m.Synopsis;
+            model.Trailer = m.Trailer;
+            model.Year = m.Year;
+            
+
+            return View(model);
         }
 
         // POST: MovieController/Edit/5
         [HttpPost]
-        public IActionResult Edit(int id, IFormCollection collection)
+        public IActionResult Edit(int id, MovieCreateModel model)
         {
-            try
+
+            if (!ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                return Edit(id);
             }
-            catch
+            string uniqueFileName = null;
+
+            if (model.Thumbnail != null)
             {
-                return View();
+                uniqueFileName = GetFileNameAndSaveFile(model);
             }
+
+            Movie m = new Movie();
+            m.MovieId = id;
+            m.Thumbnail = uniqueFileName;
+            m.Synopsis = model.Synopsis;
+            m.StudioId = model.StudioId;
+            m.StreamingServiceId = model.StreamingServiceId;
+            m.Name = model.Name;
+            m.Trailer = model.Trailer;
+            m.Year = model.Year;
+            m.Duration = model.Duration;
+
+
+            unitOfWork.MovieRepository.Update(m);
+            List<MovieGenre> listMG = unitOfWork.MovieGenreRepository.GetAll().Where(m => m.MovieId == id).ToList();
+            foreach(MovieGenre movieGenre in listMG)
+            {
+                unitOfWork.MovieGenreRepository.Delete(movieGenre);
+            }     
+            
+            MovieGenre mg = new MovieGenre();
+            mg.MovieId = id;
+
+            foreach (int i in model.GenreIds)
+            {
+                mg.GenreId = i;
+                unitOfWork.MovieGenreRepository.Add(mg);
+                unitOfWork.Save();
+            }
+
+            return RedirectToAction("Index");
         }
 
         // GET: MovieController/Delete/5
         public IActionResult Delete(int id)
         {
-            return View();
+            Movie movie = unitOfWork.MovieRepository.GetSingle(new Movie { MovieId = id });
+            MovieViewModel model = new MovieViewModel { MovieId = movie.MovieId, Duration = movie.Duration, Name = movie.Name, Rating = movie.Rating, Synopsis = movie.Synopsis, Thumbnail = movie.Thumbnail, Trailer = movie.Trailer, Year = movie.Year };
+            return View(model);
         }
 
         // POST: MovieController/Delete/5
         [HttpPost]
-        public IActionResult Delete(int id, IFormCollection collection)
+        public IActionResult Delete(int id, MovieViewModel model)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            Movie movie = (Movie)unitOfWork.MovieRepository.GetSingle(new Movie { MovieId = id });
+            unitOfWork.MovieRepository.Delete(movie);
+            unitOfWork.Save();
+
+            return RedirectToAction("Index");
         }
 
         private MovieViewModel CreateMovieViewModel(Movie movie)

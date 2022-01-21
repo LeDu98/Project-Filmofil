@@ -10,7 +10,7 @@ namespace Filmofil.Models.Movie
 
         public string Name { get; set; }
 
-        public string Genres { get; set; }
+        public List<MovieGenre> Genres { get; set; }
 
         public int Duration { get; set; }
 

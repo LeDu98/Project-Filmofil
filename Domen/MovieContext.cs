@@ -32,6 +32,8 @@ namespace Domen
 
         public DbSet<Genre> Genres { get; set; }
 
+        public DbSet<MovieGenre> MovieGenre { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

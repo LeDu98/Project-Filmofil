@@ -21,45 +21,52 @@
             @Html.DisplayNameFor(model => model.Genres)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Genres)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Duration)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Duration)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Year)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Year.Year)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Synopsis)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Synopsis)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Rating)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Rating)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Thumbnail)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Thumbnail)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Trailer)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Trailer)
-        </dd>
-    </dl>
+            @{ foreach (var item in Model.Genres)
+                {
+
+                <dd> @item.Genre.Name |</dd>
+
+            }
+
+            }
+            
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Duration)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Duration)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Year)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Year.Year)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Synopsis)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Synopsis)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Rating)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Rating)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Thumbnail)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Thumbnail)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Trailer)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Trailer)
+            </dd>
+        </dl>
 
     <hr />
 
@@ -77,21 +84,46 @@
             <a href="../../StreamingService/Details/@Model.StreamingService.StreamingServiceId">@Html.DisplayFor(model => model.StreamingService.Name)</a>
         </dd>
     </dl>
+    <h1>Crew</h1>
+    <hr />
+    <div class="row" id="positions">
 
+        @foreach (var item in Model.Positions)
+        {
+            <div class="card" style="width:10em;margin:10px;">
+                <img src="~/img/PersonnelImages/@item.Personnel.Image" class="card-img-top" />
+                <div class="card-body">
+                    <div class="card-title">
+                        <h5>@item.Personnel.FirstName @item.Personnel.LastName</h5>
+                        <h6>Role: @item.PositionTitle</h6>
+
+                    </div>
+                    <a href="/Personnel/Details/@item.PersonnelId" class="btn btn-primary">Read More...</a>
+                </div>
+            </div>
+        }
+    </div>
+    <h1>Top cast</h1>
     <hr />
 
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Actings)
-        </dt>
-        @foreach (var m in Model.Actings)
-        {
-            <dd class="col-sm-10">
-                <a href="../../Actor/Details/@m.ActorId">@m.Actor.FirstName @m.Actor.LastName : @m.Role</a>
-            </dd>
-        }
+    <div class="row" id="actings">
 
-    </dl>
+        @foreach (var item in Model.Actings)
+        {
+            <div class="card" style="width:10em;margin:10px;">
+                <img src="~/img/ActorsImages/@item.Actor.Image" class="card-img-top" />
+                <div class="card-body">
+                    <div class="card-title">
+                        <h5>@item.Actor.FirstName @item.Actor.LastName</h5>
+                        <h6>Role: @item.Role</h6>
+                        <h6>Income: $@item.Income Millions</h6>
+                    </div>
+                    <a href="/Actor/Details/@item.ActorId" class="btn btn-primary">Read More...</a>
+                </div>
+            </div>
+        }
+    </div>
+
 
 
     <form asp-action="AddReview">
@@ -105,7 +137,7 @@
                 <label for="star10" title="text">10 stars</label>
                 <input type="radio" id="star9" name="rate" value="9" />
                 <label for="star9" title="text">9 stars</label>
-                <input type="radio" id="star8" name="rate" value="8"/>
+                <input type="radio" id="star8" name="rate" value="8" />
                 <label for="star8" title="text">8 stars</label>
                 <input type="radio" id="star7" name="rate" value="7" />
                 <label for="star7" title="text">7 stars</label>
@@ -168,6 +200,7 @@
     @Html.ActionLink("Add actor", "AddActor", new { id = Model.MovieId }) |
     @Html.ActionLink("Add personnel", "AddPersonnel", new { id = Model.MovieId }) |
     @Html.ActionLink("Edit", "Edit", new { id = Model.MovieId }) |
+    @Html.ActionLink("Delete", "Delete", new { id = Model.MovieId }) |
     <a asp-action="Index">Back to List</a>
 </div>
 
