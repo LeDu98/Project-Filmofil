@@ -138,6 +138,68 @@ namespace Filmofil.Controllers
             
         }
 
+        public IActionResult AddActor(int id)
+        {
+            CreateMovieActorViewModel model = new CreateMovieActorViewModel();
+            List<Acting> actings = new List<Acting>();
+            Actor actor = new Actor();
+            actings = unitOfWork.ActingRepository.GetAll().Where(m => m.MovieId == id).ToList();
+
+            List<Actor> list = new List<Actor>();
+            list = unitOfWork.ActorRepository.GetAll().ToList();
+
+            foreach(Acting a in actings)
+            {
+                actor = unitOfWork.ActorRepository.GetSingle(new Actor { PersonId = a.ActorId });
+                list.Remove(actor);
+            }
+            model.Actors = list;
+            
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult AddActor(int id,CreateMovieActorViewModel model)
+        {
+            
+          unitOfWork.ActingRepository.Add(new Acting { MovieId = id, ActorId = model.ActorId,  Income = model.Income, Role = model.Role });
+          unitOfWork.Save();
+          return RedirectToAction("AddActor");
+            
+           
+        }
+
+        public IActionResult AddPersonnel(int id)
+        {
+            CreateMoviePersonnelViewModel model = new CreateMoviePersonnelViewModel();
+            List<Position> positions = new List<Position>();
+            Personnel personnel = new Personnel();
+            positions = unitOfWork.PositionRepository.GetAll().Where(m => m.MovieId == id).ToList();
+
+            List<Personnel> list = new List<Personnel>();
+            list = unitOfWork.PersonnelRepository.GetAll().ToList();
+
+            foreach (Position a in positions)
+            {
+                personnel = unitOfWork.PersonnelRepository.GetSingle(new Personnel { PersonId = a.PersonnelId });
+                list.Remove(personnel);
+            }
+            model.Personnels = list;
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult AddPersonnel(int id, CreateMoviePersonnelViewModel model)
+        {
+
+            unitOfWork.PositionRepository.Add(new Position { MovieId = id, PersonnelId = model.PersonnelId, PositionTitle=model.PositionTitle });
+            unitOfWork.Save();
+            return RedirectToAction("AddPersonnel");
+
+
+        }
+
         // GET: MovieController/Edit/5
         public IActionResult Edit(int id)
         {

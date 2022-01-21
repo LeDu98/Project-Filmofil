@@ -20,7 +20,7 @@ namespace DataAccesLayer.Implementation
 
         public void Add(Acting entity)
         {
-            throw new NotImplementedException();
+            context.Add(entity);
         }
 
         public void Delete(Acting entity)
@@ -36,12 +36,14 @@ namespace DataAccesLayer.Implementation
 
         public Acting GetSingle(Acting entity)
         {
-            throw new NotImplementedException();
+            return context.Acting.Find(entity.MovieId,entity.ActorId);
         }
+
+        
 
         public void Update(Acting entity)
         {
-            throw new NotImplementedException();
+            context.Update(entity);
         }
     }
 }

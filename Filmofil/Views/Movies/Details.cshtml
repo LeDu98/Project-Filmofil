@@ -165,6 +165,8 @@
 
 </div>
 <div>
+    @Html.ActionLink("Add actor", "AddActor", new { id = Model.MovieId }) |
+    @Html.ActionLink("Add personnel", "AddPersonnel", new { id = Model.MovieId }) |
     @Html.ActionLink("Edit", "Edit", new { id = Model.MovieId }) |
     <a asp-action="Index">Back to List</a>
 </div>

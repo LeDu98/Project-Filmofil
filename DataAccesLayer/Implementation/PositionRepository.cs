@@ -19,7 +19,7 @@ namespace DataAccesLayer.Implementation
 
         public void Add(Position entity)
         {
-            throw new NotImplementedException();
+            context.Add(entity);
         }
 
         public void Delete(Position entity)

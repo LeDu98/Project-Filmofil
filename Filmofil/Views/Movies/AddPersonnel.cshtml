@@ -1,0 +1,34 @@
+﻿@model Filmofil.Models.Movie.CreateMoviePersonnelViewModel
+
+<h4>CreateMoviePersonnelViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddPersonnel">
+            <div class="form-group">
+                <label asp-for="PersonnelId" class="control-label">Personnel</label>
+                <select asp-for="PersonnelId" class="form-control" id="PersonnelId">
+                    @foreach (var item in Model.Personnels)
+                    {
+                        <option value="@item.PersonId" id="@item.PersonId">@item.FirstName @item.LastName</option>
+
+                    }
+                </select>
+                <span asp-validation-for="PersonnelId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PositionTitle" class="control-label"></label>
+                <input asp-for="PositionTitle" class="form-control" />
+                <span asp-validation-for="PositionTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

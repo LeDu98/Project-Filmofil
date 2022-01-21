@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace DataAccesLayer
 {
-    public interface IActingRepository:IRepository<Acting>
+    public interface IActingRepository : IRepository<Acting>
     {
+        
     }
 }
