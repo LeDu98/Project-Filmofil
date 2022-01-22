@@ -110,7 +110,7 @@ namespace Filmofil.Controllers
             model.LastName = actor.LastName;
             model.Born = actor.Born;
             model.CountryId = actor.CountryId;
-            model.Networth = actor.Networth;
+            
             
 
             return model;
@@ -152,7 +152,7 @@ namespace Filmofil.Controllers
             actor.LastName = model.LastName;
             actor.Born = model.Born;
             actor.CountryId = model.CountryId;
-            actor.Networth = model.Networth;
+            
             actor.Image = uniqueFileName;
 
             unitOfWork.ActorRepository.Update(actor);
@@ -195,7 +195,7 @@ namespace Filmofil.Controllers
                   Born = model.Born,
                   CountryId = model.CountryId,
                   Image = uniqueFileName,
-                  Networth = model.Networth
+                  
               });
               unitOfWork.Save();
               return RedirectToAction("Index");

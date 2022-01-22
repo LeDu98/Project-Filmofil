@@ -10,8 +10,10 @@ namespace Filmofil.Models.Personnel
 {
     public class CreatePersonnelViewModel
     {
+        
+        [Required]
         public string FirstName { get; set; }
-
+        [Required]
         public string LastName { get; set; }
         [DataType(DataType.Date)]
         public DateTime Born { get; set; }

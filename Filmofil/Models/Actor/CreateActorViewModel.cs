@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 namespace Filmofil.Models.Actor
 {
     public class CreateActorViewModel
-    {
+    {   [Required]
         public string FirstName { get; set; }
-
+        [Required]
         public string LastName { get; set; }
         [DataType(DataType.Date)]
         public DateTime Born { get; set; }

@@ -9,11 +9,12 @@ namespace Filmofil.Models
 {
     public class CreateStudioViewModel
     {
-        [Required(ErrorMessage ="Obavezno polje!")]
+        [Required]
         public string Name { get; set; }
-        [Required(ErrorMessage = "Obavezno polje!")]
+        [Required]
         public string Headquarter { get; set; }
-        [Required(ErrorMessage = "Obavezno polje!")]
+        //[Required(ErrorMessage = "Obavezno polje!")]
+        [Required]
         [DataType(DataType.Date)]
         public DateTime Founded { get; set; }
 

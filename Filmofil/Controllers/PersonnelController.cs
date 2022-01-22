@@ -47,7 +47,7 @@ namespace Filmofil.Controllers
             ViewBag.SearchPager = SearchPager;
             return View(model);
         }
-        [Authorize(Roles ="Admin")]
+       // [Authorize(Roles ="Admin")]
         public ActionResult Delete(int id)
         {
             Personnel personnel = (Personnel)unitOfWork.PersonnelRepository.GetSingle(new Personnel { PersonId = id });
@@ -55,7 +55,7 @@ namespace Filmofil.Controllers
             PersonnelViewModel model = new PersonnelViewModel() { PersonId = personnel.PersonId, FirstName = personnel.FirstName, LastName = personnel.LastName, Born = personnel.Born, CountryId = personnel.CountryId, Image = personnel.Image, Trademark = personnel.Trademark };
             return View(model);
         }
-        [Authorize(Roles = "Admin")]
+       // [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, PersonnelViewModel model)
@@ -104,12 +104,13 @@ namespace Filmofil.Controllers
             model.Born = personnel.Born;
             model.CountryId = personnel.CountryId;
             model.Trademark = personnel.Trademark;
+            model.ImageName=personnel.Image;
 
 
             return model;
         }
 
-        [Authorize(Roles = "Admin")]
+      //  [Authorize(Roles = "Admin")]
         public IActionResult Edit(int id)
         {
             Personnel personnel = (Personnel)unitOfWork.PersonnelRepository.GetSingle(new Personnel { PersonId = id });
@@ -122,7 +123,7 @@ namespace Filmofil.Controllers
         // POST: Actor/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public IActionResult Edit(int id, CreatePersonnelViewModel model)
         {
             Personnel personnel = (Personnel)unitOfWork.PersonnelRepository.GetSingle(new Personnel { PersonId = id });
@@ -150,7 +151,7 @@ namespace Filmofil.Controllers
             unitOfWork.Save();
             return RedirectToAction("Index");
         }
-        [Authorize(Roles = "Admin")]
+       // [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             CreatePersonnelViewModel model = new CreatePersonnelViewModel();
@@ -160,7 +161,7 @@ namespace Filmofil.Controllers
         }
 
         //POST: ActorController/Create
-        [Authorize(Roles = "Admin")]
+       // [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Create(CreatePersonnelViewModel model)
         {

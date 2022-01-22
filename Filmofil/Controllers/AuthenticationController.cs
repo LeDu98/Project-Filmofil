@@ -42,27 +42,42 @@ namespace Filmofil.Controllers
                 LastName = register.LastName,
                 IsAdministrator = false
             };
-           var result = await manager.CreateAsync(user, register.Password);
-
-            if (result.Succeeded)
+            try
             {
-                
-                return RedirectToAction("Login");
+                if (register.Password != register.PasswordCheck)
+                {
+                    return View();
+                }
+                var result = await manager.CreateAsync(user, register.Password);
+
+                if (result.Succeeded)
+                {
+
+
+                    return RedirectToAction("Login");
+                }
+                else
+                {
+                    if (result.Errors.Any(e => e.Code == "DuplicateUserName"))
+                    {
+                        ModelState.AddModelError("Username", result.Errors.FirstOrDefault(e => e.Code == "DuplicateUserName")?.Description);
+                    }
+                    if (result.Errors.Any(e => e.Code.Contains("Password")))
+                    {
+                        ModelState.AddModelError("Password", result.Errors.FirstOrDefault(e => e.Code.Contains("Password"))?.Description);
+                    }
+
+                    return View();
+
+                }
             }
-            else
+            catch (Exception)
             {
-                if (result.Errors.Any(e => e.Code == "DuplicateUserName"))
-                {
-                    ModelState.AddModelError("Username", result.Errors.FirstOrDefault(e => e.Code == "DuplicateUserName")?.Description);
-                }
-                if (result.Errors.Any(e => e.Code.Contains("Password")))
-                {
-                    ModelState.AddModelError("Password", result.Errors.FirstOrDefault(e => e.Code.Contains("Password"))?.Description);
-                }
 
-            return View();
-
+                return View();
             }
+
+            
 
         }
         #endregion
