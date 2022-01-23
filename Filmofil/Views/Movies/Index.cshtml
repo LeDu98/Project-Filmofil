@@ -10,7 +10,9 @@
 
 <div>
     <h1 class="heading" style="margin-left: 0px;">Movies</h1>
-    
+    <p>
+    <a asp-action="Create" >Create New</a>
+</p>
 </div>
 
 
@@ -25,12 +27,12 @@
             </div>
 
             <div class="back">
-                <div>
+                <div style="height: 300px;">
                     <div class="release_date">@item.Name<span> (@item.Year.Year)</span></div>
                     <div class="movie_gens">@item.Genres</div>
-                    <div><i class="fas fa-star mr-2"></i>@item.Rating</div>
+                    <div style="font-size: 1.4em;margin-top: 11px;margin-bottom: 10px;"><i class="fas fa-star mr-2"></i>@item.Rating</div>
 
-                    <p class="overview">@item.Synopsis</p>
+                    <p class="overview" style="font-size: 1.1em;">@item.Synopsis</p>
 
                 </div>
             </div>

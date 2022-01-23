@@ -61,11 +61,12 @@ body {
 
 .content {
     display: flex;
-    margin: 0 auto;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     max-width: 1000px;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 p.overview {
@@ -109,10 +110,10 @@ p.overview {
 
 .card {
     color: inherit;
-    width: calc(33% - 2rem);
-    min-width: calc(33% - 2rem);
-    height: 400px;
-    min-height: 400px;
+    width: calc(25% - 2rem);
+    min-width: calc(25% - 2rem);
+    height: 300px;
+    min-height: 300px;
     perspective: 1000px;
     margin: 1rem;
     position: relative;
@@ -212,9 +213,10 @@ p.overview {
 
 
 .back {
-    background: #fff;
+    background: transparent;
     transform: rotateY(-180deg);
     padding: 0 2em;
+    color: white;
 }
     .back.card:hover{
     transform: rotateY(0deg);
@@ -306,6 +308,7 @@ p.overview {
 }
 
 .release_date {
+    font-size: 1.6em;
     font-weight: bold;
 }
 
