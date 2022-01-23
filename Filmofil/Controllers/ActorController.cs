@@ -16,7 +16,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Filmofil.Controllers
 {   //[AllowAnonymus]
-    
+
     public class ActorController : Controller
     {
         private readonly IUnitOfWork unitOfWork;
@@ -29,7 +29,7 @@ namespace Filmofil.Controllers
         }
 
 
-        public IActionResult Index(string SearchText="")
+        public IActionResult Index(string SearchText = "")
         {
             ActorListViewModel model = new ActorListViewModel();
             List<Actor> lista;
@@ -37,13 +37,13 @@ namespace Filmofil.Controllers
             var user = HttpContext.User;
 
             model.IsAdmin = user.IsInRole("Admin");
-            if(SearchText != "" && SearchText != null)
+            if (SearchText != "" && SearchText != null)
             {
-                lista = unitOfWork.ActorRepository.GetAll().Where(a => String.Concat(a.FirstName," ",a.LastName).ToLower().Contains(SearchText.ToLower()) || String.Concat(a.LastName," ",a.FirstName).ToLower().Contains(SearchText.ToLower())).ToList();
+                lista = unitOfWork.ActorRepository.GetAll().Where(a => String.Concat(a.FirstName, " ", a.LastName).ToLower().Contains(SearchText.ToLower()) || String.Concat(a.LastName, " ", a.FirstName).ToLower().Contains(SearchText.ToLower())).ToList();
             }
             else
             {
-              lista = unitOfWork.ActorRepository.GetAll().OfType<Actor>().ToList();
+                lista = unitOfWork.ActorRepository.GetAll().OfType<Actor>().ToList();
 
             }
             model.Actors = lista;
@@ -53,11 +53,12 @@ namespace Filmofil.Controllers
 
         }
         [Authorize(Roles = "Admin")]
+        
         public IActionResult Delete(int id)
         {
             Actor actor = (Actor)unitOfWork.ActorRepository.GetSingle(new Actor { PersonId = id });
 
-            ActorViewModel model = new ActorViewModel() { PersonId=actor.PersonId, FirstName = actor.FirstName, LastName = actor.LastName, Born = actor.Born,CountryId=actor.CountryId,Image=actor.Image,Networth=actor.Networth };
+            ActorViewModel model = new ActorViewModel() { PersonId = actor.PersonId, FirstName = actor.FirstName, LastName = actor.LastName, Born = actor.Born, CountryId = actor.CountryId, Image = actor.Image, Networth = actor.Networth };
             return View(model);
         }
 
@@ -73,7 +74,8 @@ namespace Filmofil.Controllers
             return RedirectToAction("Index");
 
         }
-        
+
+
         public IActionResult Details(int id)
         {
             Actor a = unitOfWork.ActorRepository.GetSingle(new Actor { PersonId = id });
@@ -83,21 +85,21 @@ namespace Filmofil.Controllers
 
 
             var user = HttpContext.User;
- 
-                ActorViewModel model = new ActorViewModel
-                {
-                    Born = a.Born,
-                    CountryId = a.CountryId,
-                    FirstName = a.FirstName,
-                    Image = a.Image,
-                    LastName = a.LastName,
-                    Country=a.Country,
-                    Networth = a.Networth,
-                    PersonId = a.PersonId,
-                    Actings=lista,
-                    IsAdmin= user.IsInRole("Admin")
-                };
-            
+
+            ActorViewModel model = new ActorViewModel
+            {
+                Born = a.Born,
+                CountryId = a.CountryId,
+                FirstName = a.FirstName,
+                Image = a.Image,
+                LastName = a.LastName,
+                Country = a.Country,
+                Networth = a.Networth,
+                PersonId = a.PersonId,
+                Actings = lista,
+                IsAdmin = user.IsInRole("Admin")
+            };
+
             return View(model);
         }
 
@@ -110,11 +112,12 @@ namespace Filmofil.Controllers
             model.LastName = actor.LastName;
             model.Born = actor.Born;
             model.CountryId = actor.CountryId;
-            
-            
+            model.ImageName = actor.Image;
+
 
             return model;
         }
+
 
         [Authorize(Roles = "Admin")]
         public IActionResult Edit(int id)
@@ -123,6 +126,7 @@ namespace Filmofil.Controllers
 
             CreateActorViewModel model = CreateModel(actor);
             model.Countries = unitOfWork.CountryRepository.GetAll().OfType<Country>().ToList();
+
             return View(model);
         }
 
@@ -140,11 +144,11 @@ namespace Filmofil.Controllers
 
 
 
-            string uniqueFileName = null;
+            string uniqueFileName = model.ImageName;
 
             if (model.Image != null)
             {
-                uniqueFileName = GetFileNameAndSaveFile(model);   
+                uniqueFileName = GetFileNameAndSaveFile(model);
             }
 
 
@@ -152,7 +156,7 @@ namespace Filmofil.Controllers
             actor.LastName = model.LastName;
             actor.Born = model.Born;
             actor.CountryId = model.CountryId;
-            
+
             actor.Image = uniqueFileName;
 
             unitOfWork.ActorRepository.Update(actor);
@@ -161,58 +165,54 @@ namespace Filmofil.Controllers
             return RedirectToAction("Index");
         }
         [Authorize(Roles = "Admin")]
+        
         public IActionResult Create()
         {
             CreateActorViewModel model = new CreateActorViewModel();
-            model.Countries= unitOfWork.CountryRepository.GetAll().OfType<Country>().ToList();
+            model.Countries = unitOfWork.CountryRepository.GetAll().OfType<Country>().ToList();
 
             return View(model);
         }
 
         //POST: ActorController/Create
-          [HttpPost]
+        [HttpPost]
         [Authorize(Roles = "Admin")]
         public IActionResult Create(CreateActorViewModel model)
-          {
-              if (!ModelState.IsValid)
-              {
-                  return Create();
-              }
+        {
+            if (!ModelState.IsValid)
+            {
+                return Create();
+            }
 
             string uniqueFileName = null;
 
             if (model.Image != null)
-              {
-                uniqueFileName = GetFileNameAndSaveFile(model);  
-              }
+            {
+                uniqueFileName = GetFileNameAndSaveFile(model);
+            }
 
 
 
-              unitOfWork.ActorRepository.Add(new Actor
-              {
-                  FirstName = model.FirstName,
-                  LastName = model.LastName,
-                  Born = model.Born,
-                  CountryId = model.CountryId,
-                  Image = uniqueFileName,
-                  
-              });
-              unitOfWork.Save();
-              return RedirectToAction("Index");
-          }
+            unitOfWork.ActorRepository.Add(new Actor
+            {
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Born = model.Born,
+                CountryId = model.CountryId,
+                Image = uniqueFileName,
+
+            });
+            unitOfWork.Save();
+            return RedirectToAction("Index");
+        }
 
         private string GetFileNameAndSaveFile(CreateActorViewModel model)
         {
-            // The image must be uploaded to the images folder in wwwroot
-            // To get the path of the wwwroot folder we are using the inject
-            // HostingEnvironment service provided by ASP.NET Core
             string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "img/ActorsImages");
-            // To make sure the file name is unique we are appending a new
-            // GUID value and and an underscore to the file name
+
             string uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Image.FileName;
             string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-            // Use CopyTo() method provided by IFormFile interface to
-            // copy the file to wwwroot/images folder
+
             model.Image.CopyTo(new FileStream(filePath, FileMode.Create));
 
             return uniqueFileName;
@@ -220,5 +220,5 @@ namespace Filmofil.Controllers
     }
 
 
-    }
+}
 
