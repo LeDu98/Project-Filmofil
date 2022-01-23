@@ -18,13 +18,11 @@
             let firstName = selectedActors[i][2];
             let lastName = selectedActors[i][3];
             let image = selectedActors[i][1].split('src=')[1].split(/[ >]/)[0];
+            let id = selectedActors[i][4];
 
-
-            selectedActorsHTML.appendChild(createSelectedActorCard(firstName, lastName, image, 1, i))
+            selectedActorsHTML.appendChild(createSelectedActorCard(firstName, lastName, image, 2, i))
 
         }
-
-        alert(table.rows('.selected').data().length + ' row(s) selected');
 
     });
 

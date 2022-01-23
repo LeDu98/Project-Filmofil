@@ -90,6 +90,7 @@
                                     <th>Image</th>
                                     <th>First name</th>
                                     <th>Last name</th>
+                                    <th>id</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -112,7 +113,11 @@
                                             @Html.HiddenFor(m => m.SelectListItemActors[i].Actor.PersonId)
                                             @Html.HiddenFor(m => m.SelectListItemActors[i].Actor.LastName)
                                         </td>
-                                        
+                                        <td>
+                                            @Html.DisplayFor(m => m.SelectListItemActors[i].Actor.PersonId)
+                                            @Html.HiddenFor(m => m.SelectListItemActors[i].Actor.PersonId)
+                                            @Html.HiddenFor(m => m.SelectListItemActors[i].Actor.PersonId)
+                                        </td>
                                     </tr>
                                 }
                             </tbody>
