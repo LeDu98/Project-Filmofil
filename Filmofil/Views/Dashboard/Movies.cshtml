@@ -12,7 +12,7 @@
 <h1 class="heading" style="margin-left: 0px;">Movies</h1 >
 
 @Html.ActionLink("Create", "Create", "Movies")
-<table id="myTable" class="w3-table">
+<table id="myTable" class="header_fixed">
     <thead>
         <tr>
             <th>
@@ -35,7 +35,8 @@
                 @Html.DisplayNameFor(model => model.Rating)
             </th>
 
-            <th></th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
@@ -55,7 +56,7 @@
                 @Html.DisplayFor(modelItem => item.Duration)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Year)
+                @item.Year.ToString("yyyy")
             </td>
 
             <td>
@@ -63,9 +64,12 @@
             </td>
 
             <td>
-                @Html.ActionLink("Edit", "Edit", "Movies", new { id = item.MovieId })|
-                @Html.ActionLink("Details", "Details", "Movies", new { id = item.MovieId }) |
-                @Html.ActionLink("Delete", "Delete", "Movies", new { id = item.MovieId })
+
+                <button type="button" onclick="location.href='@Url.Action("Edit","Movies",new { id = item.MovieId })'">Edit</button>
+            </td>
+            <td>
+
+                <button type="button" onclick="location.href='@Url.Action("Delete","Movies",new { id = item.MovieId })'">Delete</button>
             </td>
         </tr>
         }
@@ -87,6 +91,7 @@
         border-radius: 100%;
         border: 5px solid #E6E7E8;
     }
+
     .table {
         display: table;
         width: 300px;
@@ -95,99 +100,69 @@
         padding: 5rem;
     }
 
-        .table .row {
-            display: table-row;
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .header_fixed {
+        height: 50px;
+        overflow: auto;
+        margin-top: 30px;
+    }
+
+        .header_fixed thead th {
+            position: sticky;
+            top: 0;
+            background-color: #282c39;
+            color: #ffffff;
+            font-size: 15px;
         }
 
-            .table .row > div {
-                display: table-cell;
-                width: 33.33%;
-                padding: 17px 20px;
-            }
-
-        .table .table-body,
-        .table .table-footer,
-        .table .table-header {
-            display: table;
-            width: 100%;
-        }
-
-            .table .table-header .row > div {
-                font-size: 14px;
-                vertical-align: bottom;
-                padding: 30px 0;
-            }
-
-                .table .table-header .row > div:last-child {
-                    background: #298eea;
-                }
-
-                .table .table-header .row > div .time {
-                    font-size: 18px;
-                    text-transform: uppercase;
-                    color: rgba(255, 255, 255, 0.7);
-                }
-
-                .table .table-header .row > div .price {
-                    font-size: 36px;
-                    font-weight: 700;
-                    padding: 15px;
-                }
-
-                .table .table-header .row > div .mostpopular {
-                    font-weight: 600;
-                    background: #1d82dc;
-                    padding: 15px 0;
-                    margin: 20px 0 -30px;
-                }
-
-                .table .table-header .row > div .discount {
-                    background: rgba(0, 0, 0, 0.2);
-                    padding: 15px 0;
-                    margin: 20px 0 -30px;
-                }
-
-            .table .table-body .row {
-                background: #282c39;
-            }
-
-                .table .table-body .row:nth-child(odd) {
-                    background: #242833;
-                }
-
-                .table .table-body .row > div {
-                    font-size: 14px;
-                    padding: 17px 20px;
-                }
-
-                    .table .table-body .row > div:first-child {
-                        text-align: left;
-                    }
-
-    #buttonposter > p,
-    #content.login,
-    #spinner,
-    .AZList,
-    .detail #content.profile,
-    .md-content h3,
-    .notice div i,
-    .pagination,
-    .pagination a,
-    .pagination span,
-    .profile i,
-    .rating,
-    p#buttondownload,
-    span.top-number {
-        text-align: center;
+    tr:nth-child(even) {
+        background-color: #ffffff;
     }
 
-    .table .table-body .row > div:last-child {
-        border: 4px solid #298eea;
-        border-width: 0 4px;
+    tr:nth-child(odd) {
+        background-color: #404040;
     }
 
-    .table .table-body .row > div i {
-        padding-right: 8px;
+    tr:hover td {
+        color: #282c39;
+        cursor: pointer;
+        background-color: #ffffff;
     }
-    
+
+    th, td {
+        border: 1px solid #dddddd;
+        padding: 10px 20px;
+    }
+
+    ::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3)
+    }
+
+    ::-webkit-scrollbar-thumb {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3)
+    }
+
+    td button {
+        border: none;
+        padding: 7px 20px;
+        border-radius: 20px;
+        background-color: #282c39;
+        color: #ffffff;
+    }
+    }
 </style>

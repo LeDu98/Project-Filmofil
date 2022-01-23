@@ -29,18 +29,20 @@
     {
         <h3>Actor is not found!</h3>
     }
-    @foreach (var item in Model.Actors)
-    {
-        <div class="card" style="width:10em;margin:10px;">
-            <img src="~/img/ActorsImages/@item.Image" class="card-img-top" />
-            <div class="card-body">
-                <div class="card-title">
-                    <h4>@item.FirstName @item.LastName</h4>
+    <div id="myTable">
+        @foreach (var item in Model.Actors)
+        {
+            <div class="card" style="width:10em;margin:10px;">
+                <img src="~/img/ActorsImages/@item.Image" class="card-img-top" />
+                <div class="card-body">
+                    <div class="card-title">
+                        <h4>@item.FirstName @item.LastName</h4>
+                    </div>
+                    <a href="/Actor/Details/@item.PersonId" class="btn btn-primary">Read More...</a>
                 </div>
-                <a href="/Actor/Details/@item.PersonId" class="btn btn-primary">Read More...</a>
             </div>
-        </div>
-    }
+        }
+    </div>
 </div>
 
 <section class="container">
