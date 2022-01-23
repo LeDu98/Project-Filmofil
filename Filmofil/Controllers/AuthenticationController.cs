@@ -1,4 +1,5 @@
-﻿using Domen;
+﻿using DataAccesLayer.UnitOfWork;
+using Domen;
 using Filmofil.Models.Users;
 using IdentityServer4;
 using Microsoft.AspNetCore.Authentication;
@@ -48,8 +49,10 @@ namespace Filmofil.Controllers
                 {
                     return View();
                 }
+                
                 var result = await manager.CreateAsync(user, register.Password);
-
+                var addRole= await manager.AddToRoleAsync(user, "User");
+                
                 if (result.Succeeded)
                 {
 
@@ -111,6 +114,73 @@ namespace Filmofil.Controllers
         {
             await signInManager.SignOutAsync();
             return RedirectToAction("Login");
+        }
+        
+        public IActionResult Users()
+        {
+            var context = new MovieContext();
+            var users = context.Users.ToList();
+            List<SiteUserViewModel> list = new List<SiteUserViewModel>();
+                foreach(SiteUser su in users)
+            {
+                if (su.IsAdministrator == false)
+                {
+                    list.Add(new SiteUserViewModel { UserId=su.Id,Email = su.Email, FirstName = su.FirstName, LastName = su.LastName, Username = su.UserName });
+                }
+            }
+            return View(list);
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var user = manager.Users.FirstOrDefault(u => u.Id == id);
+            if (user == null)
+            {
+                return RedirectToAction("Users");
+            }
+            SiteUserViewModel model = new SiteUserViewModel { UserId = id, Email = user.Email, FirstName = user.FirstName, LastName = user.LastName, Username = user.UserName };
+
+            
+            return View(model);
+        }
+        // [Authorize(Roles = "Admin")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id, SiteUserViewModel model)
+        {
+            var user =  manager.Users.FirstOrDefault(u => u.Id == id);
+            await manager.DeleteAsync(user);
+            
+            return RedirectToAction("Users");
+
+        }
+
+        public IActionResult Promote(int id)
+        {
+            var user = manager.Users.FirstOrDefault(u => u.Id == id);
+            if (user == null)
+            {
+                return RedirectToAction("Users");
+            }
+            SiteUserViewModel model = new SiteUserViewModel { UserId = id, Email = user.Email, FirstName = user.FirstName, LastName = user.LastName, Username = user.UserName };
+
+
+            return View(model);
+        }
+        // [Authorize(Roles = "Admin")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Promote(int id, SiteUserViewModel model)
+        {
+            var user =manager.Users.FirstOrDefault(u => u.Id == id);
+           await manager.AddToRoleAsync(user, "Admin");
+            user.IsAdministrator = true;
+            await manager.UpdateAsync(user);
+
+            
+
+            return RedirectToAction("Users");
+
         }
     }
 }
