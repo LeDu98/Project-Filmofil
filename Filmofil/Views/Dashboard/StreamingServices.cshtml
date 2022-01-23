@@ -21,14 +21,17 @@
                 @Html.DisplayNameFor(model => model.StreamingServiceId)
             </th>
             <th>
+                Logo
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
-            
-           
+
+
             <th>
                 @Html.DisplayNameFor(model => model.Headquarter)
             </th>
-           
+
             <th>
                 @Html.DisplayNameFor(model => model.Price)
             </th>
@@ -38,33 +41,51 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StreamingServiceId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-               
-               
-                <td>
-                    @Html.DisplayFor(modelItem => item.Headquarter)
-                </td>
-                
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", "StreamingService", new { id = item.StreamingServiceId })|
-                    @Html.ActionLink("Details", "Details", "StreamingService", new { id = item.StreamingServiceId }) |
-                    @Html.ActionLink("Delete", "Delete", "StreamingService", new { id = item.StreamingServiceId })
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StreamingServiceId)
+            </td>
+            <td>
+                <img src="~/img/streamingServiceLogo/@item.LogoImg" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Headquarter)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "StreamingService", new { id = item.StreamingServiceId })|
+                @Html.ActionLink("Details", "Details", "StreamingService", new { id = item.StreamingServiceId }) |
+                @Html.ActionLink("Delete", "Delete", "StreamingService", new { id = item.StreamingServiceId })
+            </td>
+        </tr>
         }
     </tbody>
 </table>
 
 <style>
+
+    h1 {
+        color: #ffffff;
+    }
+
+    label {
+        color: #ffffff;
+    }
+
+    td img {
+        height: 60px;
+        width: 60px;
+        border-radius: 100%;
+        border: 5px solid #E6E7E8;
+    }
     .table {
         display: table;
         width: 300px;

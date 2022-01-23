@@ -19,7 +19,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.PersonId)
             </th>
-
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
 
             <th>
                 @Html.DisplayNameFor(model => model.FirstName)
@@ -44,39 +46,55 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
+        <tr>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.PersonId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
-                </td>
-                <td>
-                    @item.Born.ToString("dd.MM.yyyy.")
-                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonId)
+            </td>
+            <td>
+                <img src="~/img/ActorsImages/@item.Image" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @item.Born.ToString("dd.MM.yyyy.")
+            </td>
 
-                <td>
-                    $@Html.DisplayFor(modelItem => item.Networth) Millions
-                </td>
+            <td>
+                $@Html.DisplayFor(modelItem => item.Networth) Millions
+            </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Country.Name)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", "Actor", new { id = item.PersonId })|
-                    @Html.ActionLink("Details", "Details", "Actor", new { id = item.PersonId }) |
-                    @Html.ActionLink("Delete", "Delete", "Actor", new { id = item.PersonId })
-                </td>
-            </tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Actor", new { id = item.PersonId })|
+                @Html.ActionLink("Details", "Details", "Actor", new { id = item.PersonId }) |
+                @Html.ActionLink("Delete", "Delete", "Actor", new { id = item.PersonId })
+            </td>
+        </tr>
         }
     </tbody>
 </table>
 
 <style>
+    h1{
+        color: #ffffff;
+    }
+    label {
+        color: #ffffff;
+    }
+    td img{
+        height: 60px;
+        width: 60px;
+        border-radius: 100%;
+        border: 5px solid #E6E7E8;
+    }
+
     .table {
         display: table;
         width: 300px;

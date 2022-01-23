@@ -21,42 +21,63 @@
                 @Html.DisplayNameFor(model => model.StudioId)
             </th>
             <th>
+                Logo
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Headquarter)
             </th>
-            
-            
-           
+
+
+
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StudioId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Headquarter)
-                </td>
-               
-                <td>
-                    @Html.ActionLink("Edit", "Edit", "Studio", new { id = item.StudioId })|
-                    @Html.ActionLink("Details", "Details", "Studio", new { id = item.StudioId }) |
-                    @Html.ActionLink("Delete", "Delete", "Studio", new { id = item.StudioId })
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudioId)
+            </td>
+            <td>
+                <img src="~/img/studioLogo/@item.LogoImg" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Headquarter)
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Studio", new { id = item.StudioId })|
+                @Html.ActionLink("Details", "Details", "Studio", new { id = item.StudioId }) |
+                @Html.ActionLink("Delete", "Delete", "Studio", new { id = item.StudioId })
+            </td>
+        </tr>
         }
     </tbody>
 </table>
 
 <style>
+
+    h1 {
+        color: #ffffff;
+    }
+
+    label {
+        color: #ffffff;
+    }
+
+    td img {
+        height: 60px;
+        width: 60px;
+        border-radius: 100%;
+        border: 5px solid #E6E7E8;
+    }
     .table {
         display: table;
         width: 300px;
