@@ -11,10 +11,26 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
 -->
 
+<style>
+    #button-add-actors {
+        display: inline-block;
+        color: #444;
+        border: 1px solid #CCC;
+        background: #DDD;
+        box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
+        cursor: pointer;
+        vertical-align: middle;
+        max-width: 100px;
+        padding: 5px;
+        text-align: center;
+    }
+</style>
+
+
 <h1>Create new movie</h1>
 
-<h4>MovieCreateModel</h4>
 <hr />
+
 <div class="row">
     <div class="col-md-12">
         <form asp-action="Create" enctype="multipart/form-data" method="post" class="mt-3">
@@ -48,7 +64,7 @@
 
                     <div class="form-group">
                         <label asp-for="Year" class="control-label"></label>
-                        <input asp-for="Year" class="form-control"/>
+                        <input asp-for="Year" class="form-control" />
                         <span asp-validation-for="Year" class="text-danger"></span>
                     </div>
 
@@ -64,35 +80,49 @@
                         <span asp-validation-for="StudioId" class="text-danger"></span>
                     </div>
 
+                    <!-- Actors table -->
                     <div class="form-group">
-                        <div id="button">Row count</div>
-                        <table id="example" class="display" style="width:100%">
+                        <h2>Actors:</h2>
+                        <table id="actors-table" class="display" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>Select</th>
                                     <th>Image</th>
-                                    <th>Name</th>
+                                    <th>First name</th>
+                                    <th>Last name</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var item in Model.Actors)
+                                @for (int i = 0; i < Model.SelectListItemActors.Count(); i++)
                                 {
                                     <tr>
-                                        <td><input type="checkbox" style="border-radius: 0.25em;"></td>
-                                        <td><img src="~/img/ActorsImages/@item.Image" class="img-fluid img-thumbnail" alt="actor" style="height: 100px;border-radius: 50%;"></td>
-                                        <td>@item.FirstName @item.LastName</td>
+                                        <td>
+                                            @Html.CheckBoxFor(m => m.SelectListItemActors[i].IsSelected)
+                                        </td>
+                                        <td>
+                                            <img src="~/img/ActorsImages/@Model.SelectListItemActors[i].Actor.Image" class="img-fluid img-thumbnail" alt="actor" style="height: 100px;border-radius: 50%;">
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(m => m.SelectListItemActors[i].Actor.FirstName)
+                                            @Html.HiddenFor(m => m.SelectListItemActors[i].Actor.PersonId)
+                                            @Html.HiddenFor(m => m.SelectListItemActors[i].Actor.FirstName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(m => m.SelectListItemActors[i].Actor.LastName)
+                                            @Html.HiddenFor(m => m.SelectListItemActors[i].Actor.PersonId)
+                                            @Html.HiddenFor(m => m.SelectListItemActors[i].Actor.LastName)
+                                        </td>
+                                        
                                     </tr>
                                 }
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-
-                                </tr>
-                            </tfoot>
                         </table>
+                        <div id="button-add-actors">Add actors</div>
+                    </div>
+
+                    <!-- Selected actors cards -->
+                    <div class="form-group" id="selected-actors">
+                        <h2>Selected actors:</h2>
                     </div>
 
                 </div>

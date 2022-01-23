@@ -30,13 +30,24 @@ namespace Filmofil.Models.Movie
 
         public List<StreamingService> StreamingServices { get; set; }
 
-        public List<Domen.Actor> Actors { get; set; }
+        public List<SelectListItemActors> SelectListItemActors { get; set; }
+
+        public List<Acting> Actings { get; set; }
 
         public List<Domen.Personnel> Personnels { get; set; }
 
         public List<Genre> Genres { get; set; }
 
         public int[] GenreIds { get; set; }
+
+    }
+
+    public class SelectListItemActors
+    {
+
+        public Domen.Actor Actor { get; set; }
+
+        public bool IsSelected { get; set; }
 
     }
 }

@@ -1,22 +1,26 @@
 ﻿jQuery(document).ready(function () {
 
-    var table = $('#example').DataTable();
+    var table = $('#actors-table').DataTable();
 
-    $('#example tbody').on('click', 'tr', function () {
+    $('#actors-table tbody').on('click', 'tr', function () {
         $(this).toggleClass('selected');
     });
 
-    $('#button').click(function () {
+    $('#button-add-actors').click(function () {
 
         var selectedActors = table.rows('.selected').data();
         var selectedActorsHTML = document.getElementById('selected-actors');
 
+        console.log(selectedActors);
+
         for (let i = 0; i < selectedActors.length; i++) {
 
-            let name = selectedActors[i][2];
+            let firstName = selectedActors[i][2];
+            let lastName = selectedActors[i][3];
             let image = selectedActors[i][1].split('src=')[1].split(/[ >]/)[0];
 
-            selectedActorsHTML.appendChild(createSelectedActorCard(name, image))
+
+            selectedActorsHTML.appendChild(createSelectedActorCard(firstName, lastName, image, 1, i))
 
         }
 
@@ -27,9 +31,7 @@
 });
 
 
-function createSelectedActorCard(name, image) {
-
-    console.log(image);
+function createSelectedActorCard(firstName, lastName, image, id, i) {
 
     let div = document.createElement("div");
     div.classList.add('card');
@@ -37,19 +39,20 @@ function createSelectedActorCard(name, image) {
     div.style.maxWidth = "540px"
 
     let html = '<div class="row no-gutters" >' +
-        '<div class="col-md-4">' +
-        '<img src=' + image + ' class="card-img" alt="...">' +
-        '</div>' +
-        '<div class="col-md-8">' +
-        '<div class="card-body">' +
-        '<h5 class="card-title">' + name + '</h5>' +
-        '<label for="fname">Role:</label>' +
-        '<input type="text" id="fname" name="fname"><br><br>' +
-        '<label for="fname">Income:</label>' +
-        '<input type="text" id="fname" name="fname"><br><br>' +
-        '</div>' +
-        '</div>' +
-        '</div>';
+                    '<div class="col-md-4">' +
+                        '<img src=' + image + ' class="card-img">' +
+                    '</div>' +
+                    '<div class="col-md-8">' +
+                        '<div class="card-body">' +
+                            '<h5 class="card-title">' + firstName + lastName + '</h5>' +
+                            '<input type="hidden" name="Actings[' + i + '].ActorId" value="' + id + '" />' +
+                            '<label for="fname">Role:</label>' +
+                            '<input type="text" id="fname" name="Actings[' + i + '].Role"><br><br>' +
+                            '<label for="fname">Income:</label>' +
+                            '<input type="text" id="fname" name="Actings[' + i + '].Income"><br><br>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>';
 
 
     div.innerHTML = html;

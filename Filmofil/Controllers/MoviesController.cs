@@ -63,8 +63,9 @@ namespace Filmofil.Controllers
             {
                 return Create();
             }
-            string uniqueFileName = null;
 
+            /*
+            string uniqueFileName = null;
             if (model.Thumbnail != null)
             {
                 uniqueFileName = GetFileNameAndSaveFile(model);
@@ -93,7 +94,8 @@ namespace Filmofil.Controllers
                 unitOfWork.MovieGenreRepository.Add(mg);
                 unitOfWork.Save();
             }
-            
+            */
+
             return RedirectToAction("Index");
         }
 
@@ -193,7 +195,6 @@ namespace Filmofil.Controllers
             unitOfWork.PositionRepository.Add(new Position { MovieId = id, PersonnelId = model.PersonnelId, PositionTitle=model.PositionTitle });
             unitOfWork.Save();
             return RedirectToAction("AddPersonnel");
-
 
         }
 
@@ -319,11 +320,30 @@ namespace Filmofil.Controllers
 
             model.StreamingServices = unitOfWork.StreamingServiceRepository.GetAll();
             model.Studios = unitOfWork.StudioRepository.GetAll();
-            model.Actors = unitOfWork.ActorRepository.GetAll();
+            //model.Actors = unitOfWork.ActorRepository.GetAll();
+
+            model.SelectListItemActors = CreateSelectListActors(unitOfWork.ActorRepository.GetAll());
+
             model.Personnels = unitOfWork.PersonnelRepository.GetAll();
             model.Genres = unitOfWork.GenreRepository.GetAll();
             return model;
-        } 
+        }
+
+        private List<SelectListItemActors> CreateSelectListActors(List<Actor> actors)
+        {
+            List<SelectListItemActors> selectListItemActors = new List<SelectListItemActors>();
+            
+            foreach(Actor actor in actors)
+            {
+                selectListItemActors.Add(new SelectListItemActors
+                {
+                    IsSelected = false,
+                    Actor = actor
+                });
+            }
+
+            return selectListItemActors;
+        }
 
     }
 }
