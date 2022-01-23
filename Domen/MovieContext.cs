@@ -38,7 +38,7 @@ namespace Domen
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;
-            Database=Movies; Trusted_Connection=True");
+            Database=Movies; Trusted_Connection=True; MultipleActiveResultSets=true;");
         } 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
