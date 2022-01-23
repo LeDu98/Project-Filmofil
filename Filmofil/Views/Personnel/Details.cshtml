@@ -30,8 +30,7 @@
 <hr />
 @if (Model.IsAdmin) { 
 <div>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.PersonId }) |
-    @Html.ActionLink("Delete", "Delete", new { id = Model.PersonId }) |
+    
     <a asp-action="Index">Back to List</a>
 </div>
 }
