@@ -1,72 +1,112 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@{ ViewData["Title"] = "Dashboard";}
+
+<style>
+    #icon {
+        margin-top: 20px;
+        font-size: 50px;
+        color: #0094ff;
+    }
+
+        #icon:hover {
+            color: red;
+            font-size: 60px;
+        }
+        .card{
+            margin-bottom:25px;
+        }
+</style>
+
 <div class="row">
-    <div class="card" style="width:20em;margin:10px;">
-        <img src="~/img/ActorsImages/718500_performance_512x512.png" class="card-img-top" />
-        <div class="card-body">
-            <div class="card-title">
-                <h2>Actors</h2>
-            </div>
-            <a href="/Dashboard/Actors" class="btn btn-primary">Read More...</a>
-        </div>
-    </div>
-    <div class="card" style="width:20em;margin:10px;">
-        <img src="~/img/ActorsImages/718500_performance_512x512.png" class="card-img-top" />
-        <div class="card-body">
-            <div class="card-title">
-                <h2>Personnels</h2>
-            </div>
-            <a href="/Dashboard/Personnels" class="btn btn-primary">Read More...</a>
-        </div>
-    </div>
-    <div class="card" style="width:20em;margin:10px;">
-        <img src="~/img/ActorsImages/718500_performance_512x512.png" class="card-img-top" />
-        <div class="card-body">
-            <div class="card-title">
-                <h2>Movies</h2>
-            </div>
-            <a href="/Dashboard/Movies" class="btn btn-primary">Read More...</a>
-        </div>
-    </div>
-
-    <div class="card" style="width:20em;margin:10px;">
-        <img src="~/img/ActorsImages/718500_performance_512x512.png" class="card-img-top" />
-        <div class="card-body">
-            <div class="card-title">
-                <h2>Streaming services</h2>
-            </div>
-            <a href="/Dashboard/StreamingServices" class="btn btn-primary">Read More...</a>
-        </div>
-    </div>
-
-    <div class="card" style="width:20em;margin:10px;">
-        <img src="~/img/ActorsImages/718500_performance_512x512.png" class="card-img-top" />
-        <div class="card-body">
-            <div class="card-title">
-                <h2>Studios</h2>
-            </div>
-            <a href="/Dashboard/Studios" class="btn btn-primary">Read More...</a>
-        </div>
+    <div class="col-sm-12">
+        <h1 style="text-align:center">Administrator Dashboard</h1>
     </div>
 </div>
 
-<script src="~/lib/jquery/dist/jquery.js"></script>
-<script type="text/javascript">
-    $('.card').hover(
-        function () {
-            $(this).animate({
-                marginTop: "-=1%",
-                marginBottom: "+=1%"
-            }, 200)
-        },
-        function () {
-            $(this).animate({
-                marginTop: "+=1%",
-                marginBottom: "-=1%"
-            })
-        }
-    )
-</script>
+
+<div class="row">
+    <div class="col-lg-3">
+        <a href="/Dashboard/Actors">
+            <div class="card" style="height:200px">
+                <div class="card-body">
+                    <h2 style="text-align:center">Actors</h2>
+                    <div style="text-align:center">
+
+                        <i id="icon" class="fa fa-users"></i>
+
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-3">
+        <a href="/Dashboard/Personnels">
+            <div class="card" style="height:200px">
+                <div class="card-body">
+                    <h2 style="text-align:center">Personnels</h2>
+                    <div style="text-align:center">
+
+                        <i id="icon" class="fa fa-user-tie"></i>
+
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-3">
+        <a href="/Dashboard/Movies">
+            <div class="card" style="height:200px">
+                <div class="card-body">
+                    <h2 style="text-align:center">Movies</h2>
+                    <div style="text-align:center">
+
+                        <i id="icon" class="fas fa-film"></i>
+
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-3">
+        <a href="/Dashboard/Studios">
+            <div class="card" style="height:200px">
+                <div class="card-body">
+                    <h2 style="text-align:center">Studios</h2>
+                    <div style="text-align:center">
+
+                        <i id="icon" class="fa fa-video"></i>
+
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-3">
+        <a href="/Dashboard/StreamingServices">
+            <div class="card" style="height:200px">
+                <div class="card-body">
+                    <h2 style="text-align:center">Streaming services</h2>
+                    <div style="text-align:center">
+
+                        <i id="icon" class="fa fa-globe"></i>
+
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-3">
+        <a href="/Authentication/Users">
+            <div class="card" style="height:200px">
+                <div class="card-body">
+                    <h2 style="text-align:center">Promote or Ban Users</h2>
+                    <div style="text-align:center">
+
+                        <i id="icon" class="fa fa-user-cog"></i>
+
+                    </div>
+                </div>
+            </div>
+        </a>
+
+    </div>
+</div>

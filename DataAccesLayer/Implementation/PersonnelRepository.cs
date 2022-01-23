@@ -28,7 +28,7 @@ namespace DataAccesLayer.Implementation
 
         public List<Personnel> GetAll()
         {
-            return context.Personnel.ToList();
+            return context.Personnel.Include(p=>p.Country).ToList();
         }
 
         public Personnel GetSingle(Personnel entity)

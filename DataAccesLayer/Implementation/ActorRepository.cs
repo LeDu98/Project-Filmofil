@@ -29,7 +29,7 @@ namespace DataAccesLayer.Implementation
 
         public List<Actor> GetAll()
         {
-            return context.Actors.ToList();
+            return context.Actors.Include(a=>a.Country).ToList();
         }
 
         public Actor GetSingle(Actor entity)
