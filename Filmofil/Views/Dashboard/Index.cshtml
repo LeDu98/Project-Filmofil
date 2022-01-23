@@ -3,4 +3,70 @@
 *@
 @{
 }
-<p>VP</p>
+<div class="row">
+    <div class="card" style="width:20em;margin:10px;">
+        <img src="~/img/ActorsImages/718500_performance_512x512.png" class="card-img-top" />
+        <div class="card-body">
+            <div class="card-title">
+                <h2>Actors</h2>
+            </div>
+            <a href="/Dashboard/Actors" class="btn btn-primary">Read More...</a>
+        </div>
+    </div>
+    <div class="card" style="width:20em;margin:10px;">
+        <img src="~/img/ActorsImages/718500_performance_512x512.png" class="card-img-top" />
+        <div class="card-body">
+            <div class="card-title">
+                <h2>Personnels</h2>
+            </div>
+            <a href="/Dashboard/Personnels" class="btn btn-primary">Read More...</a>
+        </div>
+    </div>
+    <div class="card" style="width:20em;margin:10px;">
+        <img src="~/img/ActorsImages/718500_performance_512x512.png" class="card-img-top" />
+        <div class="card-body">
+            <div class="card-title">
+                <h2>Movies</h2>
+            </div>
+            <a href="/Dashboard/Movies" class="btn btn-primary">Read More...</a>
+        </div>
+    </div>
+
+    <div class="card" style="width:20em;margin:10px;">
+        <img src="~/img/ActorsImages/718500_performance_512x512.png" class="card-img-top" />
+        <div class="card-body">
+            <div class="card-title">
+                <h2>Streaming services</h2>
+            </div>
+            <a href="/Dashboard/StreamingServices" class="btn btn-primary">Read More...</a>
+        </div>
+    </div>
+
+    <div class="card" style="width:20em;margin:10px;">
+        <img src="~/img/ActorsImages/718500_performance_512x512.png" class="card-img-top" />
+        <div class="card-body">
+            <div class="card-title">
+                <h2>Studios</h2>
+            </div>
+            <a href="/Dashboard/Studios" class="btn btn-primary">Read More...</a>
+        </div>
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script type="text/javascript">
+    $('.card').hover(
+        function () {
+            $(this).animate({
+                marginTop: "-=1%",
+                marginBottom: "+=1%"
+            }, 200)
+        },
+        function () {
+            $(this).animate({
+                marginTop: "+=1%",
+                marginBottom: "-=1%"
+            })
+        }
+    )
+</script>

@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Domen.Movie>
+
+@{
+    ViewData["Title"] = "Movies";
+}
+
+<h1>Movies</h1>
+
+@Html.ActionLink("Create", "Create", "Movie")
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MovieId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Duration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Synopsis)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Thumbnail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Trailer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudioId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StreamingServiceId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MovieId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Duration)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Synopsis)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Thumbnail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Trailer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StudioId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StreamingServiceId)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Movie", new { id = item.MovieId })|
+                    @Html.ActionLink("Details", "Details", "Movie", new { id = item.MovieId }) |
+                    @Html.ActionLink("Delete", "Delete", "Movie", new { id = item.MovieId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

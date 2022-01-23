@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Domen.StreamingService>
+
+@{
+    ViewData["Title"] = "StreamingServices";
+}
+
+<h1>StreamingServices</h1>
+@Html.ActionLink("Create", "Create","StreamingService")
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StreamingServiceId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Website)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LogoImg)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Headquarter)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Founded)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StreamingServiceId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Website)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LogoImg)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Headquarter)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Founded)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "StreamingService", new { id = item.StreamingServiceId })|
+                    @Html.ActionLink("Details", "Details", "StreamingService", new { id = item.StreamingServiceId }) |
+                    @Html.ActionLink("Delete", "Delete", "StreamingService", new { id = item.StreamingServiceId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
