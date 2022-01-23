@@ -8,124 +8,95 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <div class="inner-container">
+
     <div class="movie-image">
         <img src="~/img/MoviesImages/@Model.Thumbnail" alt="@Model.Name">
-        <div class="blue" id="buttonposter">
-            <p><i class="fa fa-play-circle" aria-hidden="true"></i>Play</p>
-        </div>
     </div>
-    <div class="movie-info">
-        <span class="rating">
-            <b>@Model.Rating</b>
-        </span>
-        <h1 class="entry-title">@Model.Name</h1>
-        <em class="tagline">Higher. Further. Faster.</em>
-        <div class="movie-data">
-            <div class="details">
-                <i class="hd">HD</i>
-                <span id='Rated'>PG-13</span>
-                <span>
-                    <a href="/years/2019/" rel="tag">@Model.Year.Year</a>
-                </span>
-                |
-                @{
-                    foreach (var item in Model.Genres)
-                    {
-                        <span>
-                            <a href="/genre/action/">
-                                @item.Genre.Name
-                            </a> | 
-                        </span>
-                    }
-                }
-                <span>@Model.Duration min</span>
-            </div>
-        </div>
-        <p class="movie-description">
-            <span class="trama">@Model.Synopsis</span>
-            <div class="persons">
-                <h3>Actors</h3>
 
-                @foreach (var item in Model.Actings)
-                {
-                    <div class="person">
-                        <div class="img">
-                            <a href="/Actor/Details/@item.ActorId">
-                                <img src="~/img/ActorsImages/@item.Actor.Image" alt="">
-                            </a>
-                        </div>
-                        <div class="data">
-                            <div class="name">
-                                <a href="/Actor/Details/@item.ActorId">@item.Actor.FirstName @item.Actor.LastName</a>
-                            </div>
-                            <div class="caracter">@item.Role</div>
-                            <div class="money">$@item.Income Millions</div>
-                        </div>
-                    </div>
-
-                }
-
-            </div>
-        </p>
-    </div>
     <div class="movie-actions">
         <ul class="extra">
-            <li id="share">
-                <a class="a2a_dd" href="#"><i class="fa fa-heart-o" aria-hidden="true"></i><span>Share</span></a>
-            </li>
             <li id="trailer">
-                <a href="@Model.Trailer" rel="modal" data-modal-type="iframe" target="_blank"><i class="fa fa-youtube-play" aria-hidden="true"></i><span>Trailer</span></a>
+                <a href="@Model.Trailer" rel="modal" data-modal-type="iframe" target="_blank"><i class="fa fa-youtube-play" aria-hidden="true"></i><span>YouTube trailer</span></a>
             </li>
             <li id="download-button">
-                <a href="/Studio/Details/@Model.Studio.StudioId"><i class="fa fa-video-camera" aria-hidden="true"></i><span>Production</span></a>
+                <a href="/Studio/Details/@Model.Studio.StudioId"><i class="fa fa-video-camera" aria-hidden="true"></i><span>Production - @Model.Studio.Name</span></a>
             </li>
             <li id="streaming-hd">
-                <a class="blue" id="videoplayer1" title="360p" href="https://streamable.com/e/qjzbkd" title="360p" rel="modal" data-modal-movie="movie1" data-modal-type="iframe"><i class="fa fa-play" aria-hidden="true"></i><span>Streaming <em></em></span></a>
-            </li>
-            <li id="streaming-hd">
-                <a class="blue" id="videoplayer2" title="1080p" href="https://streamable.com/e/d96vvi" title="1080p" rel="modal" data-modal-movie="movie1" data-modal-type="iframe"><i class="fa fa-play" aria-hidden="true"></i><span>Streaming <em>HD</em></span></a>
-            </li>
-        </ul>
-        <ul>
-            <li id="play-button">
-                <!--<div class="play purple">Watch now in <em>4k</em></div>-->
-                <div class="play purple">Advertise <em>Here</em></div>
-            </li>
-            <li id="quality-button">
-                <div class="switch">
-                    <input id="quality-switch" type="checkbox" value="">
-                    <label for="quality-switch" class="hd">360p</label>
-                    <label for="quality-switch" class="switch-toggle"></label>
-                    <label for="quality-switch" class="fullhd">1080p</label>
-                </div>
-                <audio id="audio" src="assets/images/click.mp3" autostart="false"></audio>
+                <a class="blue" id="videoplayer1" href="/StreamingService/Details/@Model.StreamingService.StreamingServiceId" title="360p" rel="modal" data-modal-movie="movie1" data-modal-type="iframe"><i class="fa fa-play" aria-hidden="true"></i><span>Streaming on @Model.StreamingService.Name<em></em></span></a>
             </li>
         </ul>
     </div>
-    <section class="disqus">
-        <div class="inner-container">
-            <div id="disqus_thread"></div>
-        </div>
-    </section>
+
 </div>
+
+<div class="movie-info">
+    <span class="rating">
+        <b>@Model.Rating</b>
+    </span>
+    <h1 class="entry-title">@Model.Name</h1>
+    <em class="tagline">@Model.Studio.Name</em>
+    <div class="movie-data">
+        <div class="details">
+            <i class="hd">HD</i>
+            <span id='Rated'>PG-13</span>
+            <span>
+                <a href="/years/2019/" rel="tag">@Model.Year.Year</a>
+            </span>
+            |
+            @{
+                foreach (var item in Model.Genres)
+                {
+                    <span>
+                        <a href="/genre/action/">
+                            @item.Genre.Name
+                        </a>|
+                    </span>
+                }
+            }
+            <span>@Model.Duration min</span>
+        </div>
+    </div>
+    <p class="movie-description">
+        <span class="trama">@Model.Synopsis</span>
+        <div class="persons">
+            <h3 style="margin-bottom: 20px;">Actors</h3>
+
+            @foreach (var item in Model.Actings)
+            {
+                <div class="person">
+                    <div class="img">
+                        <a href="/Actor/Details/@item.ActorId">
+                            <img src="~/img/ActorsImages/@item.Actor.Image" alt="">
+                        </a>
+                    </div>
+                    <div class="data">
+                        <div class="name">
+                            <a href="/Actor/Details/@item.ActorId">@item.Actor.FirstName @item.Actor.LastName</a>
+                        </div>
+                        <div class="caracter">@item.Role</div>
+                        <div class="money">$@item.Income Millions</div>
+                    </div>
+                </div>
+
+            }
+
+        </div>
+    </p>
+</div>
+
 <div id="slideshow">
 </div>
 
+<hr />
 
 <div class="reviews">
 
-
-
     <form asp-action="AddReview">
+
         @{
-
-
-
             Model.Review.MovieId = Model.MovieId;
-
-
-
         }
+
         @Html.HiddenFor(m => m.Review.MovieId)
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
@@ -159,11 +130,10 @@
             <textarea asp-for="Review.Comment" style="resize:none" class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
             <span asp-validation-for="Review.Comment" class="text-danger"></span>
         </div>
-        <div class="form-group">
+        <div class="form-group blue" id="buttonposter">
             <input type="submit" value="AddReview" class="btn btn-primary" />
         </div>
     </form>
-
 
     <section class="light">
         <div class="container py-2">
@@ -202,14 +172,6 @@
     @Html.ActionLink("Delete", "Delete", new { id = Model.MovieId }) |
     <a asp-action="Index">Back to List</a>
 </div>
-
-
-
-
-
-
-
-
 
 
 <style>

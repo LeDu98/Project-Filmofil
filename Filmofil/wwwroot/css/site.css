@@ -73,21 +73,23 @@ body {
     line-height: 60px; /* Vertically center the text there */
 }
 
+.card {
+    background-color: transparent !important;
+    border: 2px!important;
+}
+.card-title {
+    font-size: 23px!important;
+}
+.list-group {
+    color: #1d1b24!important;
+}
 
-/* KOD ZA NOVI GLOVALNI DIZAJN */
+.movie-actions {
+    float: right;
+    padding-top: 15%;
+}
 
-/*
-
-Template Name: MovieWP
-Template Style: Blue
-Author: Vincenzo Piromalli (fr0zen)
-Website: https://vincenzopiromalli.ml/
-Contact: vincenzo.piromalli@gmail.com
-Purchase: https://sellix.io/product/5f25bdc9bb871
-Support: https://sellix.io/fr0zen/contact
-Copyright: Vincenzo Piromalli
-
-*/
+/* KOD ZA NOVI GLOBALNI DIZAJN */
 
 a,
 abbr,
@@ -1324,7 +1326,8 @@ ul {
 
 #content {
     position: relative;
-    font-size: 0;
+    /* KOMENTAR IZBRISAO DONJI FONT SIZE */
+    /* font-size: 0; */
     width: 100%;
     padding-top: 30px;
     padding-bottom: 100px;
@@ -1806,7 +1809,7 @@ ul {
     }
 
     .detail #content .movie-image {
-        width: 15%;
+        width: 50%;
         display: inline-block;
     }
 
@@ -1822,7 +1825,7 @@ ul {
     }
 
     .detail #content .movie-info {
-        width: 60%;
+        width: 100%;
         display: inline-block;
         vertical-align: top;
         padding: 0 30px;
@@ -1912,7 +1915,7 @@ ul {
 
 .detail .movie-actions {
     display: inline-block;
-    width: 25%;
+    width: 40%;
     vertical-align: top;
 }
 
@@ -3559,7 +3562,7 @@ span.top-number {
     padding: 10px 0 10px 73px;
     min-height: 70px;
     float: left;
-    width: 33%;
+    width: 20%;
     margin-bottom: 10px;
 }
 
