@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Domen.Actor>
+
+@{
+    ViewData["Title"] = "Actors";
+}
+
+<h1>Actors</h1>
+
+@Html.ActionLink("Create", "Create", "Actor")
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Networth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersonId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Born)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.CountryId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Networth)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PersonId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Born)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Actor", new { id = item.PersonId })|
+                    @Html.ActionLink("Details", "Details", "Actor", new { id = item.PersonId }) |
+                    @Html.ActionLink("Delete", "Delete", "Actor", new { id = item.PersonId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

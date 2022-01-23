@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Domen.Studio>
+
+@{
+    ViewData["Title"] = "Studio";
+}
+
+<h1>Studio</h1>
+
+@Html.ActionLink("Create", "Create", "Studio")
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StudioId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Headquarter)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Founded)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LogoImg)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Website)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StudioId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Headquarter)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Founded)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LogoImg)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Website)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Studio", new { id = item.StudioId })|
+                    @Html.ActionLink("Details", "Details", "Studio", new { id = item.StudioId }) |
+                    @Html.ActionLink("Delete", "Delete", "Studio", new { id = item.StudioId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
