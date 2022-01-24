@@ -11,16 +11,14 @@
         var selectedActors = table.rows('.selected').data();
         var selectedActorsHTML = document.getElementById('selected-actors');
 
-        console.log(selectedActors);
-
         for (let i = 0; i < selectedActors.length; i++) {
 
             let firstName = selectedActors[i][2];
             let lastName = selectedActors[i][3];
             let image = selectedActors[i][1].split('src=')[1].split(/[ >]/)[0];
-            let id = selectedActors[i][4];
+            let id = selectedActors[i][4].trim();
 
-            selectedActorsHTML.appendChild(createSelectedActorCard(firstName, lastName, image, 2, i))
+            selectedActorsHTML.appendChild(createSelectedActorCard(firstName, lastName, image, parseInt(id), i))
 
         }
 
@@ -30,6 +28,8 @@
 
 
 function createSelectedActorCard(firstName, lastName, image, id, i) {
+
+    console.log(id);
 
     let div = document.createElement("div");
     div.classList.add('card');
@@ -54,7 +54,7 @@ function createSelectedActorCard(firstName, lastName, image, id, i) {
 
 
     div.innerHTML = html;
-    console.log(html);
+  
     return div;
 
 }
