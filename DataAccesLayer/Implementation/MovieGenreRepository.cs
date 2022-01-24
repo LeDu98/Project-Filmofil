@@ -32,7 +32,7 @@ namespace DataAccesLayer.Implementation
 
         public List<MovieGenre> GetAll()
         {
-            return context.MovieGenre.Include(m=>m.Genre).ToList();
+            return context.MovieGenre.Include(m=>m.Genre).Include(m=>m.Movie).ToList();
         }
 
         public MovieGenre GetSingle(MovieGenre entity)
