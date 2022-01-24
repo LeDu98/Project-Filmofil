@@ -362,6 +362,7 @@ body {
     max-width: 100%;
     margin: auto;
     padding: 0 30px;
+    margin-bottom: 40px;
 }
 
 #slogan {
@@ -1799,6 +1800,7 @@ ul {
 .detail #content .movie-image img,
 .table {
     max-width: 100%;
+    border-radius: 45px;
 }
 
 .detail #content,
