@@ -320,11 +320,10 @@ namespace Filmofil.Controllers
 
             model.StreamingServices = unitOfWork.StreamingServiceRepository.GetAll();
             model.Studios = unitOfWork.StudioRepository.GetAll();
-            //model.Actors = unitOfWork.ActorRepository.GetAll();
 
             model.SelectListItemActors = CreateSelectListActors(unitOfWork.ActorRepository.GetAll());
-
-            model.Personnels = unitOfWork.PersonnelRepository.GetAll();
+            model.SelectListItemPersonnel = CreateSelectListPersonnel(unitOfWork.PersonnelRepository.GetAll());
+            
             model.Genres = unitOfWork.GenreRepository.GetAll();
             return model;
         }
@@ -343,6 +342,22 @@ namespace Filmofil.Controllers
             }
 
             return selectListItemActors;
+        }
+
+        private List<SelectListItemPersonnel> CreateSelectListPersonnel(List<Personnel> personnels)
+        {
+            List<SelectListItemPersonnel> selectListItemPersonnel = new List<SelectListItemPersonnel>();
+
+            foreach (Personnel personnel in personnels)
+            {
+                selectListItemPersonnel.Add(new SelectListItemPersonnel
+                {
+                    IsSelected = false,
+                    Personnel = personnel
+                });
+            }
+
+            return selectListItemPersonnel;
         }
 
     }
