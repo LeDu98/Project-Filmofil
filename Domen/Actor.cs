@@ -10,6 +10,8 @@ namespace Domen
     {
 
         public double Networth { get; set; }
+
+        public string Biography { get; set; }
         //public List<Movie> Movies { get; set; }
     }
 }

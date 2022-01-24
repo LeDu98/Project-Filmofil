@@ -10,6 +10,8 @@ namespace Domen
     {
         public string Trademark { get; set; }
 
+
+
        // public List<Movie> Movies { get; set; }
     }
 }
