@@ -1,5 +1,4 @@
-﻿@using Domen
-@model List<Movie>
+﻿@model Filmofil.Models.Home.HomeViewModel
 
 @{
     ViewData["Title"] = "Movies";
@@ -10,40 +9,366 @@
 <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
 
 <div>
-	<p>
-    <a asp-action="Create">Create New</a>
-	</p>
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+</div>
+
+<div class="movie-list-container">
+    <h1 class="movie-list-title">NEW RELEASES</h1>
+    <div class="movie-list-wrapper">
+        <div class="movie-list">
+            @foreach (var item in Model.ListOfMovies)
+            {
+                <div class="movie-list-item">
+                    <img class="movie-list-item-img" src="~/img/MoviesImages/@item.Thumbnail" alt="">
+                    <span class="movie-list-item-title">@item.Name</span>
+
+                    <button class="movie-list-item-button" onclick="location.href='@Url.Action("Details","Movies",new { id = item.MovieId })'">Details</button>
+                </div>
+            }
+
+        </div>
+        <i class="fas fa-chevron-right arrow"></i>
+    </div>
+</div>
+
+<div class="movie-list-container">
+    <h1 class="movie-list-title">Action</h1>
+    <div class="movie-list-wrapper">
+        <div class="movie-list">
+            @foreach (var item in Model.ListOfMovieGenres)
+            {
+                if (item.Genre.Name == "Action")
+                {
+                <div class="movie-list-item">
+                    <img class="movie-list-item-img" src="~/img/MoviesImages/@item.Movie.Thumbnail" alt="">
+                    <span class="movie-list-item-title">@item.Movie.Name</span>
+
+                    <button class="movie-list-item-button" onclick="location.href='@Url.Action("Details", "Movies", new { id = item.MovieId })'">Details</button>
+                </div>}
+            }
+
+        </div>
+        <i class="fas fa-chevron-right arrow"></i>
+    </div>
 </div>
 
 
-<section class="light">
-	<div class="container py-2">
-		<div class="h1 text-center text-dark" id="pageHeaderTitle">Movies</div>
 
-		@foreach(var item in Model)
-		{
-			<article class="postcard light green">
-				<a class="postcard__img_link" href="/Movies/Details/@item.MovieId">
-					<img class="postcard__img" src="~/img/MoviesImages/@item.Thumbnail" alt="Image Title" />
-				</a>
-				<div class="postcard__text t-dark">
-					<h1 class="postcard__title green"><a href="Movies/Details/@item.MovieId">@item.Name</a></h1>
-					<div class="postcard__subtitle small">
-						<time datetime="2020-05-25 12:00:00">
-							<i class="fas fa-calendar-alt mr-2"></i>@item.Year
-						</time>
-					</div>
-					<div class="postcard__bar"></div>
-					<div class="postcard__preview-txt">@item.Synopsis</div>
-					<ul class="postcard__tagbox">
-						<li class="tag__item"><i class="fas fa-tag mr-2"></i>@item.Genres</li>
-						<li class="tag__item"><i class="fas fa-clock mr-2"></i>@item.Duration mins.</li>
-						<li class="tag__item play green">
-							<i class="fas fa-star mr-2"></i>@item.Rating
-						</li>
-					</ul>
-				</div>
-			</article>
-		}
-	</div>
-</section>
+
+<style>
+    * {
+        margin: 0;
+    }
+
+    body {
+        font-family: "Roboto", sans-serif;
+    }
+
+    .navbar {
+        width: 100%;
+        height: 50px;
+        background-color: black;
+        position: sticky;
+        top: 0;
+    }
+
+    .navbar-container {
+        display: flex;
+        align-items: center;
+        padding: 0 50px;
+        height: 100%;
+        color: white;
+        font-family: "Sen", sans-serif;
+    }
+
+    .logo-container {
+        flex: 1;
+    }
+
+    .logo {
+        font-size: 30px;
+        color: #4dbf00;
+    }
+
+    .menu-container {
+        flex: 6;
+    }
+
+    .menu-list {
+        display: flex;
+        list-style: none;
+    }
+
+    .menu-list-item {
+        margin-right: 30px;
+    }
+
+        .menu-list-item.active {
+            font-weight: bold;
+        }
+
+    .profile-container {
+        flex: 2;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    .profile-text-container {
+        margin: 0 20px;
+    }
+
+    .profile-picture {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .toggle {
+        width: 40px;
+        height: 20px;
+        background-color: white;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        position: relative;
+    }
+
+    .toggle-icon {
+        color: goldenrod;
+    }
+
+    .toggle-ball {
+        width: 18px;
+        height: 18px;
+        background-color: black;
+        position: absolute;
+        right: 1px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: 1s ease all;
+    }
+
+    .sidebar {
+        width: 50px;
+        height: 100%;
+        background-color: black;
+        position: fixed;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 60px;
+    }
+
+    .left-menu-icon {
+        color: white;
+        font-size: 20px;
+        margin-bottom: 40px;
+    }
+
+    .container {
+        background-color: #151515;
+        min-height: calc(100vh - 50px);
+        color: white;
+    }
+
+    .content-container {
+        margin-left: 50px;
+    }
+
+    .featured-content {
+        height: 50vh;
+        padding: 50px;
+    }
+
+    .featured-title {
+        width: 200px;
+    }
+
+    .featured-desc {
+        width: 500px;
+        color: lightgray;
+        margin: 30px 0;
+    }
+
+    .featured-button {
+        background-color: #4dbf00;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: none;
+        outline: none;
+        font-weight: bold;
+    }
+
+    .movie-list-container {
+        padding: 0 20px;
+    }
+
+    .movie-list-wrapper {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .movie-list {
+        display: flex;
+        align-items: center;
+        height: 300px;
+        transform: translateX(0);
+        transition: all 1s ease-in-out;
+    }
+
+    .movie-list-item {
+        margin-right: 30px;
+        position: relative;
+    }
+
+        .movie-list-item:hover .movie-list-item-img {
+            transform: scale(1.2);
+            margin: 0 30px;
+            opacity: 0.5;
+        }
+
+        .movie-list-item:hover .movie-list-item-title,
+        .movie-list-item:hover .movie-list-item-desc,
+        .movie-list-item:hover .movie-list-item-button {
+            opacity: 1;
+        }
+
+    .movie-list-item-img {
+        transition: all 1s ease-in-out;
+        width: 270px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 20px;
+    }
+
+    .movie-list-item-title {
+        background-color: #333;
+        padding: 0 10px;
+        font-size: 32px;
+        font-weight: bold;
+        position: absolute;
+        top: 10%;
+        left: 50px;
+        opacity: 0;
+        transition: 1s all ease-in-out;
+    }
+
+    .movie-list-item-desc {
+        background-color: #333;
+        padding: 10px;
+        font-size: 14px;
+        position: absolute;
+        top: 30%;
+        left: 50px;
+        width: 230px;
+        opacity: 0;
+        transition: 1s all ease-in-out;
+    }
+
+    .movie-list-item-button {
+        padding: 10px;
+        background-color: #4dbf00;
+        color: white;
+        border-radius: 10px;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        position: absolute;
+        bottom: 20px;
+        left: 50px;
+        opacity: 0;
+        transition: 1s all ease-in-out;
+    }
+
+    .arrow {
+        font-size: 120px;
+        position: absolute;
+        top: 90px;
+        right: 0;
+        color: lightgray;
+        opacity: 0.5;
+        cursor: pointer;
+    }
+
+    .container.active {
+        background-color: white;
+    }
+
+    .movie-list-title.active {
+        color: black;
+    }
+
+    .navbar-container.active {
+        background-color: white;
+        color: black;
+    }
+
+    .sidebar.active {
+        background-color: white;
+    }
+
+    .left-menu-icon.active {
+        color: black;
+    }
+
+    .toggle.active {
+        background-color: black;
+    }
+
+    .toggle-ball.active {
+        background-color: white;
+        transform: translateX(-20px);
+    }
+
+    media only screen and (max-width: 940px) {
+        menu-container
+
+    {
+        display: none;
+    }
+    }
+</style>
+
+<script>
+    const arrows = document.querySelectorAll(".arrow");
+    const movieLists = document.querySelectorAll(".movie-list");
+
+    arrows.forEach((arrow, i) => {
+        const itemNumber = movieLists[i].querySelectorAll("img").length;
+        let clickCounter = 0;
+        arrow.addEventListener("click", () => {
+            const ratio = Math.floor(window.innerWidth / 270);
+            clickCounter++;
+            if (itemNumber - (4 + clickCounter) + (4 - ratio) >= 0) {
+                movieLists[i].style.transform = `translateX(${movieLists[i].computedStyleMap().get("transform")[0].x.value - 300
+                    }px)`;
+            } else {
+                movieLists[i].style.transform = "translateX(0)";
+                clickCounter = 0;
+            }
+        });
+
+        console.log(Math.floor(window.innerWidth / 270));
+    });
+
+    //TOGGLE
+
+    const ball = document.querySelector(".toggle-ball");
+    const items = document.querySelectorAll(
+        ".container,.movie-list-title,.navbar-container,.sidebar,.left-menu-icon,.toggle"
+    );
+
+    ball.addEventListener("click", () => {
+        items.forEach((item) => {
+            item.classList.toggle("active");
+        });
+        ball.classList.toggle("active");
+    });
+</script>
