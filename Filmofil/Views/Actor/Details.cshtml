@@ -2,62 +2,133 @@
 @{
     ViewData["Title"] = "Actors - " + Model.FirstName + " " + Model.LastName;
 }
+<script type="text/javascript" src="~/js/movies-details.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<div class="container" style="margin-top: 5%;">
-    <div class="row">
-        <div class="col-md-6" style="text-align: center;">
-            <img src="~/img/ActorsImages/@Model.Image" style="width: 350px;" />
-        </div>
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1>@Model.FirstName @Model.LastName</h1>
-                </div>
-            </div>
+<div class="inner-container">
 
-            <hr />
-
-            <ul class="list-group">
-
-                <li class="list-group-item"><span class="font-weight-bold">Born : </span> @Model.Born.ToString("dd.MM.yyyy.")</li>
-                <li class="list-group-item"><span class="font-weight-bold">Country : </span> @Model.Country.Name</li>
-                <li class="list-group-item"><span class="font-weight-bold">Networth : </span> $@Model.Networth Million</li>
-            </ul>
-        </div>
+    <div class="movie-image">
+        <img class="details-image" src="~/img/ActorsImages/@Model.Image" alt="@Model.FirstName @Model.LastName">
     </div>
-   
+
+    <div class="movie-actions">
+        <ul class="extra">
+
+            <li id="download-button">
+                <a><i class="fas fa-globe-europe" aria-hidden="true"></i><span>@Model.Country.Name </span></a>
+            </li>
+            <li id="trailer">
+                <a><i class="far fa-calendar-alt" aria-hidden="true"></i><span>@Model.Born.ToString("dd.MM.yyyy.")</span></a>
+            </li>
+
+            <li id="trailer">
+                <a ><i class="fas fa-dollar-sign" aria-hidden="true"></i><span>$@Model.Networth Million</span></a>
+            </li>
+        </ul>
+    </div>
+
 </div>
 
- <br /><h2>Filmography</h2><br />
-    <button type="submit" onclick="showFilmography()">fimography</button>
-    <div class="row" id="actorFilmography">
+<div class="movie-info">
+    
+    <h1 class="entry-title">@Model.FirstName @Model.LastName</h1>
+    
+    <div class="movie-data">
+        <div class="details">
+            <i class="hd">Actor</i>
+            
+            <span>
+                <a href="/years/2019/" rel="tag">@Model.Born.ToString("dd.MM.yyyy.")</a>
+            </span>
+            
+            <span> min</span>
+        </div>
+    </div>
+    <p class="movie-description">
+        <span class="trama">
+            
+        </span>
+        <div class="persons">
+            <h3 style="margin-bottom: 20px;">Filmography</h3>
 
-        @foreach (var item in Model.Actings)
-        {
-            <div class="card" style="width:15em;margin:10px;">
-                <img src="~/img/MoviesImages/@item.Movie.Thumbnail" class="card-img-top" />
-                <div class="card-body">
-                    <div class="card-title">
-                        <h5>@item.Movie.Name</h5>
-                      <h6>Role: @item.Role</h6>
-                      <h6>Income: $@item.Income Millions</h6>
+            @foreach (var item in Model.Actings)
+            {
+                <div class="person">
+                    <div class="img">
+                        <a href="/Movies/Details/@item.MovieId">
+                            <img src="~/img/MoviesImages/@item.Movie.Thumbnail" alt="">
+                        </a>
                     </div>
-                    <a href="/Movies/Details/@item.MovieId" class="btn btn-primary">Read More...</a>
+                    <div class="data">
+                        <div class="name">
+                            <a href="/Movies/Details/@item.MovieId">@item.Movie.Name</a>
+                        </div>
+                        <div class="caracter">@item.Role</div>
+                        <div class="money">$@item.Income Millions</div>
+                    </div>
                 </div>
-            </div>
+
+            }
+
+        </div>
+    </p>
+</div>
+
+
+<style>
+    
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .rate {
+        float: left;
+        height: 46px;
+        padding: 0 10px;
+    }
+
+        .rate:not(:checked) > input {
+            position: absolute;
+            top: -9999px;
         }
-    </div>
-<hr />
-@if (Model.IsAdmin == true)
-{
-    <div>
-       
-        <a asp-action="Index">Back to List</a>
-    </div>
-}
+
+        .rate:not(:checked) > label {
+            float: right;
+            width: 1em;
+            overflow: hidden;
+            white-space: nowrap;
+            cursor: pointer;
+            font-size: 30px;
+            color: #ccc;
+        }
+
+            .rate:not(:checked) > label:before {
+                content: '★ ';
+            }
+
+        .rate > input:checked ~ label {
+            color: #ffc700;
+        }
+
+        .rate:not(:checked) > label:hover,
+        .rate:not(:checked) > label:hover ~ label {
+            color: #deb217;
+        }
+
+        .rate > input:checked + label:hover,
+        .rate > input:checked + label:hover ~ label,
+        .rate > input:checked ~ label:hover,
+        .rate > input:checked ~ label:hover ~ label,
+        .rate > label:hover ~ input:checked ~ label {
+            color: #c59b08;
+        }
+
+    /* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */
+</style>
 
 <script>
-    function showFilmography(){
+    function showFilmography() {
         var x = document.getElementById("actorFilmography");
         if (x.style.display === "none") {
             x.style.display = "flex";

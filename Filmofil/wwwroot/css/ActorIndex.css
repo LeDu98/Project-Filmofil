@@ -312,8 +312,9 @@
     height: 0;
     padding-bottom: calc(~'100% - 16px');
     margin-bottom: 6.6em;
-    h2
-
+   
+}
+h2
 {
     position: absolute;
     top: calc(~'100% - 16px');
@@ -634,7 +635,7 @@ a {
 }
 
 .mc-footer {
-    .materializr(@color-palette, '100');
+    f.materializr(@color-palette, '100');
 }
 
 .mc-btn-action {
