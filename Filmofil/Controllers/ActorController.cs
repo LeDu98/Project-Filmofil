@@ -71,7 +71,7 @@ namespace Filmofil.Controllers
             unitOfWork.ActorRepository.Delete(actor);
             unitOfWork.Save();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Actors","Dashboard");
 
         }
 
@@ -162,7 +162,7 @@ namespace Filmofil.Controllers
             unitOfWork.ActorRepository.Update(actor);
             unitOfWork.Save();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Actors", "Dashboard");
         }
         [Authorize(Roles = "Admin")]
         
@@ -203,7 +203,7 @@ namespace Filmofil.Controllers
 
             });
             unitOfWork.Save();
-            return RedirectToAction("Index");
+            return RedirectToAction("Actors", "Dashboard");
         }
 
         private string GetFileNameAndSaveFile(CreateActorViewModel model)

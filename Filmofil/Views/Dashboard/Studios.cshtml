@@ -13,7 +13,9 @@
 
 <h1>Studio</h1>
 
-@Html.ActionLink("Create", "Create", "Studio")
+<button type="button" onclick="location.href='@Url.Action("Create","Studio")'">Create new Studio</button>
+
+
 <table id="myTable" class="header_fixed">
     <thead>
         <tr>
@@ -39,27 +41,27 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.StudioId)
-            </td>
-            <td>
-                <img src="~/img/studioLogo/@item.LogoImg" />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Headquarter)
-            </td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StudioId)
+                </td>
+                <td>
+                    <img src="~/img/studioLogo/@item.LogoImg" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Headquarter)
+                </td>
 
-            <td>
-                <button type="button" onclick="location.href='@Url.Action("Edit","Studio",new { id = item.StudioId })'">Edit</button>
-            </td>
-            <td>
-                <button type="button" onclick="location.href='@Url.Action("Delete","Studio",new { id = item.StudioId })'">Delete</button>
-            </td>
-        </tr>
+                <td>
+                    <button type="button" onclick="location.href='@Url.Action("Edit","Studio",new { id = item.StudioId })'">Edit</button>
+                </td>
+                <td>
+                    <button type="button" onclick="location.href='@Url.Action("Delete","Studio",new { id = item.StudioId })'">Delete</button>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
@@ -151,5 +153,19 @@
         background-color: #282c39;
         color: #ffffff;
     }
+
+    button {
+        border: none;
+        padding: 7px 20px;
+        border-radius: 20px;
+        background-color: #ffffff;
+        color: #282c39;
+    }
+
+    #main {
+        position: absolute;
+        display: block;
+        background: #1d1b24;
+        width: 100%;
     }
 </style>

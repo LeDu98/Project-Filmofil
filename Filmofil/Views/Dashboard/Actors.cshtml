@@ -12,7 +12,8 @@
 
 <h1>Actors</h1>
 
-@Html.ActionLink("Create", "Create", "Actor")
+<button type="button" onclick="location.href='@Url.Action("Create","Actor")'">Create new Actor</button>
+
 <table id="myTable" class="header_fixed">
     <thead>
         <tr>
@@ -48,52 +49,54 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
+            <tr>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.PersonId)
-            </td>
-            <td>
-                <img src="~/img/ActorsImages/@item.Image" />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @item.Born.ToString("dd.MM.yyyy.")
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PersonId)
+                </td>
+                <td>
+                    <img src="~/img/ActorsImages/@item.Image" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @item.Born.ToString("dd.MM.yyyy.")
+                </td>
 
-            <td>
-                $@Html.DisplayFor(modelItem => item.Networth) Millions
-            </td>
+                <td>
+                    $@Html.DisplayFor(modelItem => item.Networth) Millions
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Country.Name)
-            </td>
-            <td>
-                <button type="button" onclick="location.href='@Url.Action("Edit","Actor",new { id = item.PersonId })'">Edit</button>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country.Name)
+                </td>
+                <td>
+                    <button type="button" onclick="location.href='@Url.Action("Edit","Actor",new { id = item.PersonId })'">Edit</button>
 
-            </td>
-            <td>
-                <button type="button" onclick="location.href='@Url.Action("Delete","Actor",new { id = item.PersonId })'">Delete</button>
+                </td>
+                <td>
+                    <button type="button" onclick="location.href='@Url.Action("Delete","Actor",new { id = item.PersonId })'">Delete</button>
 
-            </td>
-        </tr>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
 
 <style>
-    h1{
+    h1 {
         color: #ffffff;
     }
+
     label {
         color: #ffffff;
     }
-    td img{
+
+    td img {
         height: 60px;
         width: 60px;
         border-radius: 100%;
@@ -106,27 +109,24 @@
         margin: 60px auto;
         font-size: 18px;
         padding: 5rem;
-        
     }
 
-    *{
-        margin:0;
-        padding:0;
-        box-sizing:border-box;
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
 
-    body{
-        width:100%;
-        display:flex;
-        justify-content:center;
-
+    body {
+        width: 100%;
+        display: flex;
+        justify-content: center;
     }
 
-    .header_fixed{
-        height:50px;
-        overflow:auto;
-        margin-top:30px;
-
+    .header_fixed {
+        height: 50px;
+        overflow: auto;
+        margin-top: 30px;
     }
 
         .header_fixed thead th {
@@ -135,36 +135,37 @@
             background-color: #282c39;
             color: #ffffff;
             font-size: 15px;
-            
         }
 
-        tr:nth-child(even){
-            background-color: #ffffff;
-        }
+    tr:nth-child(even) {
+        background-color: #ffffff;
+    }
 
     tr:nth-child(odd) {
         background-color: #404040;
     }
 
-    tr:hover td{
+    tr:hover td {
         color: #282c39;
-        cursor:pointer;
-        background-color:#ffffff;
+        cursor: pointer;
+        background-color: #ffffff;
     }
 
-    th,td{
+    th, td {
         border: 1px solid #dddddd;
         padding: 10px 20px;
     }
 
-    ::-webkit-scrollbar{
+    ::-webkit-scrollbar {
         width: 6px;
     }
-    ::-webkit-scrollbar-track{
-        -webkit-box-shadow:inset 0 0 6px rgba(0,0,0,0.3)
+
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3)
     }
-    ::-webkit-scrollbar-thumb{
-        -webkit-box-shadow:inset 0 0 6px rgba(0,0,0,0.3)
+
+    ::-webkit-scrollbar-thumb {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3)
     }
 
     td button {
@@ -174,6 +175,19 @@
         background-color: #282c39;
         color: #ffffff;
     }
-     
+
+    button {
+        border: none;
+        padding: 7px 20px;
+        border-radius: 20px;
+        background-color: #ffffff;
+        color: #282c39;
     }
+    #main {
+        position: absolute;
+        display: block;
+        background: #1d1b24;
+        width: 100%;
+    }
+   
 </style>

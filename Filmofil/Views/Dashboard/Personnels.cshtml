@@ -11,8 +11,8 @@
 <script src="~/js/dashboardPages.js"></script>
 
 <h1>Personnels</h1>
+<button type="button" onclick="location.href='@Url.Action("Create","Personnel")'">Create new Personnel</button>
 
-@Html.ActionLink("Create", "Create", "Personnel")
 <table id="myTable" class="header_fixed">
     <thead>
         <tr>
@@ -43,36 +43,36 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
+            <tr>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.PersonId)
-            </td>
-            <td>
-                <img src="~/img/PersonnelImages/@item.Image" />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @item.Born.ToString("dd.MM.yyyy.")
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PersonId)
+                </td>
+                <td>
+                    <img src="~/img/PersonnelImages/@item.Image" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @item.Born.ToString("dd.MM.yyyy.")
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Country.Name)
-            </td>
-            <td>
-                <button type="button" onclick="location.href='@Url.Action("Edit","Personnel",new { id = item.PersonId })'">Edit</button>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country.Name)
+                </td>
+                <td>
+                    <button type="button" onclick="location.href='@Url.Action("Edit","Personnel",new { id = item.PersonId })'">Edit</button>
 
-            </td>
-            <td>
-                <button type="button" onclick="location.href='@Url.Action("Delete","Personnel",new { id = item.PersonId })'">Delete</button>
+                </td>
+                <td>
+                    <button type="button" onclick="location.href='@Url.Action("Delete","Personnel",new { id = item.PersonId })'">Delete</button>
 
-            </td>
-        </tr>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
@@ -164,5 +164,19 @@
         background-color: #282c39;
         color: #ffffff;
     }
+
+    button {
+        border: none;
+        padding: 7px 20px;
+        border-radius: 20px;
+        background-color: #ffffff;
+        color: #282c39;
+    }
+
+    #main {
+        position: absolute;
+        display: block;
+        background: #1d1b24;
+        width: 100%;
     }
 </style>

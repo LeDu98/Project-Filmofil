@@ -12,7 +12,10 @@
 
 
 <h1>StreamingServices</h1>
-@Html.ActionLink("Create", "Create", "StreamingService")
+
+<button type="button" onclick="location.href='@Url.Action("Create","StreamingService")'">Create new Streaming Service</button>
+
+
 
 <table id="myTable" class="header_fixed">
     <thead>
@@ -42,36 +45,36 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.StreamingServiceId)
-            </td>
-            <td>
-                <img src="~/img/streamingServiceLogo/@item.LogoImg" />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StreamingServiceId)
+                </td>
+                <td>
+                    <img src="~/img/streamingServiceLogo/@item.LogoImg" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
 
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Headquarter)
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Headquarter)
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
 
-                <button type="button" onclick="location.href='@Url.Action("Edit","StreamingService",new { id = item.StreamingServiceId })'">Edit</button>
-                
+                    <button type="button" onclick="location.href='@Url.Action("Edit","StreamingService",new { id = item.StreamingServiceId })'">Edit</button>
 
-            </td>
-            <td>
-                <button type="button" onclick="location.href='@Url.Action("Delete","StreamingService",new { id = item.StreamingServiceId })'">Delete</button>
 
-            </td>
-        </tr>
+                </td>
+                <td>
+                    <button type="button" onclick="location.href='@Url.Action("Delete","StreamingService",new { id = item.StreamingServiceId })'">Delete</button>
+
+                </td>
+            </tr>
         }
     </tbody>
 </table>
@@ -163,5 +166,19 @@
         background-color: #282c39;
         color: #ffffff;
     }
+
+    button {
+        border: none;
+        padding: 7px 20px;
+        border-radius: 20px;
+        background-color: #ffffff;
+        color: #282c39;
+    }
+
+    #main {
+        position: absolute;
+        display: block;
+        background: #1d1b24;
+        width: 100%;
     }
 </style>
