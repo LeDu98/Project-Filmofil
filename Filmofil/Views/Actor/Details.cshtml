@@ -38,10 +38,9 @@
             <i class="hd">Actor</i>
             
             <span>
-                <a href="/years/2019/" rel="tag">@Model.Born.ToString("dd.MM.yyyy.")</a>
+                @Model.Born.ToString("dd.MM.yyyy.")
             </span>
-            
-            <span> min</span>
+
         </div>
     </div>
     <p class="movie-description">
@@ -53,7 +52,7 @@
 
             @foreach (var item in Model.Actings)
             {
-                <div class="person">
+                <div class="person actor">
                     <div class="img">
                         <a href="/Movies/Details/@item.MovieId">
                             <img src="~/img/MoviesImages/@item.Movie.Thumbnail" alt="">

@@ -4,34 +4,40 @@
     ViewData["Title"] = "Personnels - " + Model.FirstName + " " + Model.LastName;
 }
 
-<div class="container" style="margin-top: 5%;">
-    <div class="row">
-        <div class="col-md-6" style="text-align: center;">
-            <img src="~/img/PersonnelImages/@Model.Image" style="width: 350px;" />
-        </div>
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1>@Model.FirstName @Model.LastName</h1>
-                </div>
-            </div>
+<div class="inner-container">
 
-            <hr />
+    <div class="movie-image">
+        <img class="details-image" src="~/img/PersonnelImages/@Model.Image" alt="@Model.FirstName @Model.LastName">
+    </div>
 
-            <ul class="list-group">
+    <div class="movie-actions">
+        <ul class="extra">
+            <li id="download-button">
+                <a><i class="fas fa-globe-europe" aria-hidden="true"></i><span>@Model.Country.Name </span></a>
+            </li>
+            <li id="trailer">
+                <a><i class="far fa-calendar-alt" aria-hidden="true"></i><span>@Model.Born.ToString("dd.MM.yyyy.")</span></a>
+            </li>
+        </ul>
+    </div>
 
-                <li class="list-group-item"><span class="font-weight-bold">Born : </span> @Model.Born.ToString("dd.MM.yyyy.")</li>
-                <li class="list-group-item"><span class="font-weight-bold">Country : </span> @Model.Country.Name</li>
-                <li class="list-group-item"><span class="font-weight-bold">Trademark : </span> @Model.Trademark</li>
-            </ul>
+</div>
+
+
+<div class="movie-info">
+    
+    <h1 class="entry-title">@Model.FirstName @Model.LastName</h1>
+    
+    <div class="movie-data">
+        <div class="details">
+            <i class="hd">Trademark</i>
+            <br />
+            <br />
+            <span>
+                @Model.Trademark
+            </span>
+
         </div>
     </div>
-</div>
-<hr />
-@if (Model.IsAdmin) { 
-<div>
-    
-    <a asp-action="Index">Back to List</a>
-</div>
-}
 
+</div>

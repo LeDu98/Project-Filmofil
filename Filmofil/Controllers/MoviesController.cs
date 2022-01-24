@@ -257,10 +257,10 @@ namespace Filmofil.Controllers
                 model.Actors.Add((Actor) unitOfWork.ActorRepository.GetSingle(new Actor { PersonId = a.ActorId }));
             }
 
-            model.Personnels = new List<Personnel>();
+            model.Personnel = new List<Personnel>();
             foreach (Position p in movie.Positions)
             {
-                model.Personnels.Add((Personnel)unitOfWork.PersonnelRepository.GetSingle(new Personnel { PersonId = p.PersonnelId }));
+                model.Personnel.Add((Personnel)unitOfWork.PersonnelRepository.GetSingle(new Personnel { PersonId = p.PersonnelId }));
             }
 
             return model;

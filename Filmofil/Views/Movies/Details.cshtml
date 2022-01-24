@@ -58,7 +58,10 @@
     </div>
     <p class="movie-description">
         <span class="trama">@Model.Synopsis</span>
+
+        <!-- Actors -->
         <div class="persons">
+
             <h3 style="margin-bottom: 20px;">Actors</h3>
 
             @foreach (var item in Model.Actings)
@@ -79,8 +82,35 @@
                 </div>
 
             }
-
         </div>
+
+
+        <!-- Personnel -->
+        <div class="persons">
+
+            <h3 style="margin-bottom: 20px;">Staff</h3>
+
+            @foreach (var item in Model.Positions)
+            {
+                <div class="person">
+                    <div class="img">
+                        <a href="/Personnel/Details/@item.PersonnelId">
+                            <img src="~/img/PersonnelImages/@item.Personnel.Image" alt="">
+                        </a>
+                    </div>
+                    <div class="data">
+                        <div class="name">
+                            <a href="/Personnel/Details/@item.PersonnelId">@item.Personnel.FirstName @item.Personnel.LastName</a>
+                        </div>
+                        <div class="caracter">@item.PositionTitle</div>
+                    </div>
+                </div>
+
+            }
+        </div>
+
+
+
     </p>
 </div>
 
@@ -162,14 +192,7 @@
             }
         </div>
     </section>
-
 </div>
-
-<div>
-   
-    <a asp-action="Index">Back to List</a>
-</div>
-
 
 <style>
     * {

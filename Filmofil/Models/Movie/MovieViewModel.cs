@@ -30,7 +30,7 @@ namespace Filmofil.Models.Movie
 
         public List<Domen.Actor> Actors { get; set; }
 
-        public List<Domen.Personnel> Personnels { get; set; }
+        public List<Domen.Personnel> Personnel { get; set; }
 
         public List<Acting> Actings { get; set; }
 
