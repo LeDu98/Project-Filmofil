@@ -34,7 +34,7 @@ namespace Filmofil.Models.Movie
 
         public List<Acting> Actings { get; set; }
 
-        public List<Domen.Position> Positions { get; set; }
+        public List<Position> Positions { get; set; }
 
         public List<SelectListItemPersonnel> SelectListItemPersonnel { get; set; }
 

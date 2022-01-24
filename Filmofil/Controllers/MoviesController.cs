@@ -320,7 +320,6 @@ namespace Filmofil.Controllers
 
             model.StreamingServices = unitOfWork.StreamingServiceRepository.GetAll();
             model.Studios = unitOfWork.StudioRepository.GetAll();
-            //model.Actors = unitOfWork.ActorRepository.GetAll();
 
             model.SelectListItemActors = CreateSelectListActors(unitOfWork.ActorRepository.GetAll());
             model.SelectListItemPersonnel = CreateSelectListPersonnel(unitOfWork.PersonnelRepository.GetAll());
