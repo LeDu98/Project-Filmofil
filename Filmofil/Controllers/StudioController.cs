@@ -67,7 +67,7 @@ namespace Filmofil.Controllers
             { Name = model.Name, Headquarter = model.Headquarter, Founded = model.Founded,LogoImg=uniqueFileName,Website=model.Website });
             unitOfWork.Save();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Studios", "Dashboard");
         }
 
         public IActionResult Details(int id)
@@ -128,7 +128,7 @@ namespace Filmofil.Controllers
             unitOfWork.StudioRepository.Update(studio);
             unitOfWork.Save();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Studios", "Dashboard");
         }
 
         private string GetFileNameAndSaveFile(CreateStudioViewModel model)
@@ -164,7 +164,7 @@ namespace Filmofil.Controllers
             unitOfWork.StudioRepository.Delete(studio);
             unitOfWork.Save();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Studios", "Dashboard");
 
         }
     }

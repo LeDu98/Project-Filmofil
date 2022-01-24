@@ -63,7 +63,7 @@ namespace Filmofil.Controllers
             Personnel personnel = (Personnel)unitOfWork.PersonnelRepository.GetSingle(new Personnel { PersonId = id });
             unitOfWork.PersonnelRepository.Delete(personnel);
             unitOfWork.Save();
-            return RedirectToAction("Index");
+            return RedirectToAction("Personnels", "Dashboard");
 
         }
 
@@ -149,7 +149,7 @@ namespace Filmofil.Controllers
 
             unitOfWork.PersonnelRepository.Update(personnel);
             unitOfWork.Save();
-            return RedirectToAction("Index");
+            return RedirectToAction("Personnels", "Dashboard");
         }
        // [Authorize(Roles = "Admin")]
         public IActionResult Create()
@@ -189,7 +189,7 @@ namespace Filmofil.Controllers
                 Trademark = model.Trademark
             });
             unitOfWork.Save();
-            return RedirectToAction("Index");
+            return RedirectToAction("Personnels", "Dashboard");
         }
 
         private string GetFileNameAndSaveFile(CreatePersonnelViewModel model)

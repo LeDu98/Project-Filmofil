@@ -96,7 +96,7 @@ namespace Filmofil.Controllers
             }
             */
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Movies", "Dashboard");
         }
 
         private string GetFileNameAndSaveFile(MovieCreateModel model)
@@ -259,7 +259,7 @@ namespace Filmofil.Controllers
                 unitOfWork.Save();
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Movies", "Dashboard");
         }
 
         // GET: MovieController/Delete/5
@@ -278,7 +278,7 @@ namespace Filmofil.Controllers
             unitOfWork.MovieRepository.Delete(movie);
             unitOfWork.Save();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Movies", "Dashboard");
         }
 
         private MovieViewModel CreateMovieViewModel(Movie movie)

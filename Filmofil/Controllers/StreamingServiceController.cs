@@ -79,7 +79,7 @@ namespace Filmofil.Controllers
             });
 
             unitOfWork.Save();
-            return RedirectToAction("Index");
+            return RedirectToAction("StreamingServices", "Dashboard");
         }
 
 
@@ -122,7 +122,7 @@ namespace Filmofil.Controllers
             unitOfWork.StreamingServiceRepository.Update(streamingService);
             unitOfWork.Save();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("StreamingServices","Dashboard");
         }
 
 
@@ -155,7 +155,7 @@ namespace Filmofil.Controllers
             unitOfWork.StreamingServiceRepository.Delete(streamingService);
             unitOfWork.Save();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("StreamingServices", "Dashboard");
         }
 
 
