@@ -1700,7 +1700,6 @@ ul {
     background: -moz-linear-gradient( top, rgba(29, 27, 36, 0) 0, rgba(29, 27, 36, 1) 40%, rgba(29, 27, 36, 1) 100% );
     background: -webkit-linear-gradient( top, rgba(29, 27, 36, 0) 0, rgba(29, 27, 36, 1) 40%, rgba(29, 27, 36, 1) 100% );
     background: linear-gradient( to bottom, rgba(29, 27, 36, 0) 0, rgba(29, 27, 36, 1) 40%, rgba(29, 27, 36, 1) 100% );
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#001d1b24', endColorstr='#1d1b24', GradientType=0);
 }
 
     #content .item .item-details .watch-btn span:last-child {
@@ -1825,7 +1824,7 @@ ul {
 
 .detail #content .movie-image img,
 .table {
-    max-width: 100%;
+    width: 512px;
     border-radius: 45px;
 }
 

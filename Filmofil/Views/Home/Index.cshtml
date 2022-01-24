@@ -8,12 +8,6 @@
 
 <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
 
-<div>
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
-</div>
-
 <div class="movie-list-container">
     <h1 class="movie-list-title">NEW RELEASES</h1>
     <div class="movie-list-wrapper">
@@ -172,7 +166,6 @@
     }
 
     .container {
-        background-color: #151515;
         min-height: calc(100vh - 50px);
         color: white;
     }
@@ -249,7 +242,7 @@
     }
 
     .movie-list-item-title {
-        background-color: #333;
+        background-color: #282c39;
         padding: 0 10px;
         font-size: 32px;
         font-weight: bold;
@@ -261,7 +254,7 @@
     }
 
     .movie-list-item-desc {
-        background-color: #333;
+        background-color: #282c39;
         padding: 10px;
         font-size: 14px;
         position: absolute;
@@ -274,7 +267,7 @@
 
     .movie-list-item-button {
         padding: 10px;
-        background-color: #4dbf00;
+        background-color: #282c39;
         color: white;
         border-radius: 10px;
         outline: none;
@@ -327,13 +320,6 @@
         transform: translateX(-20px);
     }
 
-    media only screen and (max-width: 940px) {
-        menu-container
-
-    {
-        display: none;
-    }
-    }
 </style>
 
 <script>

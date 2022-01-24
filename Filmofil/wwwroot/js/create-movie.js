@@ -16,6 +16,8 @@
         var selectedActors = tableActors.rows('.selected').data();
         var selectedActorsHTML = document.getElementById('selected-actors');
 
+        selectedActorsHTML.innerHTML  = "<h2>Selected actors:</h2>";
+
         for (let i = 0; i < selectedActors.length; i++) {
 
             let firstName = selectedActors[i][2];
@@ -27,12 +29,18 @@
 
         }
 
+        $('html,body').animate({
+            scrollTop: $("#selected-actors").offset().top - 150
+        }, 'slow');
+
     });
 
     $('#button-add-personnel').click(function () {
-        alert('klik');
+
         var selectedPersonnel = tablePersonnel.rows('.selected').data();
         var selectedPersonnelHTML = document.getElementById('selected-personnel');
+
+        selectedPersonnelHTML.innerHTML = "<h2>Selected personnel:</h2>";
 
         for (let i = 0; i < selectedPersonnel.length; i++) {
 
@@ -44,6 +52,10 @@
             selectedPersonnelHTML.appendChild(createSelectedPersonnelCard(firstName, lastName, image, parseInt(id), i));
 
         }
+
+        $('html,body').animate({
+            scrollTop: $("#selected-personnel").offset().top - 150
+        },'slow');
 
     });
 
@@ -58,23 +70,23 @@ function createSelectedActorCard(firstName, lastName, image, id, i) {
     div.style.maxWidth = "540px"
 
     let html = '<div class="row no-gutters" >' +
-                    '<div class="col-md-4">' +
-                        '<img src=' + image + ' class="card-img">' +
-                    '</div>' +
-                    '<div class="col-md-8">' +
-                        '<div class="card-body">' +
-                            '<h5 class="card-title">' + firstName + lastName + '</h5>' +
-                            '<input type="hidden" name="Actings[' + i + '].ActorId" value="' + id + '" />' +
-                            '<label for="fname">Role:</label>' +
-                            '<input type="text" id="fname" name="Actings[' + i + '].Role"><br><br>' +
-                            '<label for="fname">Income:</label>' +
-                            '<input type="text" id="fname" name="Actings[' + i + '].Income"><br><br>' +
-                        '</div>' +
-                    '</div>' +
-                '</div>';
+        '<div class="col-md-4">' +
+        '<img src=' + image + ' class="card-img">' +
+        '</div>' +
+        '<div class="col-md-8">' +
+        '<div class="card-body">' +
+        '<h5 class="card-title">' + firstName + lastName + '</h5>' +
+        '<input type="hidden" name="Actings[' + i + '].ActorId" value="' + id + '" />' +
+        '<label for="fname">Role:</label>' +
+        '<input type="text" id="fname" name="Actings[' + i + '].Role"><br><br>' +
+        '<label for="fname">Income:</label>' +
+        '<input type="text" id="fname" name="Actings[' + i + '].Income"><br><br>' +
+        '</div>' +
+        '</div>' +
+        '</div>';
 
     div.innerHTML = html;
-  
+
     return div;
 
 }
@@ -88,18 +100,18 @@ function createSelectedPersonnelCard(firstName, lastName, image, id, i) {
     div.style.maxWidth = "540px"
 
     let html = '<div class="row no-gutters" >' +
-                    '<div class="col-md-4">' +
-                    '<img src=' + image + ' class="card-img">' +
-                    '</div>' +
-                    '<div class="col-md-8">' +
-                        '<div class="card-body">' +
-                        '<h5 class="card-title">' + firstName + lastName + '</h5>' +
-                        '<input type="hidden" name="Positions[' + i + '].PersonnelId" value="' + id + '" />' +
-                        '<label for="fname">Position</label>' +
-                        '<input type="text" id="fname" name="Positions[' + i + '].PositionTitle"><br><br>' +
-                        '</div>' +
-                    '</div>' +
-                '</div>';
+        '<div class="col-md-4">' +
+        '<img src=' + image + ' class="card-img">' +
+        '</div>' +
+        '<div class="col-md-8">' +
+        '<div class="card-body">' +
+        '<h5 class="card-title">' + firstName + lastName + '</h5>' +
+        '<input type="hidden" name="Positions[' + i + '].PersonnelId" value="' + id + '" />' +
+        '<label for="fname">Position</label>' +
+        '<input type="text" id="fname" name="Positions[' + i + '].PositionTitle"><br><br>' +
+        '</div>' +
+        '</div>' +
+        '</div>';
 
     div.innerHTML = html;
 
