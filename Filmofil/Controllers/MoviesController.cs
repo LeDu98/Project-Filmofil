@@ -25,6 +25,7 @@ namespace Filmofil.Controllers
             this.hostingEnvironment = hostingEnvironment;
         }
 
+
         // GET: MovieController
         public IActionResult Index()
         {
@@ -32,6 +33,7 @@ namespace Filmofil.Controllers
 
             return View(model);
         }
+
 
         // GET: MovieController/Details/5
         public IActionResult Details(int id)
@@ -47,6 +49,7 @@ namespace Filmofil.Controllers
             return View(model);
         }
 
+
         // GET: MovieController/Create
         public IActionResult Create()
         {
@@ -54,6 +57,7 @@ namespace Filmofil.Controllers
 
             return View(model);
         }
+
 
         // POST: MovieController/Create
         [HttpPost]
@@ -64,7 +68,6 @@ namespace Filmofil.Controllers
                 return Create();
             }
 
-            /*
             string uniqueFileName = null;
             if (model.Thumbnail != null)
             {
@@ -94,10 +97,15 @@ namespace Filmofil.Controllers
                 unitOfWork.MovieGenreRepository.Add(mg);
                 unitOfWork.Save();
             }
-            */
 
-            return RedirectToAction("Movies", "Dashboard");
+            AddActors(movieId, model.Actings);
+
+            AddPersonnel(movieId, model.Positions);
+
+            return RedirectToAction("Details", "Movies", new {id = movieId});
+
         }
+
 
         private string GetFileNameAndSaveFile(MovieCreateModel model)
         {
@@ -110,6 +118,7 @@ namespace Filmofil.Controllers
 
             return uniqueFileName;
         }
+
 
         [HttpPost]
         public IActionResult AddReview(MovieViewModel model)
@@ -137,66 +146,6 @@ namespace Filmofil.Controllers
             
         }
 
-        public IActionResult AddActor(int id)
-        {
-            CreateMovieActorViewModel model = new CreateMovieActorViewModel();
-            List<Acting> actings = new List<Acting>();
-            Actor actor = new Actor();
-            actings = unitOfWork.ActingRepository.GetAll().Where(m => m.MovieId == id).ToList();
-
-            List<Actor> list = new List<Actor>();
-            list = unitOfWork.ActorRepository.GetAll().ToList();
-
-            foreach(Acting a in actings)
-            {
-                actor = unitOfWork.ActorRepository.GetSingle(new Actor { PersonId = a.ActorId });
-                list.Remove(actor);
-            }
-            model.Actors = list;
-            
-            return View(model);
-        }
-
-        [HttpPost]
-        public IActionResult AddActor(int id,CreateMovieActorViewModel model)
-        {
-            
-          unitOfWork.ActingRepository.Add(new Acting { MovieId = id, ActorId = model.ActorId,  Income = model.Income, Role = model.Role });
-          unitOfWork.Save();
-          return RedirectToAction("AddActor");
-            
-           
-        }
-
-        public IActionResult AddPersonnel(int id)
-        {
-            CreateMoviePersonnelViewModel model = new CreateMoviePersonnelViewModel();
-            List<Position> positions = new List<Position>();
-            Personnel personnel = new Personnel();
-            positions = unitOfWork.PositionRepository.GetAll().Where(m => m.MovieId == id).ToList();
-
-            List<Personnel> list = new List<Personnel>();
-            list = unitOfWork.PersonnelRepository.GetAll().ToList();
-
-            foreach (Position a in positions)
-            {
-                personnel = unitOfWork.PersonnelRepository.GetSingle(new Personnel { PersonId = a.PersonnelId });
-                list.Remove(personnel);
-            }
-            model.Personnels = list;
-
-            return View(model);
-        }
-
-        [HttpPost]
-        public IActionResult AddPersonnel(int id, CreateMoviePersonnelViewModel model)
-        {
-
-            unitOfWork.PositionRepository.Add(new Position { MovieId = id, PersonnelId = model.PersonnelId, PositionTitle=model.PositionTitle });
-            unitOfWork.Save();
-            return RedirectToAction("AddPersonnel");
-
-        }
 
         // GET: MovieController/Edit/5
         public IActionResult Edit(int id)
@@ -213,6 +162,7 @@ namespace Filmofil.Controllers
 
             return View(model);
         }
+
 
         // POST: MovieController/Edit/5
         [HttpPost]
@@ -262,6 +212,7 @@ namespace Filmofil.Controllers
             return RedirectToAction("Movies", "Dashboard");
         }
 
+
         // GET: MovieController/Delete/5
         public IActionResult Delete(int id)
         {
@@ -269,6 +220,7 @@ namespace Filmofil.Controllers
             MovieViewModel model = new MovieViewModel { MovieId = movie.MovieId, Duration = movie.Duration, Name = movie.Name, Rating = movie.Rating, Synopsis = movie.Synopsis, Thumbnail = movie.Thumbnail, Trailer = movie.Trailer, Year = movie.Year };
             return View(model);
         }
+
 
         // POST: MovieController/Delete/5
         [HttpPost]
@@ -280,6 +232,7 @@ namespace Filmofil.Controllers
 
             return RedirectToAction("Movies", "Dashboard");
         }
+
 
         private MovieViewModel CreateMovieViewModel(Movie movie)
         {
@@ -314,6 +267,7 @@ namespace Filmofil.Controllers
 
         }
 
+
         private MovieCreateModel CreateModel()
         {
             MovieCreateModel model = new MovieCreateModel();
@@ -327,6 +281,7 @@ namespace Filmofil.Controllers
             model.Genres = unitOfWork.GenreRepository.GetAll();
             return model;
         }
+
 
         private List<SelectListItemActors> CreateSelectListActors(List<Actor> actors)
         {
@@ -344,6 +299,7 @@ namespace Filmofil.Controllers
             return selectListItemActors;
         }
 
+
         private List<SelectListItemPersonnel> CreateSelectListPersonnel(List<Personnel> personnels)
         {
             List<SelectListItemPersonnel> selectListItemPersonnel = new List<SelectListItemPersonnel>();
@@ -359,6 +315,35 @@ namespace Filmofil.Controllers
 
             return selectListItemPersonnel;
         }
+
+        
+        private bool AddActors(int movieId, List<Acting> actings)
+        {
+            foreach(Acting acting in actings)
+            {
+                unitOfWork.ActingRepository.Add(new Acting { MovieId = movieId, ActorId = acting.ActorId, Income = acting.Income, Role = acting.Role });
+            }
+
+            unitOfWork.Save();
+
+            return true;
+        }
+
+
+        public bool AddPersonnel(int movieId, List<Position> positions)
+        {
+
+            foreach (Position position in positions)
+            {
+                unitOfWork.PositionRepository.Add(new Position { MovieId = movieId, PersonnelId = position.PersonnelId, PositionTitle = position.PositionTitle });
+            }
+
+            unitOfWork.Save();
+
+            return true;
+
+        }
+
 
     }
 }
