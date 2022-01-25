@@ -30,6 +30,8 @@ namespace DataAccesLayer.Implementation
         public List<Actor> GetAll()
         {
             return context.Actors.Include(a=>a.Country).ToList();
+
+            return context.Actors.OrderByDescending(o => o.Born).Where(o => o.CountryId == 1).Take(10).ToList();
         }
 
         public Actor GetSingle(Actor entity)
