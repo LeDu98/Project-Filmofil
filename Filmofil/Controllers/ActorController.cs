@@ -52,7 +52,7 @@ namespace Filmofil.Controllers
             return View(model);
 
         }
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         
         public IActionResult Delete(int id)
         {
@@ -64,7 +64,7 @@ namespace Filmofil.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public IActionResult Delete(int id, ActorViewModel model)
         {
             Actor actor = (Actor)unitOfWork.ActorRepository.GetSingle(new Actor { PersonId = id });
@@ -120,7 +120,7 @@ namespace Filmofil.Controllers
         }
 
 
-        [Authorize(Roles = "Admin")]
+      //  [Authorize(Roles = "Admin")]
         public IActionResult Edit(int id)
         {
             Actor actor = (Actor)unitOfWork.ActorRepository.GetSingle(new Actor { PersonId = id });
@@ -134,7 +134,7 @@ namespace Filmofil.Controllers
         // POST: Actor/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+       // [Authorize(Roles = "Admin")]
         public IActionResult Edit(int id, CreateActorViewModel model)
         {
             Actor actor = (Actor)unitOfWork.ActorRepository.GetSingle(new Actor { PersonId = id });
@@ -182,7 +182,7 @@ namespace Filmofil.Controllers
 
         //POST: ActorController/Create
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+       // [Authorize(Roles = "Admin")]
         public IActionResult Create(CreateActorViewModel model)
         {
             if (!ModelState.IsValid)

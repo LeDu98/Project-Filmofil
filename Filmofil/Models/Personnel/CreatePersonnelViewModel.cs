@@ -15,6 +15,7 @@ namespace Filmofil.Models.Personnel
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
+        [Required(ErrorMessage = "This field is required!")]
         [DataType(DataType.Date)]
         public DateTime Born { get; set; }
 

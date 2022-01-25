@@ -13,8 +13,8 @@ namespace Filmofil.Models
         public string Name { get; set; }
         [Required]
         public string Headquarter { get; set; }
+
         //[Required(ErrorMessage = "Obavezno polje!")]
-        [Required]
         [DataType(DataType.Date)]
         public DateTime Founded { get; set; }
 

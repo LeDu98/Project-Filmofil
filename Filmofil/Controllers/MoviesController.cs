@@ -97,10 +97,17 @@ namespace Filmofil.Controllers
                 unitOfWork.MovieGenreRepository.Add(mg);
                 unitOfWork.Save();
             }
-
+            if (model.Actings != null) 
+            {
             AddActors(movieId, model.Actings);
 
+            }
+            if (model.Positions != null)
+            {
             AddPersonnel(movieId, model.Positions);
+
+            }
+
 
             return RedirectToAction("Details", "Movies", new {id = movieId});
 
