@@ -24,13 +24,48 @@ namespace Filmofil.Controllers
         // GET: MovieController
         public IActionResult Index()
         {
-            List<Movie> movies = unitOfWork.MovieRepository.GetAll().OfType<Movie>().ToList();
+            List<Movie> newReleasesMovies = unitOfWork.MovieRepository.GetAll().OrderByDescending(m => m.MovieId).Take(10).ToList();
 
-            List<MovieGenre> movieGenres = unitOfWork.MovieGenreRepository.GetAll().OfType<MovieGenre>().ToList();
-            HomeViewModel model = new HomeViewModel();
-            model.ListOfMovieGenres = movieGenres;
-            model.ListOfMovies = movies;
+            List<Movie> topRatedMovies = unitOfWork.MovieRepository.GetAll().OrderByDescending(m => m.Rating).Take(10).ToList();
+
+            List<MovieGenre> actionMovies = unitOfWork.MovieGenreRepository.GetAll().OrderByDescending(mg => mg.Movie.Rating).Where(g => g.Genre.Name == "Action").Take(10).ToList();
+
+            List<MovieGenre> comedyMovies= unitOfWork.MovieGenreRepository.GetAll().OrderByDescending(mg => mg.Movie.Rating).Where(g => g.Genre.Name == "Comedy").Take(10).ToList();
+            List<MovieGenre> dramaMovies = unitOfWork.MovieGenreRepository.GetAll().OrderByDescending(mg => mg.Movie.Rating).Where(g => g.Genre.Name == "Drama").Take(10).ToList();
+
+            List<MovieGenre> fantasyMovies = unitOfWork.MovieGenreRepository.GetAll().OrderByDescending(mg => mg.Movie.Rating).Where(g => g.Genre.Name == "Fantasy").Take(10).ToList(); 
+            List<MovieGenre> horrorMovies = unitOfWork.MovieGenreRepository.GetAll().OrderByDescending(mg => mg.Movie.Rating).Where(g => g.Genre.Name == "Horror").Take(10).ToList();
+
+            List<MovieGenre> mysteryMovies = unitOfWork.MovieGenreRepository.GetAll().OrderByDescending(mg => mg.Movie.Rating).Where(g => g.Genre.Name == "Mystery").Take(10).ToList();
+            List<MovieGenre> romanceMovies = unitOfWork.MovieGenreRepository.GetAll().OrderByDescending(mg => mg.Movie.Rating).Where(g => g.Genre.Name == "Romance").Take(10).ToList();
+
+            List<MovieGenre> thrillerMovies = unitOfWork.MovieGenreRepository.GetAll().OrderByDescending(mg => mg.Movie.Rating).Where(g => g.Genre.Name == "Thriller").Take(10).ToList();
+            List<MovieGenre> westernMovies = unitOfWork.MovieGenreRepository.GetAll().OrderByDescending(mg => mg.Movie.Rating).Where(g => g.Genre.Name == "Western").Take(10).ToList();
+
+            List<MovieGenre> crimeMovies = unitOfWork.MovieGenreRepository.GetAll().OrderByDescending(mg => mg.Movie.Rating).Where(g => g.Genre.Name == "Crime").Take(10).ToList();
+            List<MovieGenre> adventureMovies = unitOfWork.MovieGenreRepository.GetAll().OrderByDescending(mg => mg.Movie.Rating).Where(g => g.Genre.Name == "Adventure").Take(10).ToList();
+
+
+            HomeViewModel model = new HomeViewModel
+            {
+                Action = actionMovies,
+                Adventure = adventureMovies,
+                Comedy = comedyMovies,
+                Crime = crimeMovies,
+                Drama = dramaMovies,
+                Fantasy = fantasyMovies,
+                Horror = horrorMovies,
+                Mystery = mysteryMovies,
+                NewReleases = newReleasesMovies,
+                Romance = romanceMovies,
+                Thriller = thrillerMovies,
+                TopRated = topRatedMovies,
+                Western = westernMovies
+            };
+            
             return View(model);
         }
+
+        
     }
 }
