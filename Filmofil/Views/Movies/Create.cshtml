@@ -57,8 +57,29 @@
         -webkit-appearance: button;
         cursor: pointer;
     }
-
 </style>
+<style>
+    .mul-select {
+        width: 100%;
+    }
+
+        .mul-select body {
+            color: #000000;
+        }
+</style>
+
+<script>
+    $(document).ready(function () {
+        $(".mul-select").select2({
+            placeholder: "Select genres", // placeholder
+            tags: true,
+            tokenSeparators: ['/', ',', ',', ' ']
+        });
+    });
+</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
 
 
 <h1>Create new movie</h1>
@@ -80,8 +101,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label asp-for="GenreIds" class="control-label">Studio</label>
-                        <select asp-for="GenreIds" class="form-control" id="GenreId" size=3 multiple="multiple">
+                        <label asp-for="GenreIds" class="control-label">Genres</label>
+                        <select asp-for="GenreIds" class="mul-select" id="GenreId">
                             @foreach (var item in Model.Genres)
                             {
                                 <option value="@item.GenreId" id="@item.GenreId">@item.Name</option>
@@ -99,7 +120,7 @@
 
                     <div class="form-group">
                         <label asp-for="Year" class="control-label"></label>
-                        <input asp-for="Year" class="form-control" />
+                        <input asp-for="Year" class="form-control" value="@DateTime.Now"/>
                         <span asp-validation-for="Year" class="text-danger"></span>
                     </div>
 

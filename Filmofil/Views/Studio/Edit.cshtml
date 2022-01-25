@@ -40,6 +40,10 @@
                 <span asp-validation-for="LogoImg" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <input type="hidden" asp-for="ImageName" value="@Model.ImageName" class="form-control" />
+                <span asp-validation-for="ImageName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>

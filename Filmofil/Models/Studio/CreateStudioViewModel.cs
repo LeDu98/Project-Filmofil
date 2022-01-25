@@ -21,5 +21,7 @@ namespace Filmofil.Models
         public string Website { get; set; }
 
         public IFormFile LogoImg { get; set; }
+
+        public string ImageName { get; set; }
     }
 }

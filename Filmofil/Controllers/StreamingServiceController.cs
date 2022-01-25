@@ -86,9 +86,9 @@ namespace Filmofil.Controllers
         // GET: StreamingServiceController/Edit/5
         public IActionResult Edit(int id)
         {
-            StreamingService streamingService = (StreamingService) unitOfWork.StreamingServiceRepository.GetSingle(new StreamingService { StreamingServiceId = id });
+            StreamingService ss = (StreamingService) unitOfWork.StreamingServiceRepository.GetSingle(new StreamingService { StreamingServiceId = id });
 
-            StreamingServiceViewModel model = CreateModel(streamingService);
+            StreamingServiceCreateModel model = new StreamingServiceCreateModel { Founded=ss.Founded,Headquarter=ss.Headquarter,ImageName=ss.LogoImg,Name=ss.Name,Price=ss.Price,Website=ss.Website};
 
             return View(model);
         }
@@ -110,6 +110,12 @@ namespace Filmofil.Controllers
             if (model.Img != null)
             {
                 uniqueFileName = GetFileNameAndSaveFile(model);
+                streamingService.LogoImg = uniqueFileName;
+            }
+            else
+            {
+                streamingService.LogoImg = model.ImageName;
+
             }
 
             streamingService.Name = model.Name;
@@ -117,7 +123,6 @@ namespace Filmofil.Controllers
             streamingService.Price = model.Price;
             streamingService.Website = model.Website;
             streamingService.Headquarter = model.Headquarter;
-            streamingService.LogoImg = uniqueFileName;
 
             unitOfWork.StreamingServiceRepository.Update(streamingService);
             unitOfWork.Save();

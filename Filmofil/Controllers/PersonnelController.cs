@@ -17,6 +17,7 @@ namespace Filmofil.Controllers
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IHostingEnvironment hostingEnvironment;
+        private string imgName;
 
         public PersonnelController(IUnitOfWork unitOfWork, IHostingEnvironment hostingEnvironment)
         {
@@ -117,6 +118,7 @@ namespace Filmofil.Controllers
 
             CreatePersonnelViewModel model = CreateModel(personnel);
             model.Countries = unitOfWork.CountryRepository.GetAll().OfType<Country>().ToList();
+            
             return View(model);
         }
 
@@ -137,6 +139,12 @@ namespace Filmofil.Controllers
             if (model.Image != null)
             {
                 uniqueFileName = GetFileNameAndSaveFile(model);
+                personnel.Image = uniqueFileName;
+
+            }
+            else
+            {
+                personnel.Image = model.ImageName;
             }
 
 
@@ -145,7 +153,6 @@ namespace Filmofil.Controllers
             personnel.Born = model.Born;
             personnel.CountryId = model.CountryId;
             personnel.Trademark = model.Trademark;
-            personnel.Image = uniqueFileName;
 
             unitOfWork.PersonnelRepository.Update(personnel);
             unitOfWork.Save();

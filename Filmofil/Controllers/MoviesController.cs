@@ -158,6 +158,7 @@ namespace Filmofil.Controllers
             model.Synopsis = m.Synopsis;
             model.Trailer = m.Trailer;
             model.Year = m.Year;
+            model.ThumbnailName = m.Thumbnail;
             
 
             return View(model);
@@ -175,10 +176,7 @@ namespace Filmofil.Controllers
             }
             string uniqueFileName = null;
 
-            if (model.Thumbnail != null)
-            {
-                uniqueFileName = GetFileNameAndSaveFile(model);
-            }
+            
 
             Movie m = new Movie();
             m.MovieId = id;
@@ -190,6 +188,16 @@ namespace Filmofil.Controllers
             m.Trailer = model.Trailer;
             m.Year = model.Year;
             m.Duration = model.Duration;
+
+            if (model.Thumbnail != null)
+            {
+                uniqueFileName = GetFileNameAndSaveFile(model);
+                m.Thumbnail = uniqueFileName;
+            }
+            else
+            {
+                m.Thumbnail = model.ThumbnailName;
+            }
 
 
             unitOfWork.MovieRepository.Update(m);

@@ -80,7 +80,7 @@ namespace Filmofil.Controllers
         {
             Studio studio = (Studio)unitOfWork.StudioRepository.GetSingle(new Studio { StudioId = id });
 
-            CreateStudioViewModel model = new CreateStudioViewModel() {Founded=studio.Founded,Website=studio.Website,Headquarter=studio.Headquarter,Name=studio.Name };
+            CreateStudioViewModel model = new CreateStudioViewModel() {Founded=studio.Founded,Website=studio.Website,Headquarter=studio.Headquarter,Name=studio.Name,ImageName=studio.LogoImg };
 
             return View(model);
         }
@@ -115,6 +115,11 @@ namespace Filmofil.Controllers
             if (model.LogoImg != null)
             {
                 uniqueFileName = GetFileNameAndSaveFile(model);
+                studio.LogoImg = uniqueFileName;
+            }
+            else
+            {
+                studio.LogoImg = model.ImageName;
             }
 
 
@@ -122,7 +127,6 @@ namespace Filmofil.Controllers
             studio.Headquarter = model.Headquarter;
             studio.Founded = model.Founded;
             studio.Website = model.Website;
-            studio.LogoImg = uniqueFileName;
            
 
             unitOfWork.StudioRepository.Update(studio);

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Filmofil.Models.Movie
 {
@@ -12,6 +13,7 @@ namespace Filmofil.Models.Movie
 
         public int Duration { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime Year { get; set; }
 
         public string Synopsis { get; set; }
@@ -19,6 +21,8 @@ namespace Filmofil.Models.Movie
         public double Rating { get; set; }
 
         public IFormFile Thumbnail { get; set; }
+
+        public string ThumbnailName { get; set; }
 
         public string Trailer { get; set; }
 

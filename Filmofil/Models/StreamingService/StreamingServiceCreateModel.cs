@@ -12,6 +12,8 @@ namespace Filmofil.Models
 
         public IFormFile Img { get; set; }
 
+        public string ImageName { get; set; }
+
         public string Headquarter { get; set; }
 
         public DateTime Founded { get; set; }

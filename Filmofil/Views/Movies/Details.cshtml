@@ -38,10 +38,10 @@
     <div class="movie-data">
         <div class="details">
             <i class="hd">HD</i>
-            <span id='Rated'>PG-13</span>
-            <span>
-                <a href="/years/2019/" rel="tag">@Model.Year.Year</a>
-            </span>
+            <span id='Rated'>@Model.Year.ToString("yyyy")</span>
+         <span>
+                <a href="/years/2019/" rel="tag"></a>
+            </span> 
             |
             @{
                 foreach (var item in Model.Genres)

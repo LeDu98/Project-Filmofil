@@ -97,6 +97,7 @@ namespace Filmofil.Controllers
                 Networth = a.Networth,
                 PersonId = a.PersonId,
                 Actings = lista,
+                Biography = a.Biography,
                 IsAdmin = user.IsInRole("Admin")
             };
 
@@ -149,6 +150,11 @@ namespace Filmofil.Controllers
             if (model.Image != null)
             {
                 uniqueFileName = GetFileNameAndSaveFile(model);
+                actor.Image = uniqueFileName;
+            }
+            else
+            {
+                actor.Image = model.ImageName;
             }
 
 
@@ -157,14 +163,14 @@ namespace Filmofil.Controllers
             actor.Born = model.Born;
             actor.CountryId = model.CountryId;
 
-            actor.Image = uniqueFileName;
+            
 
             unitOfWork.ActorRepository.Update(actor);
             unitOfWork.Save();
 
             return RedirectToAction("Actors", "Dashboard");
         }
-        [Authorize(Roles = "Admin")]
+        
         
         public IActionResult Create()
         {
