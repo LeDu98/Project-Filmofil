@@ -24,7 +24,7 @@ namespace Filmofil.Controllers
         // GET: MovieController
         public IActionResult Index()
         {
-            List<Movie> newReleasesMovies = unitOfWork.MovieRepository.GetAll().OrderByDescending(m => m.MovieId).Take(10).ToList();
+            List<Movie> newReleasesMovies = unitOfWork.MovieRepository.GetAll().OrderByDescending(m => m.Year).Take(10).ToList();
 
             List<Movie> topRatedMovies = unitOfWork.MovieRepository.GetAll().OrderByDescending(m => m.Rating).Take(10).ToList();
 

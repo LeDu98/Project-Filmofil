@@ -8,6 +8,9 @@
     .card:hover {
         box-shadow: -1px 9px 40px -12px #808080;
     }
+    .card-content{
+        display:contents;
+    }
 </style>
 
 <script>
@@ -29,7 +32,7 @@
     {
         <h3>Actor is not found!</h3>
     }
-    
+    <div class="card-content">
         @foreach (var item in Model.Actors)
         {
             <div class="card" style="width:10em;margin:10px;">
@@ -40,106 +43,94 @@
                     </div>
                     <a href="/Actor/Details/@item.PersonId" class="btn btn-primary">Read More...</a>
                 </div>
+
             </div>
         }
-    
-</div>
 
-<section class="container">
-    <div class="page-header">
-        <h1>
-            Material cards demo<br>
-            <small>See full features on <a href="https://github.com/marlenesco/material-cards" target="_blank">Github</a></small>
-        </h1>
     </div>
-
-    <div class="row active-with-click">
-        @foreach (var item in Model.Actors) { 
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <article class="material-card Red">
-                    <h2>
-                        <span>@item.FirstName @item.LastName</span>
-                        <strong>
-                            <i class="fa fa-fw fa-star"></i>
-                            @item.Networth
-                        </strong>
-                    </h2>
-                    <div class="mc-content">
-                        <div class="img-container">
-                            <img class="img-responsive" src="">
-                        </div>
-                        <div class="mc-description">
-                           @item.FirstName @item.LastName @item.Born @item.Country
-                        </div>
-                    </div>
-                    <a class="mc-btn-action">
-                        <i class="fa fa-bars"></i>
-                    </a>
-                    <div class="mc-footer">
-                        <h4>
-                            Social
-                        </h4>
-                        <a class="fa fa-fw fa-facebook"></a>
-                        <a class="fa fa-fw fa-twitter"></a>
-                        <a class="fa fa-fw fa-linkedin"></a>
-                        <a class="fa fa-fw fa-google-plus"></a>
-                    </div>
-                </article>
-            </div>}
-       
-            
+    <div class="pagination">
         
     </div>
-</section>
+</div>
+
 
 
 
 <script src="~/lib/jquery/dist/jquery.js"></script>
+
+
+<style src="~/css/ActorIndex"></style>
+
 <script type="text/javascript">
-    $('.card').hover(
-        function () {
-            $(this).animate({
-                marginTop: "-=1%",
-                marginBottom: "+=1%"
-            }, 200)
-        },
-        function () {
-            $(this).animate({
-                marginTop: "+=1%",
-                marginBottom: "-=1%"
-            })
+    function getPageList(totalPages, page, maxLength) {
+        function range(start, end) {
+            return Array.from(Array(end - start + 1), (_, i) => i + start);
         }
-    )
+
+        var sideWidth = maxLength < 9 ? 1 : 2;
+        var leftWidth = (maxLength - sideWidth * 2 - 3) >> 1;
+        var rightWidth = (maxLength - sideWidth * 2 - 3) >> 1;
+
+        if (totalPages <= maxLength) {
+            return range(1, totalPages);
+        }
+
+        if (page <= maxLength - sideWidth - 1 - rightWidth) {
+            return range(1, maxLength - sideWidth - 1).concat(0, range(totalPages - sideWidth + 1, totalPages));
+        }
+
+        if (page >= totalPages - sideWidth - 1 - rightWidth) {
+            return range(1, sideWidth).concat(0, range(totalPages - sideWidth - 1 - rightWidth - leftWidth, totalPages));
+        }
+
+        return range(1, sideWidth).concat(0, range(page - leftWidth, page + rightWidth), 0, range(totalPages - sideWidth + 1, totalPages));
+    }
 
     $(function () {
-        $('.material-card > .mc-btn-action').click(function () {
-            var card = $(this).parent('.material-card');
-            var icon = $(this).children('i');
-            icon.addClass('fa-spin-fast');
+        var numberOfItems = $(".card-content .card").length;
+        var limitPerPage =20; //How many card items visible per a page
+        var totalPages = Math.ceil(numberOfItems / limitPerPage);
+        var paginationSize = 7; //How many page elements visible in the pagination
+        var currentPage;
 
-            if (card.hasClass('mc-active')) {
-                card.removeClass('mc-active');
+        function showPage(whichPage) {
+            if (whichPage < 1 || whichPage > totalPages) return false;
 
-                window.setTimeout(function () {
-                    icon
-                        .removeClass('fa-arrow-left')
-                        .removeClass('fa-spin-fast')
-                        .addClass('fa-bars');
+            currentPage = whichPage;
 
-                }, 800);
-            } else {
-                card.addClass('mc-active');
+            $(".card-content .card").hide().slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage).show();
 
-                window.setTimeout(function () {
-                    icon
-                        .removeClass('fa-bars')
-                        .removeClass('fa-spin-fast')
-                        .addClass('fa-arrow-left');
+            $(".pagination li").slice(1, -1).remove();
 
-                }, 800);
-            }
+            getPageList(totalPages, currentPage, paginationSize).forEach(item => {
+                $("<li>").addClass("page-item").addClass(item ? "current-page" : "dots")
+                    .toggleClass("active", item === currentPage).append($("<a>").addClass("page-link")
+                        .attr({ href: "javascript:void(0)" }).text(item || "...")).insertBefore(".next-page");
+            });
+
+            $(".previous-page").toggleClass("disable", currentPage === 1);
+            $(".next-page").toggleClass("disable", currentPage === totalPages);
+            return true;
+        }
+
+        $(".pagination").append(
+            $("<li>").addClass("page-item").addClass("previous-page").append($("<a>").addClass("page-link").attr({ href: "javascript:void(0)" }).text("Prev")),
+            $("<li>").addClass("page-item").addClass("next-page").append($("<a>").addClass("page-link").attr({ href: "javascript:void(0)" }).text("Next"))
+        );
+
+        $(".card-content").show();
+        showPage(1);
+
+        $(document).on("click", ".pagination li.current-page:not(.active)", function () {
+            return showPage(+$(this).text());
+        });
+
+        $(".next-page").on("click", function () {
+            return showPage(currentPage + 1);
+        });
+
+        $(".previous-page").on("click", function () {
+            return showPage(currentPage - 1);
         });
     });
 </script>
-
-<style src="~/css/ActorIndex"></style>
