@@ -1,12 +1,15 @@
-﻿@using Domen
-@model List<Movie>
+﻿@model Filmofil.Models.Movie.MovieIndexViewModel
 
 @{
     ViewData["Title"] = "Movies";
 }
 <link rel="stylesheet" runat="server" media="screen" href="~/css/movies.css" />
 <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
-
+<script>
+    function getId() {
+        @Model.GenreId=form.selectGenre[form.selectGenre.selectedIndex]
+    }
+</script>
 
 <div>
     <h1 class="heading" style="margin-left: 0px;">Movies</h1>
@@ -16,26 +19,36 @@
 </div>
 
 
+<div class="form-group" name="form">
+    <label asp-for="GenreId" class="control-label">Genre</label>
+    <select onchange="getId()" asp-for="GenreId" class="form-control" name="selectGenre" id="GenreId">
+        @foreach (var item in Model.Genres)
+        {
+            <option value="@item.GenreId" id="@item.GenreId">@item.Name</option>
+        }
+    </select> 
+</div>
 <div class="content">
 
-    @foreach (var item in Model)
+    @foreach (var item in Model.ListOfMoviesGenres)
     {
-        item.Thumbnail = "https://localhost:5001/img/MoviesImages/" + @item.Thumbnail;
+                if (Model.GenreId==0) {
+        item.Movie.Thumbnail = "https://localhost:5001/img/MoviesImages/" + @item.Movie.Thumbnail;
         <a class="card" href="/Movies/Details/@item.MovieId">
 
-            <div class="frontWeb" style="background-image: url(@item.Thumbnail);">
+            <div class="frontWeb" style="background-image: url(@item.Movie.Thumbnail);">
             </div>
 
             <div class="back">
                 <div style="height: 300px;">
-                    <div class="release_date">@item.Name<span> (@item.Year.Year)</span></div>
-                    <div style="font-size: 1em;margin-top: 11px;margin-bottom: 10px;"><i class="fas fa-star mr-2"></i>@item.Rating</div>
+                    <div class="release_date">@item.Movie.Name<span> (@item.Movie.Year.Year)</span></div>
+                    <div style="font-size: 1em;margin-top: 11px;margin-bottom: 10px;"><i class="fas fa-star mr-2"></i>@item.Movie.Rating</div>
                     <div class="movie_gens">
                         @{/*
-                            foreach (var it in @item.Genres)
-                            {
-                                        @it.Genre.Name
-                            }*/
+foreach (var it in @item.Genres)
+{
+        @it.Genre.Name
+}*/
                         }
                         dodaj zanrove ovde
                     </div>
@@ -43,7 +56,8 @@
             </div>
 
         </a>
-    }
+                                }
+                            }
 
 </div>
 

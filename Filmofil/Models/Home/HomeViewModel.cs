@@ -32,6 +32,10 @@ namespace Filmofil.Models.Home
 
         public List<Domen.MovieGenre> Adventure { get; set; }
 
+        public List<Domen.MovieGenre> SciFi { get; set; }
+
+        public List<Domen.MovieGenre> Biography { get; set; }
+
 
 
     }

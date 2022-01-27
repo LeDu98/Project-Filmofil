@@ -45,6 +45,9 @@ namespace Filmofil.Controllers
             List<MovieGenre> crimeMovies = unitOfWork.MovieGenreRepository.GetAll().OrderByDescending(mg => mg.Movie.Rating).Where(g => g.Genre.Name == "Crime").Take(10).ToList();
             List<MovieGenre> adventureMovies = unitOfWork.MovieGenreRepository.GetAll().OrderByDescending(mg => mg.Movie.Rating).Where(g => g.Genre.Name == "Adventure").Take(10).ToList();
 
+            List<MovieGenre> sciFiMovies = unitOfWork.MovieGenreRepository.GetAll().OrderByDescending(mg => mg.Movie.Rating).Where(g => g.Genre.Name == "Sci-Fi").Take(10).ToList();
+            List<MovieGenre> biographyMovies = unitOfWork.MovieGenreRepository.GetAll().OrderByDescending(mg => mg.Movie.Rating).Where(g => g.Genre.Name == "Biography").Take(10).ToList();
+
 
             HomeViewModel model = new HomeViewModel
             {
@@ -60,7 +63,9 @@ namespace Filmofil.Controllers
                 Romance = romanceMovies,
                 Thriller = thrillerMovies,
                 TopRated = topRatedMovies,
-                Western = westernMovies
+                Western = westernMovies,
+                SciFi=sciFiMovies,
+                Biography=biographyMovies
             };
             
             return View(model);

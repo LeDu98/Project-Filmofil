@@ -29,8 +29,10 @@ namespace Filmofil.Controllers
         // GET: MovieController
         public IActionResult Index()
         {
-            List<Movie> model = unitOfWork.MovieRepository.GetAll().OfType<Movie>().ToList();
-
+            List<Movie> movies = unitOfWork.MovieRepository.GetAll().OfType<Movie>().ToList();
+            List<MovieGenre> listOfMovieGenres = unitOfWork.MovieGenreRepository.GetAll().ToList();
+            List<Genre> genres = unitOfWork.GenreRepository.GetAll().ToList();
+            MovieIndexViewModel model = new MovieIndexViewModel { Movies = movies, ListOfMoviesGenres=listOfMovieGenres,Genres=genres };
             return View(model);
         }
 
