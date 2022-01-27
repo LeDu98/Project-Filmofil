@@ -495,7 +495,232 @@ namespace Domen.Helper
                      Networth = 0.8,
                      Image = "PSjKNluz_400x400.jpg",
                      Biography= "Alexandre Rodrigues was born on May 21, 1983 in Rio de Janeiro, Rio de Janeiro, Brazil. He is an actor, known for Град богова (2002), Paraíso (2009) and Aruanas (2019)."
-                 }
+                 },
+                 new Actor
+                 {
+                     PersonId = 51,
+                     FirstName = "Bill",
+                     LastName = "Murray",
+                     Born = new DateTime(1950, 9, 21),
+                     CountryId = 1,
+                     Networth = 180,
+                     Image = "bill-murray-wallpaper-2.jpg",
+                     Biography= "Bill Murray is an American actor, comedian, and writer. The fifth of nine children, he was born William James Murray in Wilmette, Illinois, to Lucille (Collins), a mailroom clerk, and Edward Joseph Murray II, who sold lumber. He is of Irish descent. Among his siblings are actors Brian Doyle-Murray, Joel Murray, and John Murray. He and most of his siblings worked as caddies, which paid his tuition to Loyola Academy, a Jesuit school. He played sports and did some acting while in that school, but in his words, mostly screwed off. He enrolled at Regis College in Denver to study pre-med but dropped out after being arrested for marijuana possession. He then joined the National Lampoon Radio Hour with fellow members Dan Aykroyd, Gilda Radner, and John Belushi. However, while those three became the original members of Уживо суботом увече (1975), he joined Saturday Night Live with Howard Cosell (1975), which premiered that same year. After that show failed, he later got the opportunity to join Уживо суботом увече (1975), for which he earned his first Emmy Award for Outstanding Writing in a Comedy-Variety or Music Series. He later went on to star in comedy films, including Meatballs (1979), Луди голф (1980), Vojničine (1981), Тутси (1982), Истеривачи духова (1984), Истеривачи духова 2 (1989), Božićna satira (1988), Šta je sa Bobom? (1991), and Дан мрмота (1993). He also co-directed Brza promena (1990). Murray garnered additional critical acclaim later in his career, starring in Изгубљени у преводу (2003), which earned him a Golden Globe and a BAFTA Award for Best Actor, as well as an Academy Award nomination for Best Actor. He also received Golden Globe nominations for his roles in Ghostbusters, Рашмор (1998), Hajd park na Hadsonu (2012), St. Vincent (2014), and the HBO miniseries Olive Kitteridge (2014), for which he later won his second Primetime Emmy Award for Outstanding Supporting Actor in a Limited Series or a Movie."
+                 },
+                 new Actor
+                 {
+                     PersonId = 52,
+                     FirstName = "Sigourney",
+                     LastName = "Weaver",
+                     Born = new DateTime(1949, 10,8),
+                     CountryId = 1,
+                     Networth = 180,
+                     Image = "8eed3041992aa7fe61287dfde8cb0605.jpg",
+                     Biography= "Sigourney Weaver was born Susan Alexandra Weaver, on October 8, 1949, in Leroy Hospital in New York City. Her father, TV producer Sylvester L. Weaver Jr., originally wanted to name her Flavia, because of his passion for Roman history (he had already named her elder brother Trajan). Her mother, Elizabeth Inglis, was a British actress who had sacrificed her career for a family. Sigourney grew up in a virtual bubble of guiltless bliss, being taken care by nannies and maids. By 1959, the Weavers had resided in 30 different households. In 1961, Sigourney began attending the Brearly Girls Academy, but her mother moved her to another New York private school, Chapin. Sigourney was quite a bit taller than most of her other classmates (at the age of 13, she was already 5' 10), resulting in her constantly being laughed at and picked on; in order to gain their acceptance, she took on the role of class clown."
+                 },
+                 new Actor
+                 {
+                     PersonId = 55,
+                     FirstName = "Matthew",
+                     LastName = "McConaughey",
+                     Born = new DateTime(1969, 11, 4),
+                     CountryId = 1,
+                     Networth = 180,
+                     Image = "1231124241.png",
+                     Biography= "American actor and producer Matthew David McConaughey was born in Uvalde, Texas. His mother, Mary Kathleen (McCabe), is a substitute school teacher originally from New Jersey. His father, James Donald McConaughey, was a Mississippi-born gas station owner who ran an oil pipe supply business. He is of Irish, Scottish, German, English, and Swedish descent. Matthew grew up in Longview, Texas, where he graduated from the local High School (1988). Showing little interest in his father's oil business, which his two brothers later joined, Matthew was longing for a change of scenery, and spent a year in Australia, washing dishes and shoveling chicken manure. Back to the States, he attended the University of Texas in Austin, originally wishing to be a lawyer. But, when he discovered an inspirational Og Mandino book The Greatest Salesman in the World before one of his final exams, he suddenly knew he had to change his major from law to film."
+                 },
+                 new Actor
+                 {
+                     PersonId = 56,
+                     FirstName = "Lyne",
+                     LastName = "Renée",
+                     Born = new DateTime(1979, 5, 17),
+                     CountryId = 9,
+                     Networth = 0.45,
+                     Image = "MV5BZjQyZjEzMmUtODQzOS00MjlkLWJjNjktNzQ2NDFhMWQyYWMxXkEyXkFqcGdeQXVyMTE1NzAyOTg@._V1_.jpg",
+                     Biography= "She graduated from the Studio Herman Teirlick in Antwerp, Belgium. From 2003 to 2005, she worked as a stage actress in Belgian theaters, and then starred in the Belgian TV series Kinderen van Dewindt and the Dutch film Ober, by Alex van Warmerdam. In 2006 she moved to Los Angeles and appeared in the movies The Box Collector (2008) and The Hessen Affair (2009). The latter is a film noir, the plot of which takes place in US-occupied Germany right after the end of World War II. In it, Renée plays a femme fatale, the driving force behind a jewelry heist."
+
+                 },
+                 new Actor
+                 {
+                     PersonId = 57,
+                     FirstName = "Kate",
+                     LastName = "Winslet",
+                     Born = new DateTime(1979, 10, 9),
+                     CountryId = 2,
+                     Networth = 65,
+                     Image = "81a12d39e9357ac34415112058c51e9a.jpg",
+                     Biography= "Kate Elizabeth Winslet was born in Reading, Berkshire, into a family of thespians -- parents Roger Winslet and Sally Anne Bridges-Winslet were both stage actors, maternal grandparents Oliver and Linda Bridges ran the Reading Repertory Theatre, and uncle Robert Bridges was a fixture in London's West End theatre district. Kate came into her talent at an early age. She scored her first professional gig at eleven, dancing opposite the Honey Monster in a commercial for a kids' cereal. She started acting lessons around the same time, which led to formal training at a performing arts high school. Over the next few years, she appeared on stage regularly and landed a few bit parts in sitcoms. Her first big break came at age 17, when she was cast as an obsessive adolescent in Небеска створења (1994). The film, based on the true story of two fantasy-gripped girls who commit a brutal murder, received modest distribution but was roundly praised by critics."
+
+                 },
+                  new Actor
+                  {
+                      PersonId = 60,
+                      FirstName = "Owen",
+                      LastName = "Wilson",
+                      Born = new DateTime(1968, 11, 18),
+                      CountryId = 1,
+                      Networth = 70,
+                      Image = "579aa7da8a5f2a4cc2446f8298e2def6_icon.png",
+                      Biography= "Self-proclaimed troublemaker Owen Cunningham Wilson was born in Dallas, to Irish-American parents originally from Massachusetts. He grew up in Texas with his mother, Laura (Cunningham), a photographer; his father, Robert Andrew Wilson, an ad exec; and his brothers, Andrew Wilson (the eldest) and Luke Wilson (the youngest). Expelled from St. Mark's School of Texas (Dallas, TX) in the tenth grade, Wilson finished his sophomore year at Thomas Jefferson School and then headed to a military academy in New Mexico. He then attended the University of Texas at Austin, where he met his future mentor and friend, Wes Anderson. They wrote a screenplay, Провалници дилетанти (1996), and sent it to their family friend, screenwriter L.M. Kit Carson, who sent it to producer Polly Platt, who gave it to James L. Brooks, who gave the Texans $5 million to make it into a feature film. Despite critical praise, Провалници дилетанти (1996) only grossed one million dollars. After making the film, Wilson moved to Hollywood, setting up house with his two brothers and Anderson. Fairly quickly, Owen found himself acting in a series of big budget films, such as Цревна напаст (1996), Поседнуће (1999), Анаконда (1997) and Breakfast of Champions (1999). This led to more work, such as Šangajsko podne (2000), Њени родитељи (2000) and Iza neprijateljske linije (2001). He's known not only for his nose, which has been broken several times, but also for his 'free wheeling ways' with a script. He co-wrote the film Породица чудака (2001) with his oft partner Wes Anderson."
+
+                  },
+                  new Actor
+                  {
+                      PersonId = 61,
+                      FirstName = "Rachel",
+                      LastName = "McAdams",
+                      Born = new DateTime(1978, 11, 17),
+                      CountryId = 10,
+                      Networth = 25,
+                      Image = "thumb-1920-88619.jpg",
+                      Biography= "Rachel Anne McAdams was born on November 17, 1978 in London, Ontario, Canada, to Sandra Kay (Gale), a nurse, and Lance Frederick McAdams, a truck driver and furniture mover. She is of English, Welsh, Irish, and Scottish descent. Rachel became involved with acting as a teenager and by the age of 13 was performing in Shakespearean productions in summer theater camp; she went on to graduate with honors with a BFA degree in Theater from York University. After her debut in an episode of Disney's The Famous Jett Jackson (1998), she co-starred in the Canadian TV series Slings and Arrows (2003), a comedy-drama about the trials and travails of a Shakespearean theater group, and won a Gemini award for her performance in 2003."
+                  },
+                  new Actor
+                  {
+                      PersonId = 62,
+                      FirstName = "Joaquin",
+                      LastName = "Phoenix",
+                      Born = new DateTime(1974, 10, 28),
+                      CountryId = 11,
+                      Networth = 50,
+                      Image = "8f952552afa02b06606e41b137464706.jpg",
+                      Biography= "Joaquin Phoenix was born Joaquin Rafael Bottom in San Juan, Puerto Rico, to Arlyn (Dunetz) and John Bottom, and is the middle child in a brood of five. His parents, from the continental United States, were then serving as Children of God missionaries. His mother is from a Jewish family from New York, while his father, from California, is of mostly British Isles descent. As a youngster, Joaquin took his cues from older siblings River Phoenix and Rain Phoenix, changing his name to Leaf to match their earthier monikers. When the children were encouraged to develop their creative instincts, he followed their lead into acting. Younger sisters Liberty Phoenix and Summer Phoenix rounded out the talented troupe."
+                  },
+                  new Actor
+                  {
+                      PersonId = 63,
+                      FirstName = "Scarlett",
+                      LastName = "Johansson",
+                      Born = new DateTime(1984, 11, 22),
+                      CountryId = 1,
+                      Networth = 165,
+                      Image = "124124124124.jfif",
+                      Biography= "Johansson began acting during childhood, after her mother started taking her to auditions. She made her professional acting debut at the age of eight in the off-Broadway production of Sophistry with Ethan Hawke, at New York's Playwrights Horizons. She would audition for commercials but took rejection so hard her mother began limiting her to film tryouts. She made her film debut at the age of nine, as John Ritter's character's daughter in the fantasy comedy North (1994). Following minor roles in Праведан циљ (1995), as the daughter of Sean Connery and Kate Capshaw's character, and If Lucy Fell (1996), she played the role of Amanda in Manny & Lo (1996). Her performance in Manny & Lo garnered a nomination for the Independent Spirit Award for Best Lead Female, and positive reviews, one noting, [the film] grows on you, largely because of the charm of... Scarlett Johansson, while San Francisco Chronicle critic Mick LaSalle commentated on her peaceful aura, and wrote, If she can get through puberty with that aura undisturbed, she could become an important actress."
+                  },
+                   new Actor
+                   {
+                       PersonId = 64,
+                       FirstName = "Amy",
+                       LastName = "Adams",
+                       Born = new DateTime(1974, 8, 20),
+                       CountryId = 12,
+                       Networth = 60,
+                       Image = "2134124124124124.png",
+                       Biography= "Amy Lou Adams was born in Vicenza, Veneto, Italy, to American parents, Kathryn (Hicken) and Richard Kent Adams, a U.S. serviceman who was stationed at Caserma Ederle in Italy at the time. She was raised in a Mormon family of seven children in Castle Rock, Colorado, and has English, as well as smaller amounts of Danish, Swiss-German, and Norwegian, ancestry. Adams sang in the school choir at Douglas County High School and was an apprentice dancer at a local dance company, with the ambition of becoming a ballerina. However, she worked as a greeter at The Gap and as a Hooters hostess to support herself before finding work as a dancer at Boulder's Dinner Theatre and Country Dinner Playhouse in such productions as Brigadoon and A Chorus Line. It was there that she was spotted by a Minneapolis dinner-theater director who asked her to move to Chanhassen, Minnesota for more regional dinner theatre work."
+                   },
+                   new Actor
+                   {
+                       PersonId = 66,
+                       FirstName = "Eddie",
+                       LastName = "Redmayne",
+                       Born = new DateTime(1982, 1, 6),
+                       CountryId = 2,
+                       Networth = 15,
+                       Image = "e40c4de20067ccac9ceec30f50be8fa7.jpg",
+                       Biography= "Edward John David Redmayne was born and raised in London, England, the son of Patricia (Burke) and Richard Charles Tunstall Redmayne, a businessman. His great-grandfather was Sir Richard Augustine Studdert Redmayne, a noted civil and mining engineer. He has English, Irish, Scottish and Welsh ancestry. Redmayne is the only member of his family to follow a career in acting, and also modeled during his teen years. He was educated at Eton College before going on to Trinity College, Cambridge, where he studied History of Art. Encouraged by his parents, Redmayne took drama lessons from a young age. His first stage appearance was in the Sam Mendes production of Oliver!, in London's West End. He played a workhouse boy. Acting continued through school and university, including performing with the National Youth Music Theatre."
+                   },
+                   new Actor
+                   {
+                       PersonId = 67,
+                       FirstName = "Felicity",
+                       LastName = "Jones",
+                       Born = new DateTime(1983, 10, 17),
+                       CountryId = 2,
+                       Networth = 6,
+                       Image = "thumb-1920-215712.jpg",
+                       Biography= "Felicity Rose Hadley Jones is an English actress and producer. Jones started her professional acting career as a child, appearing at age 12 in The Treasure Seekers (1996). She went on to play Ethel Hallow for one series in the television show The Worst Witch and its sequel Weirdsister College. After Kings Norton Girls School, Jones attended King Edward VI Handsworth School, to complete A Levels and went on to take a gap year (during which she appeared in the BBC series Servants (2003)). She took time off from acting to attend school during her formative years, and has worked steadily since she graduated with a 2:1 from Wadham College, Oxford in 2006, where she read English. While studying English, she appeared in student plays, including Attis in which she played the title role, and, in 2005, Shakespeare's Comedy of Errors for the OUDS summer tour to Japan, starring alongside Harry Lloyd."
+                   },
+                   new Actor
+                   {
+                       PersonId = 71,
+                       FirstName = "Samuel",
+                       LastName = "L. Jackson",
+                       Born = new DateTime(1948, 12, 21),
+                       CountryId = 1,
+                       Networth = 250,
+                       Image = "c0Ec2mTU.jpg",
+                       Biography = "Felicity Rose Hadley Jones is an English actress and producer. Jones started her professional acting career as a child, appearing at age 12 in The Treasure Seekers (1996). She went on to play Ethel Hallow for one series in the television show The Worst Witch and its sequel Weirdsister College. After Kings Norton Girls School, Jones attended King Edward VI Handsworth School, to complete A Levels and went on to take a gap year (during which she appeared in the BBC series Servants (2003)). She took time off from acting to attend school during her formative years, and has worked steadily since she graduated with a 2:1 from Wadham College, Oxford in 2006, where she read English. While studying English, she appeared in student plays, including Attis in which she played the title role, and, in 2005, Shakespeare's Comedy of Errors for the OUDS summer tour to Japan, starring alongside Harry Lloyd."
+                   },
+                   new Actor
+                   {
+                       PersonId = 72,
+                       FirstName = "Jamie",
+                       LastName = "Foxx",
+                       Born = new DateTime(1967, 12, 13),
+                       CountryId = 1,
+                       Networth = 150,
+                       Image = "12312312222.jpg",
+                       Biography= "Jamie Foxx is an American actor, singer and comedian. He won an Academy Award for Best Actor, BAFTA Award for Best Actor in a Leading Role, and Golden Globe Award for Best Actor in a Musical or Comedy, for his work in the biographical film Реј (2004). The same year, he was nominated for the Academy Award for Best Supporting Actor for his role in the action film Колатерал (2004). Other prominent acting roles include the title role in the film Ђангова освета (2012), the supervillain Electro in Чудесни Спајдермен 2 (2014), and William Stacks in the modern version of Eni (2014). Jamie Foxx was born Eric Marlon Bishop in Terrell, Texas, to Louise Annette Talley and Darrell Bishop, who worked as a stockbroker and had later changed his name to Shahid Abdula. His mother was an adopted child. When her marriage to his father failed, his maternal grandparents, Mark and Estelle Talley, stepped in and, at age seven months, adopted Jamie too. He has said that he had a very rigid upbringing that placed him in the Boy Scouts and the church choir. During high school, he played quarterback for his high school team and was good enough that he got press in Dallas newspapers. He studied music in college. He released a music album, Peep This (1994), and sings the theme song for his movie, Свака божја недеља (1999). However, in 1989, his life changed when a girlfriend challenged him to get up onstage at the Comedy Club. In fact, he says he took his androgynous stage name because he learned that women got preference for mike time on open stage nights. That led to his being cast on Рок (1991) and In Living Color (1990)."
+                   },
+                   new Actor
+                   {
+                       PersonId = 73,
+                       FirstName = "Kurt",
+                       LastName = "Russell",
+                       Born = new DateTime(1951, 3, 17),
+                       CountryId = 1,
+                       Networth = 100,
+                       Image = "f.elconfidencial.com_original_273_9f2_c08_2739f2c0872379fdcd588bafe311fad5.jpg",
+                        Biography= "Kurt Vogel Russell was born on March 17, 1951 in Springfield, Massachusetts, to Louise Julia Russell (née Crone), a dancer, and Bing Russell, an actor. He is of English, German, Scottish and Irish descent. His first roles were as a child on television series, including a lead role on the Western series The Travels of Jaimie McPheeters (1963). Russell landed a role in the Elvis Presley movie, It Happened at the World's Fair (1963), when he was eleven years old. Walt Disney himself signed Russell to a 10-year contract, and, according to Robert Osborne, he became the studio's top star of the 1970s. Having voiced adult Copper in the animated Disney film Lisica i pas (1981), Russell is one of the few famous child stars in Hollywood who has been able to continue his acting career past his teen years."
+                   },
+                   new Actor
+                   {
+                       PersonId = 74,
+                       FirstName = "Sam",
+                       LastName = "Elliott",
+                       Born = new DateTime(1944, 8, 9),
+                       CountryId = 1,
+                       Networth = 20,
+                       Image = "Sam-Elliott-MN2S.png",
+                       Biography= "Tall, thin, wiry Sam Elliott is the classic picture of the American cowboy. Elliott began his acting career on the stage and his film debut was in Буч Касиди и Санденс Кид (1969). Although his future wife, Katharine Ross co-starred in the film, the two did not meet until they filmed The Legacy (1978) together. Over the years there would be few opportunities to act in feature westerns, but it would be television that gave him that opportunity, in The Sacketts (1979), The Shadow Riders (1982) and The Yellow Rose (1983), among others. He would also work in non-westerns, usually as a tough guy, as in Lifeguard (1976) and Друмска кафана (1989). In 1985 he played Cher's love interest Gar in the drama Маска (1985), and he was in some cop movies such as Fatal Beauty (1987) and Shakedown (1988). In the 1990s, Elliott was back on the western trail, playing everyone from Brig. Gen. John Buford in the film Gettysburg (1993) to Wild Bill Hickok in the made-for-TV movie Buffalo Girls (1995). In 1991 he wrote the screenplay and co-starred with his wife in the made-for-TV western Konager (1991), and two years later he played Wyatt Earp's brother Virgil in Тумстоун (1993), with Kurt Russell as Wyatt. In 1995 the starred as John Pierce the tense thriller The Final Cut (1995), as a former head of a Bomb Squad who must to stop a dangerous bomber. In 1998 he was the narrator of the hilarious comedy Велики Лебовски (1998), playing him as The Stranger, and returned to the Western in the drama Obećana zemlja (1998), closing the 20th century with another western, the TV movie You Know My Name (1999)."
+                   },
+                   new Actor
+                   {
+                       PersonId = 77,
+                       FirstName = "Gong",
+                       LastName = "Yoo",
+                       Born = new DateTime(1979, 7, 10),
+                       CountryId = 14,
+                       Networth = 1.2,
+                       Image = "087db1ebc7d572957ad0fd192f0ed8bb.jpg",
+                    Biography= "Gong Ji-Chul (better known as Gong Yoo) was born in Busan, Korea on July 10, 1979. The actor is known for the movies Воз за Бусан (2016), Do-ga-ni (2011) and Tajni agent (2016). Gong Yoo graduated with a Bachelor's degree in theater at Kyung Hee University and worked as a model before entering show business as a video jockey with Mnet. Thereafter, he had several supporting roles in various Korean films and dramas before landing his first leading role with Hello My Teacher (2005) in 2005. His breakout role was with Keopi peurinseu 1-hojeom (2007), a romantic comedy drama series that was a hit with Korean drama viewers worldwide."
+                   },
+                   new Actor
+                   {
+                       PersonId = 78,
+                       FirstName = "Daniel",
+                       LastName = "Kaluuya",
+                       Born = new DateTime(1979, 7, 10),
+                       CountryId = 2,
+                       Networth = 15,
+                       Image = "mUTP8-f9a3eb70-16d5-4aad-a816-f5e18d194729.jpg",
+                    Biography= "Daniel Kaluuya is an English actor and writer. He is best known for Get Out (2017) and Black Panther (2018). For his work in Get Out he was nominated for an Academy Award for Best Actor. Kaluuya also had minor roles in Johnny English Reborn (2011), Kick-Ass 2 (2013) and Sicario (2015).  "
+                   },
+                    new Actor
+                    {
+                        PersonId = 79,
+                        FirstName = "Allison",
+                        LastName = "Williams",
+                        Born = new DateTime(1988, 4, 13),
+                        CountryId = 1,
+                        Networth = 5,
+                        Image = "222d04b40779185dc3c31e0f785dfcc6.jpg",
+                        Biography= "Allison Howell Williams, born April 13, 1988, is an American actress, comedian, and singer. She is best known for her role as Marnie Michaels on the HBO comedy-drama series, Девојке (2012). Williams was born and raised in New Canaan, Connecticut and is the daughter of former NBC Nightly News anchor and managing editor, Brian Williams, and Jane Gillan Stoddard, a TV producer. She graduated from Yale University in 2010."
+                    },
+                    new Actor
+                    {
+                        PersonId = 82,
+                        FirstName = "Cary",
+                        LastName = "Elwes",
+                        Born = new DateTime(1962, 10, 26),
+                        CountryId = 2,
+                        Networth = 8,
+                        Image = "fYjaq-3283d819-1742-44a2-952d-118af33f4d4d.jpg",
+                        Biography= "Cary Elwes was born in Westminster, London, England, the third son of interior designer/shipping heiress Tessa Georgina Kennedy and the late portrait painter Bede Evelyn Dominick Elwes. He is the brother of producer/agent Cassian Elwes and artist Damian Elwes. He was raised in London and attended Harrow. After graduating from Harrow, he moved to the US and studied drama at Sarah Lawrence College. He left school after two years to begin his film career. Cary is well respected by colleagues and fans alike and considered by many to be one of the finest actors working today. He is interested in history and says, It's deliberate that a lot of my films have been period pieces. He is politically active for causes he believes in, such as protecting the environment and helping Native American people."
+                    }
+
+
 
 
 
@@ -759,8 +984,224 @@ namespace Domen.Helper
                   MovieId = 14,
                   Role = "Dr. Hannibal Lecter",
                   Income = 4.5
+              },
+              new Acting
+              {
+                  ActorId = 49,
+                  MovieId = 15,
+                  Role = "Buscapé - Rocket",
+                  Income = 0.2
+              },
+              new Acting
+              {
+                  ActorId = 51,
+                  MovieId = 16,
+                  Role = "Dr. Peter Venkman",
+                  Income = 3.4
+              },
+              new Acting
+              {
+                  ActorId = 52,
+                  MovieId = 16,
+                  Role = "Dana Barrett",
+                  Income = 2.1
+              },
+              new Acting
+              {
+                  ActorId = 55,
+                  MovieId = 17,
+                  Role = "Michael Pearson",
+                  Income = 3.4
+              },
+              new Acting
+              {
+                  ActorId = 56,
+                  MovieId = 17,
+                  Role = "Jackie",
+                  Income = 0.14
+              },
+              new Acting
+              {
+                  ActorId = 1,
+                  MovieId = 18,
+                  Role = "Jordan Belfort",
+                  Income = 6.9
+              },
+              new Acting
+              {
+                  ActorId = 4,
+                  MovieId = 18,
+                  Role = "Donnie Azoff",
+                  Income = 3.4
+              }, 
+              new Acting
+              {
+                  ActorId = 1,
+                  MovieId = 19,
+                  Role = "Jack Dawson",
+                  Income = 3.9
+              },
+              new Acting
+              {
+                  ActorId = 57,
+                  MovieId = 19,
+                  Role = "Rose Dewitt Bukater",
+                  Income = 1.4
+              },
+              new Acting
+              {
+                  ActorId = 60,
+                  MovieId = 20,
+                  Role = "Gil",
+                  Income = 1.9
+              },
+              new Acting
+              {
+                  ActorId = 61,
+                  MovieId = 20,
+                  Role = "Inez",
+                  Income = 1.4
+              },
+              new Acting
+              {
+                  ActorId = 62,
+                  MovieId = 21,
+                  Role = "Theodore",
+                  Income = 2.8
+              },
+              new Acting
+              {
+                  ActorId = 63,
+                  MovieId = 21,
+                  Role = "Samantha(voice)",
+                  Income = 3.1
+              },
+              new Acting
+              {
+                  ActorId = 64,
+                  MovieId = 21,
+                  Role = "Amy",
+                  Income = 1.2
+              },
+              new Acting
+              {
+                  ActorId = 66,
+                  MovieId = 22,
+                  Role = "Stephen Hawking",
+                  Income = 1.1
+              },
+              new Acting
+              {
+                  ActorId = 67,
+                  MovieId = 22,
+                  Role = "Jane Hawking",
+                  Income = 0.6
+              },
+              new Acting
+              {
+                  ActorId = 1,
+                  MovieId = 23,
+                  Role = "Hugh Glass",
+                  Income = 5.4
+              },
+              new Acting
+              {
+                  ActorId = 37,
+                  MovieId = 23,
+                  Role = "John Fitzgerald",
+                  Income = 4.4
+              },
+              new Acting
+              {
+                  ActorId = 1,
+                  MovieId = 24,
+                  Role = "Calvin Candie",
+                  Income = 1.4
+              },
+              new Acting
+              {
+                  ActorId = 71,
+                  MovieId = 24,
+                  Role = "Stephen",
+                  Income = 1.1
+              },
+              new Acting
+              {
+                  ActorId = 72,
+                  MovieId = 24,
+                  Role = "Django",
+                  Income = 2.2
+              },
+              new Acting
+              {
+                  ActorId = 72,
+                  MovieId = 13,
+                  Role = "Max Dillon / Electro",
+                  Income = 1.2
+              },
+              new Acting
+              {
+                  ActorId = 71,
+                  MovieId = 25,
+                  Role = "Major Marquis Warren",
+                  Income = 1.6
+              },
+              new Acting
+              {
+                  ActorId = 73,
+                  MovieId = 26,
+                  Role = "Wyatt Earp",
+                  Income = 2.9
+              },
+              new Acting
+              {
+                  ActorId = 74,
+                  MovieId = 26,
+                  Role = "Virgil Earp",
+                  Income = 0.9
+              },
+              new Acting
+              {
+                  ActorId = 77,
+                  MovieId = 27,
+                  Role = "Seok-woo",
+                  Income = 0.2
+              },
+              new Acting
+              {
+                  ActorId = 78,
+                  MovieId = 28,
+                  Role = "Chris Washington",
+                  Income = 0.9
+              },
+              new Acting
+              {
+                  ActorId = 79,
+                  MovieId = 28,
+                  Role = "Rose Armitage",
+                  Income = 0.35
+              },
+              new Acting
+              {
+                  ActorId = 82,
+                  MovieId = 29,
+                  Role = "Dr. Lawrence Gordon",
+                  Income = 1.2
+              },
+              new Acting
+              {
+                  ActorId = 7,
+                  MovieId = 30,
+                  Role = "Hermione Granger",
+                  Income = 0.9
+              },
+              new Acting
+              {
+                  ActorId = 8,
+                  MovieId = 30,
+                  Role = "Harry Potter",
+                  Income = 1.6
               }
-
               );
 
             modelBuilder.Entity<Country>().HasData(
@@ -803,6 +1244,36 @@ namespace Domen.Helper
                   {
                       CountryId = 8,
                       Name = "Brazil"
+                  },
+                  new Country
+                  {
+                      CountryId = 9,
+                      Name = "Belgium"
+                  },
+                  new Country
+                  {
+                      CountryId = 10,
+                      Name = "Canada"
+                  },
+                  new Country
+                  {
+                      CountryId = 11,
+                      Name = "Puerto Rico"
+                  },
+                  new Country
+                  {
+                      CountryId = 12,
+                      Name = "Italy"
+                  },
+                  new Country
+                  {
+                      CountryId = 13,
+                      Name = "Mexico"
+                  },
+                  new Country
+                  {
+                      CountryId = 14,
+                      Name = "South Korea"
                   }
                 );
 
@@ -962,17 +1433,6 @@ namespace Domen.Helper
 
                 },
                 new Personnel
-                 {
-                     PersonId = 50,
-                     FirstName = "David",
-                     LastName = "Fincher",
-                     Born = new DateTime(1962, 8, 28),
-                     CountryId = 1,
-                     Trademark= "Fluid tracking camera which can access anywhere. A digital age innovation in camera movement pioneered by David Fincher and Kevin Tod Haug along with BUF Paris (perhaps inspired by earlier developments of Max Ophüls and Stanley Kubrick). His films often end in a suicide, either attempted or successful. His films often have low-key lighting with green or blue tinted color temperature.",
-                     Image = "square_thumb@3x.jpg"
-
-                 },
-                new Personnel
                 {
                     PersonId = 44,
                     FirstName = "Jon",
@@ -1002,7 +1462,138 @@ namespace Domen.Helper
                     CountryId = 8,
                     Image = "MV5BMTUyNTEzODc1NF5BMl5BanBnXkFtZTYwOTUyMjIz._V1_.jpg",
                     Trademark= "Graduated from Escola Maria Imaculada, an American Catholic school in São Paulo, Brazil, where she was a star art student. Her parents are Americans who emigrated to Brazil."
+                },
+                new Personnel
+                {
+                    PersonId = 53,
+                    FirstName = "Ivan",
+                    LastName = "Reitman",
+                    Born = new DateTime(1966, 1, 22),
+                    CountryId = 1,
+                    Image = "PsBGC9gm_400x400.jpeg",
+                    Trademark = "Frequently works with producer Joe Medjuck and screenwriters Len Blum & Daniel Goldberg.Recurring themes of the 'common man' triumphing where professionals failed."
+                },
+                new Personnel
+                {
+                    PersonId = 54,
+                    FirstName = "Guy",
+                    LastName = "Ritchie",
+                    Born = new DateTime(1968, 10, 9),
+                    CountryId = 2,
+                    Image = "GuyRitchiebyKathyHutchins.jpg",
+                    Trademark = "Frequently uses narration. Numerous plot threads that intersect and assist in each other's payoffs. Often works with Jason Statham, Mark Strong and Matthew Vaughn."
+                },
+                new Personnel
+                {
+                    PersonId = 58,
+                    FirstName = "James",
+                    LastName = "Cameron",
+                    Born = new DateTime(1954, 8, 16),
+                    CountryId = 10,
+                    Image = "james-cameron-546570-1-402.jpg",
+                    Trademark = "Strong female characters. Frequently casts Michael Biehn, Jenette Goldstein, Lance Henriksen, Bill Paxton and Arnold Schwarzenegger. His films frequently feature scenes filmed in deep blues."
+                },
+                new Personnel
+                {
+                    PersonId = 59,
+                    FirstName = "Woody",
+                    LastName = "Allen",
+                    Born = new DateTime(1935, 12, 1),
+                    CountryId = 1,
+                    Image = "woody-allen-9181734-1-402.jpg",
+                    Trademark= "A lot of his movies feature at least one character who is a writer. This is often Woody himself. Nearly all of his films start and end with white-on-black credits, set in the Windsor typeface, set to jazz music, without any scrolling. Films his dialog using long, medium-range shots instead of the typical intercut close-ups."
+                },
+                new Personnel
+                {
+                    PersonId = 65,
+                    FirstName = "Spike",
+                    LastName = "Jonze",
+                    Born = new DateTime(1969, 10, 22),
+                    CountryId = 1,
+                    Image = "1231232.jfif",
+                    Trademark= "His films/music videos are off-beat in their visual storytelling, particularly their mix of live-action, animation, and puppetry.Subtle handheld camera operation. Often makes his actors appear unattractive, e.g. Cameron Diaz's frizzy hair and frumpy wardrobe in Бити Џон Малкович (1999), outfitting Nicolas Cage in a fatsuit and receding hairline in Adaptacija (2002). Many of his music videos are short films set to music. "
+                },
+                new Personnel
+                {
+                    PersonId = 68,
+                    FirstName = "James",
+                    LastName = "Marsh",
+                    Born = new DateTime(1963, 4, 30),
+                    CountryId = 2,
+                    Image = "image-w856 (2).jpg",
+                    Trademark= "Has directed 2 Oscar nominated performances: Eddie Redmayne and Felicity Jones. Redmayne won for his role in Теорија свега (2014)."
+                },
+                new Personnel
+                {
+                    PersonId = 69,
+                    FirstName = "Alejandro",
+                    LastName = "González Iñárritu",
+                    Born = new DateTime(1963, 8, 15),
+                    CountryId = 13,
+                    Image = "3000 (1).jpg",
+                    Trademark= "Music from composer Gustavo Santaolalla. Frequently casts Gael García Bernal.Complex overlapping storylines which can span entire cities or even continents.  His characters are often trying to atone for past misdeeds. Recurring examination of Language and its effect on human interaction"
+                },
+                new Personnel
+                {
+                    PersonId = 70,
+                    FirstName = "Quentin",
+                    LastName = "Tarantino",
+                    Born = new DateTime(1963, 3, 27),
+                    CountryId = 1,
+                    Image = "quentin-tarantino-9502086-1-402.jpg",
+                    Trademark= "Lead characters usually drive General Motors vehicles, particularly Chevrolet and Cadillac, such as Jules' 1974 Nova and Vincent's 1960s Malibu. He always has a Dutch element in his films: The opening tune, Little Green Bag, in Улични пси (1992) was performed by George Baker Selection and written by Jan Gerbrand Visser and Benjamino Bouwens who are all Dutch. The character Freddy Newandyke, played by Tim Roth is a direct translation to a typical Dutch last name, Nieuwendijk. The code name of Tim Roth is Mr. Orange, the royal color of Holland and the last name of the royal family. The Amsterdam conversation in Петпарачке приче (1994), Vincent Vega smokes from a Dutch tobacco shag (Drum), the mentioning of Rutger Hauer in Џеки Браун (1997), the bride's name is Beatrix, the name of the Royal Dutch Queen."
+                },
+                new Personnel
+                {
+                    PersonId = 75,
+                    FirstName = "George",
+                    LastName = "Cosmatos",
+                    Born = new DateTime(1941, 1, 4),
+                    CountryId = 12,
+                    Image = "r8wqW9oQybC9lARcX1KLPiBVwx3.jpg",
+                    Trademark= "First scene in film filmed from the air. Spoke Greek fluently."
+                },
+                new Personnel
+                {
+                    PersonId = 76,
+                    FirstName = "Sang-Ho",
+                    LastName = "Yeon",
+                    Born = new DateTime(1978, 1, 4),
+                    CountryId = 14,
+                    Image = "sang-ho-yeon-iein006483-24-03-2017-13-23-47.jpg",
+                    Trademark= "His movie Train to Busan, is the first South Korean movie to reach 10 millions viewers and on wards in 2016."
+                },
+                new Personnel
+                {
+                    PersonId = 80,
+                    FirstName = "Jordan",
+                    LastName = "Peele",
+                    Born = new DateTime(1979, 2, 21),
+                    CountryId = 1,
+                    Image = "1112.jfif",
+                    Trademark= "Often works with Keegan-Michael Key.His films include psychological horror. His films often focus on race. His films often take place in the suburbs. "
+                },
+                new Personnel
+                 {
+                     PersonId = 81,
+                     FirstName = "James",
+                     LastName = "Wan",
+                     Born = new DateTime(1977, 2, 26),
+                     CountryId = 5,
+                     Image = "image-w856 (3).jpg",
+                    Trademark= "Ventriloquist dolls. His characters are often ordinary people forced into horrible situations, such as parents trying to protect or save their children. His films are often scored by Joseph Bishara."
+                 },
+                new Personnel
+                {
+                    PersonId = 83,
+                    FirstName = "Chris",
+                    LastName = "Columbus",
+                    Born = new DateTime(1958, 9, 10),
+                    CountryId = 5,
+                    Image = "Chris-Columbus-e1604527389433.jpg",
+                    Trademark= "Leading characters who are underage and develops through situations. His films often have a brief, often humorous, scene after or during the end credits. Common theme in his movies is children triumphing over adults."
                 }
+
                 );
 
            
@@ -1143,7 +1734,7 @@ namespace Domen.Helper
                 new Position
                 {
                     MovieId = 12,
-                    PersonnelId = 50,
+                    PersonnelId = 33,
                     PositionTitle = "Director"
                 },
                 new Position
@@ -1163,7 +1754,97 @@ namespace Domen.Helper
                     MovieId = 15,
                     PersonnelId = 48,
                     PositionTitle = "Director"
-                }
+                },
+                new Position
+                {
+                    MovieId = 16,
+                    PersonnelId = 53,
+                    PositionTitle = "Director"
+                },
+                new Position
+                {
+                    MovieId = 17,
+                    PersonnelId = 54,
+                    PositionTitle = "Director"
+                },
+                new Position
+                {
+                    MovieId = 18,
+                    PersonnelId = 41,
+                    PositionTitle = "Director"
+                },
+                new Position
+                {
+                    MovieId = 19,
+                    PersonnelId = 58,
+                    PositionTitle = "Director"
+                },
+                new Position
+                 {
+                     MovieId = 20,
+                     PersonnelId = 59,
+                     PositionTitle = "Director"
+                 },
+                new Position
+                 {
+                     MovieId = 21,
+                     PersonnelId = 65,
+                     PositionTitle = "Director and Writer"
+                 },
+                new Position
+                {
+                    MovieId = 22,
+                    PersonnelId = 68,
+                    PositionTitle = "Director"
+                },
+                new Position
+                {
+                    MovieId = 23,
+                    PersonnelId = 69,
+                    PositionTitle = "Director"
+                },
+                new Position
+                {
+                    MovieId = 24,
+                    PersonnelId = 70,
+                    PositionTitle = "Director"
+                },
+                new Position
+                 {
+                     MovieId = 25,
+                     PersonnelId = 70,
+                     PositionTitle = "Director"
+                 },
+                new Position
+                  {
+                      MovieId = 26,
+                      PersonnelId = 75,
+                      PositionTitle = "Director"
+                  },
+                 new Position
+                 {
+                     MovieId = 27,
+                     PersonnelId = 76,
+                     PositionTitle = "Director"
+                 },
+                 new Position
+                 {
+                     MovieId = 28,
+                     PersonnelId = 80,
+                     PositionTitle = "Director"
+                 },
+                  new Position
+                  {
+                      MovieId = 29,
+                      PersonnelId = 81,
+                      PositionTitle = "Director"
+                  },
+                  new Position
+                  {
+                      MovieId = 30,
+                      PersonnelId = 83,
+                      PositionTitle = "Director"
+                  }
 
 
                     );
@@ -1287,7 +1968,7 @@ namespace Domen.Helper
                     Trailer = "youtube.com/watch?v=V75dMMIW2B4",
                     Year = new DateTime(2001, 1, 1)
                 },
-                 new Movie
+                new Movie
                  {
                      MovieId = 10,
                      Name = "Inception",
@@ -1300,7 +1981,7 @@ namespace Domen.Helper
                      Trailer = "https://www.youtube.com/watch?v=YoHD9XEInc0",
                      Year = new DateTime(2010, 1, 1)
                  },
-                  new Movie
+                new Movie
                   {
                       MovieId = 11,
                       Name = "Goodfellas",
@@ -1313,7 +1994,7 @@ namespace Domen.Helper
                       Trailer = "https://www.youtube.com/watch?v=qo5jJpHtI1Y",
                       Year = new DateTime(1990, 1, 1)
                   },
-                  new Movie
+                new Movie
                   {
                       MovieId = 12,
                       Name = "Se7en",
@@ -1326,7 +2007,7 @@ namespace Domen.Helper
                       Trailer = "https://www.youtube.com/watch?v=znmZoVkCjpI",
                       Year = new DateTime(1995, 1, 1)
                   },
-                  new Movie
+                new Movie
                   {
                       MovieId = 13,
                       Name = "Spider-Man: No Way Home",
@@ -1339,7 +2020,7 @@ namespace Domen.Helper
                       Trailer = "https://www.youtube.com/watch?v=JfVOs4VSpmA",
                       Year = new DateTime(2021, 1, 1)
                   },
-                   new Movie
+                new Movie
                    {
                        MovieId = 14,
                        Name = "The Silence of the Lambs",
@@ -1352,7 +2033,7 @@ namespace Domen.Helper
                        Trailer = "https://www.youtube.com/watch?v=W6Mm8Sbe__o",
                        Year = new DateTime(1991, 1, 1)
                    },
-                   new Movie
+                new Movie
                    {
                        MovieId = 15,
                        Name = "Cidade de Deus",
@@ -1365,7 +2046,7 @@ namespace Domen.Helper
                        Trailer = "https://www.youtube.com/watch?v=nBWtTrLxUjM",
                        Year = new DateTime(2002, 1, 1)
                    },
-                   new Movie
+                new Movie
                    {
                        MovieId = 16,
                        Name = "Ghostbusters",
@@ -1378,7 +2059,7 @@ namespace Domen.Helper
                        Trailer = "https://www.youtube.com/watch?v=wQAljlSmjC8",
                        Year = new DateTime(1984, 1, 1)
                    },
-                   new Movie
+                new Movie
                    {
                        MovieId = 17,
                        Name = "The Gentlemen",
@@ -1391,7 +2072,7 @@ namespace Domen.Helper
                        Trailer = "https://www.youtube.com/watch?v=Ify9S7hj480",
                        Year = new DateTime(2020, 1, 1)
                    },
-                   new Movie
+                new Movie
                    {
                        MovieId = 18,
                        Name = "The Wolf of Wall Street",
@@ -1404,7 +2085,7 @@ namespace Domen.Helper
                        Trailer = "https://www.youtube.com/watch?v=iszwuX1AK6A",
                        Year = new DateTime(2013, 1, 1)
                    },
-                   new Movie
+                new Movie
                    {
                        MovieId = 19,
                        Name = "Titanic",
@@ -1417,7 +2098,7 @@ namespace Domen.Helper
                        Trailer = "https://www.youtube.com/watch?v=jUm88F3MEbQ",
                        Year = new DateTime(1997, 1, 1)
                    },
-                    new Movie
+                new Movie
                     {
                         MovieId = 20,
                         Name = "Midnight in Paris",
@@ -1430,7 +2111,7 @@ namespace Domen.Helper
                         Trailer = "https://www.youtube.com/watch?v=FAfR8omt-CY",
                         Year = new DateTime(2011, 1, 1)
                     },
-                    new Movie
+                new Movie
                     {
                         MovieId = 21,
                         Name = "Her",
@@ -1443,7 +2124,7 @@ namespace Domen.Helper
                         Trailer = "https://www.youtube.com/watch?v=6QRvTv_tpw0",
                         Year = new DateTime(2013, 1, 1)
                     },
-                    new Movie
+                new Movie
                     {
                         MovieId = 22,
                         Name = "The Theory of Everything",
@@ -1456,7 +2137,7 @@ namespace Domen.Helper
                         Trailer = "https://www.youtube.com/watch?v=Salz7uGp72c",
                         Year = new DateTime(2014, 1, 1)
                     },
-                     new Movie
+                new Movie
                      {
                          MovieId = 23,
                          Name = "The Revenant",
@@ -1469,7 +2150,7 @@ namespace Domen.Helper
                          Trailer = "https://www.youtube.com/watch?v=LoebZZ8K5N0",
                          Year = new DateTime(2015, 1, 1)
                      },
-                     new Movie
+                new Movie
                      {
                          MovieId = 24,
                          Name = "Django Unchained",
@@ -1482,7 +2163,7 @@ namespace Domen.Helper
                          Trailer = "https://www.youtube.com/watch?v=0fUCuvNlOCg",
                          Year = new DateTime(2012, 1, 1)
                      },
-                     new Movie
+                new Movie
                      {
                          MovieId = 25,
                          Name = "The Hateful Eight",
@@ -1495,7 +2176,7 @@ namespace Domen.Helper
                          Trailer = "https://www.youtube.com/watch?v=nIOmotayDMY",
                          Year = new DateTime(2015, 1, 1)
                      },
-                      new Movie
+                new Movie
                       {
                           MovieId = 26,
                           Name = "Tombstone",
@@ -1508,7 +2189,7 @@ namespace Domen.Helper
                           Trailer = "https://www.youtube.com/watch?v=XTWYKf5hXIg",
                           Year = new DateTime(1993, 1, 1)
                       },
-                       new Movie
+                new Movie
                        {
                            MovieId = 27,
                            Name = "Busanhaeng",

@@ -4,14 +4,16 @@ using Domen;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Domen.Migrations
 {
     [DbContext(typeof(MovieContext))]
-    partial class MovieContextModelSnapshot : ModelSnapshot
+    [Migration("20220127215452_new_seeders_migration_movies_30_acting30_position30")]
+    partial class new_seeders_migration_movies_30_acting30_position30
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1745,7 +1747,7 @@ namespace Domen.Migrations
                         },
                         new
                         {
-                            PersonnelId = 33,
+                            PersonnelId = 50,
                             MovieId = 12,
                             PositionTitle = "Director"
                         },
@@ -3002,6 +3004,16 @@ namespace Domen.Migrations
                         },
                         new
                         {
+                            PersonId = 50,
+                            Born = new DateTime(1962, 8, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CountryId = 1,
+                            FirstName = "David",
+                            Image = "square_thumb@3x.jpg",
+                            LastName = "Fincher",
+                            Trademark = "Fluid tracking camera which can access anywhere. A digital age innovation in camera movement pioneered by David Fincher and Kevin Tod Haug along with BUF Paris (perhaps inspired by earlier developments of Max Ophüls and Stanley Kubrick). His films often end in a suicide, either attempted or successful. His films often have low-key lighting with green or blue tinted color temperature."
+                        },
+                        new
+                        {
                             PersonId = 44,
                             Born = new DateTime(1981, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CountryId = 1,
@@ -3096,7 +3108,7 @@ namespace Domen.Migrations
                             Born = new DateTime(1963, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CountryId = 13,
                             FirstName = "Alejandro",
-                            Image = "3000 (1).jpg",
+                            Image = "image-w856 (2).jpg",
                             LastName = "González Iñárritu",
                             Trademark = "Music from composer Gustavo Santaolalla. Frequently casts Gael García Bernal.Complex overlapping storylines which can span entire cities or even continents.  His characters are often trying to atone for past misdeeds. Recurring examination of Language and its effect on human interaction"
                         },
