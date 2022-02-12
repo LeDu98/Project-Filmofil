@@ -162,14 +162,7 @@ namespace Filmofil.Controllers
         {
             
             Movie m = unitOfWork.MovieRepository.GetSingle(new Movie { MovieId = id });
-            MovieCreateModel model = CreateModel();
-            model.Duration = m.Duration;
-            model.Name = m.Name;
-            model.Synopsis = m.Synopsis;
-            model.Trailer = m.Trailer;
-            model.Year = m.Year;
-            model.ThumbnailName = m.Thumbnail;
-            
+            MovieCreateModel model = CreateModel(m);
 
             return View(model);
         }
@@ -179,46 +172,34 @@ namespace Filmofil.Controllers
         [HttpPost]
         public IActionResult Edit(int id, MovieCreateModel model)
         {
-
+            /*
             if (!ModelState.IsValid)
             {
-                return Edit(id);
+                return Create();
             }
+
             string uniqueFileName = null;
-
-            
-
-            Movie m = new Movie();
-            m.MovieId = id;
-            m.Thumbnail = uniqueFileName;
-            m.Synopsis = model.Synopsis;
-            m.StudioId = model.StudioId;
-            m.StreamingServiceId = model.StreamingServiceId;
-            m.Name = model.Name;
-            m.Trailer = model.Trailer;
-            m.Year = model.Year;
-            m.Duration = model.Duration;
-
             if (model.Thumbnail != null)
             {
                 uniqueFileName = GetFileNameAndSaveFile(model);
-                m.Thumbnail = uniqueFileName;
-            }
-            else
-            {
-                m.Thumbnail = model.ThumbnailName;
             }
 
-
-            unitOfWork.MovieRepository.Update(m);
-            List<MovieGenre> listMG = unitOfWork.MovieGenreRepository.GetAll().Where(m => m.MovieId == id).ToList();
-            foreach(MovieGenre movieGenre in listMG)
+            unitOfWork.MovieRepository.Add(new Movie
             {
-                unitOfWork.MovieGenreRepository.Delete(movieGenre);
-            }     
-            
+                Duration = model.Duration,
+                Name = model.Name,
+                StreamingServiceId = model.StreamingServiceId,
+                StudioId = model.StudioId,
+                Synopsis = model.Synopsis,
+                Thumbnail = uniqueFileName,
+                Trailer = model.Trailer,
+                Year = model.Year
+            });
+            unitOfWork.Save();
+
+            int movieId = unitOfWork.MovieRepository.GetMaxId();
             MovieGenre mg = new MovieGenre();
-            mg.MovieId = id;
+            mg.MovieId = movieId;
 
             foreach (int i in model.GenreIds)
             {
@@ -226,6 +207,17 @@ namespace Filmofil.Controllers
                 unitOfWork.MovieGenreRepository.Add(mg);
                 unitOfWork.Save();
             }
+            if (model.Actings != null)
+            {
+                AddActors(movieId, model.Actings);
+
+            }
+            if (model.Positions != null)
+            {
+                AddPersonnel(movieId, model.Positions);
+
+            }
+            */
 
             return RedirectToAction("Movies", "Dashboard");
         }
@@ -286,10 +278,39 @@ namespace Filmofil.Controllers
         }
 
 
-        private MovieCreateModel CreateModel()
+        private MovieCreateModel CreateModel(Movie m = null)
         {
             MovieCreateModel model = new MovieCreateModel();
 
+            /*
+             * Podaci o filmu i situaciji da se kreira model za Edit
+             */
+            if(m != null)
+            {
+
+                model.Duration = m.Duration;
+                model.Name = m.Name;
+                model.Synopsis = m.Synopsis;
+                model.Trailer = m.Trailer;
+                model.Year = m.Year;
+                model.ThumbnailName = m.Thumbnail;
+                model.StreamingServiceId = m.StreamingServiceId;
+                model.StudioId = m.StudioId;
+
+                model.Positions = m.Positions;
+                model.Actings = m.Actings;
+
+                model.GenreIds = new int[m.Genres.Count()];
+                for(int i = 0; i < m.Genres.Count(); i++)
+                {
+                    model.GenreIds[i] = m.Genres[i].GenreId;
+                }
+
+            }
+
+            /*
+             * Skupljanje podataka na osnovu kojih ce se selektovati vrednosti
+             */
             model.StreamingServices = unitOfWork.StreamingServiceRepository.GetAll();
             model.Studios = unitOfWork.StudioRepository.GetAll();
 

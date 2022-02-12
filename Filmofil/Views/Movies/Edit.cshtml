@@ -4,9 +4,6 @@
 <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
-<!--
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
--->
 
 <style>
     #button-add-actors {
@@ -114,7 +111,7 @@
 
                     <div class="form-group">
                         <label asp-for="Year" class="control-label"></label>
-                        <input asp-for="Year" class="form-control" value="@DateTime.Now" />
+                        <input asp-for="Year" class="form-control" />
                         <span asp-validation-for="Year" class="text-danger"></span>
                     </div>
 
@@ -134,7 +131,7 @@
 
                     <div class="form-group">
                         <label asp-for="Synopsis" class="control-label"></label>
-                        <textarea asp-for="Synopsis" style="resize:none" class="form-control" rows="6" /></textarea>
+                        <textarea asp-for="Synopsis" style="resize:none" class="form-control" rows="6"></textarea>
                         <span asp-validation-for="Synopsis" class="text-danger"></span>
                     </div>
 
@@ -220,6 +217,28 @@
                     <!-- Selected actors cards -->
                     <div class="form-group" id="selected-actors">
                         <h2>Selected actors:</h2>
+
+                        @for (int i = 0; i < Model.Actings.Count(); i++)
+                        {
+                            <div class="card mb-3" style="max-width: 540px;">
+                                <div class="row no-gutters">
+                                    <div class="col-md-4">
+                                        <img src="~/img/ActorsImages/@Model.Actings[i].Actor.Image" class="card-img">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">@Model.Actings[i].Actor.FirstName @Model.Actings[i].Actor.LastName</h5>
+                                            <input type="hidden" name="@Model.Actings[i].ActorId" value="@Model.Actings[i].ActorId" />
+                                            <label for="fname">Role:</label>
+                                            <input type="text" id="fname" name="@Model.Actings[i].Role"><br><br>
+                                            <label for="fname">Income:</label>
+                                            <input type="text" id="fname" name="@Model.Actings[i].Income"><br><br>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
                     </div>
 
                 </div>
@@ -282,6 +301,26 @@
                     <!-- Selected actors cards -->
                     <div class="form-group" id="selected-personnel">
                         <h2>Selected personnel:</h2>
+
+                        @for (int i = 0; i < Model.Positions.Count(); i++)
+                        {
+                            <div class="card mb-3" style="max-width: 540px;">
+                                <div class="row no-gutters">
+                                    <div class="col-md-4">
+                                        <img src="~/img/PersonnelImages/@Model.Positions[i].Personnel.Image" class="card-img">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">@Model.Positions[i].Personnel.FirstName @Model.Positions[i].Personnel.LastName</h5>
+                                            <input type="hidden" name="@Model.Positions[i].PersonnelId" value="@Model.Positions[i].PersonnelId" />
+                                            <label for="fname">Position</label>
+                                            <input type="text" id="fname" name="@Model.Positions[i].PositionTitle"><br><br>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
                     </div>
 
                 </div>
