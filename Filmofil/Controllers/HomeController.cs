@@ -1,17 +1,16 @@
 ﻿using DataAccesLayer.UnitOfWork;
 using Domen;
 using Filmofil.Models.Home;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json;
-using System.Threading.Tasks;
+
+
 
 namespace Filmofil.Controllers
 {
+    [System.Web.Mvc.HandleError]
     public class HomeController : Controller
     {
         private readonly IUnitOfWork unitOfWork;
