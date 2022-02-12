@@ -8,6 +8,6 @@ namespace Filmofil.Models.Actor
     public class ActorListViewModel
     {
         public List<Domen.Actor> Actors { get; set; }
-        public bool IsAdmin { get; set; }
+
     }
 }

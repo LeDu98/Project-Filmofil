@@ -36,7 +36,6 @@ namespace Filmofil.Controllers
 
             var user = HttpContext.User;
 
-            model.IsAdmin = user.IsInRole("Admin");
             if (SearchText != "" && SearchText != null)
             {
                 lista = unitOfWork.ActorRepository.GetAll().Where(a => String.Concat(a.FirstName, " ", a.LastName).ToLower().Contains(SearchText.ToLower()) || String.Concat(a.LastName, " ", a.FirstName).ToLower().Contains(SearchText.ToLower())).ToList();
@@ -47,8 +46,10 @@ namespace Filmofil.Controllers
 
             }
             model.Actors = lista;
+
             SPager SearchPager = new SPager() { Action = "Index", Controller = "Actor", SearchText = SearchText };
             ViewBag.SearchPager = SearchPager;
+
             return View(model);
 
         }

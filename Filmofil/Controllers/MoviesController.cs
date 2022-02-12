@@ -30,9 +30,10 @@ namespace Filmofil.Controllers
         public IActionResult Index()
         {
             List<Movie> movies = unitOfWork.MovieRepository.GetAll().OfType<Movie>().ToList();
-            List<MovieGenre> listOfMovieGenres = unitOfWork.MovieGenreRepository.GetAll().ToList();
+
             List<Genre> genres = unitOfWork.GenreRepository.GetAll().ToList();
-            MovieIndexViewModel model = new MovieIndexViewModel { Movies = movies, ListOfMoviesGenres=listOfMovieGenres,Genres=genres };
+            MovieIndexViewModel model = new MovieIndexViewModel { Movies = movies, Genres=genres };
+            
             return View(model);
         }
 
@@ -118,7 +119,7 @@ namespace Filmofil.Controllers
 
         private string GetFileNameAndSaveFile(MovieCreateModel model)
         {
-            string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "img/MoviesImages");
+            string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, folderPath);
 
             string uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Thumbnail.FileName;
             string filePath = Path.Combine(uploadsFolder, uniqueFileName);

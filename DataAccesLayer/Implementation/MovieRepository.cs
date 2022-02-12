@@ -31,7 +31,11 @@ namespace DataAccesLayer.Implementation
 
         public List<Movie> GetAll()
         {
-            return context.Movies.Include(m => m.Studio).Include(m => m.StreamingService).ToList();
+            return context.Movies.
+                Include(m => m.Studio).
+                Include(m => m.StreamingService).
+                Include(m => m.Genres).
+                ToList();
 
         }
 
@@ -47,7 +51,8 @@ namespace DataAccesLayer.Implementation
                 Include(m => m.StreamingService).
                 Include(m => m.Actings).
                 Include(m => m.Positions).
-                Include(m=>m.Reviews).
+                Include(m => m.Reviews).
+                Include(m => m.Genres).
                 ToList();
             return list.Find( m => m.MovieId == entity.MovieId );
         }

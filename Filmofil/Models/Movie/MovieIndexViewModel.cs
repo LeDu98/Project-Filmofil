@@ -9,8 +9,6 @@ namespace Filmofil.Models.Movie
     {
         public List<Domen.Movie> Movies { get; set; }
 
-        public List<Domen.MovieGenre> ListOfMoviesGenres { get; set; }
-
         public int GenreId { get; set; }
 
         public List<Domen.Genre> Genres { get; set; }

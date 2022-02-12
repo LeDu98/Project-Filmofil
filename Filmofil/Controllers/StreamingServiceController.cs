@@ -1,6 +1,7 @@
 ﻿using DataAccesLayer.UnitOfWork;
 using Domen;
 using Filmofil.Models;
+using Filmofil.Views.Shared.SearchBar;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -27,9 +28,24 @@ namespace Filmofil.Controllers
 
 
         // GET: StreamingServiceController
-        public IActionResult Index()
+        public IActionResult Index(string SearchText = "")
         {
-            List<StreamingService> model = unitOfWork.StreamingServiceRepository.GetAll().OfType<StreamingService>().ToList();
+            List<StreamingService> model = new List<StreamingService>();
+
+            var user = HttpContext.User;
+
+            if (SearchText != "" && SearchText != null)
+            {
+                model = unitOfWork.StreamingServiceRepository.GetAll().Where(s => s.Name.ToLower().Contains(SearchText.ToLower())).ToList();
+            }
+            else
+            {
+                model = unitOfWork.StreamingServiceRepository.GetAll().OfType<StreamingService>().ToList();
+
+            }
+
+            SPager SearchPager = new SPager() { Action = "Index", Controller = "StreamingService", SearchText = SearchText };
+            ViewBag.SearchPager = SearchPager;
 
             return View(model);
         }

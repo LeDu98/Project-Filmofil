@@ -5,6 +5,8 @@
     ViewData["Title"] = "Streaming services";
 }
 
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
 <style>
     .card:hover{
         box-shadow : -1px 9px 40px -12px #808080;
@@ -14,11 +16,27 @@
     }
 </style>
 
+<script>
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+</script>
+
 <h1>Streaming services</h1>
 
 
+<vc:search-bar search-pager="@ViewBag.SearchPager">
+</vc:search-bar>
+
 
 <div class="row">
+
+    
+    @if (Model.Count == 0)
+    {
+        <h3>No streaming service</h3>
+    }
+
     <div class="card-content">
         @foreach (var item in Model)
         {
@@ -37,7 +55,9 @@
 
     </div>
 </div>
-<script src="~/lib/jquery/dist/jquery.js"></script>
+
+
+
 <script type="text/javascript">
     $('.card').hover(
         function () {
