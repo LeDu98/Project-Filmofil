@@ -27,14 +27,35 @@ namespace Filmofil.Controllers
 
 
         // GET: MovieController
-        public IActionResult Index()
+        public IActionResult Index(string selectGenre, string searchString)
         {
-            List<Movie> movies = unitOfWork.MovieRepository.GetAll().OfType<Movie>().ToList();
-
+            List<Movie> movies;
             List<Genre> genres = unitOfWork.GenreRepository.GetAll().ToList();
-            MovieIndexViewModel model = new MovieIndexViewModel { Movies = movies, Genres=genres };
-            
+
+
+            if (selectGenre == null || selectGenre == "noFilter")
+            {
+                movies = unitOfWork.MovieRepository.GetAll().OfType<Movie>().ToList();
+
+            }
+            else
+            {
+                movies = unitOfWork.MovieRepository.GetAll().Where(m => m.Genres.Any(g => g.Genre.Name == selectGenre )).OfType<Movie>().ToList();
+            }
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                movies = movies.FindAll(m => m.Name.ToLower().Contains(searchString.ToLower()));
+            }
+
+
+            MovieIndexViewModel model = new MovieIndexViewModel { Movies = movies, Genres = genres };
+
+            ViewData["SearchString"] = searchString;
+            ViewData["SelectedGenre"] = selectGenre;
+
             return View(model);
+
         }
 
 
@@ -381,6 +402,18 @@ namespace Filmofil.Controllers
 
             return true;
 
+        }
+
+
+        private List<SelectListItem> GetGenresAsSelectList(List<Genre> genres)
+        {
+            List<SelectListItem> SelectList = new List<SelectListItem>();
+            foreach (Genre g in genres)
+            {
+                SelectList.Add(new SelectListItem { Text = g.Name, Value = g.Name });
+            }
+
+            return SelectList;
         }
 
 

@@ -13,16 +13,37 @@
     </p>
 </div>
 
+<div class="filter-elements">
 
-<div class="form-group" name="form">
-    <label asp-for="GenreId" class="control-label">Genre</label>
-    <select onchange="getId()" asp-for="GenreId" class="form-control" name="selectGenre" id="GenreId">
-        @foreach (var item in Model.Genres)
-        {
-            <option value="@item.GenreId" id="@item.GenreId">@item.Name</option>
-        }
-    </select>
+    <form asp-action="Index" method="get" style="display: inline-block;">
+        <div class="form-actions no-color">
+            <p>
+                Search: <input type="text" name="SearchString" value="@ViewData["SearchString"]" onchange="this.form.submit()" />
+            </p>
+        </div>
+    </form>
+
+    <form method="GET" action="https://localhost:5001/Movies/Index" name="genres-form" style="display: inline-block;">
+        <div class="form-group">
+            <select asp-for="GenreId" class="form-control" name="selectGenre" id="GenreId" onchange="this.form.submit()" style="max-width: 200px;">
+                <option value="noFilter">-- Select Genre --</option>
+                @foreach (var item in Model.Genres)
+                {
+                    if (@ViewData["SelectedGenre"] != null && @ViewData["SelectedGenre"].Equals(@item.Name))
+                    {
+                        <option value="@item.Name" id="@item.GenreId" selected="selected">@item.Name</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Name" id="@item.GenreId">@item.Name</option>
+                    }
+                }
+            </select>
+        </div>
+    </form>
+
 </div>
+
 
 <div class="content">
 
