@@ -36,11 +36,10 @@ namespace Filmofil.Controllers
             if (selectGenre == null || selectGenre == "noFilter")
             {
                 movies = unitOfWork.MovieRepository.GetAll().OfType<Movie>().ToList();
-
             }
             else
             {
-                movies = unitOfWork.MovieRepository.GetAll().Where(m => m.Genres.Any(g => g.Genre.Name == selectGenre )).OfType<Movie>().ToList();
+                movies = unitOfWork.MovieRepository.GetAll().Where(m => m.Genres.Any(g => g.Genre.Name == selectGenre)).OfType<Movie>().ToList();
             }
 
             if (!String.IsNullOrEmpty(searchString))
@@ -114,26 +113,25 @@ namespace Filmofil.Controllers
             int movieId = unitOfWork.MovieRepository.GetMaxId();
             MovieGenre mg = new MovieGenre();
             mg.MovieId = movieId;
-         
-            foreach(int i in model.GenreIds)
-            { 
+
+            foreach (int i in model.GenreIds)
+            {
                 mg.GenreId = i;
                 unitOfWork.MovieGenreRepository.Add(mg);
                 unitOfWork.Save();
             }
-            if (model.Actings != null) 
+            if (model.Actings != null)
             {
-            AddActors(movieId, model.Actings);
+                AddActors(movieId, model.Actings);
 
             }
             if (model.Positions != null)
             {
-            AddPersonnel(movieId, model.Positions);
+                AddPersonnel(movieId, model.Positions);
 
             }
 
-
-            return RedirectToAction("Details", "Movies", new {id = movieId});
+            return RedirectToAction("Details", "Movies", new { id = movieId });
 
         }
 
@@ -164,7 +162,7 @@ namespace Filmofil.Controllers
 
             unitOfWork.ReviewRepository.Add(rev);
 
-           int numberOfReviews= unitOfWork.ReviewRepository.GetAll().Where(r => r.MovieId == rev.MovieId).ToList().Count() + 1;
+            int numberOfReviews = unitOfWork.ReviewRepository.GetAll().Where(r => r.MovieId == rev.MovieId).ToList().Count() + 1;
             int sumOfReviews = unitOfWork.ReviewRepository.GetSumOfReviews(rev) + rev.Rating;
 
             double rating = (double)sumOfReviews / numberOfReviews;
@@ -174,14 +172,14 @@ namespace Filmofil.Controllers
             unitOfWork.MovieRepository.Update(movie);
             unitOfWork.Save();
             return RedirectToAction(nameof(Details), new { id = rev.MovieId.ToString() });
-            
+
         }
 
 
         // GET: MovieController/Edit/5
         public IActionResult Edit(int id)
         {
-            
+
             Movie m = unitOfWork.MovieRepository.GetSingle(new Movie { MovieId = id });
             MovieCreateModel model = CreateModel(m);
 
@@ -193,34 +191,45 @@ namespace Filmofil.Controllers
         [HttpPost]
         public IActionResult Edit(int id, MovieCreateModel model)
         {
-            /*
+            Movie m = unitOfWork.MovieRepository.GetSingle(new Movie { MovieId = id });
+
             if (!ModelState.IsValid)
             {
-                return Create();
+                return Edit(id);
             }
 
+
             string uniqueFileName = null;
+
             if (model.Thumbnail != null)
             {
                 uniqueFileName = GetFileNameAndSaveFile(model);
+                m.Thumbnail = uniqueFileName;
+            }
+            else
+            {
+                m.Thumbnail = model.ThumbnailName;
             }
 
-            unitOfWork.MovieRepository.Add(new Movie
-            {
-                Duration = model.Duration,
-                Name = model.Name,
-                StreamingServiceId = model.StreamingServiceId,
-                StudioId = model.StudioId,
-                Synopsis = model.Synopsis,
-                Thumbnail = uniqueFileName,
-                Trailer = model.Trailer,
-                Year = model.Year
-            });
+            m.Duration = model.Duration;
+            m.Name = model.Name;
+            m.StreamingServiceId = model.StreamingServiceId;
+            m.StudioId = model.StudioId;
+            m.Synopsis = model.Synopsis;
+            m.Thumbnail = uniqueFileName;
+            m.Trailer = model.Trailer;
+            m.Year = model.Year;
+
+            unitOfWork.MovieRepository.Update(m);
             unitOfWork.Save();
 
-            int movieId = unitOfWork.MovieRepository.GetMaxId();
             MovieGenre mg = new MovieGenre();
-            mg.MovieId = movieId;
+            mg.MovieId = id;
+
+            foreach(MovieGenre movieGenre in m.Genres)
+            {
+                unitOfWork.MovieGenreRepository.Delete(movieGenre);
+            }
 
             foreach (int i in model.GenreIds)
             {
@@ -228,19 +237,22 @@ namespace Filmofil.Controllers
                 unitOfWork.MovieGenreRepository.Add(mg);
                 unitOfWork.Save();
             }
+
+            DeleteOldActors(id, m.Actings);
+
             if (model.Actings != null)
             {
-                AddActors(movieId, model.Actings);
-
+                AddActors(id, model.Actings);
             }
+
+            DeleteOldPersonnel(id, m.Positions);
+
             if (model.Positions != null)
             {
-                AddPersonnel(movieId, model.Positions);
-
+                AddPersonnel(id, model.Positions);
             }
-            */
 
-            return RedirectToAction("Movies", "Dashboard");
+            return RedirectToAction("Details", "Movies", new { id = id });
         }
 
 
@@ -285,7 +297,7 @@ namespace Filmofil.Controllers
             model.Actors = new List<Actor>();
             foreach (Acting a in movie.Actings)
             {
-                model.Actors.Add((Actor) unitOfWork.ActorRepository.GetSingle(new Actor { PersonId = a.ActorId }));
+                model.Actors.Add((Actor)unitOfWork.ActorRepository.GetSingle(new Actor { PersonId = a.ActorId }));
             }
 
             model.Personnel = new List<Personnel>();
@@ -306,7 +318,7 @@ namespace Filmofil.Controllers
             /*
              * Podaci o filmu i situaciji da se kreira model za Edit
              */
-            if(m != null)
+            if (m != null)
             {
 
                 model.Duration = m.Duration;
@@ -322,7 +334,7 @@ namespace Filmofil.Controllers
                 model.Actings = m.Actings;
 
                 model.GenreIds = new int[m.Genres.Count()];
-                for(int i = 0; i < m.Genres.Count(); i++)
+                for (int i = 0; i < m.Genres.Count(); i++)
                 {
                     model.GenreIds[i] = m.Genres[i].GenreId;
                 }
@@ -337,7 +349,7 @@ namespace Filmofil.Controllers
 
             model.SelectListItemActors = CreateSelectListActors(unitOfWork.ActorRepository.GetAll());
             model.SelectListItemPersonnel = CreateSelectListPersonnel(unitOfWork.PersonnelRepository.GetAll());
-            
+
             model.Genres = unitOfWork.GenreRepository.GetAll();
             return model;
         }
@@ -346,8 +358,8 @@ namespace Filmofil.Controllers
         private List<SelectListItemActors> CreateSelectListActors(List<Actor> actors)
         {
             List<SelectListItemActors> selectListItemActors = new List<SelectListItemActors>();
-            
-            foreach(Actor actor in actors)
+
+            foreach (Actor actor in actors)
             {
                 selectListItemActors.Add(new SelectListItemActors
                 {
@@ -376,10 +388,21 @@ namespace Filmofil.Controllers
             return selectListItemPersonnel;
         }
 
-        
+        private bool DeleteOldActors(int movieId, List<Acting> actings)
+        {
+            foreach (Acting ac in actings)
+            {
+                unitOfWork.ActingRepository.Delete(ac);
+            }
+
+            unitOfWork.Save();
+
+            return true;
+        }
+
         private bool AddActors(int movieId, List<Acting> actings)
         {
-            foreach(Acting acting in actings)
+            foreach (Acting acting in actings)
             {
                 unitOfWork.ActingRepository.Add(new Acting { MovieId = movieId, ActorId = acting.ActorId, Income = acting.Income, Role = acting.Role });
             }
@@ -389,6 +412,17 @@ namespace Filmofil.Controllers
             return true;
         }
 
+        private bool DeleteOldPersonnel(int movieId, List<Position> positions)
+        {
+            foreach (Position p in positions)
+            {
+                unitOfWork.PositionRepository.Delete(p);
+            }
+
+            unitOfWork.Save();
+
+            return true;
+        }
 
         public bool AddPersonnel(int movieId, List<Position> positions)
         {

@@ -24,7 +24,7 @@ namespace DataAccesLayer.Implementation
 
         public void Delete(Position entity)
         {
-            throw new NotImplementedException();
+            context.Remove(entity);
         }
 
         public List<Position> GetAll()

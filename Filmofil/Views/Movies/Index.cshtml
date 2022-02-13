@@ -23,7 +23,7 @@
         </div>
     </form>
 
-    <form method="GET" action="https://localhost:5001/Movies/Index" name="genres-form" style="display: inline-block;">
+    <form asp-action="Index" method="get" name="genres-form" style="display: inline-block;">
         <div class="form-group">
             <select asp-for="GenreId" class="form-control" name="selectGenre" id="GenreId" onchange="this.form.submit()" style="max-width: 200px;">
                 <option value="noFilter">-- Select Genre --</option>

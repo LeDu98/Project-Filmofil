@@ -24,7 +24,6 @@ namespace DataAccesLayer.Implementation
         }
 
         
-
         public void Delete(MovieGenre entity)
         {
             context.Remove(entity);

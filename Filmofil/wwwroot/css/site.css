@@ -1,6 +1,19 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+.row {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+div#actors-table_info {
+    padding-top: 3em !important;
+}
+
+div#peraonnel-table_info {
+    padding-top: 3em !important;
+}
+
 /* IKONICE */
 i.fa.fa-play {
     width: 48px;

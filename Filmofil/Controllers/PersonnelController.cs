@@ -158,7 +158,8 @@ namespace Filmofil.Controllers
             unitOfWork.Save();
             return RedirectToAction("Personnels", "Dashboard");
         }
-       // [Authorize(Roles = "Admin")]
+       
+        // [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             CreatePersonnelViewModel model = new CreatePersonnelViewModel();
