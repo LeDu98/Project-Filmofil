@@ -28,6 +28,11 @@ namespace DataAccesLayer.Implementation
             context.Remove(entity);
         }
 
+        public List<Studio> Find(Studio entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Studio> GetAll()
         {
             return context.Studio.ToList().OfType<Studio>().ToList();

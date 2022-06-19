@@ -25,9 +25,7 @@ namespace Filmofil.Controllers
         }
         public IActionResult Index(string SearchText)
         {
-
             List<Studio> model;
-
 
             if (SearchText != "" && SearchText != null)
             {
@@ -52,12 +50,13 @@ namespace Filmofil.Controllers
         [HttpPost]
         public IActionResult Create(CreateStudioViewModel model)
         {
+            string uniqueFileName = null;
+
             if (!ModelState.IsValid)
             {
                 return Create();
             }
-            string uniqueFileName = null;
-
+            
             if (model.LogoImg != null)
             {
                 uniqueFileName = GetFileNameAndSaveFile(model);
@@ -85,33 +84,21 @@ namespace Filmofil.Controllers
             return View(model);
         }
 
-        private StudioViewModel CreateModel(Studio studio)
-        {
-            StudioViewModel model = new StudioViewModel();
-
-            model.Name = studio.Name;
-            model.Website = studio.Website;
-            model.Headquarter = studio.Headquarter;       
-            model.Founded = studio.Founded;
-
-            return model;
-        }
+       
 
         // POST: StreamingServiceController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, CreateStudioViewModel model)
         {
-            Studio studio = (Studio)unitOfWork.StudioRepository.GetSingle(new Studio { StudioId = id });
+            Studio studio = new Studio();
+            string uniqueFileName = null;
+
             if (!ModelState.IsValid)
             {
                 return Edit(id);
             }
-
-
-
-            string uniqueFileName = null;
-
+                       
             if (model.LogoImg != null)
             {
                 uniqueFileName = GetFileNameAndSaveFile(model);
@@ -122,12 +109,11 @@ namespace Filmofil.Controllers
                 studio.LogoImg = model.ImageName;
             }
 
-
             studio.Name = model.Name;
             studio.Headquarter = model.Headquarter;
             studio.Founded = model.Founded;
             studio.Website = model.Website;
-           
+            studio.StudioId = id;
 
             unitOfWork.StudioRepository.Update(studio);
             unitOfWork.Save();
@@ -135,6 +121,38 @@ namespace Filmofil.Controllers
             return RedirectToAction("Studios", "Dashboard");
         }
 
+        
+        public IActionResult Delete(int id)
+        {
+            Studio studio = (Studio)unitOfWork.StudioRepository.GetSingle(new Studio { StudioId = id });
+
+            StudioViewModel model = new StudioViewModel() { StudioId=studio.StudioId,Founded=studio.Founded,Headquarter=studio.Headquarter,LogoImg=studio.LogoImg,Name=studio.Name,Website=studio.Website };
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(int id, StudioViewModel model)
+        {
+            Studio studio = new Studio { StudioId = id };
+            unitOfWork.StudioRepository.Delete(studio);
+            unitOfWork.Save();
+
+            return RedirectToAction("Studios", "Dashboard");
+
+        }
+
+        private StudioViewModel CreateModel(Studio studio)
+        {
+            StudioViewModel model = new StudioViewModel();
+
+            model.Name = studio.Name;
+            model.Website = studio.Website;
+            model.Headquarter = studio.Headquarter;
+            model.Founded = studio.Founded;
+
+            return model;
+        }
         private string GetFileNameAndSaveFile(CreateStudioViewModel model)
         {
             // The image must be uploaded to the images folder in wwwroot
@@ -152,24 +170,5 @@ namespace Filmofil.Controllers
             return uniqueFileName;
         }
 
-        public IActionResult Delete(int id)
-        {
-            Studio studio = (Studio)unitOfWork.StudioRepository.GetSingle(new Studio { StudioId = id });
-
-            StudioViewModel model = new StudioViewModel() { StudioId=studio.StudioId,Founded=studio.Founded,Headquarter=studio.Headquarter,LogoImg=studio.LogoImg,Name=studio.Name,Website=studio.Website };
-            return View(model);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id, StudioViewModel model)
-        {
-            Studio studio = (Studio)unitOfWork.StudioRepository.GetSingle(new Studio { StudioId = id });
-            unitOfWork.StudioRepository.Delete(studio);
-            unitOfWork.Save();
-
-            return RedirectToAction("Studios", "Dashboard");
-
-        }
     }
 }

@@ -17,10 +17,12 @@ namespace Filmofil.Controllers
     {
         private readonly UserManager<SiteUser> manager;
         private readonly SignInManager<SiteUser> signInManager;
+        private readonly IUnitOfWork unitOfWork;
         
        
-        public AuthenticationController(UserManager<SiteUser> manager, SignInManager<SiteUser> signInManager)
+        public AuthenticationController(UserManager<SiteUser> manager, SignInManager<SiteUser> signInManager, IUnitOfWork unitOfWork)
         {
+            this.unitOfWork = unitOfWork;
             this.manager = manager;
             this.signInManager = signInManager;
           
@@ -98,9 +100,10 @@ namespace Filmofil.Controllers
             {
                 return View();
             }
-            var result = await signInManager.PasswordSignInAsync(login.Username, login.Password, false, false);
+            Task<bool> result = unitOfWork.SiteUserRepository.LoginAsync(signInManager, login.Username, login.Password);
+                
 
-            if (result.Succeeded)
+            if (result.Result)
             {
                 return RedirectToAction("Index", "Home");
             }

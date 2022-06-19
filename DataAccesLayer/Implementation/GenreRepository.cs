@@ -26,6 +26,11 @@ namespace DataAccesLayer.Implementation
             throw new NotImplementedException();
         }
 
+        public List<Genre> Find(Genre entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Genre> GetAll()
         {
             return context.Genres.ToList().OfType<Genre>().ToList();

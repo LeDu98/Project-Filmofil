@@ -28,11 +28,7 @@ namespace Filmofil.Controllers
 
         public IActionResult Index(string SearchText)
         {
-
-            
-
             List<Personnel> model;
-
 
             if (SearchText != "" && SearchText != null)
             {
@@ -48,36 +44,41 @@ namespace Filmofil.Controllers
             ViewBag.SearchPager = SearchPager;
             return View(model);
         }
-       // [Authorize(Roles ="Admin")]
+       
+        // [Authorize(Roles ="Admin")]
         public ActionResult Delete(int id)
         {
             Personnel personnel = (Personnel)unitOfWork.PersonnelRepository.GetSingle(new Personnel { PersonId = id });
 
             PersonnelViewModel model = new PersonnelViewModel() { PersonId = personnel.PersonId, FirstName = personnel.FirstName, LastName = personnel.LastName, Born = personnel.Born, CountryId = personnel.CountryId, Image = personnel.Image, Trademark = personnel.Trademark };
+            
             return View(model);
         }
-       // [Authorize(Roles = "Admin")]
+      
+        // [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, PersonnelViewModel model)
         {
-            Personnel personnel = (Personnel)unitOfWork.PersonnelRepository.GetSingle(new Personnel { PersonId = id });
+            Personnel personnel = new Personnel { PersonId = id };
+
             unitOfWork.PersonnelRepository.Delete(personnel);
+
             unitOfWork.Save();
+
             return RedirectToAction("Personnels", "Dashboard");
 
         }
 
         public IActionResult Details(int id)
         {
-            
+            var user = HttpContext.User;
+
             Personnel personnel = (Personnel)unitOfWork.PersonnelRepository.GetSingle(new Personnel { PersonId = id });
 
-            List<Position> lista = new List<Position>();
+            List<Position> listOfPositions = new List<Position>();
 
-            lista = unitOfWork.PositionRepository.GetAll().Where(pos => pos.PersonnelId == personnel.PersonId).ToList();
-
-            var user = HttpContext.User;
+            listOfPositions = unitOfWork.PositionRepository.GetAll().Where(pos => pos.PersonnelId == personnel.PersonId).ToList(); 
 
             PersonnelViewModel model = new PersonnelViewModel
             {
@@ -89,29 +90,13 @@ namespace Filmofil.Controllers
                 Country = personnel.Country,
                 Image = personnel.Image,
                 PersonId = personnel.PersonId,
-                Positions=lista,
+                Positions=listOfPositions,
                 IsAdmin = user.IsInRole("Admin")
             };
             return View(model);
         }
 
-
-        private CreatePersonnelViewModel CreateModel(Personnel personnel)
-        {
-            CreatePersonnelViewModel model = new CreatePersonnelViewModel();
-
-            model.FirstName = personnel.FirstName;
-            model.LastName = personnel.LastName;
-            model.Born = personnel.Born;
-            model.CountryId = personnel.CountryId;
-            model.Trademark = personnel.Trademark;
-            model.ImageName=personnel.Image;
-
-
-            return model;
-        }
-
-      //  [Authorize(Roles = "Admin")]
+        //  [Authorize(Roles = "Admin")]
         public IActionResult Edit(int id)
         {
             Personnel personnel = (Personnel)unitOfWork.PersonnelRepository.GetSingle(new Personnel { PersonId = id });
@@ -128,13 +113,16 @@ namespace Filmofil.Controllers
         //[Authorize(Roles = "Admin")]
         public IActionResult Edit(int id, CreatePersonnelViewModel model)
         {
-            Personnel personnel = (Personnel)unitOfWork.PersonnelRepository.GetSingle(new Personnel { PersonId = id });
+            string uniqueFileName = null;
+
+            Personnel personnel = new Personnel();
+
             if (!ModelState.IsValid)
             {
                 return Edit(id);
             }
 
-            string uniqueFileName = null;
+            
 
             if (model.Image != null)
             {
@@ -147,7 +135,7 @@ namespace Filmofil.Controllers
                 personnel.Image = model.ImageName;
             }
 
-
+            personnel.PersonId = id;
             personnel.FirstName = model.FirstName;
             personnel.LastName = model.LastName;
             personnel.Born = model.Born;
@@ -173,19 +161,17 @@ namespace Filmofil.Controllers
         [HttpPost]
         public IActionResult Create(CreatePersonnelViewModel model)
         {
+            string uniqueFileName = null;
+
             if (!ModelState.IsValid)
             {
                 return Create();
             }
-
-            string uniqueFileName = null;
-
+                
             if (model.Image != null)
             {
                 uniqueFileName = GetFileNameAndSaveFile(model);
             }
-
-
 
             unitOfWork.PersonnelRepository.Add(new Personnel
             {
@@ -215,6 +201,21 @@ namespace Filmofil.Controllers
             model.Image.CopyTo(new FileStream(filePath, FileMode.Create));
 
             return uniqueFileName;
+        }
+
+        private CreatePersonnelViewModel CreateModel(Personnel personnel)
+        {
+            CreatePersonnelViewModel model = new CreatePersonnelViewModel();
+
+            model.FirstName = personnel.FirstName;
+            model.LastName = personnel.LastName;
+            model.Born = personnel.Born;
+            model.CountryId = personnel.CountryId;
+            model.Trademark = personnel.Trademark;
+            model.ImageName = personnel.Image;
+
+
+            return model;
         }
     }
 }

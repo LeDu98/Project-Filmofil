@@ -25,7 +25,6 @@ namespace Filmofil.Controllers
             this.hostingEnvironment = hostingEnvironment;
         }
 
-
         // GET: MovieController
         public IActionResult Index(string selectGenre, string searchString)
         {
@@ -44,6 +43,8 @@ namespace Filmofil.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
+                Movie m = new Movie { Name = searchString.ToLower(),  };
+                movies = unitOfWork.MovieRepository.Find(m);
                 movies = movies.FindAll(m => m.Name.ToLower().Contains(searchString.ToLower()));
             }
 

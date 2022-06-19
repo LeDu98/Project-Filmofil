@@ -25,6 +25,11 @@ namespace DataAccesLayer.Implementation
             throw new NotImplementedException();
         }
 
+        public List<Country> Find(Country entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Country> GetAll()
         {
             return context.Country.ToList().OfType<Country>().ToList();

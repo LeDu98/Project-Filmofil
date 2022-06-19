@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domen;
+using System;
 using System.Collections.Generic;
 
 namespace DataAccesLayer
@@ -14,6 +15,8 @@ namespace DataAccesLayer
         public void Update(TEntity entity);
 
         public TEntity GetSingle(TEntity entity);
+
+        public List<TEntity> Find(TEntity entity);
 
     }
 }

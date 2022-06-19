@@ -1,5 +1,6 @@
 ﻿using DataAccesLayer.UnitOfWork;
 using Domen;
+using Filmofil.Models;
 using Filmofil.Models.Home;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -23,6 +24,17 @@ namespace Filmofil.Controllers
         // GET: MovieController
         public IActionResult Index()
         {
+            /*
+           try
+            {
+                throw new Exception("PORUKA");
+            }
+            catch
+            {
+                return View("Error",new ErrorViewModel{Message="VP" });
+                
+            }
+            */
             List<Movie> newReleasesMovies = unitOfWork.MovieRepository.GetAll().OrderByDescending(m => m.Year).Take(10).ToList();
 
             List<Movie> topRatedMovies = unitOfWork.MovieRepository.GetAll().OrderByDescending(m => m.Rating).Take(10).ToList();

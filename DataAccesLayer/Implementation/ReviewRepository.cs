@@ -26,6 +26,11 @@ namespace DataAccesLayer.Implementation
             throw new NotImplementedException();
         }
 
+        public List<Review> Find(Review entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Review> GetAll()
         {
             return context.Reviews.Include(r=>r.User).

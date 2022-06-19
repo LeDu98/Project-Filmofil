@@ -29,6 +29,11 @@ namespace DataAccesLayer.Implementation
             context.Remove(entity);
         }
 
+        public List<Movie> Find(Movie entity)
+        {
+            return context.Movies.ToList().FindAll(m => m.Name.ToLower().Contains(entity.Name));
+        }
+
         public List<Movie> GetAll()
         {
             return context.Movies.

@@ -72,13 +72,13 @@ namespace Filmofil.Controllers
         [HttpPost]
         public IActionResult Create(StreamingServiceCreateModel model)
         {
+            string uniqueFileName = null;
+
             if (!ModelState.IsValid)
             {
                 return Create();
             }
-
-            string uniqueFileName = null;
-
+               
             if (model.Img != null)
             {
                 uniqueFileName = GetFileNameAndSaveFile(model);
@@ -114,15 +114,15 @@ namespace Filmofil.Controllers
         [HttpPost]
         public IActionResult Edit(int id, StreamingServiceCreateModel model)
         {
-            StreamingService streamingService = (StreamingService)unitOfWork.StreamingServiceRepository.GetSingle(new StreamingService { StreamingServiceId = id });
+            string uniqueFileName = null;
+
+            StreamingService streamingService = new StreamingService();
 
             if (!ModelState.IsValid)
             {
                 return Edit(id);
             }
-
-            string uniqueFileName = null;
-
+                       
             if (model.Img != null)
             {
                 uniqueFileName = GetFileNameAndSaveFile(model);
@@ -134,6 +134,7 @@ namespace Filmofil.Controllers
 
             }
 
+            streamingService.StreamingServiceId = id;
             streamingService.Name = model.Name;
             streamingService.Founded = model.Founded;
             streamingService.Price = model.Price;
@@ -162,7 +163,7 @@ namespace Filmofil.Controllers
         [HttpPost]
         public IActionResult Delete(int id, StreamingServiceViewModel model)
         {
-            StreamingService streamingService = (StreamingService)unitOfWork.StreamingServiceRepository.GetSingle(new StreamingService { StreamingServiceId = id });
+            StreamingService streamingService = new StreamingService { StreamingServiceId = id };
 
             if (DeleteFile(streamingService.LogoImg))
             {

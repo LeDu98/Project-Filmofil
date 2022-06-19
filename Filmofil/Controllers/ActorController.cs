@@ -32,20 +32,21 @@ namespace Filmofil.Controllers
         public IActionResult Index(string SearchText = "")
         {
             ActorListViewModel model = new ActorListViewModel();
-            List<Actor> lista;
-
+            List<Actor> listOfActors;
+            
             var user = HttpContext.User;
-
+                                 
             if (SearchText != "" && SearchText != null)
             {
-                lista = unitOfWork.ActorRepository.GetAll().Where(a => String.Concat(a.FirstName, " ", a.LastName).ToLower().Contains(SearchText.ToLower()) || String.Concat(a.LastName, " ", a.FirstName).ToLower().Contains(SearchText.ToLower())).ToList();
+                listOfActors = unitOfWork.ActorRepository.GetAll().Where(a => String.Concat(a.FirstName, " ", a.LastName).ToLower().Contains(SearchText.ToLower()) || String.Concat(a.LastName, " ", a.FirstName).ToLower().Contains(SearchText.ToLower())).ToList();
             }
             else
             {
-                lista = unitOfWork.ActorRepository.GetAll().OfType<Actor>().ToList();
+                listOfActors = unitOfWork.ActorRepository.GetAll().OfType<Actor>().ToList();
 
             }
-            model.Actors = lista;
+            
+            model.Actors = listOfActors;
 
             SPager SearchPager = new SPager() { Action = "Index", Controller = "Actor", SearchText = SearchText };
             ViewBag.SearchPager = SearchPager;
@@ -53,12 +54,11 @@ namespace Filmofil.Controllers
             return View(model);
 
         }
-        //[Authorize(Roles = "Admin")]
+      //  [Authorize(Roles = "Admin")]
         
         public IActionResult Delete(int id)
         {
             Actor actor = (Actor)unitOfWork.ActorRepository.GetSingle(new Actor { PersonId = id });
-
             ActorViewModel model = new ActorViewModel() { PersonId = actor.PersonId, FirstName = actor.FirstName, LastName = actor.LastName, Born = actor.Born, CountryId = actor.CountryId, Image = actor.Image, Networth = actor.Networth };
             return View(model);
         }
@@ -68,7 +68,7 @@ namespace Filmofil.Controllers
         //[Authorize(Roles = "Admin")]
         public IActionResult Delete(int id, ActorViewModel model)
         {
-            Actor actor = (Actor)unitOfWork.ActorRepository.GetSingle(new Actor { PersonId = id });
+            Actor actor = new Actor { PersonId = id };
             unitOfWork.ActorRepository.Delete(actor);
             unitOfWork.Save();
 
@@ -80,10 +80,8 @@ namespace Filmofil.Controllers
         public IActionResult Details(int id)
         {
             Actor a = unitOfWork.ActorRepository.GetSingle(new Actor { PersonId = id });
-            List<Acting> lista = new List<Acting>();
-            lista = unitOfWork.ActingRepository.GetAll().Where(acting => acting.ActorId == a.PersonId).ToList();
-
-
+            List<Acting> listOfActings = new List<Acting>();
+            listOfActings = unitOfWork.ActingRepository.GetAll().Where(acting => acting.ActorId == a.PersonId).ToList();
 
             var user = HttpContext.User;
 
@@ -97,7 +95,7 @@ namespace Filmofil.Controllers
                 Country = a.Country,
                 Networth = a.Networth,
                 PersonId = a.PersonId,
-                Actings = lista,
+                Actings = listOfActings,
                 Biography = a.Biography,
                 IsAdmin = user.IsInRole("Admin")
             };
@@ -105,23 +103,7 @@ namespace Filmofil.Controllers
             return View(model);
         }
 
-
-        private CreateActorViewModel CreateModel(Actor actor)
-        {
-            CreateActorViewModel model = new CreateActorViewModel();
-
-            model.FirstName = actor.FirstName;
-            model.LastName = actor.LastName;
-            model.Born = actor.Born;
-            model.CountryId = actor.CountryId;
-            model.ImageName = actor.Image;
-
-
-            return model;
-        }
-
-
-      //  [Authorize(Roles = "Admin")]
+       //[Authorize(Roles = "Admin")]
         public IActionResult Edit(int id)
         {
             Actor actor = (Actor)unitOfWork.ActorRepository.GetSingle(new Actor { PersonId = id });
@@ -135,19 +117,17 @@ namespace Filmofil.Controllers
         // POST: Actor/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-       // [Authorize(Roles = "Admin")]
+      //  [Authorize(Roles = "Admin")]
         public IActionResult Edit(int id, CreateActorViewModel model)
         {
-            Actor actor = (Actor)unitOfWork.ActorRepository.GetSingle(new Actor { PersonId = id });
+            Actor actor = new Actor();
+            string uniqueFileName = model.ImageName;
+
             if (!ModelState.IsValid)
             {
                 return Edit(id);
             }
-
-
-
-            string uniqueFileName = model.ImageName;
-
+           
             if (model.Image != null)
             {
                 uniqueFileName = GetFileNameAndSaveFile(model);
@@ -158,13 +138,11 @@ namespace Filmofil.Controllers
                 actor.Image = model.ImageName;
             }
 
-
+            actor.PersonId = id;
             actor.FirstName = model.FirstName;
             actor.LastName = model.LastName;
             actor.Born = model.Born;
             actor.CountryId = model.CountryId;
-
-            
 
             unitOfWork.ActorRepository.Update(actor);
             unitOfWork.Save();
@@ -186,19 +164,17 @@ namespace Filmofil.Controllers
        // [Authorize(Roles = "Admin")]
         public IActionResult Create(CreateActorViewModel model)
         {
+            string uniqueFileName = null;
+
             if (!ModelState.IsValid)
             {
                 return Create();
             }
-
-            string uniqueFileName = null;
-
+                        
             if (model.Image != null)
             {
                 uniqueFileName = GetFileNameAndSaveFile(model);
             }
-
-
 
             unitOfWork.ActorRepository.Add(new Actor
             {
@@ -223,6 +199,20 @@ namespace Filmofil.Controllers
             model.Image.CopyTo(new FileStream(filePath, FileMode.Create));
 
             return uniqueFileName;
+        }
+
+        private CreateActorViewModel CreateModel(Actor actor)
+        {
+            CreateActorViewModel model = new CreateActorViewModel();
+
+            model.FirstName = actor.FirstName;
+            model.LastName = actor.LastName;
+            model.Born = actor.Born;
+            model.CountryId = actor.CountryId;
+            model.ImageName = actor.Image;
+
+
+            return model;
         }
     }
 

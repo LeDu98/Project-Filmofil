@@ -24,7 +24,14 @@ namespace DataAccesLayer.Implementation
 
         public void Delete(Actor entity)
         {
-            context.Remove(entity);
+            Console.WriteLine(entity);
+            Actor actor = GetSingle(new Actor { PersonId = entity.PersonId });
+            context.Remove(actor);
+        }
+
+        public List<Actor> Find(Actor entity)
+        {
+            throw new NotImplementedException();
         }
 
         public List<Actor> GetAll()

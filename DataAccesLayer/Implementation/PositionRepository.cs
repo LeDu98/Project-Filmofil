@@ -27,6 +27,11 @@ namespace DataAccesLayer.Implementation
             context.Remove(entity);
         }
 
+        public List<Position> Find(Position entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Position> GetAll()
         {
             return context.Positions.Include(p => p.Movie).

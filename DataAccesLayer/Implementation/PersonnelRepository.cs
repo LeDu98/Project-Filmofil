@@ -26,6 +26,11 @@ namespace DataAccesLayer.Implementation
             context.Remove(entity);
         }
 
+        public List<Personnel> Find(Personnel entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Personnel> GetAll()
         {
             return context.Personnel.Include(p=>p.Country).ToList();
