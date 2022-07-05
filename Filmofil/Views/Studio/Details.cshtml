@@ -4,6 +4,14 @@
     ViewData["Title"] = "Studios - " + Model.Name;
 }
 
+@if (ViewData["User"].ToString() == "True")
+{
+    <div style="display: flex; justify-content: end; ">
+        <button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Edit","Studio", new { id = Model.StudioId })'">Edit</button>
+        <button class="btn btn-danger" type="button" onclick="location.href='@Url.Action("Delete","Studio", new { id = Model.StudioId })'">Delete</button>
+
+    </div>
+}
 
 <div class="inner-container">
 

@@ -51,6 +51,8 @@ namespace Filmofil.Controllers
             SPager SearchPager = new SPager() { Action = "Index", Controller = "Actor", SearchText = SearchText };
             ViewBag.SearchPager = SearchPager;
 
+            
+
             return View(model);
 
         }

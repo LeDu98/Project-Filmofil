@@ -37,9 +37,13 @@
                 <li class="nav-item">
                     <a asp-area="" asp-controller="Personnel" asp-action="Index"><i class="fas fa-user-tie"></i><span>Personnel</span></a>
                 </li>
-                <li class="nav-item">
-                    <a asp-area="" asp-controller="Dashboard" asp-action="Index"><i class="fas fa-user-cog"></i><span>Dashboard</span></a>
-                </li>
+                @if (ViewData["User"].ToString() == "True")
+                {
+                    <li class="nav-item">
+                        <a asp-area="" asp-controller="Dashboard" asp-action="Index"><i class="fas fa-user-cog"></i><span>Dashboard</span></a>
+                    </li>
+                }
+
             </ul>
         </nav>
     </div>

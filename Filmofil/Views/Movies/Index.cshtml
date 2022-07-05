@@ -8,39 +8,50 @@
 
 <div>
     <h1 class="heading" style="margin-left: 0px;">Movies</h1>
-    
-</div>
-
-<div class="filter-elements">
-
-    <form asp-action="Index" method="get" style="display: inline-block;">
-        <div class="form-actions no-color">
-            <p>
-                Search: <input type="text" name="SearchString" value="@ViewData["SearchString"]" onchange="this.form.submit()" />
-            </p>
-        </div>
-    </form>
-
-    <form asp-action="Index" method="get" name="genres-form" style="display: inline-block;">
-        <div class="form-group">
-            <select asp-for="GenreId" class="form-control" name="selectGenre" id="GenreId" onchange="this.form.submit()" style="max-width: 200px;">
-                <option value="noFilter">-- Select Genre --</option>
-                @foreach (var item in Model.Genres)
-                {
-                    if (@ViewData["SelectedGenre"] != null && @ViewData["SelectedGenre"].Equals(@item.Name))
-                    {
-                        <option value="@item.Name" id="@item.GenreId" selected="selected">@item.Name</option>
-                    }
-                    else
-                    {
-                        <option value="@item.Name" id="@item.GenreId">@item.Name</option>
-                    }
-                }
-            </select>
-        </div>
-    </form>
 
 </div>
+
+
+<div style="display:flex; justify-content: space-between;">
+    <div class="filter-elements">
+
+        <form asp-action="Index" method="get" style="display: inline-block;">
+            <div class="form-actions no-color">
+                <p>
+                    Search: <input type="text" name="SearchString" value="@ViewData["SearchString"]" onchange="this.form.submit()" />
+                </p>
+            </div>
+        </form>
+
+        <form asp-action="Index" method="get" name="genres-form" style="display: inline-block;">
+            <div class="form-group">
+                <select asp-for="GenreId" class="form-control" name="selectGenre" id="GenreId" onchange="this.form.submit()" style="max-width: 200px;">
+                    <option value="noFilter">-- Select Genre --</option>
+                    @foreach (var item in Model.Genres)
+                    {
+                        if (@ViewData["SelectedGenre"] != null && @ViewData["SelectedGenre"].Equals(@item.Name))
+                        {
+                            <option value="@item.Name" id="@item.GenreId" selected="selected">@item.Name</option>
+                        }
+                        else
+                        {
+                            <option value="@item.Name" id="@item.GenreId">@item.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+        </form>
+
+
+
+    </div>
+
+    @if (ViewData["User"].ToString() == "True")
+    {
+        <button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Create","Movies")'">Add New Movie</button>
+    }
+</div>
+
 
 
 <div class="content">
