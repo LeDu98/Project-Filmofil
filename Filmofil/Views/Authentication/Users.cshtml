@@ -1,168 +1,260 @@
-﻿@model IEnumerable<Filmofil.Models.Users.SiteUserViewModel>
+﻿@model Filmofil.Models.Users.UserListModel
 
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4-4.6.0/jq-3.6.0/dt-1.11.4/b-2.2.2/fc-4.0.1/sc-2.0.5/sb-1.3.0/sp-1.4.0/sl-1.3.4/datatables.min.css" />
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4-4.6.0/jq-3.6.0/dt-1.11.4/b-2.2.2/fc-4.0.1/sc-2.0.5/sb-1.3.0/sp-1.4.0/sl-1.3.4/datatables.min.css" />
 
-    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.6.0/jq-3.6.0/dt-1.11.4/b-2.2.2/fc-4.0.1/sc-2.0.5/sb-1.3.0/sp-1.4.0/sl-1.3.4/datatables.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
-    <script src="~/js/dashboardPages.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.6.0/jq-3.6.0/dt-1.11.4/b-2.2.2/fc-4.0.1/sc-2.0.5/sb-1.3.0/sp-1.4.0/sl-1.3.4/datatables.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+<script src="~/js/dashboardPages.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+<script>
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+</script>
+
+<div style="display:flex; justify-content: space-between;">
+    <vc:search-bar search-pager="@ViewBag.SearchPager">
+    </vc:search-bar>
+    
+</div>
 
 
-    <table id="myTable" class="header_fixed">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Username)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.LastName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Email)
-                </th>
-                <th>
-                    Promote
-                </th>
-                <th>
-                    Delete
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
+<div class="row">
+
+
+
+    <div class="card-content">
+        @foreach (var item in Model.Users)
+        {
+
+
+        <div class="card" style="width:10em;margin:10px;">
+            @if (item.IsAdministrator)
             {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Username)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    <button type="button" onclick="location.href='@Url.Action("Promote","Authentication",new { id = item.UserId })'">Promote</button>
+                <img src="~/img/UserImages/ADMIN-FINAL.png" class="card-img-top" />
 
-
-                </td>
-                <td>
-                    <button type="button" onclick="location.href='@Url.Action("Delete","Authentication",new { id = item.UserId })'">Delete</button>
-
-                </td>
-            </tr>
+            }else {
+            <img src="~/img/UserImages/USER-FINAL.png" class="card-img-top" />
             }
-        </tbody>
-    </table>
+        <div class="card-body">
+            <div class="card-title">
+                <h4>@item.FirstName @item.LastName</h4>
+            </div>
+            @if (item.IsAdministrator == false)
+            {
+                <a href="/Authentication/Promote/@item.Id" class="btn btn-primary">
+                    Promote
 
-
-    <style>
-        h1 {
-            color: #ffffff;
-        }
-
-        label {
-            color: #ffffff;
-        }
-
-        td img {
-            height: 60px;
-            width: 60px;
-            border-radius: 100%;
-            border: 5px solid #E6E7E8;
-        }
-
-        .table {
-            display: table;
-            width: 300px;
-            margin: 60px auto;
-            font-size: 18px;
-            padding: 5rem;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-
-        .header_fixed {
-            height: 50px;
-            overflow: auto;
-            margin-top: 30px;
-        }
-
-            .header_fixed thead th {
-                position: sticky;
-                top: 0;
-                background-color: #282c39;
-                color: #ffffff;
-                font-size: 15px;
+                </a>
+                <a href="/Authentication/Delete/@item.Id" class="btn btn-danger">Ban</a>
             }
+           
+        </div>
 
-        tr:nth-child(even) {
-            background-color: #ffffff;
+        </div>
         }
 
-        tr:nth-child(odd) {
-            background-color: #404040;
-        }
+    </div>
+    <div class="pagination">
 
-        tr:hover td {
-            color: #282c39;
-            cursor: pointer;
-            background-color: #ffffff;
-        }
+    </div>
+</div>
 
-        th, td {
-            border: 1px solid #dddddd;
-            padding: 10px 20px;
-        }
 
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
 
-        ::-webkit-scrollbar-track {
-            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3)
-        }
+<style src="~/css/ActorIndex"></style>
 
-        ::-webkit-scrollbar-thumb {
-            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3)
-        }
+<style>
 
-        td button {
-            border: none;
-            padding: 7px 20px;
-            border-radius: 20px;
+    .pagination {
+        margin-top: 200px;
+      
+    }
+
+    .card:hover {
+        box-shadow: -1px 9px 40px -12px #808080;
+    }
+
+    .card-content {
+        display: contents;
+    }
+
+    h1 {
+        color: #ffffff;
+    }
+
+    label {
+        color: #ffffff;
+    }
+
+    td img {
+        height: 60px;
+        width: 60px;
+        border-radius: 100%;
+        border: 5px solid #E6E7E8;
+    }
+
+    .table {
+        display: table;
+        width: 300px;
+        margin: 60px auto;
+        font-size: 18px;
+        padding: 5rem;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .header_fixed {
+        height: 50px;
+        overflow: auto;
+        margin-top: 30px;
+    }
+
+        .header_fixed thead th {
+            position: sticky;
+            top: 0;
             background-color: #282c39;
             color: #ffffff;
-        }
-        button {
-            border: none;
-            padding: 7px 20px;
-            border-radius: 20px;
-            background-color: #ffffff;
-            color: #282c39;
+            font-size: 15px;
         }
 
-        #main {
-            position: absolute;
-            display: block;
-            background: #1d1b24;
-            width: 100%;
+    tr:nth-child(even) {
+        background-color: #ffffff;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #404040;
+    }
+
+    tr:hover td {
+        color: #282c39;
+        cursor: pointer;
+        background-color: #ffffff;
+    }
+
+    th, td {
+        border: 1px solid #dddddd;
+        padding: 10px 20px;
+    }
+
+    ::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3)
+    }
+
+    ::-webkit-scrollbar-thumb {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3)
+    }
+
+    td button {
+        border: none;
+        padding: 7px 20px;
+        border-radius: 20px;
+        background-color: #282c39;
+        color: #ffffff;
+    }
+
+    button {
+        border: none;
+        padding: 7px 20px;
+        border-radius: 20px;
+        background-color: #ffffff;
+        color: #282c39;
+    }
+
+    #main {
+        position: absolute;
+        display: block;
+        background: #1d1b24;
+        width: 100%;
+    }
+</style>
+
+<script type="text/javascript">
+    function getPageList(totalPages, page, maxLength) {
+        function range(start, end) {
+            return Array.from(Array(end - start + 1), (_, i) => i + start);
         }
-        
-    </style>
+
+        var sideWidth = maxLength < 9 ? 1 : 2;
+        var leftWidth = (maxLength - sideWidth * 2 - 3) >> 1;
+        var rightWidth = (maxLength - sideWidth * 2 - 3) >> 1;
+
+        if (totalPages <= maxLength) {
+            return range(1, totalPages);
+        }
+
+        if (page <= maxLength - sideWidth - 1 - rightWidth) {
+            return range(1, maxLength - sideWidth - 1).concat(0, range(totalPages - sideWidth + 1, totalPages));
+        }
+
+        if (page >= totalPages - sideWidth - 1 - rightWidth) {
+            return range(1, sideWidth).concat(0, range(totalPages - sideWidth - 1 - rightWidth - leftWidth, totalPages));
+        }
+
+        return range(1, sideWidth).concat(0, range(page - leftWidth, page + rightWidth), 0, range(totalPages - sideWidth + 1, totalPages));
+    }
+
+    $(function () {
+        var numberOfItems = $(".card-content .card").length;
+        var limitPerPage = 20; //How many card items visible per a page
+        var totalPages = Math.ceil(numberOfItems / limitPerPage);
+        var paginationSize = 7; //How many page elements visible in the pagination
+        var currentPage;
+
+        function showPage(whichPage) {
+            if (whichPage < 1 || whichPage > totalPages) return false;
+
+            currentPage = whichPage;
+
+            $(".card-content .card").hide().slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage).show();
+
+            $(".pagination li").slice(1, -1).remove();
+
+            getPageList(totalPages, currentPage, paginationSize).forEach(item => {
+                $("<li>").addClass("page-item").addClass(item ? "current-page" : "dots")
+                    .toggleClass("active", item === currentPage).append($("<a>").addClass("page-link")
+                        .attr({ href: "javascript:void(0)" }).text(item || "...")).insertBefore(".next-page");
+            });
+
+            $(".previous-page").toggleClass("disable", currentPage === 1);
+            $(".next-page").toggleClass("disable", currentPage === totalPages);
+            return true;
+        }
+
+        $(".pagination").append(
+            $("<li>").addClass("page-item").addClass("previous-page").append($("<a>").addClass("page-link").attr({ href: "javascript:void(0)" }).text("Prev")),
+            $("<li>").addClass("page-item").addClass("next-page").append($("<a>").addClass("page-link").attr({ href: "javascript:void(0)" }).text("Next"))
+        );
+
+        $(".card-content").show();
+        showPage(1);
+
+        $(document).on("click", ".pagination li.current-page:not(.active)", function () {
+            return showPage(+$(this).text());
+        });
+
+        $(".next-page").on("click", function () {
+            return showPage(currentPage + 1);
+        });
+
+        $(".previous-page").on("click", function () {
+            return showPage(currentPage - 1);
+        });
+    });
+</script>

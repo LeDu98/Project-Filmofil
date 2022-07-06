@@ -1,6 +1,7 @@
 ﻿using DataAccesLayer.UnitOfWork;
 using Domen;
 using Filmofil.Models.Users;
+using Filmofil.Views.Shared.SearchBar;
 using IdentityServer4;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
@@ -119,19 +120,39 @@ namespace Filmofil.Controllers
             return RedirectToAction("Login");
         }
         
-        public IActionResult Users()
+        public IActionResult Users(string SearchText)
         {
-            var context = new MovieContext();
-            var users = context.Users.ToList();
-            List<SiteUserViewModel> list = new List<SiteUserViewModel>();
-                foreach(SiteUser su in users)
+
+            UserListModel model = new UserListModel();
+            List<SiteUser> listOfUsers;
+
+            var user = HttpContext.User;
+
+            if (SearchText != "" && SearchText != null)
             {
-                if (su.IsAdministrator == false)
-                {
-                    list.Add(new SiteUserViewModel { UserId=su.Id,Email = su.Email, FirstName = su.FirstName, LastName = su.LastName, Username = su.UserName });
-                }
+                listOfUsers = unitOfWork.SiteUserRepository.GetAll().Where(su => String.Concat(su.FirstName, " ", su.LastName).ToLower().Contains(SearchText.ToLower()) || String.Concat(su.LastName, " ", su.FirstName).ToLower().Contains(SearchText.ToLower()) || su.UserName.ToLower().Contains(SearchText.ToLower())).ToList();
             }
-            return View(list);
+            else
+            {
+                listOfUsers = unitOfWork.SiteUserRepository.GetAll().OfType<SiteUser>().ToList();
+
+            }
+
+            model.Users = listOfUsers;
+
+            SPager SearchPager = new SPager() { Action = "Users", Controller = "Authentication", SearchText = SearchText };
+            ViewBag.SearchPager = SearchPager;
+
+            //var context = new MovieContext();
+            //var users = context.Users.ToList();
+            //List<SiteUserViewModel> list = new List<SiteUserViewModel>();
+            //    foreach(SiteUser su in users)
+            //{
+                
+            //        list.Add(new SiteUserViewModel { UserId=su.Id,Email = su.Email, FirstName = su.FirstName, LastName = su.LastName, Username = su.UserName, IsAdministrator=su.IsAdministrator });
+                
+            //}
+            return View(model);
         }
 
         public IActionResult Delete(int id)
