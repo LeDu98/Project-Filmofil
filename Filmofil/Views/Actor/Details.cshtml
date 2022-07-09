@@ -5,6 +5,15 @@
 <script type="text/javascript" src="~/js/movies-details.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+@if (ViewData["User"].ToString() == "True")
+{
+    <div style="display: flex; justify-content: end; ">
+    <button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Edit","Actor", new { id = Model.PersonId })'">Edit</button>
+    <button class="btn btn-danger" type="button" onclick="location.href='@Url.Action("Delete","Actor", new { id = Model.PersonId })'">Delete</button>
+
+    </div>
+}
+
 <div class="inner-container">
 
     <div class="movie-image">
@@ -22,7 +31,7 @@
             </li>
 
             <li id="trailer">
-                <a ><i class="fas fa-dollar-sign" aria-hidden="true"></i><span>$@Model.Networth Million</span></a>
+                <a><i class="fas fa-dollar-sign" aria-hidden="true"></i><span>$@Model.Networth Million</span></a>
             </li>
         </ul>
     </div>
@@ -30,13 +39,13 @@
 </div>
 
 <div class="movie-info">
-    
+
     <h1 class="entry-title">@Model.FirstName @Model.LastName</h1>
-    
+
     <div class="movie-data">
         <div class="details">
             <i class="hd">Actor</i>
-            
+
             <span>
                 @Model.Born.ToString("dd.MM.yyyy.")
             </span>
@@ -45,7 +54,7 @@
     </div>
     <p class="movie-description">
         <span class="trama">
-           @Model.Biography 
+            @Model.Biography
         </span>
         <div class="persons">
             <h3 style="margin-bottom: 20px;">Filmography</h3>
@@ -75,7 +84,7 @@
 
 
 <style>
-    
+
     * {
         margin: 0;
         padding: 0;

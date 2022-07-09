@@ -7,6 +7,15 @@
 <script type="text/javascript" src="~/js/movies-details.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+@if (ViewData["User"].ToString() == "True")
+{
+    <div style="display: flex; justify-content: end; ">
+        <button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Edit","Movies", new { id = Model.MovieId })'">Edit</button>
+        <button class="btn btn-danger" type="button" onclick="location.href='@Url.Action("Delete","Movies", new { id = Model.MovieId })'">Delete</button>
+
+    </div>
+}
+
 <div class="inner-container">
 
     <div class="movie-image">

@@ -21,10 +21,16 @@
 
 <h1>Studios</h1>
 
+<div style="display:flex; justify-content: space-between;">
+    <vc:search-bar search-pager="@ViewBag.SearchPager">
+    </vc:search-bar>
+    @if (ViewData["User"].ToString() == "True")
+    {
+<button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Create","Studio")'">Add New Studio</button>
+    }
+</div>
 
 
-<vc:search-bar search-pager="@ViewBag.SearchPager">
-</vc:search-bar>
 
 @if (@Model.Count == 0)
 {

@@ -4,6 +4,15 @@
     ViewData["Title"] = "Personnels - " + Model.FirstName + " " + Model.LastName;
 }
 
+@if (ViewData["User"].ToString() == "True")
+{
+    <div style="display: flex; justify-content: end; ">
+        <button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Edit","Personnel", new { id = Model.PersonId })'">Edit</button>
+        <button class="btn btn-danger" type="button" onclick="location.href='@Url.Action("Delete","Personnel", new { id = Model.PersonId })'">Delete</button>
+
+    </div>
+}
+
 <div class="inner-container">
 
     <div class="movie-image">
@@ -25,9 +34,9 @@
 
 
 <div class="movie-info">
-    
+
     <h1 class="entry-title">@Model.FirstName @Model.LastName</h1>
-    
+
     <div class="movie-data">
         <div class="details">
             <i class="hd">Trademark</i>

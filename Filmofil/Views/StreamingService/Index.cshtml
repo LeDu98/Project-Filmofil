@@ -25,8 +25,15 @@
 <h1>Streaming services</h1>
 
 
-<vc:search-bar search-pager="@ViewBag.SearchPager">
-</vc:search-bar>
+<div style="display:flex; justify-content: space-between;">
+    <vc:search-bar search-pager="@ViewBag.SearchPager">
+    </vc:search-bar>
+    @if (ViewData["User"].ToString() == "True")
+    {
+<button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Create","StreamingService")'">Add Streaming Service</button>
+    }
+</div>
+
 
 
 <div class="row">

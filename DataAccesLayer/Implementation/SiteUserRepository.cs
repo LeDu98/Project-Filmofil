@@ -41,7 +41,7 @@ namespace DataAccesLayer.Implementation
 
         public List<SiteUser> GetAll()
         {
-            throw new NotImplementedException();
+            return context.SiteUsers.ToList();
         }
 
         public SiteUser GetSingle(SiteUser entity)
