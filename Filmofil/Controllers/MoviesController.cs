@@ -59,7 +59,7 @@ namespace Filmofil.Controllers
         }
 
 
-        // GET: MovieController/Details/5
+        // GET: MovieController/Details/id
         public IActionResult Details(int id)
         {
             MovieViewModel model = CreateMovieViewModel(unitOfWork.MovieRepository.GetSingle(new Movie { MovieId = id }));

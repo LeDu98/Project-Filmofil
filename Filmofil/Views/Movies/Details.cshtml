@@ -31,9 +31,11 @@
 
 
 <div class="movie-info">
+
     <span class="rating">
         <b>@Model.Rating</b>
     </span>
+
     <h1 class="entry-title">@Model.Name</h1>
     <em class="tagline">@Model.Studio.Name</em>
     <div class="movie-data">
@@ -112,13 +114,12 @@
         </div>
     </p>
 
+</div>
 
-    <div id="slideshow">
-    </div>
 
-    <!-- <hr style="border-bottom: 1px solid rgba(255, 255, 255, 0.07);"/> -->
+<hr style="border-bottom: 1px solid rgba(255, 255, 255, 0.07);"/>
 
-    <div class="reviews">
+<div class="reviews">
 
         <form asp-action="AddReview">
 
@@ -171,16 +172,12 @@
                 <span asp-validation-for="Review.Comment" class="text-danger"></span>
             </div>
 
-            <div class="form-group blue" id="buttonposter">
-                <input type="submit" value="AddReview" class="btn btn-primary" />
-            </div>
-
-
             <input type="submit" value="AddReview" class="btn btn-primary" />
         </form>
 
         <section class="light">
             <div class="container py-2">
+
                 <div class="h1 text-center text-dark" id="pageHeaderTitle">Reviews</div>
 
                 @foreach (var item in Model.Reviews)
@@ -189,27 +186,29 @@
 
                         <div class="postcard__text t-dark">
                             <h2 class="postcard__title green">@item.User.UserName</h2>
-                            <div class="postcard__subtitle small">
+                            <div class="postcard__subtitle small"  style="margin: 10px 0;">
                                 <time datetime="2020-05-25 12:00:00">
                                     <i class="fas fa-calendar-alt mr-2"></i>@item.Time
                                 </time>
                             </div>
                             <div class="postcard__bar"></div>
                             <div class="postcard__preview-txt">@item.Comment</div>
-                            (@item.Rating) @while (item.Rating > 0)
-                            {
-                                <img src="~/img/Review/25533.jpg" />
-                                item.Rating--;
-                            }
+                            <div class="postcard__review-mark">
+                                (@item.Rating) @while (item.Rating > 0)
+                                {
+                                    <img src="~/img/Review/rating-star.png" style="max-width:50px"/>
+                                    item.Rating--;
+                                }
+                            </div>
                         </div>
                     </article>
                 }
 
             </div>
         </section>
-    </div>
 
 </div>
+
 
 <script src="~/js/ratings.js" asp-append-version="true"></script>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
