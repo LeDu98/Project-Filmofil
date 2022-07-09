@@ -16,6 +16,7 @@ namespace DataAccesLayer.Implementation
         {
             this.context = movieContext;
         }
+
         public void Add(Personnel entity)
         {
             context.Add(entity);

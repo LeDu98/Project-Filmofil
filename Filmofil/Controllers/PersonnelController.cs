@@ -157,7 +157,7 @@ namespace Filmofil.Controllers
         }
 
         //POST: ActorController/Create
-       // [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Create(CreatePersonnelViewModel model)
         {

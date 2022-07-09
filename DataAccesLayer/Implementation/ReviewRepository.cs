@@ -23,7 +23,8 @@ namespace DataAccesLayer.Implementation
 
         public void Delete(Review entity)
         {
-            throw new NotImplementedException();
+            Review r = context.Reviews.FirstOrDefault(r => r.MovieId == entity.MovieId && r.UserId == entity.UserId);
+            context.Remove(r);
         }
 
         public List<Review> Find(Review entity)
@@ -39,6 +40,9 @@ namespace DataAccesLayer.Implementation
 
         public Review GetSingle(Review entity)
         {
+            //var list = context.Reviews.Include(r => r.User).
+            //    ToList().OfType<Review>().ToList();
+            //return list.Find(r => r.MovieId == entity.MovieId && r.UserId == entity.UserId);
             throw new NotImplementedException();
         }
 

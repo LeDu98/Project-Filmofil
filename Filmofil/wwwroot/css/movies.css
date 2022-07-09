@@ -177,6 +177,7 @@ p.overview {
 
 .card:hover {
     transform: rotateY(180deg);
+    background-color: #36343c !important;
 }
 
 @media (max-width: 800px) {
