@@ -23,6 +23,7 @@ namespace DataAccesLayer.Implementation
         }
 
         public void Delete(Actor entity)
+
         {
             Console.WriteLine(entity);
             Actor actor = GetSingle(new Actor { PersonId = entity.PersonId });

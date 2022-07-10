@@ -21,6 +21,11 @@
         </form>
     </div>
 </div>
+@if (Model != null)
+{
+    <h6 style="color: crimson; margin-bottom: 20px;">@Model.Message</h6>
+}
 <a asp-action="Register">Registration</a>
-  
+
+
 <script src="~/js/login.js"></script>

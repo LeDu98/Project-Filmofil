@@ -40,7 +40,7 @@ namespace Filmofil.Controllers
             }
             else
             {
-                model = unitOfWork.StreamingServiceRepository.GetAll().OfType<StreamingService>().ToList();
+                model = unitOfWork.StreamingServiceRepository.GetAll();
 
             }
 

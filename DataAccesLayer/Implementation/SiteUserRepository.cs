@@ -14,9 +14,11 @@ namespace DataAccesLayer.Implementation
 
         private readonly MovieContext context;
 
+
         public SiteUserRepository(MovieContext context)
         {
             this.context = context;
+           
         }
 
         public void Add(SiteUser entity)
@@ -29,14 +31,20 @@ namespace DataAccesLayer.Implementation
             throw new NotImplementedException();
         }
 
-        public List<SiteUser> Find(Movie entity)
+       
+        public List<SiteUser> Find(SiteUser entity)
         {
             throw new NotImplementedException();
         }
 
-        public List<SiteUser> Find(SiteUser entity)
+        public List<SiteUser> FindByString(string text)
         {
-            throw new NotImplementedException();
+            if(text=="" || text == null)
+            {
+                return context.SiteUsers.ToList();
+            }
+
+            return context.SiteUsers.ToList().Where(su => String.Concat(su.FirstName, " ", su.LastName).ToLower().Contains(text.ToLower()) || String.Concat(su.LastName, " ", su.FirstName).ToLower().Contains(text.ToLower()) || su.UserName.ToLower().Contains(text.ToLower())).ToList();
         }
 
         public List<SiteUser> GetAll()
@@ -46,7 +54,7 @@ namespace DataAccesLayer.Implementation
 
         public SiteUser GetSingle(SiteUser entity)
         {
-            return context.SiteUsers.Find(entity.UserName);
+            return context.SiteUsers.Find(entity.Id);
         }
 
         public async Task<bool> LoginAsync(SignInManager<SiteUser> signInManager, string username, string password)
@@ -60,6 +68,9 @@ namespace DataAccesLayer.Implementation
             
         }
 
+       
+
+       
         public SiteUser SearchByUsername(string username)
         {
             return context.SiteUsers.SingleOrDefault(su => su.UserName == username);
@@ -70,11 +81,8 @@ namespace DataAccesLayer.Implementation
             throw new NotImplementedException();
         }
 
-        Task<bool> ISiteUserRepository.LoginAsync(SignInManager<SiteUser> signInManager, string username, string password)
-        {
-            Task<bool> result = LoginAsync(signInManager, username, password);
+       
 
-            return result;
-        }
+       
     }
 }

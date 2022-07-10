@@ -97,7 +97,7 @@ namespace Filmofil.Controllers
         [HttpPost]
         public async Task<IActionResult> Login([FromForm] LoginViewModel login)
         {
-            if(login.Username=="" || login.Username == null)
+            if(login.Password==null || login.Username == null)
             {
                 return View();
             }
@@ -109,7 +109,8 @@ namespace Filmofil.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            return View();
+            LoginViewModel model = new LoginViewModel { Message = "Wrong username or password!" };
+            return View(model);
         }
         #endregion
 
@@ -128,30 +129,23 @@ namespace Filmofil.Controllers
 
             var user = HttpContext.User;
 
-            if (SearchText != "" && SearchText != null)
+            if (SearchText == null || SearchText == "")
             {
-                listOfUsers = unitOfWork.SiteUserRepository.GetAll().Where(su => String.Concat(su.FirstName, " ", su.LastName).ToLower().Contains(SearchText.ToLower()) || String.Concat(su.LastName, " ", su.FirstName).ToLower().Contains(SearchText.ToLower()) || su.UserName.ToLower().Contains(SearchText.ToLower())).ToList();
+                model.Users = unitOfWork.SiteUserRepository.GetAll();
             }
             else
             {
-                listOfUsers = unitOfWork.SiteUserRepository.GetAll().OfType<SiteUser>().ToList();
-
+                listOfUsers = unitOfWork.SiteUserRepository.FindByString(SearchText);
+                model.Users = listOfUsers;
+                
             }
+           
 
-            model.Users = listOfUsers;
 
             SPager SearchPager = new SPager() { Action = "Users", Controller = "Authentication", SearchText = SearchText };
             ViewBag.SearchPager = SearchPager;
 
-            //var context = new MovieContext();
-            //var users = context.Users.ToList();
-            //List<SiteUserViewModel> list = new List<SiteUserViewModel>();
-            //    foreach(SiteUser su in users)
-            //{
-                
-            //        list.Add(new SiteUserViewModel { UserId=su.Id,Email = su.Email, FirstName = su.FirstName, LastName = su.LastName, Username = su.UserName, IsAdministrator=su.IsAdministrator });
-                
-            //}
+         
             return View(model);
         }
 
@@ -196,12 +190,12 @@ namespace Filmofil.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Promote(int id, SiteUserViewModel model)
         {
-            var user =manager.Users.FirstOrDefault(u => u.Id == id);
-           await manager.AddToRoleAsync(user, "Admin");
+            var user = manager.Users.FirstOrDefault(u => u.Id == id);
+            await manager.AddToRoleAsync(user, "Admin");
             user.IsAdministrator = true;
             await manager.UpdateAsync(user);
 
-            
+
 
             return RedirectToAction("Users");
 

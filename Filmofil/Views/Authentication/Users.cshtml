@@ -1,12 +1,7 @@
 ﻿@model Filmofil.Models.Users.UserListModel
 
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4-4.6.0/jq-3.6.0/dt-1.11.4/b-2.2.2/fc-4.0.1/sc-2.0.5/sb-1.3.0/sp-1.4.0/sl-1.3.4/datatables.min.css" />
 
-<script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.6.0/jq-3.6.0/dt-1.11.4/b-2.2.2/fc-4.0.1/sc-2.0.5/sb-1.3.0/sp-1.4.0/sl-1.3.4/datatables.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
-<script src="~/js/dashboardPages.js"></script>
-<script src="~/lib/jquery/dist/jquery.js"></script>
+
 
 <script>
     if (window.history.replaceState) {
@@ -30,7 +25,7 @@
         {
 
 
-        <div class="card" style="width:10em;margin:10px;">
+        <div class="card" style="width:20%;margin:10px; height: fit-content;">
             @if (item.IsAdministrator)
             {
                 <img src="~/img/UserImages/ADMIN-FINAL.png" class="card-img-top" />
@@ -39,8 +34,10 @@
             <img src="~/img/UserImages/USER-FINAL.png" class="card-img-top" />
             }
         <div class="card-body">
-            <div class="card-title">
-                <h4>@item.FirstName @item.LastName</h4>
+            <div class="card-title" style="color:white;">
+                <h4>@item.UserName</h4>
+                <p>Name: @item.FirstName @item.LastName</p>
+                <p>Email: @item.Email</p>
             </div>
             @if (item.IsAdministrator == false)
             {
@@ -116,72 +113,8 @@
         justify-content: center;
     }
 
-    .header_fixed {
-        height: 50px;
-        overflow: auto;
-        margin-top: 30px;
-    }
+    
 
-        .header_fixed thead th {
-            position: sticky;
-            top: 0;
-            background-color: #282c39;
-            color: #ffffff;
-            font-size: 15px;
-        }
-
-    tr:nth-child(even) {
-        background-color: #ffffff;
-    }
-
-    tr:nth-child(odd) {
-        background-color: #404040;
-    }
-
-    tr:hover td {
-        color: #282c39;
-        cursor: pointer;
-        background-color: #ffffff;
-    }
-
-    th, td {
-        border: 1px solid #dddddd;
-        padding: 10px 20px;
-    }
-
-    ::-webkit-scrollbar {
-        width: 6px;
-    }
-
-    ::-webkit-scrollbar-track {
-        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3)
-    }
-
-    ::-webkit-scrollbar-thumb {
-        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3)
-    }
-
-    td button {
-        border: none;
-        padding: 7px 20px;
-        border-radius: 20px;
-        background-color: #282c39;
-        color: #ffffff;
-    }
-
-    button {
-        border: none;
-        padding: 7px 20px;
-        border-radius: 20px;
-        background-color: #ffffff;
-        color: #282c39;
-    }
-
-    #main {
-        position: absolute;
-        display: block;
-        background: #1d1b24;
-        width: 100%;
     }
 </style>
 

@@ -18,7 +18,7 @@ namespace Filmofil.Models.Users
         public string Email { get; set; }
         [Required]
         public string Password { get; set; }
-        [Compare("Password")]
+        [Compare("Password",ErrorMessage ="Passwords don't match!")]
         [Required]
         public string PasswordCheck { get; set; }
 
