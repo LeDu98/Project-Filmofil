@@ -26,7 +26,7 @@ namespace DataAccesLayer.Implementation
             throw new NotImplementedException();
         }
 
-        public List<Genre> Find(Genre entity)
+        public List<Genre> Find(string text)
         {
             throw new NotImplementedException();
         }

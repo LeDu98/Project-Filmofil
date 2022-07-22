@@ -43,6 +43,8 @@ namespace Filmofil.Models.Movie
 
         public List<SelectListItemPersonnel> SelectListItemPersonnel { get; set; }
 
+        public List<MovieGenre> MovieGenres { get; set; }
+
         public List<Genre> Genres { get; set; }
         [Required(ErrorMessage = "The Movie must have at least one genre!")]
         public int[] GenreIds { get; set; }

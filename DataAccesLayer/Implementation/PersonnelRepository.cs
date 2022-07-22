@@ -27,7 +27,7 @@ namespace DataAccesLayer.Implementation
             context.Remove(entity);
         }
 
-        public List<Personnel> Find(Personnel entity)
+        public List<Personnel> Find(string text)
         {
             throw new NotImplementedException();
         }

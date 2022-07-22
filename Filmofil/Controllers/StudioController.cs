@@ -29,11 +29,11 @@ namespace Filmofil.Controllers
 
             if (SearchText != "" && SearchText != null)
             {
-                model = unitOfWork.StudioRepository.GetAll().Where(s => String.Concat(s.Name).ToLower().Contains(SearchText.ToLower())).ToList();
+                model = unitOfWork.StudioRepository.Find(SearchText);
             }
             else
             {
-                model = unitOfWork.StudioRepository.GetAll().OfType<Studio>().ToList();
+                model = unitOfWork.StudioRepository.GetAll();
 
             }
 

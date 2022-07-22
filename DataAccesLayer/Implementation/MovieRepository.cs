@@ -34,6 +34,24 @@ namespace DataAccesLayer.Implementation
             return context.Movies.ToList().FindAll(m => m.Name.ToLower().Contains(entity.Name));
         }
 
+        public List<Movie> Find(string text)
+        {
+            return context.Movies.Include(m => m.Studio).
+                Include(m => m.StreamingService).
+                Include(m => m.Genres).
+                Where(m => m.Name.ToLower().Contains(text.ToLower()))
+                .ToList();
+        }
+
+        public List<Movie> FindByGenre(string genre)
+        {
+            return context.Movies.Include(m => m.Studio).
+                Include(m => m.StreamingService).
+                Include(m => m.Genres).
+                Where(m => m.Genres.Any(g => g.Genre.Name == genre))
+                .ToList();
+        }
+
         public List<Movie> GetAll()
         {
             return context.Movies.
@@ -51,15 +69,15 @@ namespace DataAccesLayer.Implementation
 
         public Movie GetSingle(Movie entity)
         {
-            var list = context.Movies.
+            var movie = context.Movies.
                 Include(m => m.Studio).
                 Include(m => m.StreamingService).
                 Include(m => m.Actings).
                 Include(m => m.Positions).
                 Include(m => m.Reviews).
                 Include(m => m.Genres).
-                ToList();
-            return list.Find( m => m.MovieId == entity.MovieId );
+                SingleOrDefault(m => m.MovieId == entity.MovieId);
+            return movie;
         }
 
         public void Update(Movie entity)

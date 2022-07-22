@@ -11,8 +11,7 @@ namespace DataAccesLayer
     public interface ISiteUserRepository : IRepository<SiteUser>
     {
         SiteUser SearchByUsername(string username);
-        Task<bool> LoginAsync(SignInManager<SiteUser> signInManager, string username, string password);
-
+       
         List<SiteUser> FindByString(string text);
      
     }

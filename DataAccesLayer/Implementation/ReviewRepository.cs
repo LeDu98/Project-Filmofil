@@ -27,7 +27,8 @@ namespace DataAccesLayer.Implementation
             context.Remove(r);
         }
 
-        public List<Review> Find(Review entity)
+
+        public List<Review> Find(string text)
         {
             throw new NotImplementedException();
         }

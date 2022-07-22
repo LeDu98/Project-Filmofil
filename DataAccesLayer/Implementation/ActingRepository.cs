@@ -28,7 +28,8 @@ namespace DataAccesLayer.Implementation
             context.Remove(entity);
         }
 
-        public List<Acting> Find(Acting entity)
+
+        public List<Acting> Find(string text)
         {
             throw new NotImplementedException();
         }

@@ -28,19 +28,19 @@ namespace DataAccesLayer.Implementation
             context.Remove(entity);
         }
 
-        public List<Studio> Find(Studio entity)
+        public List<Studio> Find(string text)
         {
-            throw new NotImplementedException();
+            return context.Studio.Where(s => s.Name.ToLower().Contains(text.ToLower())).ToList();
         }
 
         public List<Studio> GetAll()
         {
-            return context.Studio.ToList().OfType<Studio>().ToList();
+            return context.Studio.ToList();
         }
 
         public Studio GetSingle(Studio entity)
         {
-            return context.Studio.Find(entity.StudioId);
+            return context.Studio.SingleOrDefault(s=>s.StudioId==entity.StudioId);
         }
 
         public void Update(Studio entity)

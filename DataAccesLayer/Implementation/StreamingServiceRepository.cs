@@ -27,14 +27,16 @@ namespace DataAccesLayer.Implementation
             context.Remove(entity);
         }
 
-        public List<StreamingService> Find(StreamingService entity)
+        
+
+        public List<StreamingService> Find(string text)
         {
             throw new NotImplementedException();
         }
 
         public List<StreamingService> GetAll()
         {
-            return context.StreamingService.ToList().OfType<StreamingService>().ToList();
+            return context.StreamingService.ToList();
         }
 
         public StreamingService GetSingle(StreamingService entity)

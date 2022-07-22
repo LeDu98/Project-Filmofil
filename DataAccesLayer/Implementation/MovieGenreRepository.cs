@@ -29,7 +29,8 @@ namespace DataAccesLayer.Implementation
             context.Remove(entity);
         }
 
-        public List<MovieGenre> Find(MovieGenre entity)
+
+        public List<MovieGenre> Find(string text)
         {
             throw new NotImplementedException();
         }
@@ -41,7 +42,10 @@ namespace DataAccesLayer.Implementation
 
         public MovieGenre GetSingle(MovieGenre entity)
         {
-            throw new NotImplementedException();
+            var movieGenre = context.MovieGenre
+                .SingleOrDefault(mg => mg.GenreId==entity.GenreId &&
+                mg.MovieId==entity.MovieId);
+            return movieGenre;
         }
 
         public void Update(MovieGenre entity)

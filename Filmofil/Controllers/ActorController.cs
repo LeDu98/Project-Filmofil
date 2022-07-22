@@ -38,11 +38,11 @@ namespace Filmofil.Controllers
                                  
             if (SearchText != "" && SearchText != null)
             {
-                listOfActors = unitOfWork.ActorRepository.GetAll().Where(a => String.Concat(a.FirstName, " ", a.LastName).ToLower().Contains(SearchText.ToLower()) || String.Concat(a.LastName, " ", a.FirstName).ToLower().Contains(SearchText.ToLower())).ToList();
+                listOfActors = unitOfWork.ActorRepository.Find(SearchText); 
             }
             else
             {
-                listOfActors = unitOfWork.ActorRepository.GetAll().OfType<Actor>().ToList();
+                listOfActors = unitOfWork.ActorRepository.GetAll();
 
             }
             

@@ -97,19 +97,29 @@ namespace Filmofil.Controllers
         [HttpPost]
         public async Task<IActionResult> Login([FromForm] LoginViewModel login)
         {
-            if(login.Password==null || login.Username == null)
+            if(login.Password==null ||
+                login.Username == null)
             {
                 return View();
             }
-            Task<bool> result = unitOfWork.SiteUserRepository.LoginAsync(signInManager, login.Username, login.Password);
-                
 
-            if (result.Result)
+
+            var result = await signInManager.PasswordSignInAsync(
+                login.Username,
+                login.Password,
+                false,
+                false);
+
+            if (result.Succeeded)
             {
                 return RedirectToAction("Index", "Home");
             }
 
-            LoginViewModel model = new LoginViewModel { Message = "Wrong username or password!" };
+            LoginViewModel model = new LoginViewModel 
+            { 
+                Message = "Wrong username or password!" 
+            };
+
             return View(model);
         }
         #endregion
@@ -131,13 +141,19 @@ namespace Filmofil.Controllers
 
             if (SearchText == null || SearchText == "")
             {
-                model.Users = unitOfWork.SiteUserRepository.GetAll();
+                model.Users = manager.Users.ToList();
             }
             else
             {
-                listOfUsers = unitOfWork.SiteUserRepository.FindByString(SearchText);
-                model.Users = listOfUsers;
-                
+                model.Users = manager
+                    .Users
+                    .ToList()
+                    .Where(u =>
+                 String.Concat(u.FirstName, " ", u.LastName).ToLower().Contains(SearchText.ToLower()) ||
+                 String.Concat(u.LastName, " ", u.FirstName).ToLower().Contains(SearchText.ToLower()) ||
+                 u.UserName.ToLower().Contains(SearchText.ToLower()))
+                    .ToList();
+
             }
            
 

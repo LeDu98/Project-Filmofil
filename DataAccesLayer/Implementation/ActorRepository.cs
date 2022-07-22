@@ -30,24 +30,28 @@ namespace DataAccesLayer.Implementation
             context.Remove(actor);
         }
 
-        public List<Actor> Find(Actor entity)
+      
+        public List<Actor> Find(string text)
         {
-            throw new NotImplementedException();
+            return context
+                .Actors
+                .Where(a => String.Concat(a.FirstName, " ", a.LastName).ToLower().Contains(text.ToLower()) || 
+                String.Concat(a.LastName, " ", a.FirstName).ToLower().Contains(text.ToLower()))
+                .ToList();
         }
 
         public List<Actor> GetAll()
         {
             return context.Actors.Include(a=>a.Country).ToList();
 
-            return context.Actors.OrderByDescending(o => o.Born).Where(o => o.CountryId == 1).Take(10).ToList();
         }
 
         public Actor GetSingle(Actor entity)
-        { 
-            var list = context.Actors.
-                Include(a => a.Country).   
-                ToList();
-            return list.Find(a => a.PersonId == entity.PersonId);
+        {
+            var actor = context.Actors.
+                Include(a => a.Country).
+                SingleOrDefault(a => a.PersonId == entity.PersonId);
+            return actor;
         }
 
         public void Update(Actor entity)

@@ -10,5 +10,7 @@ namespace DataAccesLayer
     public interface IMovieRepository : IRepository<Movie>
     {
         int GetMaxId();
+
+        List<Movie> FindByGenre(string genre);
     }
 }

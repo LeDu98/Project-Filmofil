@@ -32,7 +32,9 @@ namespace DataAccesLayer.Implementation
         }
 
        
-        public List<SiteUser> Find(SiteUser entity)
+      
+
+        public List<SiteUser> Find(string text)
         {
             throw new NotImplementedException();
         }
@@ -56,19 +58,6 @@ namespace DataAccesLayer.Implementation
         {
             return context.SiteUsers.Find(entity.Id);
         }
-
-        public async Task<bool> LoginAsync(SignInManager<SiteUser> signInManager, string username, string password)
-        {
-            var result= await signInManager.PasswordSignInAsync(username, password, false, false);
-            if (result.Succeeded)
-            {
-                return true;
-            }
-            return false;
-            
-        }
-
-       
 
        
         public SiteUser SearchByUsername(string username)

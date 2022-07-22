@@ -25,7 +25,8 @@ namespace DataAccesLayer.Implementation
             throw new NotImplementedException();
         }
 
-        public List<Country> Find(Country entity)
+
+        public List<Country> Find(string text)
         {
             throw new NotImplementedException();
         }

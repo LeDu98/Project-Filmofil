@@ -16,7 +16,7 @@ namespace DataAccesLayer
 
         public TEntity GetSingle(TEntity entity);
 
-        public List<TEntity> Find(TEntity entity);
+        public List<TEntity> Find(string text);
 
     }
 }
