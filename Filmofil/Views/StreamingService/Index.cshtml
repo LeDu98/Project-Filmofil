@@ -28,7 +28,7 @@
 <div style="display:flex; justify-content: space-between;">
     <vc:search-bar search-pager="@ViewBag.SearchPager">
     </vc:search-bar>
-    @if (ViewData["User"].ToString() == "True")
+    @if (ViewData["UserRole"] != null && ViewData["UserRole"].ToString() == "Admin")
     {
 <button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Create","StreamingService")'">Add Streaming Service</button>
     }

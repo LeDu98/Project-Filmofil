@@ -25,7 +25,7 @@
 <div style="display:flex; justify-content: space-between;">
     <vc:search-bar search-pager="@ViewBag.SearchPager">
     </vc:search-bar>
-    @if (ViewData["User"].ToString() == "True")
+    @if (ViewData["UserRole"] != null && ViewData["UserRole"].ToString() == "Admin")
     {
         <button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Create","Actor")'">Add New Actor</button>
     }
@@ -33,12 +33,10 @@
 
 
 <div class="row">
-
-    @if (@Model.Actors.Count == 0)
-    {
-        <h3>Actor is not found!</h3>
+    @{ if (Model.Actors.Count == 0)
+        {
+            <p>No matching actors found!</p>}
     }
-
     <div class="card-content">
         @foreach (var item in Model.Actors)
         {
@@ -48,7 +46,13 @@
                     <div class="card-title">
                         <h4>@item.FirstName @item.LastName</h4>
                     </div>
-                    <a href="/Actor/Details/@item.PersonId" class="btn btn-primary">Read More...</a>
+                    <div class="justify-content-center">
+                        <a href="/Actor/Details/@item.PersonId" class="btn btn-primary" style="width:84px; font-size:10px;">Read More...</a>
+                        @if(ViewData["UserRole"] != null && ViewData["UserRole"].ToString() == "Admin")
+                {
+                        <a href="/Actor/Details/Edit/@item.PersonId" class="btn btn-danger" style="width:70px; font-size:10px;">Edit</a>
+                }
+                    </div>
                 </div>
 
             </div>

@@ -6,7 +6,7 @@
 <script type="text/javascript" src="~/js/movies-details.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-@if (ViewData["User"].ToString() == "True")
+@if (ViewData["UserRole"] != null && ViewData["UserRole"].ToString() == "Admin")
 {
     <div style="display: flex; justify-content: end; ">
         <button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Edit","StreamingService", new { id = Model.StreamingServiceId })'">Edit</button>

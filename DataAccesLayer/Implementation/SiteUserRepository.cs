@@ -31,9 +31,6 @@ namespace DataAccesLayer.Implementation
             throw new NotImplementedException();
         }
 
-       
-      
-
         public List<SiteUser> Find(string text)
         {
             throw new NotImplementedException();
@@ -46,7 +43,7 @@ namespace DataAccesLayer.Implementation
                 return context.SiteUsers.ToList();
             }
 
-            return context.SiteUsers.ToList().Where(su => String.Concat(su.FirstName, " ", su.LastName).ToLower().Contains(text.ToLower()) || String.Concat(su.LastName, " ", su.FirstName).ToLower().Contains(text.ToLower()) || su.UserName.ToLower().Contains(text.ToLower())).ToList();
+            return context.SiteUsers.ToList().Where(su => (su.FirstName +  " " +  su.LastName).ToLower().Contains(text.ToLower()) || (su.LastName + " " + su.FirstName).ToLower().Contains(text.ToLower()) || su.UserName.ToLower().Contains(text.ToLower())).ToList();
         }
 
         public List<SiteUser> GetAll()

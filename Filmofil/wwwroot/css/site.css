@@ -646,6 +646,7 @@ ul {
         height: 80px;
         padding: 0;
         z-index: 100;
+        display: grid;
     }
 
         #main #main-header .inner-container {

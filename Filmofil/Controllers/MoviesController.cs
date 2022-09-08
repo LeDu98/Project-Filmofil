@@ -30,6 +30,7 @@ namespace Filmofil.Controllers
         {
             List<Movie> movies;
             List<Genre> genres = unitOfWork.GenreRepository.GetAll().ToList();
+            //throw new Exception("OOPS! This movie cannot be loaded!");
 
 
             if (selectGenre == null || selectGenre == "noFilter")
@@ -164,11 +165,13 @@ namespace Filmofil.Controllers
         {
             Review rev = model.Review;
             rev.Time = System.DateTime.Now;
-            var user = HttpContext.User;
-            SiteUser siteUser = unitOfWork.SiteUserRepository.SearchByUsername(user.Identity.Name);
+            var claimsIdentity = HttpContext.User.Identity as System.Security.Claims.ClaimsIdentity;
+            int userId = Int32.Parse(claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier).Value);
 
-            rev.User = siteUser;
-            rev.UserId = siteUser.Id;
+            //SiteUser siteUser = unitOfWork.SiteUserRepository.SearchByUsername(user.Identity.Name);
+            //rev.User = siteUser;
+
+            rev.UserId = userId;
 
             unitOfWork.ReviewRepository.Add(rev);
 

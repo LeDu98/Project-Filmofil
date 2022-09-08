@@ -37,7 +37,7 @@
                 <li class="nav-item">
                     <a asp-area="" asp-controller="Personnel" asp-action="Index"><i class="fas fa-user-tie"></i><span>Personnel</span></a>
                 </li>
-                @if (ViewData["User"].ToString() == "True")
+                @if (ViewData["UserRole"]!=null && ViewData["UserRole"].ToString()=="Admin")
                 {
                     <li class="nav-item">
                         <a asp-area="" asp-controller="Dashboard" asp-action="Index"><i class="fas fa-user-cog"></i><span>Dashboard</span></a>
@@ -57,11 +57,11 @@
                     </div>
 
 
-                    <img src="~/img/whiteMovie.png" />
-                    
+                    <img style="margin-top: 10px; width: 50px; height: 50px; margin-right: 30px;" src="~/img/whiteMovie.png" />
 
 
-                    @if (ViewData["User"].ToString() == "False")
+
+                    @if (ViewData["UserAuthentication"].ToString() == "False")
                     {
                         <div class="login" style="display: inline-block;margin-right: 20px;padding-top: 27px;">
 
@@ -71,27 +71,27 @@
                             </a>
                         </div>
                     }
-                        @if (ViewData["User"].ToString() == "False")
-                        {
-                            <div class="sign-up" style="display: inline-block;margin-right: 20px;padding-top: 27px;">
-                                <a asp-area="" asp-controller="Authentication" asp-action="Register">
-                                    <i class="fas fa-user-plus"></i>
-                                    <span>Sign up</span>
-                                </a>
-                            </div>
-                        }
-                        @if (ViewData["User"].ToString() == "True")
-                        {
-                            <div class="logout" style="display: inline-block;margin-right: 20px;padding-top: 27px;">
-                                <a asp-area="" asp-controller="Authentication" asp-action="Logout">
-                                    <i class="fas fa-sign-out-alt"></i>
-                                    <span>Logout</span>
-                                </a>
-                            </div>
-                        }
-                    </div>
+                    @if (ViewData["UserAuthentication"].ToString() == "False")
+                    {
+                        <div class="sign-up" style="display: inline-block;margin-right: 20px;padding-top: 27px;">
+                            <a asp-area="" asp-controller="Authentication" asp-action="Register">
+                                <i class="fas fa-user-plus"></i>
+                                <span>Sign up</span>
+                            </a>
+                        </div>
+                    }
+                    @if (ViewData["UserAuthentication"].ToString() == "True")
+                    {
+                        <div class="logout" style="display: inline-block;margin-right: 20px;padding-top: 27px;">
+                            <a asp-area="" asp-controller="Authentication" asp-action="Logout">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span>Logout</span>
+                            </a>
+                        </div>
+                    }
+                </div>
 
-                </header>
+            </header>
             <section id="content">
                 <div class="container">
                     <main role="main" class="pb-3">
@@ -100,20 +100,21 @@
                 </div>
             </section>
         </main>
+        <footer class="border-top footer text-muted" style="display: contents;">
+            <div class="container">
+                &copy; 2022 - Filmofil - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
+
     </div>
 
 
-    
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - Filmofil - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
 
+    
     <!-- <script src="~/lib/jquery/dist/jquery.min.js"></script> !-->
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false);
+    @await RenderSectionAsync("Scripts", required: false)
 
 </body>
 

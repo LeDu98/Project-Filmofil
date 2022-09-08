@@ -54,12 +54,11 @@ namespace Filmofil.Controllers
                 }
                 
                 var result = await manager.CreateAsync(user, register.Password);
-                var addRole= await manager.AddToRoleAsync(user, "User");
+                
                 
                 if (result.Succeeded)
                 {
-
-
+                    var addRole = await manager.AddToRoleAsync(user, "User");
                     return RedirectToAction("Login");
                 }
                 else
@@ -70,7 +69,7 @@ namespace Filmofil.Controllers
                     }
                     if (result.Errors.Any(e => e.Code.Contains("Password")))
                     {
-                        ModelState.AddModelError("Password", result.Errors.FirstOrDefault(e => e.Code.Contains("Password"))?.Description);
+                        ModelState.AddModelError("PasswordCheck", result.Errors.FirstOrDefault(e => e.Code.Contains("Password"))?.Description);
                     }
 
                     return View();
@@ -137,31 +136,23 @@ namespace Filmofil.Controllers
             UserListModel model = new UserListModel();
             List<SiteUser> listOfUsers;
 
+            //throw new Exception("OOPS! This user cannot be promoted!");
+            //throw new Exception("OOPS! This user cannot be deleted!");
+
             var user = HttpContext.User;
 
             if (SearchText == null || SearchText == "")
             {
-                model.Users = manager.Users.ToList();
+                model.Users = unitOfWork.SiteUserRepository.GetAll();
             }
             else
             {
-                model.Users = manager
-                    .Users
-                    .ToList()
-                    .Where(u =>
-                 String.Concat(u.FirstName, " ", u.LastName).ToLower().Contains(SearchText.ToLower()) ||
-                 String.Concat(u.LastName, " ", u.FirstName).ToLower().Contains(SearchText.ToLower()) ||
-                 u.UserName.ToLower().Contains(SearchText.ToLower()))
-                    .ToList();
-
+                model.Users = unitOfWork.SiteUserRepository.FindByString(SearchText);
             }
-           
-
 
             SPager SearchPager = new SPager() { Action = "Users", Controller = "Authentication", SearchText = SearchText };
             ViewBag.SearchPager = SearchPager;
 
-         
             return View(model);
         }
 

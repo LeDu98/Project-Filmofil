@@ -3,35 +3,32 @@
 
 <div class="col-4 p-0 justify-content-end">
     <form asp-controller="@Model.Controller" asp-action="@Model.Action">
-        <span class="btn-group">
-            <input class="form-control" type="search" name="SearchText" value="@Model.SearchText" placeholder="Search key">
-            
-            <button type="submit" value="Search">
-                <svg viewBox="0 0 800 800"><path class="path1" d="M848.471 928l-263.059-263.059c-48.941 36.706-110.118 55.059-177.412 55.059-171.294 0-312-140.706-312-312s140.706-312 312-312c171.294 0 312 140.706 312 312 0 67.294-24.471 128.471-55.059 177.412l263.059 263.059-79.529 79.529zM189.623 408.078c0 121.364 97.091 218.455 218.455 218.455s218.455-97.091 218.455-218.455c0-121.364-103.159-218.455-218.455-218.455-121.364 0-218.455 97.091-218.455 218.455z"></path></svg>
-            </button>
-            
-        </span>
+            <div style="display: inline-flex;">
+                <span class="btn-group">
+                    <input style="width: 350px;" class="form-control" type="search" name="SearchText" value="@Model.SearchText" placeholder="Search key">
+                </span>
+                <button class="btn btn-primary" type="submit">Search</button>
+            </div>
     </form>
 </div>
 
 <style>
     form {
-        background-color: #4654e1;
         width: 300px;
         height: 44px;
         border-radius: 5px;
         display: flex;
         flex-direction: row;
         align-items: center;
-        margin-bottom: 20px;
-        margin-top: 20px;
+        margin-bottom: 50px;
+        margin-top: 50px;
     }
     input {
         all: unset;
         font: 16px system-ui;
         color: #fff;
         height: 100%;
-        width: 100%;
+        width: 350px;
         padding: 6px 10px;
     }
 
@@ -42,8 +39,8 @@
     button {
         all: unset;
         cursor: pointer;
-        width: 109px;
-        height: 43px;
+        width: 90px;
+        height: 38px;
     }
 
     svg {

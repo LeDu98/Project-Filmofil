@@ -33,10 +33,9 @@ namespace DataAccesLayer.Implementation
       
         public List<Actor> Find(string text)
         {
-            return context
-                .Actors
-                .Where(a => String.Concat(a.FirstName, " ", a.LastName).ToLower().Contains(text.ToLower()) || 
-                String.Concat(a.LastName, " ", a.FirstName).ToLower().Contains(text.ToLower()))
+            return context.Actors
+                .Where(a => (a.FirstName + " " + a.LastName).ToLower().Contains(text) || 
+                            (a.LastName + " " + a.FirstName).ToLower().Contains(text))
                 .ToList();
         }
 

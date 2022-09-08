@@ -28,12 +28,11 @@ namespace Filmofil.Controllers
             this.hostingEnvironment = hostingEnvironment;
         }
 
-
         public IActionResult Index(string SearchText = "")
         {
             ActorListViewModel model = new ActorListViewModel();
             List<Actor> listOfActors;
-            
+            //throw new Exception("OOPS! This actor cannot be loaded!");
             var user = HttpContext.User;
                                  
             if (SearchText != "" && SearchText != null)
@@ -43,21 +42,16 @@ namespace Filmofil.Controllers
             else
             {
                 listOfActors = unitOfWork.ActorRepository.GetAll();
-
             }
-            
             model.Actors = listOfActors;
 
             SPager SearchPager = new SPager() { Action = "Index", Controller = "Actor", SearchText = SearchText };
             ViewBag.SearchPager = SearchPager;
 
-            
-
             return View(model);
-
         }
-      //  [Authorize(Roles = "Admin")]
-        
+      
+        //[Authorize(Roles = "Admin")]
         public IActionResult Delete(int id)
         {
             Actor actor = (Actor)unitOfWork.ActorRepository.GetSingle(new Actor { PersonId = id });
