@@ -17,6 +17,8 @@ namespace Filmofil.Views.Shared.SearchBar
 
         public string Action { get; set; }
 
+        public string SelectedGenre { get; set; }
+
 
     }
 }

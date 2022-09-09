@@ -52,6 +52,15 @@ namespace DataAccesLayer.Implementation
                 .ToList();
         }
 
+        public List<Movie> FindByNameAndGenre(string searchText, string selectGenre)
+        {
+            return context.Movies.Include(m => m.Studio).
+                Include(m => m.StreamingService).
+                Include(m => m.Genres).
+                Where(m => m.Genres.Any(g => g.Genre.Name == selectGenre) && m.Name.ToLower().Contains(searchText.ToLower()))
+                .ToList();
+        }
+
         public List<Movie> GetAll()
         {
             return context.Movies.

@@ -17,30 +17,17 @@
 </div>
 
 <div style="display:flex; justify-content: space-between;">
-    <vc:search-bar search-pager="@ViewBag.SearchPager">
-    </vc:search-bar>
-    @if (ViewData["UserRole"] != null && ViewData["UserRole"].ToString() == "Admin")
-    {
-        <button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Create","Movies")'">Add New Movie</button>
-    }
-</div>
+    <div class="col-4 p-0 justify-content-end" >
+        <form asp-action="Index" style="display: -webkit-box;">
+            <div style="display: inline-flex;">
+                <span class="btn-group">
+                    <input style="width: 350px;" class="form-control" type="search" name="SearchText" value="@Model.SearchText" placeholder="Search key">
+                </span>
 
-
-<div style="display:flex; justify-content: space-between;">
-    <div class="filter-elements">
-
-        <form asp-action="Index" method="get" style="display: inline-block;">
-            <div class="form-actions no-color">
-                <p>
-                    Search: <input type="text" name="SearchString" value="@ViewData["SearchString"]" onchange="this.form.submit()" />
-                </p>
             </div>
-        </form>
-
-        <form asp-action="Index" method="get" name="genres-form" style="display: inline-block;">
             <div class="form-group">
-                <select asp-for="GenreId" class="form-control" name="selectGenre" id="GenreId" onchange="this.form.submit()" style="max-width: 200px;">
-                    <option value="noFilter">-- Select Genre --</option>
+                <select asp-for="GenreId" class="form-control" name="selectGenre" id="GenreId" style="max-width: 200px;">
+                    <option value="noFilter"> Select Genre </option>
                     @foreach (var item in Model.Genres)
                     {
                         if (@ViewData["SelectedGenre"] != null && @ViewData["SelectedGenre"].Equals(@item.Name))
@@ -54,11 +41,13 @@
                     }
                 </select>
             </div>
+            <button class="btn btn-primary" type="submit">Search</button>
         </form>
-
-
-
     </div>
+</div>
+
+
+<div style="display:flex; justify-content: space-between;">
 
     @if (ViewData["UserRole"] != null && ViewData["UserRole"].ToString() == "Admin")
     {
