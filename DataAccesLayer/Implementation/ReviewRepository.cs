@@ -34,8 +34,17 @@ namespace DataAccesLayer.Implementation
 
         public void Delete(Review entity)
         {
-            Review r = context.Reviews.FirstOrDefault(r => r.MovieId == entity.MovieId && r.UserId == entity.UserId);
-            context.Remove(r);
+            Review review = context.Reviews.SingleOrDefault(r => r.MovieId == entity.MovieId && r.UserId == entity.UserId);
+            int numberOfReviews = context.Reviews.Where(r => r.MovieId == entity.MovieId).ToList().Count() - 1;
+            int sumOfReviews = GetSumOfReviews(entity) - review.Rating;
+            double rating = (double)sumOfReviews / numberOfReviews;
+
+            context.Remove(review);
+
+            Movie movie = context.Movies.SingleOrDefault(m => m.MovieId == entity.MovieId);
+            movie.Rating = Math.Round(rating, 1);
+            context.Movies.Update(movie);
+
         }
 
 
