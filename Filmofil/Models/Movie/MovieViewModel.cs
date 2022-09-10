@@ -42,6 +42,8 @@ namespace Filmofil.Models.Movie
 
         public bool IsRated { get; set; }
 
+        public int UserId { get; set; }
+
 
     }
 }

@@ -81,6 +81,7 @@ namespace Filmofil.Controllers
                 var claimsIdentity = HttpContext.User.Identity as System.Security.Claims.ClaimsIdentity;
                 int userId = Int32.Parse(claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier).Value);
                 model.IsRated = unitOfWork.ReviewRepository.IsRated(userId, id);
+                model.UserId = userId;
             }
             return View(model);
         }

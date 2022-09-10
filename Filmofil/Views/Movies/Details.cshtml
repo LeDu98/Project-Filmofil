@@ -223,7 +223,7 @@
                                 };
                         }
 
-                        @if (ViewData["UserRole"] != null && ViewData["UserRole"].ToString() == "Admin")
+                        @if ((ViewData["UserRole"] != null && ViewData["UserRole"].ToString() == "Admin") || (Model.UserId!=null && Model.UserId == item.UserId))
                         {
                             <form asp-action="Delete" asp-controller="Review" asp-all-route-data="parms">
                                 <input type="submit" value="Delete review" class="btn btn-danger" />
