@@ -6,13 +6,16 @@
     if (User.Identity.IsAuthenticated)
     {
         var claimsIdentity = User.Identity as System.Security.Claims.ClaimsIdentity;
+
         if (claimsIdentity != null)
         {
             var c = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.Role);
+            var userId = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
 
             if (c != null)
             {
                 ViewData["UserRole"] = c.Value.ToString();
+                ViewData["UserId"] = userId.Value.ToString();
 
             }
         }

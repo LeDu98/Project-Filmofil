@@ -40,6 +40,8 @@ namespace Filmofil.Models.Movie
 
         public Review Review { get; set; }
 
+        public bool IsRated { get; set; }
+
 
     }
 }

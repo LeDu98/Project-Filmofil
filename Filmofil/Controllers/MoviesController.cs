@@ -75,6 +75,13 @@ namespace Filmofil.Controllers
             model.Reviews = listOfReviews;
 
             model.Genres = unitOfWork.MovieGenreRepository.GetAll().Where(m => m.MovieId == id).ToList();
+            
+            if (User.Identity.IsAuthenticated)
+            {
+                var claimsIdentity = HttpContext.User.Identity as System.Security.Claims.ClaimsIdentity;
+                int userId = Int32.Parse(claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier).Value);
+                model.IsRated = unitOfWork.ReviewRepository.IsRated(userId, id);
+            }
             return View(model);
         }
 
@@ -179,15 +186,6 @@ namespace Filmofil.Controllers
             rev.UserId = userId;
 
             unitOfWork.ReviewRepository.Add(rev);
-
-            int numberOfReviews = unitOfWork.ReviewRepository.GetAll().Where(r => r.MovieId == rev.MovieId).ToList().Count() + 1;
-            int sumOfReviews = unitOfWork.ReviewRepository.GetSumOfReviews(rev) + rev.Rating;
-
-            double rating = (double)sumOfReviews / numberOfReviews;
-
-            Movie movie = unitOfWork.MovieRepository.GetSingle(new Movie { MovieId = rev.MovieId });
-            movie.Rating = rating;
-            unitOfWork.MovieRepository.Update(movie);
             unitOfWork.Save();
             return RedirectToAction(nameof(Details), new { id = rev.MovieId.ToString() });
 

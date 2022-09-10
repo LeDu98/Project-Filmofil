@@ -10,5 +10,6 @@ namespace DataAccesLayer
     public interface IReviewRepository : IRepository<Review>
     {
         public int GetSumOfReviews(Review rev);
+        bool IsRated(int userId, int movieId);
     }
 }

@@ -65,13 +65,14 @@
     @foreach (var item in Model.Movies)
     {
         item.Thumbnail = "https://localhost:5001/img/MoviesImages/" + @item.Thumbnail;
-        <a class="card" href="/Movies/Details/@item.MovieId">
+        <div class="card">
 
-            <div class="frontWeb" style="background-image: url(@item.Thumbnail);">
+
+            <div class="frontWeb" style="background-image: url(@item.Thumbnail);" onclick="location.href='@Url.Action("Details","Movies", new { id = item.MovieId })'">
             </div>
 
-            <div class="back">
-                <div style="height: 300px;">
+            <div class="back" onclick="location.href='@Url.Action("Details","Movies", new { id = item.MovieId })'">
+                <div style="height: 300px;" >
                     <div class="release_date">@item.Name<span> (@item.Year.Year)</span></div>
                     <div style="font-size: 1em;margin-top: 11px;margin-bottom: 10px;"><i class="fas fa-star mr-2"></i>@item.Rating</div>
                     <div class="movie_gens">
@@ -85,16 +86,19 @@
                         }
 
                     </div>
-                    @if (ViewData["UserRole"] != null && ViewData["UserRole"].ToString() == "Admin")
-                    {
-                        <div style="height: 100px; justify-content: center; ">
-                            <button class="btn btn-danger" type="button" style="position: absolute; bottom: 0px; left: 0px; width: 214px;" onclick="location.href='@Url.Action("Edit","Movies", new { id = item.MovieId })'">Edit</button>
-                        </div>
-                    }
-                </div>
-            </div>
 
-        </a>
+                </div>
+               
+            </div>
+            <div class="back">
+                @if (ViewData["UserRole"] != null && ViewData["UserRole"].ToString() == "Admin")
+                {
+                    <div style="height: 100px; justify-content: center; ">
+                        <button class="btn btn-danger" type="button" style="position: absolute; bottom: 0px; left: 0px; width: 214px;" onclick="location.href='@Url.Action("Edit","Movies", new { id = item.MovieId })'">Edit</button>
+                    </div>
+                }
+            </div>
+        </div>
     }
 
 </div>

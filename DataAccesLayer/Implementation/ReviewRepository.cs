@@ -18,7 +18,18 @@ namespace DataAccesLayer.Implementation
         }
         public void Add(Review entity)
         {
-            context.Add(entity);
+            if(context.Reviews.SingleOrDefault(r => r.UserId == entity.UserId && r.MovieId==entity.MovieId) == null)
+            {
+                int numberOfReviews = context.Reviews.Where(r => r.MovieId == entity.MovieId).ToList().Count() + 1;
+                int sumOfReviews = GetSumOfReviews(entity) + entity.Rating;
+                double rating = (double)sumOfReviews / numberOfReviews;
+
+                context.Add(entity);
+
+                Movie movie = context.Movies.SingleOrDefault(m => m.MovieId == entity.MovieId);
+                movie.Rating = Math.Round(rating, 1);
+                context.Movies.Update(movie);
+            }
         }
 
         public void Delete(Review entity)
@@ -56,6 +67,15 @@ namespace DataAccesLayer.Implementation
                 sumOfReviews += r.Rating;
             }
             return sumOfReviews;
+        }
+
+        public bool IsRated(int userId, int movieId)
+        {
+            if (context.Reviews.FirstOrDefault(r => r.UserId == userId && r.MovieId == movieId) != null)
+            {
+                return true;
+            }
+            return false;
         }
 
         public void Update(Review entity)
