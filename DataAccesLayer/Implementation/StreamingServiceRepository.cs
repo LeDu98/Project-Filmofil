@@ -31,7 +31,7 @@ namespace DataAccesLayer.Implementation
 
         public List<StreamingService> Find(string text)
         {
-            throw new NotImplementedException();
+            return context.StreamingService.Where(s => s.Name.ToLower().Contains(text.ToLower())).ToList();
         }
 
         public List<StreamingService> GetAll()

@@ -30,7 +30,7 @@ namespace Filmofil.Controllers
         {
             List<Movie> movies;
             List<Genre> genres = unitOfWork.GenreRepository.GetAll().ToList();
-            //throw new Exception("OOPS! This movie cannot be loaded!");
+            throw new Exception("OOPS! This movie cannot be deleted!");
 
 
             if (selectGenre == null || selectGenre == "noFilter")

@@ -29,7 +29,7 @@ namespace DataAccesLayer.Implementation
 
         public List<Personnel> Find(string text)
         {
-            throw new NotImplementedException();
+            return context.Personnel.ToList().FindAll(p => p.FirstName.ToLower().Contains(text) || p.LastName.ToLower().Contains(text));
         }
 
         public List<Personnel> GetAll()

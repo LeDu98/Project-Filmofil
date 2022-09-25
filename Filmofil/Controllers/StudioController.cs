@@ -26,7 +26,7 @@ namespace Filmofil.Controllers
         public IActionResult Index(string SearchText)
         {
             List<Studio> model;
-            throw new Exception("OOPS! This studio cannot be loaded!");
+            //throw new Exception("OOPS! This studio cannot be loaded!");
 
             if (SearchText != "" && SearchText != null)
             {
