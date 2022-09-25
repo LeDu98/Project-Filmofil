@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Filmofil.Views.Shared.SearchBar;
 
 namespace Filmofil.Controllers
 {
@@ -26,32 +27,36 @@ namespace Filmofil.Controllers
         }
 
         // GET: MovieController
-        public IActionResult Index(string selectGenre, string searchString)
+        public IActionResult Index(string selectGenre, string SearchText = "")
         {
-            List<Movie> movies;
+            List<Movie> movies = new List<Movie>();
             List<Genre> genres = unitOfWork.GenreRepository.GetAll().ToList();
             throw new Exception("OOPS! This movie cannot be deleted!");
 
 
-            if (selectGenre == null || selectGenre == "noFilter")
+            if ((selectGenre == null || selectGenre == "noFilter") && String.IsNullOrEmpty(SearchText))
             {
                 movies = unitOfWork.MovieRepository.GetAll();
             }
             else
             {
-                movies = unitOfWork.MovieRepository.FindByGenre(selectGenre);
-                    
+                if ((selectGenre != null && selectGenre != "noFilter") && !String.IsNullOrEmpty(SearchText))
+                {
+                    movies = unitOfWork.MovieRepository.FindByNameAndGenre(SearchText, selectGenre);
+                }
+                else if (selectGenre != null && selectGenre != "noFilter")
+                {
+                    movies = unitOfWork.MovieRepository.FindByGenre(selectGenre);
+                }
+                else if (!String.IsNullOrEmpty(SearchText))
+                {
+                    movies = unitOfWork.MovieRepository.Find(SearchText);
+                }
             }
 
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                movies = unitOfWork.MovieRepository.Find(searchString);
-            }
+            MovieIndexViewModel model = new MovieIndexViewModel { Movies = movies, Genres = genres, SearchText = SearchText };
 
-
-            MovieIndexViewModel model = new MovieIndexViewModel { Movies = movies, Genres = genres };
-
-            ViewData["SearchString"] = searchString;
+            ViewData["SearchString"] = SearchText;
             ViewData["SelectedGenre"] = selectGenre;
 
             return View(model);
@@ -70,6 +75,14 @@ namespace Filmofil.Controllers
             model.Reviews = listOfReviews;
 
             model.Genres = unitOfWork.MovieGenreRepository.GetAll().Where(m => m.MovieId == id).ToList();
+            
+            if (User.Identity.IsAuthenticated)
+            {
+                var claimsIdentity = HttpContext.User.Identity as System.Security.Claims.ClaimsIdentity;
+                int userId = Int32.Parse(claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier).Value);
+                model.IsRated = unitOfWork.ReviewRepository.IsRated(userId, id);
+                model.UserId = userId;
+            }
             return View(model);
         }
 
@@ -174,15 +187,6 @@ namespace Filmofil.Controllers
             rev.UserId = userId;
 
             unitOfWork.ReviewRepository.Add(rev);
-
-            int numberOfReviews = unitOfWork.ReviewRepository.GetAll().Where(r => r.MovieId == rev.MovieId).ToList().Count() + 1;
-            int sumOfReviews = unitOfWork.ReviewRepository.GetSumOfReviews(rev) + rev.Rating;
-
-            double rating = (double)sumOfReviews / numberOfReviews;
-
-            Movie movie = unitOfWork.MovieRepository.GetSingle(new Movie { MovieId = rev.MovieId });
-            movie.Rating = rating;
-            unitOfWork.MovieRepository.Update(movie);
             unitOfWork.Save();
             return RedirectToAction(nameof(Details), new { id = rev.MovieId.ToString() });
 

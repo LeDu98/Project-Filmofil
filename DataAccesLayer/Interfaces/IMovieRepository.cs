@@ -12,5 +12,6 @@ namespace DataAccesLayer
         int GetMaxId();
 
         List<Movie> FindByGenre(string genre);
+        List<Movie> FindByNameAndGenre(string searchText, string selectGenre);
     }
 }

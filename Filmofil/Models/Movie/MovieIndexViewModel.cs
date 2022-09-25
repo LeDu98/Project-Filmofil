@@ -12,5 +12,7 @@ namespace Filmofil.Models.Movie
         public int GenreId { get; set; }
 
         public List<Domen.Genre> Genres { get; set; }
+
+        public string SearchText { get; set; }
     }
 }
